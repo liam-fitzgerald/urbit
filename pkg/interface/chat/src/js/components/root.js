@@ -33,10 +33,8 @@ export class Root extends Component {
   render() {
     const { props, state } = this;
 
-    let configs = !!state.configs ? state.configs : {};
-
-    let circles = Object.keys(configs).filter((conf) => {
-      return !!configs[conf] && conf.split('/')[1] !== 'i';
+    let circles = Object.keys(state).filter((path) => {
+      return !!state[path] && path.split('/')[1] !== 'i';
     });
 
     let messages = _.get(state, 'messages', {});
