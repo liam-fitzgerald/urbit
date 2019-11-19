@@ -14,6 +14,7 @@
       [%disconnect wire binding:eyre]
       [%http-response =http-event:http]
       [%poke wire dock out-pokes]
+      [%build wire ? schematic:ford]
   ==
 ::
 +$  out-pokes  [%kiln-commit term _|]
@@ -41,12 +42,13 @@
 +$  position
   [row=@ud col=@ud]
 ::
-+$  state  bufs=(map uri=@t buf=wall)
++$  state  bufs=(map uri=path buf=wall)
 --
 ::
 |_  [bow=bowl:gall state]
 ::
 ++  this  .
+::
 ++  prep
   |=  old=(unit state)
   ^-  (quip move _this)
@@ -54,7 +56,7 @@
   ?~  old
     :_  this
     [ost.bow %connect / [~ /'~language-server-protocol'] %language-server]~
-  [~ this(bufs u.old)]
+  [~ this(bufs *state)]
 ::
 ::  alerts us that we were bound.
 ::
@@ -117,8 +119,15 @@
 ++  coup
   |=  [=wire saw=(unit tang)]
   ^-  (quip move _this)
+  ?~  wire
+    [~ this]
+  ?.  =('commit' i.wire)
+    [~ this]
+  ?~  t.wire
+    [~ this]
   :_  this
-  ~
+  =/  buf=wall  (~(got by bufs) t.wire)
+  (run-ford-build buf t.wire)
 ::
 ++  poke-handle-http-request
   %-  (require-authorization:app ost.bow move this)
@@ -128,16 +137,18 @@
   =/  =lsp-req
     %-  parser
     (need (de-json:html q.u.body.request.inbound-request))
-  =/  buf  (~(gut by bufs) uri.lsp-req *wall)
+  =/  file-path
+    (need (parse-uri uri.lsp-req))
+  =/  buf  (~(gut by bufs) file-path *wall)
   =^  moves  buf
     ?-  +<.lsp-req
       %sync        (handle-sync buf +>.lsp-req)
       %completion  (handle-completion buf +>.lsp-req)
-      %commit      (handle-commit buf uri.lsp-req)
+      %commit      (handle-commit buf file-path)
       %hover       (handle-hover buf +>.lsp-req)
     ==
   =.  bufs
-    (~(put by bufs) uri.lsp-req buf)
+    (~(put by bufs) file-path buf)
   [moves this]
 ::
 ++  regen-diagnostics
@@ -168,9 +179,59 @@
           message+s+'syntax error'
       ==
   ==
+++  run-ford-build
+  |=  [buf=wall =path]
+  ^-  (list move)
+  =/  t=tape
+    (zing (join "\0a" buf))
+  =/  parse
+    (lily:auto t (lsp-parser `beam`[byk.bow path]))
+  ?:  ?=(%| -.parse)
+    ~
+  ~&  path
+  :_  ~
+  :*
+    ost.bow
+    %build
+    [%build (scot %da now.bow) path]
+    live=%.n
+    %plan
+    source-rail.p.parse
+    `coin`blob+**
+    `scaffold:ford`p.parse
+  ==
 ::
+::
+++  made
+  |=  $:  way=wire
+          date=@da
+          $=  result
+          $%  [%complete build-result=build-result:ford]
+              [%incomplete =tang]
+      ==  ==
+  ~&  result
+  [~ this]
+::
+++  parse-uri
+  |=  uri=@t
+  ^-  (unit path)
+  =/  delim  ;~(pose fas dot)
+  =/  res
+    `path`(rash uri (more delim (cook crip (star ;~(less delim prn)))))
+  |-  ^-  (unit path)
+  ?~  res
+    ~
+  ?~  t.res
+    ~
+  ?~  t.t.res
+    ~
+  ?:  &(=('zod' i.res) =('home' i.t.res))
+    [~ t.t.res]
+  $(res t.res)
+
+  
 ++  handle-commit
-  |=  [buf=wall uri=@t]
+  |=  [buf=wall =path]
   ^-  [(list move) wall]
   :_  buf
   =/  jon
@@ -179,7 +240,7 @@
   :*
     ost.bow
     %poke
-    /commit
+    [%commit path]
     [our.bow %hood]
     %kiln-commit
     q.byk.bow
