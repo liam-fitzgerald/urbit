@@ -575,6 +575,7 @@ _worker_sure_feck(u3_noun ovo, u3_noun vir, c3_w pre_w)
     //
     else {
       rec_o = _(0 == (u3V.dun_d % 1000ULL));
+      pac_o = _(0 == (u3V.dun_d % 10000ULL));
     }
 
     //  notify daemon of memory pressure via "fake" effect
