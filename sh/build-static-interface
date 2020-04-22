@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+npm i -g gulp
+cat > pkg/interface/urbitrc <<EOL
+module.exports = {
+  URBIT_PIERS: []
+}
+EOL
+./sh/build-interface
+mkdir dist
+
+cp -r pkg/arvo/app/chat/ dist/~chat
+cp -r pkg/arvo/app/launch/ dist/~launch
+cp -r pkg/arvo/app/clock/ dist/~clock
+cp -r pkg/arvo/app/publish/ dist/~publish
+cp -r pkg/arvo/app/soto/ dist/~soto
+cp -r pkg/arvo/app/contacts/ dist/~groups
+cp -r pkg/arvo/app/link/ dist/~link
+
+sed -i 's/\/~\/channel/https:\/\/hastuc-dibtux.arvo.network\/~\/channel/' 'dist/~launch/js/channel.js'
+mkdir -p dist/~channel
+cp dist/~launch/js/channel.js dist/~channel/channel.js
