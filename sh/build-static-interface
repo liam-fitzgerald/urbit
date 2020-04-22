@@ -18,5 +18,6 @@ cp -r pkg/arvo/app/contacts/ dist/~groups
 cp -r pkg/arvo/app/link/ dist/~link
 
 sed -i 's/\/~\/channel/https:\/\/hastuc-dibtux.arvo.network\/~\/channel/' 'dist/~launch/js/channel.js'
-mkdir -p dist/~channel
-cp dist/~launch/js/channel.js dist/~channel/channel.js
+mkdir -p 'dist/~channel'
+cp 'dist/~launch/js/channel.js' 'dist/~channel/channel.js'
+cat 'dist/~channel/channel.js'
