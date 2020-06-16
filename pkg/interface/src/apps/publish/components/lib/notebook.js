@@ -110,6 +110,7 @@ export class Notebook extends Component {
                   host={this.props.ship}
                   book={this.props.book}
                   notebook={notebook}
+                  fullGroups={this.props.fullGroups}
                   permissions={this.props.permissions}
                   groups={this.props.groups}
                   api={this.props.api}
@@ -153,8 +154,9 @@ export class Notebook extends Component {
 
     let newPost = null;
     if (notebook?.['writers-group-path'] in props.groups) {
-      const writers = notebook?.['writers-group-path'];
-      if (props.groups?.[writers].has(window.ship)) {
+      const group = props.fullGroups[notebook?.['writers-group-path']];
+      const writers = group.tags?.publish?.[`writers-${props.book}`] || [];
+      if (props.ship === `~${window.ship}` || writers.findIndex(s => s === window.ship) !== -1) {
         newPost = (
           <Link
             to={newUrl}

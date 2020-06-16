@@ -16,8 +16,14 @@
 +$  versioned-state
   $%  state-0
       state-1
+      state-2
   ==
 ::
++$  state-2
+  $:  %2
+      loaded-cards=(list card)
+      state-base
+  ==
 +$  state-1
   $:  %1
       loaded-cards=(list card)
@@ -41,7 +47,7 @@
   $%  [%chat-update update:store]
   ==
 --
-=|  state-1
+=|  state-2
 =*  state  -
 ::
 %-  agent:dbug
@@ -70,29 +76,67 @@
     ^-  (quip card _this)
     |^
     =/  old  !<(versioned-state old-vase)
-    ?:  ?=(%1 -.old)
-      :_  this(state old)
-      %+  murn  ~(tap by wex.bol)
+    ?-  -.old
+        %2  `(quip card _this)`[~ this(state old)]
+
+    ::
+        %1
+      :_  this(state [%2 +.old])
+      %+  weld
+        ^-  (list card)
+        %+  murn  ~(tap by wex.bol)
+        |=  [[=wire =ship =term] *]
+        ^-  (unit card)
+        ?.  &(?=([%mailbox *] wire) =(our.bol ship) =(%chat-store term))
+          ~
+        `[%pass wire %agent [our.bol %chat-store] %leave ~]
+      ^-  (list card)
+      %+  murn  ~(tap by synced.old)
+      |=  [chat=path host=ship]
+      ^-  (unit card)
+      ?.  =(host our.bol)
+        ~
+      ?>  ?=(^ chat)
+      ?.  =('~' i.chat)
+        ~
+      `(kick-all-path chat)
+    ::  path structure ugprade logic
+    ::
+        %0
+      =/  keys=(set path)  (scry:cc (set path) %chat-store /keys)
+      =/  upgraded-state
+          %*  .  *state-2
+              synced  synced
+              invite-created  invite-created
+              allow-history  allow-history
+              loaded-cards
+            %-  zing
+            ^-  (list (list card))
+            %+  turn  ~(tap in keys)  generate-cards
+          ==
+      :_  this(state upgraded-state)
+      loaded-cards.upgraded-state
+    ==
+    ::
+    ++  kick-all-path
+      |=  chat=path
+      ^-  card
+      :+  %give  %kick
+      :_  ~
+      %~  tap  by
+      %+  roll  ~(val by sup.bol)
+      |=  [[=ship sub=path] subs=(set path)]
+      ?>  ?=(^ sub)
+      ?.  =(t.sub chat)
+        subs
+      (~(put in subs) sub)
+    ::
+    ++  migrate-store-sub
       |=  [[=wire =ship =term] *]
       ^-  (unit card)
       ?.  &(?=([%mailbox *] wire) =(our.bol ship) =(%chat-store term))
         ~
       `[%pass wire %agent [our.bol %chat-store] %leave ~]
-    ::  path structure ugprade logic
-    ::
-    =/  keys=(set path)  (scry:cc (set path) %chat-store /keys)
-    =/  upgraded-state
-        %*  .  *state-1
-            synced  synced
-            invite-created  invite-created
-            allow-history  allow-history
-            loaded-cards
-          %-  zing
-          ^-  (list (list card))
-          %+  turn  ~(tap in keys)  generate-cards
-        ==
-    :_  this(state upgraded-state)
-    loaded-cards.upgraded-state
     ::
     ++  generate-cards
       |=  old-chat=path

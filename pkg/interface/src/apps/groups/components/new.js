@@ -13,9 +13,10 @@ export class NewScreen extends Component {
       title: '',
       description: '',
       invites: {
+        ships: [],
         groups: [],
-        ships: []
       },
+      privacy: false,
       // color: '',
       groupNameError: false,
       awaiting: false
@@ -24,6 +25,7 @@ export class NewScreen extends Component {
     this.groupNameChange = this.groupNameChange.bind(this);
     this.descriptionChange = this.descriptionChange.bind(this);
     this.invChange = this.invChange.bind(this);
+    this.groupPrivacyChange = this.groupPrivacyChange.bind(this);
   }
 
   groupNameChange(event) {
@@ -45,6 +47,12 @@ export class NewScreen extends Component {
     });
   }
 
+  groupPrivacyChange(event) {
+    this.setState({
+      privacy: event.target.checked
+    });
+  }
+
   onClickCreate() {
     const { props, state } = this;
 
@@ -55,8 +63,16 @@ export class NewScreen extends Component {
       return;
     }
 
-    const group = `/~${window.ship}` + `/${state.groupName}`;
     const aud = state.invites.ships.map(ship => `~${ship}`);
+
+    const policy = state.privacy
+          ? {  'invite': {
+            pending: aud
+          }}
+          : { 'open': {
+            'ban-ranks': [],
+            'banned': []
+          }};
 
     if (this.textarea) {
       this.textarea.value = '';
@@ -68,13 +84,13 @@ export class NewScreen extends Component {
       awaiting: true
     }, () => {
       props.api.contactView.create(
-        group,
-        aud,
+        state.groupName,
+        policy,
         this.state.title,
         this.state.description
         ).then(() => {
         this.setState({ awaiting: false });
-        props.history.push(`/~groups${group}`);
+        props.history.push(`/~groups/ship/~${window.ship}/${state.groupName}`);
       });
     });
   }
@@ -88,6 +104,9 @@ export class NewScreen extends Component {
         </span>
         );
     }
+    const privacySwitchClasses = this.state.privacy
+      ? 'relative checked bg-green2 br3 h1 toggle v-mid z-0'
+      : 'relative bg-gray4 bg-gray1-d br3 h1 toggle v-mid z-0';
 
     return (
       <div className="h-100 w-100 mw6 pa3 pt4 overflow-x-hidden bg-gray0-d white-d flex flex-column">
@@ -127,18 +146,34 @@ export class NewScreen extends Component {
             }}
             onChange={this.descriptionChange}
           />
-          <h2 className="f8 pt6">Invite <span className="gray2">(Optional)</span></h2>
-          <p className="f9 gray2 lh-copy">Selected ships will be invited to your group</p>
-          <div className="relative pb6 mt2">
-            <InviteSearch
-              groups={this.props.groups}
-              contacts={this.props.contacts}
-              groupResults={false}
-              shipResults={true}
-              invites={this.state.invites}
-              setInvite={this.invChange}
+          <div className="mv7">
+            <input
+              type="checkbox"
+              style={{ WebkitAppearance: 'none', width: 28 }}
+              onChange={this.groupPrivacyChange}
+              className={privacySwitchClasses}
             />
+            <span className="dib f9 white-d inter ml3">Private Group</span>
+            <p className="f9 gray2 pt1" style={{ paddingLeft: 40 }}>
+              If private, new members must be invited
+            </p>
           </div>
+          { this.state.privacy && (
+            <>
+              <h2 className="f8 pt6">Invite <span className="gray2">(Optional)</span></h2>
+              <p className="f9 gray2 lh-copy">Selected ships will be invited to your group</p>
+              <div className="relative pb6 mt2">
+                <InviteSearch
+                  groups={[]}
+                  contacts={this.props.contacts}
+                  groupResults={false}
+                  shipResults={true}
+                  invites={this.state.invites}
+                  setInvite={this.invChange}
+                />
+              </div>
+            </>
+          )}
           <button
             onClick={this.onClickCreate.bind(this)}
             className="f9 ba pa2 b--green2 green2 pointer bg-transparent"

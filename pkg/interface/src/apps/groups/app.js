@@ -12,6 +12,7 @@ import { NewScreen } from './components/new';
 import { ContactSidebar } from './components/lib/contact-sidebar';
 import { ContactCard } from './components/lib/contact-card';
 import { AddScreen } from './components/lib/add-contact';
+import { JoinScreen } from './components/join';
 import GroupDetail from './components/lib/group-detail';
 
 export default class GroupsApp extends Component {
@@ -112,10 +113,33 @@ export default class GroupsApp extends Component {
               );
             }}
           />
-          <Route exact path="/~groups/(detail)?/(settings)?/:ship/:group/"
+          <Route exact path="/~groups/join"
+            render={(props) => {
+              return (
+                <Skeleton
+                  history={props.history}
+                  selectedGroups={selectedGroups}
+                  api={this.api}
+                  contacts={contacts}
+                  groups={groups}
+                  invites={invites}
+                  associations={associations}
+                  activeDrawer="rightPanel"
+                >
+                  <JoinScreen
+                    history={props.history}
+                    groups={groups}
+                    contacts={contacts}
+                    api={this.api}
+                  />
+                </Skeleton>
+              );
+            }}
+          />
+          <Route exact path="/~groups/(detail)?/(settings)?/ship/:ship/:group/"
             render={(props) => {
               const groupPath =
-                `/${props.match.params.ship}/${props.match.params.group}`;
+                `/ship/${props.match.params.ship}/${props.match.params.group}`;
               const groupContacts = contacts[groupPath] || {};
               const group = groups[groupPath] || new Set([]);
               const detail = Boolean(props.match.url.includes('/detail'));
@@ -144,12 +168,14 @@ export default class GroupsApp extends Component {
                     activeDrawer={(detail || settings) ? 'detail' : 'contacts'}
                     api={this.api}
                     path={groupPath}
+                    fullGroups={state.fullGroups}
                     {...props}
                   />
                   <GroupDetail
                     association={association}
                     path={groupPath}
                     group={group}
+                    fullGroups={state.fullGroups}
                     activeDrawer={(detail || settings) ? 'detail' : 'contacts'}
                     settings={settings}
                     associations={associations}
@@ -160,10 +186,10 @@ export default class GroupsApp extends Component {
               );
             }}
           />
-          <Route exact path="/~groups/add/:ship/:group"
+          <Route exact path="/~groups/add/ship/:ship/:group"
             render={(props) => {
               const groupPath =
-                `/${props.match.params.ship}/${props.match.params.group}`;
+                `/ship/${props.match.params.ship}/${props.match.params.group}`;
               const groupContacts = contacts[groupPath] || {};
               const group = groups[groupPath] || new Set([]);
 
@@ -186,6 +212,7 @@ export default class GroupsApp extends Component {
                     activeDrawer="rightPanel"
                     path={groupPath}
                     api={this.api}
+                    fullGroups={state.fullGroups}
                     {...props}
                   />
                   <AddScreen
@@ -199,10 +226,10 @@ export default class GroupsApp extends Component {
               );
             }}
           />
-          <Route exact path="/~groups/share/:ship/:group"
+          <Route exact path="/~groups/share/ship/:ship/:group"
             render={(props) => {
               const groupPath =
-                `/${props.match.params.ship}/${props.match.params.group}`;
+                `/ship/${props.match.params.ship}/${props.match.params.group}`;
               const shipPath = `${groupPath}/${window.ship}`;
               const rootIdentity = defaultContacts[window.ship] || {};
 
@@ -232,6 +259,7 @@ export default class GroupsApp extends Component {
                     path={groupPath}
                     api={this.api}
                     selectedContact={shipPath}
+                    fullGroups={state.fullGroups}
                     {...props}
                   />
                   <ContactCard
@@ -248,10 +276,10 @@ export default class GroupsApp extends Component {
               );
             }}
           />
-          <Route exact path="/~groups/view/:ship/:group/:contact"
+          <Route exact path="/~groups/view/ship/:ship/:group/:contact"
             render={(props) => {
               const groupPath =
-                `/${props.match.params.ship}/${props.match.params.group}`;
+                `/ship/${props.match.params.ship}/${props.match.params.group}`;
               const shipPath =
                 `${groupPath}/${props.match.params.contact}`;
 
@@ -285,6 +313,7 @@ export default class GroupsApp extends Component {
                     path={groupPath}
                     api={this.api}
                     selectedContact={shipPath}
+                    fullGroups={state.fullGroups}
                     {...props}
                   />
                   <ContactCard

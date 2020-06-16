@@ -8,7 +8,6 @@ import S3Reducer from '../reducers/s3-update';
 
 import BaseStore from './base';
 
-
 export default class GroupsStore extends BaseStore {
   constructor() {
     super();
@@ -25,6 +24,7 @@ export default class GroupsStore extends BaseStore {
     return {
       contacts: {},
       groups: {},
+      fullGroups: {},
       associations: {},
       permissions: {},
       invites: {},
@@ -33,6 +33,8 @@ export default class GroupsStore extends BaseStore {
   }
 
   reduce(data, state) {
+    console.log('data', data);
+    console.log('state', state);
     this.groupReducer.reduce(data, this.state);
     this.permissionReducer.reduce(data, this.state);
     this.contactReducer.reduce(data, this.state);
@@ -40,6 +42,6 @@ export default class GroupsStore extends BaseStore {
     this.metadataReducer.reduce(data, this.state);
     this.s3Reducer.reduce(data, this.state);
     this.localReducer.reduce(data, this.state);
+    console.log('after state', state);
   }
 }
-

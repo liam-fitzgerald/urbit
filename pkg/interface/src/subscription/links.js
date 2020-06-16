@@ -2,7 +2,7 @@ import BaseSubscription from './base';
 
 export default class LinksSubscription extends BaseSubscription {
   start() {
-    this.subscribe('/all', 'group-store');
+    this.subscribe('/groups', 'group-store');
     this.subscribe('/primary', 'contact-view');
     this.subscribe('/all', 'invite-store');
     this.subscribe('/app-name/link', 'metadata-store');

@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { InviteSearch } from '../../../../components/InviteSearch';
 import { Spinner } from '../../../../components/Spinner';
+import { uuid } from '../../../../lib/util'
 
 export class AddScreen extends Component {
   constructor(props) {
@@ -27,6 +29,9 @@ export class AddScreen extends Component {
   onClickAdd() {
     const { props, state } = this;
 
+    let [,,ship, name] = props.path.split('/');
+    const resource = { ship, name };
+
     const aud = state.invites.ships
       .map(ship => `~${ship}`);
 
@@ -42,7 +47,9 @@ export class AddScreen extends Component {
       },
       awaiting: true
     }, () => {
-      const submit = props.api.group.add(props.path, aud);
+      const submit = aud.reduce((acc, recipient) => acc.then(() => {
+        return props.api.contactView.invite(resource, recipient);
+      }), Promise.resolve());
       submit.then(() => {
         this.setState({ awaiting: false });
         props.history.push('/~groups' + props.path);

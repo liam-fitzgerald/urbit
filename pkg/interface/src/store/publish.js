@@ -31,6 +31,7 @@ export default class PublishStore extends BaseStore {
       associations: {
         contacts: {}
       },
+      fullGroups: {},
       permissions: {},
       invites: {},
       sidebarShown: true
@@ -48,4 +49,3 @@ export default class PublishStore extends BaseStore {
     this.responseReducer.reduce(data, this.state);
   }
 }
-

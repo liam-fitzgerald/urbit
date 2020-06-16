@@ -1,7 +1,7 @@
 ::  group-hook: allow syncing group data from foreign paths to local paths
 ::
 /-  *group, hook=group-hook, *invite-store
-/+  default-agent, verb, dbug, store=group-store, grpl=group
+/+  default-agent, verb, dbug, store=group-store, grpl=group, pull-hook, push-hook
 ~%  %group-hook-top  ..is  ~
 |%
 +$  card  card:agent:gall
@@ -17,10 +17,9 @@
       synced=(map path ship)
   ==
 ::
-+$  state-one
++$  state-zero
   $:  %1
-      listening=(set group-id)
-      proxied=(jug group-id ship)
+      ~
   ==
 ::
 --
@@ -50,32 +49,46 @@
     ?-  -.old
         %1  [~ this(state old)]
         %0
-      ::  kick all subscriptions and migrate state
-      ::  wait for the kick to resubscribe on
-      ::  correct path
-      =/  kick=card
-        =;  kick-on=(list path)
-          [%give %kick kick-on ~]
-        =-  ~(tap in -)
-        %+  roll  ~(val by sup.bowl)
-        |=  [[=ship pax=path] paths=(set path)]
-        (~(put in paths) pax)
-      :-  ~[kick]
-      this
-    ==
+      :_  this(state *state-one)
+      |^
+      %+  turn
+        ~(tap by synced.old)
+      |=  [=path host=ship]
+      ^-  card
+      ?>  ?=([@ @ *] path)
+      =?  path  =('~' i.path)
+        t.path
+      =/  rid=resource
+        (de-path:resource t.path)
+      ?:  =(bowl.ship host)
+        (add-push rid)
+      (add-pull rid)
       ::
-      ::  =/  watches=(list card)
-      ::    %+  murn  ~(tap by synced.old)
-      ::    |=  [=path =ship]
-      ::    ?:  =(our.bowl ship)
-      ::      ~
-      ::    `
+      ++  poke-our
+        |=  [app=term =cage]
+        ^-  card
+        [%pass / [our.bowl app] %poke cage]
+      ++  add-pull
+        |=  [rid=resource host=ship]
+        ^-  card
+        %+  poke-our
+          %group-pull-hook
+        :-  %pull-hook-action
+        !>  ^-  action:pull-hook
+        [%add host rid]
+      ::
+      ++  add-push
+        |=  rid=resource
+        ^-  card
+        %+  poke-our
+          %group-push-hook
+        :-  %push-hook-action
+        !>  ^-  action:push-hook
+        [%add rid]
+      --
 
+    ==
 
-      ::  =/  =wire  [(scot %p ship) %group path]
-      ::  =/  =term  ?:(=(our.bowl ship) %group-store %group-hook)
-      ::  ?:  (~(has by wex.bowl) [wire ship term])  ~
-      ::  `[%pass wire %agent [ship term] %watch [%group path]]
   ::
   ++  on-poke
     |=  [=mark =vase]

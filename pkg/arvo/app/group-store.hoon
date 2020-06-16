@@ -122,12 +122,13 @@
     ++  migrate-unmanaged
       |=  pax=path
       ^-  [resource group]
+      =/  =group:state-zero:store
+        (~(got by groups.old) pax)
       =/  [=policy members=(set ship)]
         (unmanaged-permissions pax)
-      ?>  =('~' -.pax)
-      =.  pax  +.pax
+      ?>  ?=(^ pax)
       =/  rid=resource
-        (de-path:resource pax)
+        (de-path:resource t.pax)
       =/  =tags
         (~(put ju *tags) %admin entity.rid)
       [rid members tags policy %.y]

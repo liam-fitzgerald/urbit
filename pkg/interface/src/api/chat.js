@@ -22,7 +22,8 @@ export default class ChatApi {
       create: helper.chatViewCreate.bind(helper),
       delete: helper.chatViewDelete.bind(helper),
       join: helper.chatViewJoin.bind(helper),
-      groupify: helper.chatViewGroupify.bind(helper)
+      groupify: helper.chatViewGroupify.bind(helper),
+      invite: helper.chatViewInvite.bind(helper)
     };
 
     this.chatHook = {
@@ -119,7 +120,7 @@ class PrivateHelper extends BaseApi {
 
   chatViewCreate(
     title, description, appPath, groupPath,
-    security, members, allowHistory
+    policy, members, allowHistory, managed
   ) {
     return this.chatViewAction({
       create: {
@@ -127,9 +128,10 @@ class PrivateHelper extends BaseApi {
         description,
         'app-path': appPath,
         'group-path': groupPath,
-        security,
+        policy,
         members,
-        'allow-history': allowHistory
+        'allow-history': allowHistory,
+        managed
       }
     });
   }
@@ -157,6 +159,15 @@ class PrivateHelper extends BaseApi {
       };
     }
     return this.chatViewAction(action);
+  }
+
+  chatViewInvite(path, ships) {
+    return this.chatViewAction({
+      invite: {
+        'app-path': path,
+        ships
+      }
+    })
   }
 
   inviteAction(data) {

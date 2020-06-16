@@ -31,7 +31,9 @@ export default class BaseSubscription {
   }
 
   start() {
-    // extend
+    this.subscribe('/primary', 'invite-view');
+    this.subscribe('/groups' , 'group-store');
+    this.subscribe('/app-name/contacts', 'metadata-store');
   }
 
   handleEvent(diff) {

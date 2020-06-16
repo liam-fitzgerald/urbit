@@ -5,6 +5,7 @@ import { ShareSheet } from './share-sheet';
 import { Sigil } from '../../../../lib/sigil';
 import { Spinner } from '../../../../components/Spinner';
 import { cite } from '../../../../lib/util';
+import { roleForShip } from '../../../../lib/group';
 
 export class ContactSidebar extends Component {
   constructor(props) {
@@ -72,11 +73,16 @@ export class ContactSidebar extends Component {
         );
       });
 
-    const adminOpt = (props.path.includes(`~${window.ship}/`))
-      ? 'dib' : 'dn';
+    const fullGroup = props.fullGroups[props.path];
+    const role = roleForShip(fullGroup, window.ship);
 
     const groupItems =
       Array.from(group).map((member) => {
+        const memberRole = roleForShip(fullGroup, member);
+        const adminOpt = (role === 'admin' && memberRole !== 'admin')
+              || (role === 'moderator' &&
+                  (memberRole !== 'admin' && memberRole !== 'moderator'))
+          ? 'dib' : 'dn';
         return (
           <div
           key={member}

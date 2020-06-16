@@ -5,6 +5,7 @@ import PermissionReducer from '../reducers/permission-update';
 import MetadataReducer from '../reducers/metadata-update';
 import S3Reducer from '../reducers/s3-update';
 import LocalReducer from '../reducers/local';
+import GroupReducer from '../reducers/group-update';
 
 import BaseStore from './base';
 
@@ -18,6 +19,7 @@ export default class ChatStore extends BaseStore {
     this.s3Reducer = new S3Reducer();
     this.metadataReducer = new MetadataReducer();
     this.localReducer = new LocalReducer();
+    this.groupReducer = new GroupReducer();
   }
 
   initialState() {
@@ -34,6 +36,7 @@ export default class ChatStore extends BaseStore {
       sidebarShown: true,
       pendingMessages: new Map([]),
       chatInitialized: false,
+      groups: {},
       s3: {}
     };
   }
@@ -46,6 +49,7 @@ export default class ChatStore extends BaseStore {
     this.metadataReducer.reduce(data, this.state);
     this.localReducer.reduce(data, this.state);
     this.s3Reducer.reduce(data, this.state);
+    this.groupReducer.reduce(data, this.state);
   }
 }
 

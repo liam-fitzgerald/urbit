@@ -21,12 +21,10 @@ export class JoinScreen extends Component {
     if (props.autoJoin !== '/undefined/undefined' &&
       props.autoJoin !== '/~/undefined/undefined') {
       let station = props.autoJoin.split('/');
-      const sig = props.autoJoin.includes('/~/');
 
-      const ship = sig ? station[2] : station[1];
+      const ship = station[1];
       if (
         station.length < 2 ||
-        (Boolean(sig) && station.length < 3) ||
         !urbitOb.isValidPatp(ship)
       ) {
         this.setState({
@@ -56,12 +54,10 @@ export class JoinScreen extends Component {
     const { props, state } = this;
 
     let station = state.station.split('/');
-    const sig = state.station.includes('/~/');
 
-    const ship = sig ? station[2] : station[1];
+    const ship = station[1];
     if (
       station.length < 2 ||
-      (Boolean(sig) && station.length < 3) ||
       !urbitOb.isValidPatp(ship)
     ) {
       this.setState({
@@ -81,7 +77,7 @@ export class JoinScreen extends Component {
 
   stationChange(event) {
     this.setState({
-      station: `/${event.target.value}`
+      station: `/${event.target.value.trim()}`
     });
   }
 

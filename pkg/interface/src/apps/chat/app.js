@@ -181,14 +181,11 @@ export default class ChatApp extends React.Component {
         />
         <Route
           exact
-          path="/~chat/join/(~)?/:ship?/:station?"
+          path="/~chat/join/:ship?/:station?"
           render={(props) => {
             let station =
               `/${props.match.params.ship}/${props.match.params.station}`;
             const sig = props.match.url.includes('/~/');
-            if (sig) {
-              station = '/~' + station;
-            }
 
             return (
               <Skeleton
@@ -289,8 +286,9 @@ export default class ChatApp extends React.Component {
             if (sig) {
               station = '/~' + station;
             }
+            let groupPath = `/ship${station}`;
 
-            const permission = state.permissions[station] || {
+            const permission = state.permissions[groupPath] || {
               kind: '',
               who: new Set([])
             };

@@ -1,6 +1,5 @@
 import BaseApi from './base';
 
-
 export default class GroupsApi {
   constructor(ship, channel, store) {
     const helper = new PrivateHelper(ship, channel, store);
@@ -16,13 +15,17 @@ export default class GroupsApi {
       create: helper.contactCreate.bind(helper),
       delete: helper.contactDelete.bind(helper),
       remove: helper.contactRemove.bind(helper),
-      share: helper.contactShare.bind(helper)
+      share: helper.contactShare.bind(helper),
+      invite: helper.contactInvite.bind(helper),
+      join: helper.contactJoin.bind(helper)
     };
 
     this.group = {
       add: helper.groupAdd.bind(helper),
       remove: helper.groupRemove.bind(helper)
     };
+
+    this.groupAction = helper.groupAction.bind(helper);
 
     this.metadata = {
       add: helper.metadataAdd.bind(helper)
@@ -40,15 +43,19 @@ class PrivateHelper extends BaseApi {
     return this.action('contact-view', 'json', data);
   }
 
-  contactCreate(path, ships = [], title, description) {
+  contactCreate(name, policy, title, description) {
     return this.contactViewAction({
       create: {
-        path,
-        ships,
+        name,
+        policy,
         title,
         description
       }
     });
+  }
+
+  groupAction(action) {
+    return this.action('group-store', 'group-action', action);
   }
 
   groupAdd(path, ships = []) {
@@ -66,7 +73,10 @@ class PrivateHelper extends BaseApi {
   contactShare(recipient, path, ship, contact) {
     return this.contactViewAction({
       share: {
-        recipient, path, ship, contact
+        recipient,
+        path,
+        ship,
+        contact
       }
     });
   }
@@ -77,6 +87,14 @@ class PrivateHelper extends BaseApi {
 
   contactRemove(path, ship) {
     return this.contactViewAction({ remove: { path, ship } });
+  }
+
+  contactInvite(resource, ship, text = '') {
+    return this.contactViewAction({ invite: { resource, ship, text } });
+  }
+
+  contactJoin(resource) {
+    return this.contactViewAction({ join: resource });
   }
 
   contactHookAction(data) {
@@ -96,7 +114,9 @@ class PrivateHelper extends BaseApi {
     */
     return this.contactHookAction({
       edit: {
-        path, ship, 'edit-field': editField
+        path,
+        ship,
+        'edit-field': editField
       }
     });
   }
@@ -157,4 +177,3 @@ class PrivateHelper extends BaseApi {
     });
   }
 }
-

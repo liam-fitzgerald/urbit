@@ -55,10 +55,15 @@ export class LinksApp extends Component {
   }
 
   render() {
+
+    if(!this.api) {
+      return null;
+    }
+
     const { state, props } = this;
 
     const contacts = state.contacts ? state.contacts : {};
-    const groups = state.groups ? state.groups : {};
+    const groups = props.groups ? props.groups : {};
 
     const associations = state.associations ? state.associations : { link: {}, contacts: {} };
     const links = state.links ? state.links : {};

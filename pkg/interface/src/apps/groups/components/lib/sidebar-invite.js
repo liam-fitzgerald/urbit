@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 export class SidebarInvite extends Component {
   onAccept() {
     const { props } = this;
-    props.api.invite.accept(props.uid);
+    const [,,ship, name] = props.invite.path.split('/');
+    const resource = { ship, name };
+    props.api.contactView.join(resource).then(() => {
+      props.api.invite.accept(props.uid);
+    })
     props.history.push(`/~groups${props.invite.path}`);
   }
 

@@ -10,6 +10,7 @@ export default class ChatSubscription extends BaseSubscription {
       this.subscribe('/primary', 'contact-view');
       this.subscribe('/app-name/chat', 'metadata-store');
       this.subscribe('/app-name/contacts', 'metadata-store');
+      this.subscribe('/groups', 'group-store');
     }, 1000);
   }
 

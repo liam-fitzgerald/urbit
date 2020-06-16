@@ -88,6 +88,7 @@ export class MemberScreen extends Component {
                 resourcePath={props.resourcePath}
                 permissions={props.permission}
                 contacts={props.contacts}
+                api={props.api}
               />
             </div>
           )}
