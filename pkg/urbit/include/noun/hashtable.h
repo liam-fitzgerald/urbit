@@ -34,8 +34,8 @@
       /* u3h_node: map node.
       */
         typedef struct {
-          c3_w     map_w;
-          u3h_slot sot_w[0];
+          c3_w     map_w;     // bitmap for [sot_w]
+          u3h_slot sot_w[0];  // filled slots
         } u3h_node;
 
       /* u3h_root: hash root table
@@ -54,8 +54,8 @@
       /* u3h_buck: bottom bucket.
       */
         typedef struct {
-          c3_w    len_w;
-          u3h_slot sot_w[0];
+          c3_w     len_w;     // length of [sot_w]
+          u3h_slot sot_w[0];  // filled slots
         } u3h_buck;
 
     /**  HAMT macros.
@@ -105,6 +105,11 @@
         void
         u3h_put(u3p(u3h_root) har_p, u3_noun key, u3_noun val);
 
+      /* u3h_uni(): unify hashtables, copying [rah_p] into [har_p]
+      */
+        void
+        u3h_uni(u3p(u3h_root) har_p, u3p(u3h_root) rah_p);
+
       /* u3h_get(): read from hashtable.
       **
       ** `key` is RETAINED; result is PRODUCED.
@@ -118,13 +123,6 @@
       */
         u3_weak
         u3h_git(u3p(u3h_root) har_p, u3_noun key);
-
-      /* u3h_gut(): read from hashtable, unifying key nouns.
-      **
-      ** `key` is RETAINED.
-      */
-        u3_weak
-        u3h_gut(u3p(u3h_root) har_p, u3_noun key);
 
       /* u3h_trim_to(): trim to n key-value pairs
       */
@@ -141,6 +139,21 @@
         c3_w
         u3h_mark(u3p(u3h_root) har_p);
 
+      /* u3h_rewrite(): rewrite hashtable for compaction.
+      */
+        void
+        u3h_rewrite(u3p(u3h_root) har_p);
+
+      /* u3h_count(): count hashtable for gc.
+      */
+        c3_w
+        u3h_count(u3p(u3h_root) har_p);
+
+      /* u3h_discount(): discount hashtable for gc.
+      */
+        c3_w
+        u3h_discount(u3p(u3h_root) har_p);
+
       /* u3h_walk_with(): traverse hashtable with key, value fn and data
        *                  argument; RETAINS.
       */
@@ -153,3 +166,19 @@
       */
         void
         u3h_walk(u3p(u3h_root) har_p, void (*fun_f)(u3_noun));
+
+      /* u3h_take_with(): gain hashtable, copying junior keys
+      ** and calling [fun_f] on values
+      */
+        u3p(u3h_root)
+        u3h_take_with(u3p(u3h_root) har_p, u3_funk fun_f);
+
+      /* u3h_take(): gain hashtable, copying junior nouns
+      */
+        u3p(u3h_root)
+        u3h_take(u3p(u3h_root) har_p);
+
+      /* u3h_wyt(): number of entries
+      */
+        c3_w
+        u3h_wyt(u3p(u3h_root) har_p);

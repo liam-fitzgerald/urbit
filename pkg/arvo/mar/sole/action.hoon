@@ -9,13 +9,18 @@
 =,  sole
 |_  sole-action
 ::
+++  grad  %noun
+++  grow
+  |%
+  ++  noun  +<.grad
+  --
 ++  grab                                                ::  convert from
   |%
   ++  json
     |=  jon/^json  ^-  sole-action
     %-  need  %.  jon
     =>  [dejs-soft:format ..sole-action]
-    |^  (fo %ret (of det+change ~))
+    |^  (ot id+so dat+(fo %ret (of det+change tab+ni ~)) ~)
     ++  fo
       |*  {a/term b/fist}
       |=(c/json ?.(=([%s a] c) (b c) (some [a ~])))

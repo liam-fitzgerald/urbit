@@ -1,150 +1,208 @@
-/-  launch
-/+  *server
+::  launch [landscape]:
 ::
-/=  index
-  /^  $-(marl manx)
-  /:  /===/app/launch/index  /!noun/
-/=  script
-  /^  octs
-  /;  as-octs:mimes:html
-  /:  /===/app/launch/js/index
-  /|  /js/
-      /~  ~
-  ==
-/=  style
-  /^  octs
-  /;  as-octs:mimes:html
-  /:  /===/app/launch/css/index
-  /|  /css/
-      /~  ~
-  ==
-/=  launch-png
-  /^  (map knot @)
-  /:  /===/app/launch/img  /_  /png/
+::  registers Landscape (and third party) applications, tiles
 ::
-=,  launch
-::
+/+  store=launch-store, default-agent, dbug
 |%
-+$  state
-  $%  [%0 tiles=(set tile) data=tile-data path-to-tile=(map path @tas)]
++$  card  card:agent:gall
++$  versioned-state
+  $%  [%0 *]
+      [%1 *]
+      [%2 *]
+      [%3 *]
+      [%4 state-zero]
+      [%5 state-zero]
+      [%6 state-zero]
   ==
 ::
-+$  move  [bone card]
-::
-+$  card
-  $%  [%http-response =http-event:http]
-      [%connect wire binding:eyre term]
-      [%peer wire dock path]
-      [%diff %json json]
++$  state-zero
+  $:  =tiles:store
+      =tile-ordering:store
+      first-time=?
   ==
 --
 ::
-|_  [bol=bowl:gall sta=state]
+=|  [%6 state-zero]
+=*  state  -
+%-  agent:dbug
+^-  agent:gall
+|_  =bowl:gall
++*  this  .
+    def   ~(. (default-agent this %|) bowl)
 ::
-++  this  .
+++  on-init
+  ^-  (quip card _this)
+  =/  new-state  *state-zero
+  =.  new-state
+    %_  new-state
+        tiles
+      %-  ~(gas by *tiles:store)
+      %+  turn  `(list term)`[%weather %clock %term ~]
+      |=  =term
+      :-  term
+      ^-  tile:store
+      ?+  term  [[%custom ~] %.y]
+        %term   [[%basic 'Terminal' '/~landscape/img/term.png' '/~term'] %.y]
+      ==
+        tile-ordering  [%weather %clock %term ~]
+    ==
+  [~ this(state [%6 new-state])]
 ::
-++  prep
-  |=  old=(unit state)
-  ^-  (quip move _this)
-  ?~  old
-    :_  this
-    [ost.bol %connect / [~ /] %launch]~
-  [~ this(sta u.old)]
-::
-++  poke-launch-action
-  |=  act=action
-  ^-  (quip move _this)
-  =/  beforedata  (~(get by data.sta) name.act)
-  =/  newdata
-    ?~  beforedata
-      (~(put by data.sta) name.act [*json url.act])
-    (~(put by data.sta) name.act [jon.u.beforedata url.act])
-  :-  [ost.bol %peer subscribe.act [our.bol name.act] subscribe.act]~
-  %=  this
-    tiles.sta  (~(put in tiles.sta) [name.act subscribe.act])
-    data.sta  newdata
-    path-to-tile.sta  (~(put by path-to-tile.sta) subscribe.act name.act)
+++  on-save  !>(state)
+++  on-load
+  |=  old=vase
+  ^-  (quip card _this)
+  =/  old-state  !<(versioned-state old)
+  =|  cards=(list card)
+  |-  ^-  (quip card _this)
+  ?:  ?=(%6 -.old-state)
+    [cards this(state old-state)]
+  ?:  ?=(%5 -.old-state)
+    ::  replace %dojo with %term
+    ::
+    =.  tiles.old-state
+      %+  ~(put by (~(del by tiles.old-state) %dojo))
+        %term
+      :_  is-shown:(~(gut by tiles.old-state) %dojo *tile:store)
+      [%basic 'Terminal' '/~landscape/img/term.png' '/~term']
+    =.  tile-ordering.old-state
+      %+  turn  tile-ordering.old-state
+      |=(t=term ?:(=(%dojo t) %term t))
+    $(old-state [%6 +.old-state])
+  ?:  ?=(%4 -.old-state)
+    =.  cards
+      %+  snoc  cards
+      [%pass / %arvo %e %disconnect [~ /]]
+    =.  tiles.old-state
+      (~(del by tiles.old-state) %chat)
+    =.  tiles.old-state
+      (~(del by tiles.old-state) %publish)
+    =.  tiles.old-state
+      (~(del by tiles.old-state) %links)
+    =.  tile-ordering.old-state
+      (skip tile-ordering.old-state |=(=term ?=(?(%links %chat %publish) term)))
+    $(old-state [%5 +.old-state])
+  =/  new-state  *state-zero
+  =.  new-state
+    %_  new-state
+        tiles
+      %-  ~(gas by *tiles:store)
+      %+  turn  `(list term)`[%weather %clock %dojo ~]
+      |=  =term
+      :-  term
+      ^-  tile:store
+      ?+  term      [[%custom ~] %.y]
+          %dojo     [[%basic 'Dojo' '/~landscape/img/Dojo.png' '/~dojo'] %.y]
+      ==
+        tile-ordering  [%weather %clock %dojo ~]
+    ==
+  %_  $
+    old-state  [%5 new-state]
+  ::
+      cards
+    %+  welp
+      :~  [%pass / %arvo %e %disconnect [~ /]]
+          :*  %pass  /srv  %agent  [our.bowl %file-server]
+              %poke  %file-server-action
+              !>([%serve-dir / /app/landscape %.n %.y])
+          ==
+      ==
+    %+  turn  ~(tap by wex.bowl)
+    |=  [[=wire =ship =term] *]
+    ^-  card
+    [%pass wire %agent [ship term] %leave ~]
   ==
 ::
-++  peer-main
-  |=  [pax=path]
-  ^-  (quip move _this)
-  =/  data/json
-    %-  pairs:enjs:format
-    %+  turn  ~(tap by data.sta)
-    |=  [key=@tas [jon=json url=@t]]
-    [key jon]
-  :_  this
-  [ost.bol %diff %json data]~
+++  on-poke
+  |=  [=mark =vase]
+  ^-  (quip card _this)
+  |^
+  ?>  (team:title our.bowl src.bowl)
+  =^  cards  state
+    ?+  mark  (on-poke:def mark vase)
+        %launch-action  (poke-action !<(action:store vase))
+    ==
+  [cards this]
+  ::
+  ++  poke-action
+    |=  =action:store
+    ^-  (quip card _state)
+    ?-  -.action
+        %add
+      ?<  (~(has by tiles) name.action)
+      :-  (give [/all /keys ~] action)
+      %_  state
+          tiles          (~(put by tiles) name.action tile.action)
+          tile-ordering  (snoc tile-ordering name.action)
+      ==
+    ::
+        %remove
+      :-  (give [/all /keys ~] action)
+      %_  state
+          tiles          (~(del by tiles) name.action)
+          tile-ordering
+        %+  skip  tile-ordering
+        |=(=term =(term name.action))
+      ==
+    ::
+        %change-order
+      ?>  =(~(key by tiles) (silt tile-ordering.action))
+      :-  (give [/all]~ action)
+      state(tile-ordering tile-ordering.action)
+    ::
+        %change-is-shown
+      =/  =tile:store  (~(got by tiles) name.action)
+      ?.  =(is-shown.tile is-shown.action)  [~ state]
+      =.  is-shown.tile  is-shown.action
+      :-  (give [/all]~ action)
+      state(tiles (~(put by tiles) name.action tile))
+    ::
+        %change-first-time
+      :-  (give [/all]~ action)
+      state(first-time first-time.action)
+    ==
+  ::
+  ++  give
+    |=  [paths=(list path) =update:store]
+    ^-  (list card)
+    [%give %fact paths [%launch-update !>(update)]]~
+  --
 ::
-++  diff-json
-  |=  [pax=path jon=json]
-  ^-  (quip move _this)
-  =/  name/@tas  (~(got by path-to-tile.sta) pax)
-  =/  data/(unit [json url=@t])  (~(get by data.sta) name)
-  ?~  data
-    [~ this]
+++  on-watch
+  |=  =path
+  ^-  (quip card _this)
+  |^
+  ?>  (team:title our.bowl src.bowl)
+  =/  cards=(list card)
+    ?+  path       (on-watch:def path)
+        [%all ~]   (give [%initial tiles tile-ordering first-time])
+        [%keys ~]  (give [%keys ~(key by tiles)])
+    ==
+  [cards this]
   ::
-  :-
-  %+  turn  (prey:pubsub:userlib /main bol)
-  |=  [=bone *]
-  [bone %diff %json (frond:enjs:format name jon)]
-  ::
-  %=  this
-    data.sta  (~(put by data.sta) name [jon url.u.data])
+  ++  give
+    |=  =update:store
+    ^-  (list card)
+    [%give %fact ~ [%launch-update !>(update)]]~
+  --
+::
+++  on-peek
+  |=  =path
+  ^-  (unit (unit cage))
+  ?.  (team:title our.bowl src.bowl)  ~
+  ?+  path  [~ ~]
+      [%x %tiles ~]       ``noun+!>([tiles tile-ordering])
+      [%x %first-time ~]  ``noun+!>(first-time)
+      [%x %keys ~]        ``noun+!>(~(key by tiles))
   ==
 ::
-++  generate-script-marl
-  |=  data=tile-data
-  ^-  marl
-  %+  turn  ~(tap by data)
-  |=  [key=@tas [jon=json url=@t]]
-  ^-  manx
-  ;script@"{(trip url)}";
+++  on-arvo
+  |=  [wir=wire sin=sign-arvo]
+  ^-  (quip card:agent:gall _this)
+  ?:  ?=(%bound +<.sin)  [~ this]
+  (on-arvo:def wir sin)
 ::
-++  poke-handle-http-request
-  %-  (require-authorization:app ost.bol move this)
-  |=  =inbound-request:eyre
-  ^-  (quip move _this)
-  ::
-  =/  request-line  (parse-request-line url.request.inbound-request)
-  =/  name=@t
-    =/  back-path  (flop site.request-line)
-    ?~  back-path
-      ''
-    i.back-path
-  =/  site  (flop site.request-line)
-  ?~  site
-    =/  hym=manx  (index (generate-script-marl data.sta))
-    :_  this
-    [ost.bol %http-response (manx-response:app hym)]~
-  ?+  site.request-line
-    :_  this
-    [ost.bol %http-response not-found:app]~
-  ::
-  ::  styling
-  ::
-      [%'~launch' %css %index ~]
-    :_  this
-    [ost.bol %http-response (css-response:app style)]~
-  ::
-  ::  javascript
-  ::
-      [%'~launch' %js %index ~]
-    :_  this
-    [ost.bol %http-response (js-response:app script)]~
-  ::
-  ::  images
-  ::
-      [%'~launch' %img *]
-    =/  img  (as-octs:mimes:html (~(got by launch-png) `@ta`name))
-    :_  this
-    [ost.bol %http-response (png-response:app img)]~
-  ==
-::
-++  bound
-  |=  [wir=wire success=? binding=binding:eyre]
-  ^-  (quip move _this)
-  [~ this]
-::
+++  on-agent  on-agent:def
+++  on-leave  on-leave:def
+++  on-fail   on-fail:def
 --

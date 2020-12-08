@@ -1,23 +1,37 @@
 ::
-::::  /hoon/time/app
-  ::
-/?    310
-|%
-++  card  {$wait wire @da}
---
-|_  {bowl:gall ~}
-++  poke-noun
-  |=  *
-  :_  +>.$  :_  ~
-  [ost %wait /(scot %da now) +(now)]
+/+  default-agent, verb
 ::
-++  wake
-  |=  {wir/wire error=(unit tang)}
-  ?>  ?=({@ ~} wir)
-  ?^  error
-    %-  (slog u.error)
-    ~&  %time-behn-failed
-    [~ +>.$]
-  ~&  [%took `@dr`(sub now (slav %da i.wir))]
-  [~ +>.$]
+|%
+::
++$  card  card:agent:gall
+--
+^-  agent:gall
+|_  =bowl:gall
++*  this  .
+    def   ~(. (default-agent this %|) bowl)
+::
+++  on-init  [~ this]
+++  on-save  !>(~)
+++  on-load  _on-init
+++  on-poke
+  |=  [=mark =vase]
+  ?+    mark  !!
+      %noun  :_  this
+             [%pass /(scot %da now.bowl) %arvo %b %wait `@da`+(now.bowl)]~
+  ==
+::
+++  on-watch  on-watch:def
+++  on-leave  on-leave:def
+++  on-peek   on-peek:def
+++  on-agent  on-agent:def
+++  on-arvo
+  |=  [=wire sign=sign-arvo]
+  ^-  (quip card _this)
+  ?+    wire  !!
+      [@ ~]
+    ?>  ?=(%wake +<.sign)
+    ~&  [%took `@dr`(sub now.bowl (slav %da i.wire))]
+    [~ this]
+  ==
+++  on-fail   on-fail:def
 --

@@ -9,15 +9,16 @@
 #include <uv.h>
 #include <sigsegv.h>
 #include <stdlib.h>
-#include <ncurses/curses.h>
 #include <termios.h>
-#include <ncurses/term.h>
 #include <dirent.h>
+#include <openssl/conf.h>
+#include <openssl/engine.h>
+#include <openssl/err.h>
 #include <openssl/ssl.h>
-#include <openssl/rand.h>
 #include <h2o.h>
 #include <curl/curl.h>
 #include <argon2.h>
+#include <lmdb.h>
 
 #define U3_GLOBAL
 #define C3_GLOBAL
@@ -51,7 +52,7 @@ _main_readw(const c3_c* str_c, c3_w max_w, c3_w* out_w)
 c3_c*
 _main_presig(c3_c* txt_c)
 {
-  c3_c* new_c = malloc(2 + strlen(txt_c));
+  c3_c* new_c = c3_malloc(2 + strlen(txt_c));
 
   if ( '~' == *txt_c ) {
     strcpy(new_c, txt_c);
@@ -71,8 +72,6 @@ _main_getopt(c3_i argc, c3_c** argv)
   c3_w arg_w;
 
   u3_Host.ops_u.abo = c3n;
-  u3_Host.ops_u.bat = c3n;
-  u3_Host.ops_u.can = c3n;
   u3_Host.ops_u.dem = c3n;
   u3_Host.ops_u.dry = c3n;
   u3_Host.ops_u.gab = c3n;
@@ -89,15 +88,30 @@ _main_getopt(c3_i argc, c3_c** argv)
   u3_Host.ops_u.pro = c3n;
   u3_Host.ops_u.qui = c3n;
   u3_Host.ops_u.rep = c3n;
+  u3_Host.ops_u.tem = c3n;
   u3_Host.ops_u.tex = c3n;
   u3_Host.ops_u.tra = c3n;
   u3_Host.ops_u.veb = c3n;
+  u3_Host.ops_u.puf_c = "jam";
+  u3_Host.ops_u.hap_w = 50000;
   u3_Host.ops_u.kno_w = DefaultKernel;
 
   while ( -1 != (ch_i=getopt(argc, argv,
-                 "G:J:B:K:A:H:I:w:u:e:E:f:F:k:p:LljabcCdgqsvxPDRS")) )
+                 "X:Y:G:J:B:K:A:H:I:C:w:u:e:F:k:n:p:r:i:Z:LljacdgqstvxPDRS")) )
   {
     switch ( ch_i ) {
+      case 'X': {
+        u3_Host.ops_u.pek_c = strdup(optarg);
+        break;
+      }
+      case 'Y': {
+        u3_Host.ops_u.puk_c = strdup(optarg);
+        break;
+      }
+      case 'Z': {
+        u3_Host.ops_u.puf_c = strdup(optarg);
+        break;
+      }
       case 'J': {
         u3_Host.ops_u.lit_c = strdup(optarg);
         break;
@@ -122,12 +136,14 @@ _main_getopt(c3_i argc, c3_c** argv)
         u3_Host.ops_u.jin_c = strdup(optarg);
         break;
       }
-      case 'e': {
-        u3_Host.ops_u.eth_c = strdup(optarg);
+      case 'C': {
+        if ( c3n == _main_readw(optarg, 1000000000, &u3_Host.ops_u.hap_w) ) {
+          return c3n;
+        }
         break;
       }
-      case 'E': {
-        u3_Host.ops_u.ets_c = strdup(optarg);
+      case 'e': {
+        u3_Host.ops_u.eth_c = strdup(optarg);
         break;
       }
       case 'F': {
@@ -148,12 +164,6 @@ _main_getopt(c3_i argc, c3_c** argv)
         u3_Host.ops_u.tex = c3y;
         break;
       }
-      case 'f': {
-        if ( c3n == _main_readw(optarg, 100, &u3_Host.ops_u.fuz_w) ) {
-          return c3n;
-        }
-        break;
-      }
       case 'K': {
         if ( c3n == _main_readw(optarg, 256, &u3_Host.ops_u.kno_w) ) {
           return c3n;
@@ -162,6 +172,10 @@ _main_getopt(c3_i argc, c3_c** argv)
       }
       case 'k': {
         u3_Host.ops_u.key_c = strdup(optarg);
+        break;
+      }
+      case 'n': {
+        u3_Host.ops_u.til_c = strdup(optarg);
         break;
       }
       case 'p': {
@@ -174,13 +188,19 @@ _main_getopt(c3_i argc, c3_c** argv)
         u3_Host.ops_u.rep = c3y;
         return c3y;
       }
+      case 'r': {
+        u3_Host.ops_u.roc_c = strdup(optarg);
+        break;
+      }
+      case 'i': {
+        u3_Host.ops_u.imp_c = strdup(optarg);
+        break;
+      }
       case 'L': { u3_Host.ops_u.net = c3n; break; }
       case 'l': { u3_Host.ops_u.lit = c3y; break; }
       case 'j': { u3_Host.ops_u.tra = c3y; break; }
       case 'a': { u3_Host.ops_u.abo = c3y; break; }
-      case 'b': { u3_Host.ops_u.bat = c3y; break; }
       case 'c': { u3_Host.ops_u.nuu = c3y; break; }
-      case 'C': { u3_Host.ops_u.can = c3y; break; }
       case 'd': { u3_Host.ops_u.dem = c3y; break; }
       case 'g': { u3_Host.ops_u.gab = c3y; break; }
       case 'P': { u3_Host.ops_u.pro = c3y; break; }
@@ -189,6 +209,7 @@ _main_getopt(c3_i argc, c3_c** argv)
       case 'v': { u3_Host.ops_u.veb = c3y; break; }
       case 's': { u3_Host.ops_u.git = c3y; break; }
       case 'S': { u3_Host.ops_u.has = c3y; break; }
+      case 't': { u3_Host.ops_u.tem = c3y; break; }
       case '?': default: {
         return c3n;
       }
@@ -235,9 +256,10 @@ _main_getopt(c3_i argc, c3_c** argv)
     u3_Host.dir_c = strdup(argv[optind]);
   }
 
-  if ( c3y == u3_Host.ops_u.bat ) {
-    u3_Host.ops_u.dem = c3y;
-    u3_Host.ops_u.nuu = c3y;
+  //  daemon mode (-d) implies disabling terminal assumptions (-t)
+  //
+  if ( c3y == u3_Host.ops_u.dem ) {
+    u3_Host.ops_u.tem = c3y;
   }
 
   //  make -c optional, catch invalid boot of existing pier
@@ -252,6 +274,10 @@ _main_getopt(c3_i argc, c3_c** argv)
     else if ( c3y == u3_Host.ops_u.nuu ) {
       fprintf(stderr, "tried to create, but %s already exists\n", u3_Host.dir_c);
       fprintf(stderr, "normal usage: %s %s\n", argv[0], u3_Host.dir_c);
+      exit(1);
+    }
+    else if ( 0 != access(u3_Host.dir_c, W_OK) ) {
+      fprintf(stderr, "urbit: write permissions are required for %s\n", u3_Host.dir_c);
       exit(1);
     }
   }
@@ -294,11 +320,6 @@ _main_getopt(c3_i argc, c3_c** argv)
     return c3n;
   }
 
-  if ( u3_Host.ops_u.can == c3y && u3_Host.ops_u.ets_c != 0 ) {
-    fprintf(stderr, "-C and -E cannot be used together\n");
-    return c3n;
-  }
-
   if ( u3_Host.ops_u.eth_c == 0 && imp_t ) {
     u3_Host.ops_u.eth_c = "http://eth-mainnet.urbit.org:8545";
   }
@@ -311,7 +332,7 @@ _main_getopt(c3_i argc, c3_c** argv)
            && u3_Host.ops_u.url_c == 0
            && u3_Host.ops_u.git == c3n ) {
     u3_Host.ops_u.url_c =
-      "https://bootstrap.urbit.org/urbit-" URBIT_VERSION ".pill";
+      "https://bootstrap.urbit.org/urbit-v" URBIT_VERSION ".pill";
   }
   else if ( u3_Host.ops_u.nuu == c3y
            && u3_Host.ops_u.url_c == 0
@@ -377,18 +398,17 @@ u3_ve_usage(c3_i argc, c3_c** argv)
     "where ship_name is a @p phonetic representation of an urbit address\n",
     "without the leading '~', and options is some subset of the following:\n",
     "\n",
-    // XX find a way to re-enable
-    // "-A dir        Use dir for initial galaxy sync\n",
+    "-A dir        Use dir for initial clay sync\n",
     "-B pill       Bootstrap from this pill\n",
-    "-b            Batch create\n",
+    "-C limit      Set memo cache max size; 0 means uncapped\n",
     "-c pier       Create a new urbit in pier/\n",
     "-D            Recompute from events\n",
-    "-d            Daemon mode\n",
+    "-d            Daemon mode; implies -t\n",
     "-e url        Ethereum gateway\n",
     "-F ship       Fake keys; also disables networking\n",
-    "-f            Fuzz testing\n",
     "-g            Set GC flag\n",
-    "-j file       Create json trace file\n",
+    "-i jam_file   import pier state\n",
+    "-j            Create json trace file in .urb/put/trace\n",
     "-K stage      Start at Hoon kernel version stage\n",
     "-k keys       Private key file\n",
     "-L            local networking only\n",
@@ -399,10 +419,14 @@ u3_ve_usage(c3_i argc, c3_c** argv)
     "-S            Disable battery hashing\n",
     // XX find a way to re-enable
     // "-s            Pill URL from arvo git hash\n",
+    "-t            Disable terminal/tty assumptions\n",
     "-u url        URL from which to download pill\n",
     "-v            Verbose\n",
     "-w name       Boot as ~name\n",
+    "-X path       Scry, write to file, then exit\n"
     "-x            Exit immediately\n",
+    "-Y file       Optional name of file (for -X and -o)\n"
+    "-Z format     Optional file format ('jam', or aura, for -X)\n"
     "\n",
     "Development Usage:\n",
     "   To create a development ship, use a fakezod:\n",
@@ -414,7 +438,7 @@ u3_ve_usage(c3_i argc, c3_c** argv)
     "Simple Usage: \n",
     "   %s -c <my-comet> to create a comet (anonymous urbit)\n",
     "   %s -w <my-planet> -k <my-key-file> if you own a planet\n",
-    "   %s <myplanet or mycomet> to restart an existing urbit\n",
+    "   %s <my-planet or my-comet> to restart an existing urbit\n",
     0
   };
 
@@ -453,7 +477,6 @@ report(void)
          (libsigsegv_version >> 8) & 0xff,
          libsigsegv_version & 0xff);
   printf("openssl: %s\n", SSLeay_version(SSLEAY_VERSION));
-  printf("curses: %s\n", curses_version());
   printf("libuv: %s\n", uv_version_string());
   printf("libh2o: %d.%d.%d\n",
          H2O_LIBRARY_VERSION_MAJOR,
@@ -478,19 +501,7 @@ _stop_exit(c3_i int_i)
   //  explicit fprintf to avoid allocation in u3l_log
   //
   fprintf(stderr, "\r\n[received keyboard stop signal, exiting]\r\n");
-  u3_daemon_bail();
-}
-
-/* _stop_signal(): handle termination signal.
-*/
-static void
-_stop_signal(c3_i int_i)
-{
-  //  if we have a pier, unmap the event log before dumping core
-  //
-  if ( 0 != u3K.len_w ) {
-    u3_pier_db_shutdown(u3_pier_stub());
-  }
+  u3_king_bail();
 }
 
 /*
@@ -583,6 +594,14 @@ _fork_into_background_process()
   exit(WEXITSTATUS(status));
 }
 
+/* _stop_on_boot_completed_cb(): exit gracefully after boot is complete
+*/
+static void
+_stop_on_boot_completed_cb()
+{
+  u3_king_exit();
+}
+
 c3_i
 main(c3_i   argc,
      c3_c** argv)
@@ -599,12 +618,6 @@ main(c3_i   argc,
   u3_Host.wrk_c = c3_malloc(worker_exe_len);
   snprintf(u3_Host.wrk_c, worker_exe_len, "%s-worker", argv[0]);
 
-  // Set TERMINFO_DIRS environment variable
-  c3_i terminfo_len = 1 + strlen(argv[0]) + strlen("-terminfo");
-  c3_c terminfo_dir[terminfo_len];
-  snprintf(terminfo_dir, terminfo_len, "%s-terminfo", argv[0]);
-  setenv("TERMINFO_DIRS", terminfo_dir, 1);
-
   if ( c3y == u3_Host.ops_u.dem ) {
     _fork_into_background_process();
   }
@@ -612,6 +625,10 @@ main(c3_i   argc,
   if ( c3y == u3_Host.ops_u.rep ) {
     report();
     return 0;
+  }
+
+  if ( c3y == u3_Host.ops_u.tex ) {
+    u3_Host.bot_f = _stop_on_boot_completed_cb;
   }
 
 #if 0
@@ -643,10 +660,6 @@ main(c3_i   argc,
   //
   signal(SIGTSTP, _stop_exit);
 
-  //  Cleanup on SIGABRT.
-  //
-  signal(SIGABRT, _stop_signal);
-
   printf("~\n");
   //  printf("welcome.\n");
   printf("urbit %s\n", URBIT_VERSION);
@@ -665,28 +678,24 @@ main(c3_i   argc,
     // allocates more memory as needed if the path is too large
     //
     while ( abs_c != getcwd(abs_c, mprint_i) ) {
-      free(abs_c);
+      c3_free(abs_c);
       mprint_i *= 2;
       abs_c = c3_malloc(mprint_i);
     }
     printf("boot: home is %s/%s\n", abs_c, u3_Host.dir_c);
-    free(abs_c);
+    c3_free(abs_c);
   } else {
     printf("boot: home is %s\n", abs_c);
-    free(abs_c);
+    c3_free(abs_c);
   }
   // printf("vere: hostname is %s\n", u3_Host.ops_u.nam_c);
 
   u3K.certs_c = strdup("/tmp/urbit-ca-cert-XXXXXX");
   _setup_cert_store(u3K.certs_c);
 
-  if ( c3y == u3_Host.ops_u.dem && c3n == u3_Host.ops_u.bat ) {
+  if ( c3y == u3_Host.ops_u.dem ) {
     printf("boot: running as daemon\n");
   }
-
-  //  Seed prng. Don't panic -- just for fuzz testing.
-  //
-  srand(getpid());
 
   //  Instantiate process globals.
   {
@@ -726,6 +735,8 @@ main(c3_i   argc,
       }
 
       /*  Set dry-run flag.
+      **
+      **    XX also exit immediately?
       */
       if ( _(u3_Host.ops_u.dry) ) {
         u3C.wag_w |= u3o_dryrun;
@@ -748,12 +759,38 @@ main(c3_i   argc,
       }
     }
 
-    /*  Initialize OpenSSL for client and server
-    */
-    SSL_library_init();
-    SSL_load_error_strings();
+    //  Initialize OpenSSL for client and server
+    //
+    {
+      SSL_library_init();
+      SSL_load_error_strings();
+    }
 
-    u3_daemon_commence();
+    //  initialize curl
+    //
+    if ( 0 != curl_global_init(CURL_GLOBAL_DEFAULT) ) {
+      u3l_log("boot: curl initialization failed\r\n");
+      exit(1);
+    }
+
+    u3_king_commence();
+
+    //  uninitialize curl
+    //
+    curl_global_cleanup();
+
+    //  uninitialize OpenSSL
+    //
+    //    see https://wiki.openssl.org/index.php/Library_Initialization
+    //
+    {
+      ENGINE_cleanup();
+      CONF_modules_unload(1);
+      EVP_cleanup();
+      CRYPTO_cleanup_all_ex_data();
+      SSL_COMP_free_compression_methods();
+      ERR_free_strings();
+    }
   }
 
   return 0;

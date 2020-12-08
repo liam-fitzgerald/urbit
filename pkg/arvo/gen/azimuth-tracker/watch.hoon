@@ -1,7 +1,4 @@
-=>  |%
-    +$  config
-      [url=@ta =from=number:block:able:jael]
-    --
+::  Change node url for azimuth-tracker
 :-  %say
-|=  [* config ~]
-[%azimuth-tracker-poke %watch config]
+|=  [* [url=@ta ~] ~]
+[%azimuth-tracker-poke %watch url]

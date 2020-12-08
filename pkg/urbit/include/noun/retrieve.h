@@ -30,6 +30,8 @@
       **   Axes must be sorted in tree order.
       */
         c3_o
+        u3r_vmean(u3_noun a, va_list ap);
+        c3_o
         u3r_mean(u3_noun a, ...);
 
       /* u3r_mug_bytes(): Compute the mug of `buf`, `len`, LSW first.
@@ -79,9 +81,9 @@
                      u3_noun c,
                      u3_noun d);
 
-      /* u3r_mug(): MurmurHash3 on a noun.
+      /* u3r_mug(): statefully mug a noun with 31-bit murmur3.
       */
-        c3_w
+        c3_l
         u3r_mug(u3_noun veb);
 
       /* u3r_fing():
@@ -132,29 +134,14 @@
                       u3_noun s,
                       u3_noun b);
 
-      /* u3r_sing():
+      /* u3r_sing(): noun value equality.
       **
-      **   Yes iff (a) and (b) are the same noun.
+      **   Unifies noun pointers on inner roads.
       */
         c3_o
         u3r_sing(u3_noun a, u3_noun b);
 
-      /* u3rz_sing(): transferring u3r_sing
-      */
-        c3_o
-        u3rz_sing(u3_noun a, u3_noun b);
-
-      /* u3r_sung(): yes iff (a) and (b) are the same noun, unifying equals.
-      **
-      **   Make sure you have no live, uncounted pointers to any noun
-      **   within (a) or (b)!
-      */
-        c3_o
-        u3r_sung(u3_noun a, u3_noun b);
-
-      /* u3r_sing_c):
-      **
-      **   Yes iff (b) is the same noun as the C string [a].
+      /* u3r_sing_c(): cord/C-string value equivalence.
       */
         c3_o
         u3r_sing_c(const c3_c* a_c,
@@ -381,6 +368,14 @@
         u3r_mp(mpz_t   a_mp,
                u3_atom b);
 
+      /* u3r_short():
+      **
+      **   Return short (a_w) of (b).
+      */
+        c3_s
+        u3r_short(c3_w  a_w,
+                  u3_atom b);
+
       /* u3r_word():
       **
       **   Return word (a_w) of (b).
@@ -416,6 +411,21 @@
                   c3_w    b_w,
                   c3_d*   c_d,
                   u3_atom d);
+
+      /* u3r_safe_byte(): validate and retrieve byte.
+      */
+        c3_o
+        u3r_safe_byte(u3_noun dat, c3_y* out_y);
+
+      /* u3r_safe_word(): validate and retrieve word.
+      */
+        c3_o
+        u3r_safe_word(u3_noun dat, c3_w* out_w);
+
+      /* u3r_safe_chub(): validate and retrieve chub.
+      */
+        c3_o
+        u3r_safe_chub(u3_noun dat, c3_d* out_d);
 
       /* u3r_string(): `a`, a text atom, as malloced C string.
       */

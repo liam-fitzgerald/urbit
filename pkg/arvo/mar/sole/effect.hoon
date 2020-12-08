@@ -43,6 +43,7 @@
 ::
 |_  sef/sole-effect
 ::
+++  grad  %noun
 ++  grab                                                ::  convert from
   |%
   ++  noun  sole-effect                                 ::  clam from %noun
@@ -50,6 +51,7 @@
 ++  grow
   =,  enjs
   |%
+  ++  noun  sef
   ++  json
     ^-  ^json
     ?+    -.sef
@@ -63,6 +65,16 @@
         $pro
       %+  frond  %pro
       (pairs vis+b+vis.sef tag+s+tag.sef cad+(tape (purge cad.sef)) ~)
+    ::
+        $tab
+      :-  %a
+      %+  turn  p.sef
+      |=  [=cord =^tank]
+      %+  frond  %tab
+      %-  pairs
+      :~  match+s+cord
+          info+(tape ~(ram re tank))
+      ==
     ::
         ?($bel $clr $nex)
       (frond %act %s -.sef)

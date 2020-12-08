@@ -17,20 +17,32 @@
   **/
     /* Assert.  Good to capture.
     */
-#     define c3_assert(x)                       \
-        do {                                    \
-          if (!(x)) {                           \
-            fprintf(stderr, "\rAssertion '%s' " \
-                    "failed in %s:%d\n",        \
-                    #x, __FILE__, __LINE__);    \
-            c3_cooked();                        \
-            assert(x);                          \
-          }                                     \
-        } while(0)
+
+#     if defined(ASAN_ENABLED) && defined(__clang__)
+#       define c3_assert(x)                       \
+          do {                                    \
+            if (!(x)) {                           \
+              c3_cooked();                        \
+              assert(x);                          \
+            }                                     \
+          } while(0)
+#     else
+#       define c3_assert(x)                       \
+          do {                                    \
+            if (!(x)) {                           \
+              fflush(stderr);                     \
+              fprintf(stderr, "\rAssertion '%s' " \
+                      "failed in %s:%d\n",        \
+                      #x, __FILE__, __LINE__);    \
+              c3_cooked();                        \
+              assert(x);                          \
+            }                                     \
+          } while(0)
+#endif
 
     /* Stub.
     */
-#     define c3_stub       (assert(!"stub"), 0)
+#     define c3_stub       c3_assert(!"stub")
 
     /* Size in words.
     */
@@ -86,21 +98,27 @@
     /* Asserting allocators.
     */
 #     define c3_free(s) free(s)
-#     define c3_malloc(s) ({          \
-        void* rut = malloc(s);        \
-        if ( 0 == rut ) {             \
-          c3_assert(!"memory lost");  \
-        }                             \
+#     define c3_malloc(s) ({                                    \
+        void* rut = malloc(s);                                  \
+        if ( 0 == rut ) {                                       \
+          fprintf(stderr, "c3_malloc(%" PRIu64 ") failed\r\n",  \
+                          (c3_d)s);                             \
+          c3_assert(!"memory lost");                            \
+        }                                                       \
         rut;})
-#     define c3_calloc(s) ({          \
-        void* rut = calloc(1,s);      \
-        if ( 0 == rut ) {             \
-          c3_assert(!"memory lost");  \
-        }                             \
+#     define c3_calloc(s) ({                                    \
+        void* rut = calloc(1,s);                                \
+        if ( 0 == rut ) {                                       \
+          fprintf(stderr, "c3_calloc(%" PRIu64 ") failed\r\n",  \
+                          (c3_d)s);                             \
+          c3_assert(!"memory lost");                            \
+        }                                                       \
         rut;})
-#     define c3_realloc(a, b) ({      \
-        void* rut = realloc(a, b);    \
-        if ( 0 == rut ) {             \
-          c3_assert(!"memory lost");  \
-        }                             \
+#     define c3_realloc(a, b) ({                                \
+        void* rut = realloc(a, b);                              \
+        if ( 0 == rut ) {                                       \
+          fprintf(stderr, "c3_realloc(%" PRIu64 ") failed\r\n", \
+                          (c3_d)b);                             \
+          c3_assert(!"memory lost");                            \
+        }                                                       \
         rut;})

@@ -81,11 +81,11 @@
 ++  derivation-path
   ;~  pfix
     ;~(pose (jest 'm/') (easy ~))
-  %+  most  net
+  %+  most  fas
   ;~  pose
     %+  cook
       |=(i=@ (add i (bex 31)))
-    ;~(sfix dem say)
+    ;~(sfix dem soq)
   ::
     dem
   ==  ==
@@ -114,7 +114,7 @@
     ~|  %know-no-private-key
     !!
   ::  derive child at i
-  =+  ^-  [left=@ right=@]  ::TODO  =/ w/o face
+  =/  [left=@ right=@]
     =-  [(cut 3 [32 32] -) (cut 3 [0 32] -)]
     %+  hmac-sha512l  [32 cad]
     :-  37
@@ -143,7 +143,7 @@
     ~|  %cant-derive-hardened-public-key
     !!
   ::  derive child at i
-  =+  ^-  [left=@ right=@]  ::TODO  =/  w/o face
+  =/  [left=@ right=@]
     =-  [(cut 3 [32 32] -) (cut 3 [0 32] -)]
     %+  hmac-sha512l  [32 cad]
     37^(can 3 ~[4^i 33^(ser-p pub)])
@@ -212,5 +212,5 @@
 ::
 ++  hash160
   |=  d=@
-  (ripemd-160:ripemd:crypto 256 (sha-256:sha d))
+  (ripemd-160:ripemd:crypto 32 (sha-256:sha d))
 --

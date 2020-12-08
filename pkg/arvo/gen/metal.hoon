@@ -1,3 +1,4 @@
+::  Produce a metal pill
 ::
 ::::  /hoon/metal/gen
   ::
@@ -205,10 +206,6 @@
             ::  sys/vane/eyre: web
             ::
             (vent %e /vane/eyre)
-            ::
-            ::  sys/vane/ford: build
-            ::
-            (vent %f /vane/ford)
             ::
             ::  sys/vane/gall: applications
             ::

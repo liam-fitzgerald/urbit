@@ -35,12 +35,19 @@
 ::  manage subscriptions efficiently.
 ::
 =>  |%
-+$  state                                               ::  all vane state
-  $:  ver=$0                                            ::  vane version
-      pki=state-pki                                     ::
++$  any-state  $%(state-0 state-1)
+::
++$  state-0
+  $:  %0
+      pki=state-pki-0                                   ::
       etn=state-eth-node                                ::  eth connection state
   ==                                                    ::
-+$  state-pki                                           ::  urbit metadata
++$  state-1
+  $:  %1
+      pki=state-pki-1                                   ::
+      etn=state-eth-node                                ::  eth connection state
+  ==                                                    ::
++$  state-pki-0                                         ::  urbit metadata
   $:  $=  own                                           ::  vault (vein)
         $:  yen=(set duct)                              ::  trackers
             sig=(unit oath)                             ::  for a moon
@@ -59,11 +66,33 @@
             pos=(map ship point)                        ::  on-chain ship state
         ==                                              ::
   ==                                                    ::
++$  state-pki-1                                         ::  urbit metadata
+  $:  $=  own                                           ::  vault (vein)
+        $:  yen=(set duct)                              ::  trackers
+            sig=(unit oath)                             ::  for a moon
+            tuf=(list turf)                             ::  domains
+            boq=@ud                                     ::  boot block
+            nod=purl:eyre                               ::  eth gateway
+            fak=_|                                      ::  fake keys
+            lyf=life                                    ::  version
+            step=@ud                                    ::  login code step
+            jaw=(map life ring)                         ::  private keys
+        ==                                              ::
+      $=  zim                                           ::  public
+        $:  yen=(jug duct ship)                         ::  trackers
+            ney=(jug ship duct)                         ::  reverse trackers
+            nel=(set duct)                              ::  trackers of all
+            dns=dnses                                   ::  on-chain dns state
+            pos=(map ship point)                        ::  on-chain ship state
+        ==                                              ::
+  ==                                                    ::
 +$  message                                             ::  message to her jael
   $%  [%nuke whos=(set ship)]                           ::  cancel trackers
       [%public-keys whos=(set ship)]                    ::  view ethereum events
-      [%public-keys-result =public-keys-result]         ::  tmp workaround
   ==                                                    ::
++$  message-result
+  $%  [%public-keys-result =public-keys-result]         ::  public keys boon
+  ==
 +$  card                                                ::  i/o action
   (wind note gift)                                      ::
 ::                                                      ::
@@ -71,12 +100,18 @@
   [p=duct q=card]                                       ::
 ::                                                      ::
 +$  note                                                ::  out request $->
-  $~  [%a %want *ship *path **]                         ::
+  $~  [%a %plea *ship *plea:ames]                       ::
   $%  $:  %a                                            ::    to %ames
-          $>(%want task:able:ames)                      ::  send message
+          $>(%plea task:able:ames)                      ::  send request message
       ==                                                ::
-      $:  %g                                            ::    to self
-          $>(%deal task:able:gall)                              ::  set ethereum source
+      $:  %b                                            ::    to %behn
+          $>(%wait task:able:behn)                      ::  set timer
+      ==                                                ::
+      $:  %e                                            ::    to %eyre
+          [%code-changed ~]                             ::  notify code changed
+      ==                                                ::
+      $:  %g                                            ::    to %gall
+          $>(%deal task:able:gall)                      ::  talk to app
       ==                                                ::
       $:  %j                                            ::    to self
           $>(%listen task)                              ::  set ethereum source
@@ -88,8 +123,15 @@
 +$  peer-sign  [=ship =udiff:point]                     ::
 ::                                                      ::
 +$  sign                                                ::  in result $<-
-  $~  [%a %woot *ship ~]                                ::
-  $%  [%a $>(%woot gift:able:ames)]                     ::  message result
+  $~  [%a %done ~]                                      ::
+  $%  $:  %a                                            ::
+          $%  $>(%boon gift:able:ames)                  ::  message response
+              $>(%done gift:able:ames)                  ::  message (n)ack
+              $>(%lost gift:able:ames)                  ::  lost boon
+      ==  ==                                            ::
+      $:  %b                                            ::
+          $>(%wake gift:able:behn)                      ::
+      ==                                                ::
       $:  %g                                            ::
           $>  $?  %onto                                 ::
                   %unto                                 ::
@@ -127,7 +169,9 @@
 ::                                                      ::::
 ::::                    #  heavy                        ::  heavy engines
   ::                                                    ::::
-=>  |%
+=>
+~%  %jael  ..is  ~
+|%
 ::                                                      ::  ++of
 ::::                    ## main^heavy                   ::  main engine
   ::                                                    ::::
@@ -165,7 +209,7 @@
           ==
           ::  all vane state
           ::
-          state
+          state-1
       ==
   ::  lex: all durable state
   ::  moz: pending actions
@@ -251,12 +295,14 @@
       =.  sig.own.pki  sig.seed.tac
       ::  load our initial public key
       ::
+      =/  spon-ship=(unit ship)
+        =/  flopped-spon  (flop spon.tac)
+        ?~(flopped-spon ~ `ship.i.flopped-spon)
       =.  pos.zim.pki
         =/  cub  (nol:nu:crub:crypto key.seed.tac)
         %+  ~(put by pos.zim.pki)
           our
-        =/  spon-ship  ?~(spon.tac ~ `ship.i.spon.tac)
-        [1 lyf.seed.tac (my [lyf.seed.tac [1 pub:ex:cub]] ~) spon-ship]
+        [0 lyf.seed.tac (my [lyf.seed.tac [1 pub:ex:cub]] ~) spon-ship]
       ::  our initial private key
       ::
       =.  lyf.own.pki  lyf.seed.tac
@@ -290,28 +336,32 @@
         (~(gas by points) spon-points)
       =.  +>.$
         %-  curd  =<  abet
-        (public-keys:~(feel su hen our pki etn) %full points)
+        (public-keys:~(feel su hen our now pki etn) %full points)
       ::
       ::  start subscriptions
       ::
       =.  +>.$  (poke-watch hen %azimuth-tracker nod.own.pki)
       =.  +>.$
+        ::  get everything from azimuth-tracker because jael subscriptions
+        ::  seem to be flaky for now
+        ::
+        ?:  &
+          %-  curd  =<  abet
+          (sources:~(feel su hen our now pki etn) ~ [%| %azimuth-tracker])
+        ::
         ?-    (clan:title our)
             %czar
           %-  curd  =<  abet
-          (sources:~(feel su hen our pki etn) ~ [%| %azimuth-tracker])
+          (sources:~(feel su hen our now pki etn) ~ [%| %azimuth-tracker])
         ::
             *
-          =/  spon-ship
-            ?>  ?=(^ spon.tac)
-            ship.i.spon.tac
           =.  +>.$
             %-  curd  =<  abet
-            %+  sources:~(feel su hen our pki etn)
-              (silt spon-ship ~)
+            %+  sources:~(feel su hen our now pki etn)
+              (silt (turn spon-points head))
             [%| %azimuth-tracker]
           %-  curd  =<  abet
-          (sources:~(feel su hen our pki etn) ~ [%& spon-ship])
+          (sources:~(feel su hen our now pki etn) ~ [%& (need spon-ship)])
         ==
       ::
       =.  moz
@@ -380,7 +430,7 @@
         %listen
       ~&  [%jael-listen whos source]:tac
       %-  curd  =<  abet
-      (sources:~(feel su hen our pki etn) [whos source]:tac)
+      (sources:~(feel su hen our now pki etn) [whos source]:tac)
     ::
     ::  cancel all trackers from duct
     ::    {$nuke whos=(set ship)}
@@ -412,7 +462,7 @@
     ::
         %rekey
       %-  curd  =<  abet
-      (private-keys:~(feel su hen our pki etn) life.tac ring.tac)
+      (private-keys:~(feel su hen our now pki etn) life.tac ring.tac)
     ::
     ::  update private keys
     ::
@@ -424,14 +474,22 @@
         ~&  [%not-our-moon ship.tac]
         +>.$
       %-  curd  =<  abet
-      (~(new-event su hen our pki etn) [ship udiff]:tac)
+      (~(new-event su hen our now pki etn) [ship udiff]:tac)
+    ::
+    ::  rotate web login code
+    ::
+        %step
+      %=  +>.$
+        step.own.pki  +(step.own.pki)
+        moz           [[hen %pass / %e %code-changed ~] moz]
+      ==
     ::
     ::  watch public keys
     ::    [%public-keys ships=(set ship)]
     ::
         %public-keys
       %-  curd  =<  abet
-      (~(public-keys ~(feed su hen our pki etn) hen) ships.tac)
+      (~(public-keys ~(feed su hen our now pki etn) hen) ships.tac)
     ::
     ::  seen after breach
     ::    [%meet our=ship who=ship]
@@ -456,57 +514,40 @@
     ::    [%vega ~]
     ::
         %vega
+      +>.$::
+    ::  in response to memory pressure
+    ::    [%trim p=@ud]
+    ::
+        %trim
       +>.$
     ::
     ::  watch private keys
     ::    {$private-keys $~}
     ::
         %private-keys
-      (curd abet:~(private-keys ~(feed su hen our pki etn) hen))
-    ::
-        %wegh
-      %_    +>
-          moz
-        :_  moz
-        ^-  move
-        :^  hen  %give  %mass
-        ^-  mass
-        :+  %jael  %|
-        :~  pki+&+pki
-            etn+&+etn
-            dot+&+lex
-        ==
-      ==
+      (curd abet:~(private-keys ~(feed su hen our now pki etn) hen))
     ::
     ::  authenticated remote request
     ::    {$west p/ship q/path r/*}
     ::
-        $west
-      =*  her  p.tac
-      =/  mes  (message r.tac)
+        %plea
+      =*  her  ship.tac
+      =/  mes  ;;(message payload.plea.tac)
       ?-    -.mes
       ::
       ::  cancel trackers
       ::    [%nuke whos=(set ship)]
       ::
           %nuke
-        =.  moz  [[hen %give %mack ~] moz]
+        =.  moz  [[hen %give %done ~] moz]
         $(tac mes)
       ::
       ::  view ethereum events
       ::    [%public-keys whos=(set ship)]
       ::
           %public-keys
-        =.  moz  [[hen %give %mack ~] moz]
+        =.  moz  [[hen %give %done ~] moz]
         $(tac mes)
-      ::
-      ::  receive keys result
-      ::    [%public-keys-result =public-keys-result]
-      ::
-          %public-keys-result
-        =.  moz  [[hen %give %mack ~] moz]
-        %-  curd  =<  abet
-        (public-keys:~(feel su hen our pki etn) public-keys-result.mes)
       ==
     ==
   ::
@@ -514,13 +555,36 @@
     |=  [tea=wire hen=duct hin=sign]
     ^+  +>
     ?-  hin
-        [%a %woot *]
-      ?~  q.hin  +>.$
-      ?~  u.q.hin  ~&(%ares-fine +>.$)
-      ~&  [%woot-bad p.u.u.q.hin]
-      ~_  q.u.u.q.hin
+        [%a %done *]
+      ?~  error.hin  +>.$
+      ~&  [%done-bad tag.u.error.hin]
+      %-  (slog tang.u.error.hin)
       ::TODO  fail:et
       +>.$
+    ::
+        [%a %boon *]
+      =+  ;;  [%public-keys-result =public-keys-result]  payload.hin
+      %-  curd  =<  abet
+      (public-keys:~(feel su hen our now pki etn) public-keys-result)
+    ::
+        [%a %lost *]
+      ::  TODO: better error handling
+      ::
+      ~|  %jael-ames-lost
+      !!
+    ::
+        [%b %wake *]
+      ?^  error.hin
+        %-  %+  slog
+              leaf+"jael unable to resubscribe, run :azimuth-tracker|listen"
+            u.error.hin
+          +>.$
+      ?>  ?=([%breach @ ~] tea)
+      =/  =source-id  (slav %ud i.t.tea)
+      =/  =source  (~(got by sources.etn) source-id)
+      =/  ships  (~(get ju ship-sources-reverse.etn) source-id)
+      %-  curd  =<  abet
+      (sources:~(feel su hen our now pki etn) ships source)
     ::
         [%g %onto *]
       ~&  [%jael-onto tea hin]
@@ -528,41 +592,34 @@
     ::
         [%g %unto *]
       ?-  +>-.hin
-          $quit           ~|([%jael-unexpected-quit tea hin] !!)
-          $http-response  ~|([%jael-unexpected-http-response tea hin] !!)
-          $coup
+          $kick      ~|([%jael-unexpected-quit tea hin] !!)
+          $poke-ack
         ?~  p.p.+>.hin
           +>.$
         %-  (slog leaf+"jael-bad-coup" u.p.p.+>.hin)
         +>.$
       ::
-          $reap
+          $watch-ack
         ?~  p.p.+>.hin
           +>.$
         %-  (slog u.p.p.+>.hin)
         ~|([%jael-unexpected-reap tea hin] +>.$)
       ::
-          $diff
+          $fact
         ?>  ?=([@ *] tea)
         =*  app  i.tea
-        =/  =peer-sign  ;;(peer-sign q.q.p.p.+>.hin)
-        %.  [hen tea app]
-        =<  pump
+        =/  =peer-sign  ;;(peer-sign q.q.cage.p.+>.hin)
         %-  curd  =<  abet
-        (~(new-event su hen our pki etn) peer-sign)
+        (~(new-event su hen our now pki etn) peer-sign)
       ==
     ==
   ::                                                    ::  ++curd:of
   ++  curd                                              ::  relative moves
     |=  $:  moz/(list move)
-            pki/state-pki
+            pki/state-pki-1
             etn/state-eth-node
         ==
     +>(pki pki, etn etn, moz (weld (flop moz) ^moz))
-  ::                                                    ::  ++wind:of
-  ++  pump
-    |=  [hen=duct =wire app=term]
-    (emit [hen %pass wire %g %deal [our our] app %pump ~])
   --
 ::                                                      ::  ++su
 ::::                    ## relative^heavy               ::  subjective engine
@@ -579,14 +636,15 @@
   =|  moz=(list move)
   =|  $:  hen=duct
           our=ship
-          state-pki
+          now=@da
+          state-pki-1
           state-eth-node
       ==
   ::  moz: moves in reverse order
   ::  pki: relative urbit state
   ::
-  =*  pki  ->+<
-  =*  etn  ->+>
+  =*  pki  ->+>-
+  =*  etn  ->+>+
   |%
   ++  this-su  .
   ::                                                    ::  ++abet:su
@@ -614,7 +672,7 @@
         %deal
         [our our]
         app
-        %peer
+        %watch
         path
     ==
   ::
@@ -630,24 +688,30 @@
   ::
   ++  public-keys-give
     |=  [yen=(set duct) =public-keys-result]
-    =+  yez=~(tap in yen)
+    |^
+    =+  yez=(sort ~(tap in yen) sorter)
     |-  ^+  this-su
     ?~  yez  this-su
     =*  d  i.yez
     =.  this-su
-      ?.  &(?=([[%a @ @ *] *] d) !=(%pubs i.t.i.d))
+      ?.  &(?=([[%a @ @ *] *] d) !=(%public-keys i.t.i.d))
         %-  emit
         [d %give %public-keys public-keys-result]
-      =/  our  (slav %p i.t.i.d)
-      =/  who  (slav %p i.t.t.i.d)
-      =/  =message  [%public-keys-result public-keys-result]
       %-  emit
-      :^    d
-          %pass
-        /public-keys-result
-      ^-  note
-      [%a %want who /j/public-keys-result message]
+      [d %give %boon %public-keys-result public-keys-result]
     $(yez t.yez)
+    ::
+    ::  We want to notify Ames, then Clay, then Gall.  This happens to
+    ::  be alphabetical, but this is mostly a coincidence.
+    ::
+    ++  sorter
+      |=  [a=duct b=duct]
+      ?.  ?=([[@ *] *] a)
+        |
+      ?.  ?=([[@ *] *] b)
+        &
+      (lth i.i.a i.i.b)
+    --
   ::
   ++  get-source
     |=  who=@p
@@ -797,19 +861,64 @@
       |=  =public-keys-result
       ^+  ..feel
       ?:  ?=(%full -.public-keys-result)
-        =.  pos.zim  (~(uni by pos.zim) points.public-keys-result)
         =/  pointl=(list [who=ship =point])
           ~(tap by points.public-keys-result)
         |-  ^+  ..feel
         ?~  pointl
-          ..feel
-        %+  public-keys-give
-          (subscribers-on-ship who.i.pointl)
-        [%full (my i.pointl ~)]
+          ..feel(pos.zim (~(uni by pos.zim) points.public-keys-result))
+        ::  if changing rift upward, then signal a breach
+        ::
+        =?    ..feel
+            =/  point
+              (~(get by pos.zim) who.i.pointl)
+            ?&  ?=(^ point)
+                (gth rift.point.i.pointl rift.u.point)
+            ==
+          =.  ..feel
+            %+  public-keys-give
+              (subscribers-on-ship who.i.pointl)
+            [%breach who.i.pointl]
+          =/  sor  (~(get by sources-reverse) %& who.i.pointl)
+          ?~  sor
+            ..feel
+          ::  delay resubscribing because Ames is going to clear any
+          ::  messages we send now.
+          ::
+          (emit hen %pass /breach/(scot %ud u.sor) %b %wait now)
+        ::
+        =.  ..feel
+          %+  public-keys-give
+            (subscribers-on-ship who.i.pointl)
+          [%full (my i.pointl ~)]
+        $(pointl t.pointl)
+      ::
+      ?:  ?=(%breach -.public-keys-result)
+        ::  we calculate our own breaches based on our local state
+        ::
+        ..feel
       =*  who  who.public-keys-result
       =/  a-diff=diff:point  diff.public-keys-result
       =/  maybe-point  (~(get by pos.zim) who)
       =/  =point  (fall maybe-point *point)
+      ::  if changing rift upward, then signal a breach
+      ::
+      =?    ..feel
+          ?&  ?=(^ maybe-point)
+              ?=(%rift -.a-diff)
+              (gth to.a-diff rift.point)
+          ==
+        =.  ..feel
+          %+  public-keys-give
+            (subscribers-on-ship who)
+          [%breach who]
+        =/  sor  (~(get by sources-reverse) %& who)
+        ?~  sor
+          ..feel
+        ::  delay resubscribing because Ames is going to clear any
+        ::  messages we send now.
+        ::
+        (emit hen %pass /breach/(scot %ud u.sor) %b %wait now)
+      ::
       =.  point
         ?-  -.a-diff
             %spon  point(sponsor to.a-diff)
@@ -823,6 +932,7 @@
             [crypto-suite pass]:to.a-diff
           ==
         ==
+      ::
       =.  pos.zim  (~(put by pos.zim) who point)
       %+  public-keys-give
         (subscribers-on-ship who)
@@ -846,11 +956,6 @@
     ++  sources
       |=  [whos=(set ship) =source]
       ^+  ..feel
-      ?:  ?=(%& -.source)
-        =/  send-message
-          |=  =message
-          [hen %pass /public-keys %a %want p.source /j/public-keys message]
-        (emit (send-message %public-keys whos))
       =^  =source-id  this-su  (get-source-id source)
       =.  ..feed
         ?~  whos
@@ -865,6 +970,12 @@
           %-  ~(gas ju ship-sources-reverse.etn)
           (turn whol |=(=ship [source-id ship]))
         ..feed
+      ::
+      ?:  ?=(%& -.source)
+        =/  send-message
+          |=  =message
+          [hen %pass /public-keys %a %plea p.source %j /public-keys message]
+        (emit (send-message %public-keys whos))
       (peer p.source whos)
     --
   ::
@@ -882,7 +993,7 @@
 ::
 ::  lex: all durable %jael state
 ::
-=|  lex/state
+=|  lex/state-1
 |=  $:  ::
         ::  our: identity
         ::  now: current time
@@ -902,13 +1013,14 @@
           ::  hic: event data
           ::
           hen/duct
+          dud=(unit goof)
           hic/(hypo (hobo task:able))
       ==
   ^-  [(list move) _..^$]
-  =/  =task:able
-    ?.  ?=($soft -.q.hic)
-      q.hic
-    (task:able p.q.hic)
+  ?^  dud
+    ~|(%jael-call-dud (mean tang.u.dud))
+  ::
+  =/  =task:able  ((harden task:able) q.hic)
   =^  did  lex
     abet:(~(call of [our now eny] lex) hen task)
   [did ..^$]
@@ -917,11 +1029,15 @@
   |=  $:  ::  old: previous state
           ::
           ::  old/*
-          old/state
+          old/any-state
       ==
   ^+  ..^$
-  ::  ..^$
-  ..^$(lex old)
+  =/  new=state-1
+    ?-  -.old
+      %0  old(- %1, |7.own.pki [step=0 |7.own.pki.old])
+      %1  old
+    ==
+  ..^$(lex new)
 ::                                                      ::  ++scry
 ++  scry                                                ::  inspect
   |=  $:  ::  fur: event security
@@ -943,8 +1059,22 @@
   ::
   ?.  =(lot [%$ %da now])  ~
   ?.  =(%$ ren)  [~ ~]
+  ?:  =(tyl /whey)
+    =/  maz=(list mass)
+      :~  pki+&+pki.lex
+          etn+&+etn.lex
+      ==
+    ``mass+!>(maz)
   ?+    syd
       ~
+  ::
+      %step
+    ?.  ?=([@ ~] tyl)  [~ ~]
+    ?.  =([%& our] why)
+      [~ ~]
+    =/  who  (slaw %p i.tyl)
+    ?~  who  [~ ~]
+    ``[%noun !>(step.own.pki.lex)]
   ::
       %code
     ?.  ?=([@ ~] tyl)  [~ ~]
@@ -953,10 +1083,7 @@
     =/  who  (slaw %p i.tyl)
     ?~  who  [~ ~]
     =/  sec  (~(got by jaw.own.pki.lex) lyf.own.pki.lex)
-    =/  cub  (nol:nu:crub:crypto sec)
-    ::  XX use pac:ex:cub?
-    ::
-    ``[%noun !>((end 6 1 (shaf %pass (shax sec:ex:cub))))]
+    ``[%noun !>((end 6 1 (shaf %pass (shax sec))))]
   ::
       %life
     ?.  ?=([@ ~] tyl)  [~ ~]
@@ -974,6 +1101,22 @@
     ?~  pub  ~
     ``[%atom !>(life.u.pub)]
   ::
+      %lyfe                                             ::  unitized %life
+    ?.  ?=([@ ~] tyl)  [~ ~]
+    ?.  =([%& our] why)
+      [~ ~]
+    =/  who  (slaw %p i.tyl)
+    ?~  who  [~ ~]
+    ::  fake ships always have life=1
+    ::
+    ?:  fak.own.pki.lex
+      ``[%noun !>((some 1))]
+    ?:  =(u.who p.why)
+      ``[%noun !>((some lyf.own.pki.lex))]
+    =/  pub  (~(get by pos.zim.pki.lex) u.who)
+    ?~  pub  ``[%noun !>(~)]
+    ``[%noun !>((some life.u.pub))]
+  ::
       %rift
     ?.  ?=([@ ~] tyl)  [~ ~]
     ?.  =([%& our] why)
@@ -988,6 +1131,20 @@
     ?~  pos  ~
     ``[%atom !>(rift.u.pos)]
   ::
+      %ryft                                             ::  unitized %rift
+    ?.  ?=([@ ~] tyl)  [~ ~]
+    ?.  =([%& our] why)
+      [~ ~]
+    =/  who  (slaw %p i.tyl)
+    ?~  who  [~ ~]
+    ::  fake ships always have rift=1
+    ::
+    ?:  fak.own.pki.lex
+      ``[%noun !>((some 1))]
+    =/  pos  (~(get by pos.zim.pki.lex) u.who)
+    ?~  pos  ``[%noun !>(~)]
+    ``[%noun !>((some rift.u.pos))]
+  ::
       %vein
     ?.  ?=([@ ~] tyl)  [~ ~]
     ?.  &(?=(%& -.why) =(p.why our))
@@ -999,6 +1156,11 @@
       [~ ~]
     ::
     [~ ~ %noun !>(u.r)]
+  ::
+      %vile
+    =*   life  lyf.own.pki.lex
+    =/  =seed  [our life (~(got by jaw.own.pki.lex) life) ~]
+    [~ ~ %atom !>((jam seed))]
   ::
       %deed
     ?.  ?=([@ @ ~] tyl)  [~ ~]
@@ -1012,7 +1174,7 @@
     ?:  fak.own.pki.lex
       =/  cub  (pit:nu:crub:crypto 512 u.who)
       :^  ~  ~  %noun
-      !>  `deed:ames`[1 pub:ex:cub ~]
+      !>  [1 pub:ex:cub ~]
     ::
     =/  rac  (clan:title u.who)
     ?:  ?=(%pawn rac)
@@ -1024,8 +1186,7 @@
       =/  cub  (nol:nu:crub:crypto sec)
       =/  sig  (sign:as:cub (shaf %self (sham [u.who 1 pub:ex:cub])))
       :^  ~  ~  %noun
-      !>  ^-  deed:ames
-      [1 pub:ex:cub `sig]
+      !>  [1 pub:ex:cub `sig]
     ::
     =/  pub  (~(get by pos.zim.pki.lex) u.who)
     ?~  pub
@@ -1036,7 +1197,7 @@
     ?~  pas
       ~
     :^  ~  ~  %noun
-    !>  `deed:ames`[u.lyf pass.u.pas ~]
+    !>  [u.lyf pass.u.pas ~]
   ::
       %earl
     ?.  ?=([@ @ ~] tyl)  [~ ~]
@@ -1078,6 +1239,13 @@
     !>  ^-  (list ship)
     (~(saxo of [our now eny] lex) u.who)
   ::
+      %subscriptions
+    ?.  ?=([@ ~] tyl)  [~ ~]
+    ?.  =([%& our] why)
+      [~ ~]
+    :^  ~  ~  %noun
+    !>([yen ney nel]:zim.pki.lex)
+  ::
       %sources
     ?.  ?=(~ tyl)  [~ ~]
     :^  ~  ~  %noun  !>
@@ -1098,9 +1266,13 @@
           ::
           tea/wire
           hen/duct
+          dud=(unit goof)
           hin/(hypo sign)
       ==
   ^-  [(list move) _..^$]
+  ?^  dud
+    ~|(%jael-take-dud (mean tang.u.dud))
+  ::
   =^  did  lex  abet:(~(take of [our now eny] lex) tea hen q.hin)
   [did ..^$]
 --

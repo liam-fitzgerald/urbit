@@ -1,36 +1,76 @@
-{
-  pkgs,
-  debug,
-  argon2, ed25519, ent, ge-additions, h2o, murmur3, scrypt, secp256k1, sni, softfloat3, uv, ivory-header, ca-header
-}:
+{ lib, stdenv, coreutils, pkgconfig, argon2u, cacert, ca-bundle, curlMinimal
+, ed25519, ent, ge-additions, gmp, h2o, herb, ivory, libaes_siv, libscrypt
+, libsigsegv, libuv, lmdb, murmur3, openssl, secp256k1, softfloat3, zlib
+, enableStatic ? stdenv.hostPlatform.isStatic, enableDebug ? false
+, doCheck ? true, enableParallelBuilding ? true, dontStrip ? true }:
 
 let
 
-  name =
-    if debug then "urbit-debug" else "urbit";
+  src = lib.cleanSource ../../../pkg/urbit;
 
-  deps =
-    with pkgs;
-    [ curl gmp libsigsegv ncurses openssl zlib lmdb ];
+  version = builtins.readFile "${src}/version";
 
-  vendor =
-    [ argon2 softfloat3 ed25519 ent ge-additions h2o scrypt uv murmur3 secp256k1 sni ivory-header ca-header ];
+in stdenv.mkDerivation {
+  inherit src version;
 
-in
+  pname = "urbit" + lib.optionalString enableDebug "-debug"
+    + lib.optionalString enableStatic "-static";
 
-pkgs.stdenv.mkDerivation {
-  name    = name;
-  exename = name;
-  src     = ../../../pkg/urbit;
-  builder = ./builder.sh;
+  nativeBuildInputs = [ pkgconfig ];
 
-  nativeBuildInputs = deps ++ vendor;
+  buildInputs = [
+    argon2u
+    cacert
+    ca-bundle
+    curlMinimal
+    ed25519
+    ent
+    ge-additions
+    gmp
+    h2o
+    ivory.header
+    libaes_siv
+    libscrypt
+    libsigsegv
+    libuv
+    lmdb
+    murmur3
+    openssl
+    secp256k1
+    softfloat3
+    zlib
+  ];
+
+  checkInputs = [ herb ];
+
+  # Ensure any `/usr/bin/env bash` shebang is patched.
+  postPatch = ''
+    patchShebangs ./configure
+  '';
+
+  checkTarget = "test";
+
+  installPhase = ''
+    mkdir -p $out/bin
+    cp ./build/urbit $out/bin/urbit
+    cp ./build/urbit-worker $out/bin/urbit-worker
+  '';
+
+  CFLAGS = [ (if enableDebug then "-O0" else "-O3") "-g" ]
+    ++ lib.optionals (!enableDebug) [ "-Werror" ]
+    ++ lib.optionals enableStatic [ "-static" ];
+
+  MEMORY_DEBUG = enableDebug;
+  CPU_DEBUG = enableDebug;
+  EVENT_TIME_DEBUG = false;
 
   # See https://github.com/NixOS/nixpkgs/issues/18995
-  hardeningDisable = if debug then [ "all" ] else [];
+  hardeningDisable = lib.optionals enableDebug [ "all" ];
 
-  CFLAGS           = if debug then "-O3 -g -Werror" else "-O3 -Werror";
-  MEMORY_DEBUG     = debug;
-  CPU_DEBUG        = debug;
-  EVENT_TIME_DEBUG = false;
+  inherit enableParallelBuilding doCheck dontStrip;
+
+  meta = {
+    debug = enableDebug;
+    arguments = lib.optionals enableDebug [ "-g" ];
+  };
 }

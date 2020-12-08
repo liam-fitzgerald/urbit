@@ -13,6 +13,12 @@
 /+  pill
 =,  pill-lib=pill
 |%
++$  az-log  [topics=(lest @) data=@t]
++$  az-state
+  $:  logs=(list az-log)
+      lives=(map ship [lyfe=life rut=rift])
+      tym=@da
+  ==
 ++  ph-event
   $%  [%test-done p=?]
       aqua-event
@@ -29,8 +35,17 @@
       [%event who=ship ue=unix-event]
   ==
 ::
++$  azimuth-action
+  $%  [%init-azimuth ~]
+      [%spawn who=ship]
+      [%breach who=ship]
+  ==
+::
 +$  aqua-effects
   [who=ship ufs=(list unix-effect)]
+::
++$  aqua-effect
+  [who=ship ufs=unix-effect]
 ::
 +$  aqua-events
   [who=ship utes=(list unix-timed-event)]
@@ -54,31 +69,8 @@
       [%ergo p=@tas q=mode:clay]
       [%sleep ~]
       [%restore ~]
+      [%kill ~]
       [%init ~]
       [%request id=@ud request=request:http]
-  ==
-+$  vane-move
-  %+  pair  bone
-  $%  [%peer wire dock path]
-      [%pull wire dock ~]
-  ==
-::
-++  aqua-vane-control-handler
-  |=  [our=@p ost=bone subscribed=? command=?(%subscribe %unsubscribe)]
-  ^-  (list vane-move)
-  ?-    command
-      %subscribe
-    %+  weld
-      ^-  (list vane-move)
-      ?.  subscribed
-        ~
-      [ost %pull /aqua [our %ph] ~]~
-    ^-  (list vane-move)
-    [ost %peer /aqua [our %ph] /effects]~
-  ::
-      %unsubscribe
-    ?.  subscribed
-      ~
-    [ost %pull /aqua [our %ph] ~]~
   ==
 --

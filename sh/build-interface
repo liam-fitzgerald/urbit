@@ -2,16 +2,12 @@
 
 set -ex
 
-cd pkg/interface/chat
-gulp bundle-prod &
-cd ../launch
-gulp bundle-prod &
-cd ../clock
-gulp bundle-prod &
-cd ../publish
-gulp bundle-prod &
-cd ../weather
-gulp bundle-prod &
-cd ../../../
+cd pkg/interface
+npm install
+npm run build:prod &
+
+cd ./dbug
+npm install
+gulp bundle-prod
 
 set +x

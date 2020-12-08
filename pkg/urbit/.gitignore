@@ -1,26 +1,3 @@
-#
 # Configuration Result
-#
 /config.mk
-include/config.h
-include/ca-bundle.h
-include/ivory.h
-#
-# Build Outputs
-#
-*.o
-/build/*
-/tags
-#
-# Editor Bullshit
-#
-.tags
-TAGS
-cscope.*
-.DS_Store
-/.etags
-GPATH
-GRTAGS
-GTAGS
-*.swo
-*.swp
+/include/config.h

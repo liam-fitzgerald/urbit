@@ -15,6 +15,33 @@
 
 #include "all.h"
 
+static u3j_harm _141_hex_mimes_base16_en_a[] = {{".2", u3we_en_base16}, {}};
+static c3_c* _141_hex_mimes_base16_en_ha[] = {
+  0
+};
+
+static u3j_harm _141_hex_mimes_base16_de_a[] = {{".2", u3we_de_base16}, {}};
+static c3_c* _141_hex_mimes_base16_de_ha[] = {
+  0
+};
+
+static u3j_core _141_hex_mimes_base16_d[] =
+  { { "en", 7, _141_hex_mimes_base16_en_a, 0, _141_hex_mimes_base16_en_ha },
+    { "de", 7, _141_hex_mimes_base16_de_a, 0, _141_hex_mimes_base16_de_ha },
+    {}
+  };
+static c3_c* _141_hex_mimes_base16_ha[] = {
+  0
+};
+
+static u3j_core _141_hex_mimes_d[] =
+  { { "base16", 3, 0, _141_hex_mimes_base16_d, _141_hex_mimes_base16_ha },
+    {}
+  };
+static c3_c* _141_hex_mimes_ha[] = {
+  0
+};
+
 static u3j_harm _141_hex_aes_ecba_en_a[] = {{".2", u3wea_ecba_en}, {}};
 static c3_c* _141_hex_aes_ecba_en_ha[] = {
   "a4eaaead7ffeb213cf8d611f20d7be4786b34f31a27f41c77538125992107c2d",
@@ -74,6 +101,30 @@ static c3_c* _141_hex_aes_cbcc_en_ha[] = {
 static u3j_harm _141_hex_aes_cbcc_de_a[] = {{".2", u3wea_cbcc_de}, {}};
 static c3_c* _141_hex_aes_cbcc_de_ha[] = {
   "b9d521b4d5e1d9387b34bbf5ca38f4d52ba86952ea54490dad7e2670183c572b",
+  0
+};
+static u3j_harm _141_hex_aes_siva_en_a[] = {{".2", u3wea_siva_en}, {}};
+static c3_c* _141_hex_aes_siva_en_ha[] = {
+  0
+};
+static u3j_harm _141_hex_aes_siva_de_a[] = {{".2", u3wea_siva_de}, {}};
+static c3_c* _141_hex_aes_siva_de_ha[] = {
+  0
+};
+static u3j_harm _141_hex_aes_sivb_en_a[] = {{".2", u3wea_sivb_en}, {}};
+static c3_c* _141_hex_aes_sivb_en_ha[] = {
+  0
+};
+static u3j_harm _141_hex_aes_sivb_de_a[] = {{".2", u3wea_sivb_de}, {}};
+static c3_c* _141_hex_aes_sivb_de_ha[] = {
+  0
+};
+static u3j_harm _141_hex_aes_sivc_en_a[] = {{".2", u3wea_sivc_en}, {}};
+static c3_c* _141_hex_aes_sivc_en_ha[] = {
+  0
+};
+static u3j_harm _141_hex_aes_sivc_de_a[] = {{".2", u3wea_sivc_de}, {}};
+static c3_c* _141_hex_aes_sivc_de_ha[] = {
   0
 };
 
@@ -137,6 +188,31 @@ static c3_c* _141_hex_aes_cbcc_ha[] = {
   0
 };
 
+static u3j_core _141_hex_aes_siva_d[] =
+  { { "en", 7, _141_hex_aes_siva_en_a, 0, _141_hex_aes_siva_en_ha },
+    { "de", 7, _141_hex_aes_siva_de_a, 0, _141_hex_aes_siva_de_ha },
+    {}
+  };
+static c3_c* _141_hex_aes_siva_ha[] = {
+  0
+};
+static u3j_core _141_hex_aes_sivb_d[] =
+  { { "en", 7, _141_hex_aes_sivb_en_a, 0, _141_hex_aes_sivb_en_ha },
+    { "de", 7, _141_hex_aes_sivb_de_a, 0, _141_hex_aes_sivb_de_ha },
+    {}
+  };
+static c3_c* _141_hex_aes_sivb_ha[] = {
+  0
+};
+static u3j_core _141_hex_aes_sivc_d[] =
+  { { "en", 7, _141_hex_aes_sivc_en_a, 0, _141_hex_aes_sivc_en_ha },
+    { "de", 7, _141_hex_aes_sivc_de_a, 0, _141_hex_aes_sivc_de_ha },
+    {}
+  };
+static c3_c* _141_hex_aes_sivc_ha[] = {
+  0
+};
+
 static u3j_core _141_hex_aes_d[] =
   { { "ecba", 7, 0, _141_hex_aes_ecba_d, _141_hex_aes_ecba_ha },
     { "ecbb", 7, 0, _141_hex_aes_ecbb_d, _141_hex_aes_ecbb_ha },
@@ -144,6 +220,9 @@ static u3j_core _141_hex_aes_d[] =
     { "cbca", 7, 0, _141_hex_aes_cbca_d, _141_hex_aes_cbca_ha },
     { "cbcb", 7, 0, _141_hex_aes_cbcb_d, _141_hex_aes_cbcb_ha },
     { "cbcc", 7, 0, _141_hex_aes_cbcc_d, _141_hex_aes_cbcc_ha },
+    { "siva", 7, 0, _141_hex_aes_siva_d, _141_hex_aes_siva_ha },
+    { "sivb", 7, 0, _141_hex_aes_sivb_d, _141_hex_aes_sivb_ha },
+    { "sivc", 7, 0, _141_hex_aes_sivc_d, _141_hex_aes_sivc_ha },
     {}
   };
 static c3_c* _141_hex_aes_ha[] = {
@@ -151,6 +230,10 @@ static c3_c* _141_hex_aes_ha[] = {
   0
 };
 
+static u3j_harm _141_hex_leer_a[] = {{".2", u3we_leer}, {}};
+static c3_c* _141_hex_leer_ha[] = {
+  0
+};
 static u3j_harm _141_hex_lore_a[] = {{".2", u3we_lore}, {}};
 static c3_c* _141_hex_lore_ha[] = {
   "19b13cfea49fd14aafbb20b8b888ba454f809c3f50a7cfeebd43f87336fe052d",
@@ -334,6 +417,7 @@ static c3_c* _141_hex_ripe_ha[] = {
 
 static u3j_core _141_hex_d[] =
 { { "lore",   63, _141_hex_lore_a, 0, _141_hex_lore_ha },
+  { "leer",   63, _141_hex_leer_a, 0, _141_hex_leer_ha },
   { "loss",   63, _141_hex_loss_a, 0, _141_hex_loss_ha },
   { "lune",  127, _141_hex_lune_a, 0, _141_hex_lune_ha },
 
@@ -345,6 +429,7 @@ static u3j_core _141_hex_d[] =
   { "blake",  31, 0, _141_hex_blake_d, _141_hex_blake_ha },
   { "ripemd", 31, 0, _141_hex_ripe_d,  _141_hex_ripe_ha  },
   { "secp",   31, 0, _141_hex_secp_d,  _141_hex_secp_ha  },
+  { "mimes",  31, 0, _141_hex_mimes_d, _141_hex_mimes_ha  },
   {}
 };
 static c3_c* _141_hex_ha[] = {
@@ -425,11 +510,6 @@ static c3_c* _141_pen_loot_ha[] = {
     "d83e5e47f712870aba815d79943d287cbefdc00640409464b30bf755115d4a1a",
     0
   };
-  static u3j_harm _141_pen__ut_fond_a[] = {{".2", u3wfu_fond}, {}};
-  static c3_c* _141_pen__ut_fond_ha[] = {
-    "0da0cc79c938eb06515a5cc24a17b82cd60a50c0f1a02e2c68e5d1cf71c96054",
-    0
-  };
   static u3j_harm _141_pen__ut_fish_a[] = {{".2", u3wfu_fish}, {}};
   static c3_c* _141_pen__ut_fish_ha[] = {
     "2fd315436f48351002d9aa8c137649ca95b01fd57dba09db53d7235f84a284bf",
@@ -450,7 +530,6 @@ static c3_c* _141_pen_loot_ha[] = {
     "9fe555b3f9ad666f04194037437d71ee98f6b884f7aacc46a11ad27407cb7e8e",
     0
   };
-  static u3j_harm _141_pen__ut_nest_a[] = {{".2", u3wfu_nest}, {}};
   static c3_c* _141_pen__ut_nest_ha[] = {0};
       static u3j_harm _141_pen__ut_nest_dext_a[] = {{".2", u3wfu_nest_dext}, {}};
       static c3_c* _141_pen__ut_nest_dext_ha[] = {0};
@@ -465,16 +544,6 @@ static c3_c* _141_pen_loot_ha[] = {
       { "nest-in", 7, 0, _141_pen__ut_nest_in_d, _141_pen__ut_nest_in_ha },
       {}
     };
-  static u3j_harm _141_pen__ut_peek_a[] = {{".2", u3wfu_peek}, {}};
-  static c3_c* _141_pen__ut_peek_ha[] = {
-    "904ff7359e89d1886f884c4409f104269cdb8dfb4683f116ff00bc98a4720df7",
-    0
-  };
-  static u3j_harm _141_pen__ut_play_a[] = {{".2", u3wfu_play}, {}};
-  static c3_c* _141_pen__ut_play_ha[] = {
-    "bdc5c072632f7133b4c64c465b1b214d7465b0c1163842b121b7369aba1b9b03",
-    0
-  };
   static u3j_harm _141_pen__ut_rest_a[] = {{".2", u3wfu_rest}, {}};
   static c3_c* _141_pen__ut_rest_ha[] = {
     "2e2d15f3efca0a4bf8ce08cca48c54d1d5a7204e2b0525137f59c3e7b037d2fd",
@@ -484,14 +553,11 @@ static c3_c* _141_pen_loot_ha[] = {
 static u3j_core _141_pen__ut_d[] =
   {
     { "crop", 7, _141_pen__ut_crop_a, 0, _141_pen__ut_crop_ha },
-    { "fond", 7, _141_pen__ut_fond_a, 0, _141_pen__ut_fond_ha },
     { "fish", 7, _141_pen__ut_fish_a, 0, _141_pen__ut_fish_ha },
     { "fuse", 7, _141_pen__ut_fuse_a, 0, _141_pen__ut_fuse_ha },
     { "mint", 7, _141_pen__ut_mint_a, 0, _141_pen__ut_mint_ha },
     { "mull", 7, _141_pen__ut_mull_a, 0, _141_pen__ut_mull_ha },
-    { "nest", 7, _141_pen__ut_nest_a, _141_pen__ut_nest_d, _141_pen__ut_nest_ha },
-    { "peek", 7, _141_pen__ut_peek_a, 0, _141_pen__ut_peek_ha },
-    { "play", 7, _141_pen__ut_play_a, 0, _141_pen__ut_play_ha },
+    { "nest", 7, 0, _141_pen__ut_nest_d, _141_pen__ut_nest_ha },
     { "rest", 7, _141_pen__ut_rest_a, 0, _141_pen__ut_rest_ha },
     {}
   };
@@ -1287,6 +1353,10 @@ static c3_c* _141_tri_ha[] = {
 
 /* layer two
 */
+static u3j_harm _141_two_find_a[] = {{".2", u3wb_find, c3y}, {}};
+static c3_c* _141_two_find_ha[] = {
+  0
+};
 static u3j_harm _141_two_flop_a[] = {{".2", u3wb_flop, c3y}, {}};
 static c3_c* _141_two_flop_ha[] = {
   "73ac3be0119bcb822621de738f90975d98ce1ff3fb9a52853adc638271f61cd2",
@@ -1375,6 +1445,14 @@ static c3_c* _141_two_turn_ha[] = {
 static u3j_harm _141_two_weld_a[] = {{".2", u3wb_weld, c3y}, {}};
 static c3_c* _141_two_weld_ha[] = {
   "d855628821d57392f575c5da000c7326eaaa19e08cda967a4772859269669df2",
+  0
+};
+static u3j_harm _141_two_welp_a[] = {{".2", u3wb_welp, c3y}, {}};
+static c3_c* _141_two_welp_ha[] = {
+  0
+};
+static u3j_harm _141_two_zing_a[] = {{".2", u3wb_zing, c3y}, {}};
+static c3_c* _141_two_zing_ha[] = {
   0
 };
 
@@ -1497,6 +1575,10 @@ static c3_c* _141_two_rip_ha[] = {
   "e8e0b834aded0d2738bcf38a93bf373d412a51e0cee7f274277a6393e634a65e",
   0
 };
+static u3j_harm _141_two_repn_a[] = {{".2", u3wc_repn, c3y}, {}};
+static c3_c* _141_two_repn_ha[] = {
+  0
+};
 static u3j_harm _141_two_ripn_a[] = {{".2", u3wc_ripn, c3y}, {}};
 static c3_c* _141_two_ripn_ha[] = {
   "2759a6931e9ef9a52c8eee43108843d94d3932a6b04f86cb6ba1555343293a28",
@@ -1523,6 +1605,10 @@ static c3_c* _141_two_xeb_ha[] = {
   0
 };
 
+  static u3j_harm _141_two__in_apt_a[] = {{".2", u3wdi_apt}, {}};
+  static c3_c* _141_two__in_apt_ha[] = {
+    0
+  };
   static u3j_harm _141_two__in_bif_a[] = {{".2", u3wdi_bif}, {}};
   static c3_c* _141_two__in_bif_ha[] = {
     "7ccbde61c80246056f6acfd8dc30f560af9e5abd44841c22ba0f49951dbc2f2a",
@@ -1549,13 +1635,20 @@ static c3_c* _141_two_xeb_ha[] = {
     0
   };
 
-  // https://github.com/urbit/urbit/issues/328
-  // static u3j_harm _141_two__in_int_a[] = {{".2", u3wdi_int}, {}};
-  // static c3_c* _141_two__in_int_ha[] = {0};
+  static u3j_harm _141_two__in_int_a[] = {{".2", u3wdi_int}, {}};
+  static c3_c* _141_two__in_int_ha[] = {0};
 
   static u3j_harm _141_two__in_put_a[] = {{".2", u3wdi_put}, {}};
   static c3_c* _141_two__in_put_ha[] = {
     "4a9fd615fecd2fd36485b3a2f24cdc13afc86f9a478362934b4654297496a03c",
+    0
+  };
+  static u3j_harm _141_two__in_rep_a[] = {{".2", u3wdi_rep}, {}};
+  static c3_c* _141_two__in_rep_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__in_run_a[] = {{".2", u3wdi_run}, {}};
+  static c3_c* _141_two__in_run_ha[] = {
     0
   };
   static u3j_harm _141_two__in_tap_a[] = {{".2", u3wdi_tap}, {}};
@@ -1573,24 +1666,39 @@ static c3_c* _141_two_xeb_ha[] = {
     "8369d11970bfa09bd20c5b112a353fa10e8e64c9c081e3a5b17bcf3700127add",
     0
   };
+
 static u3j_core _141_two__in_d[] =
-  { { "bif", 7, _141_two__in_bif_a, 0, _141_two__in_bif_ha },
+  { { "apt", 7, _141_two__in_apt_a, 0, _141_two__in_apt_ha },
+    { "bif", 7, _141_two__in_bif_a, 0, _141_two__in_bif_ha },
     { "del", 7, _141_two__in_del_a, 0, _141_two__in_del_ha },
     { "dif", 7, _141_two__in_dif_a, 0, _141_two__in_dif_ha },
     { "gas", 7, _141_two__in_gas_a, 0, _141_two__in_gas_ha },
     { "has", 7, _141_two__in_has_a, 0, _141_two__in_has_ha },
-    // { "int", 7, _141_two__in_int_a, 0, _141_two__in_int_ha },
+    { "int", 7, _141_two__in_int_a, 0, _141_two__in_int_ha },
     { "put", 7, _141_two__in_put_a, 0, _141_two__in_put_ha },
+    { "rep", 7, _141_two__in_rep_a, 0, _141_two__in_rep_ha },
+    { "run", 7, _141_two__in_run_a, 0, _141_two__in_run_ha },
     { "tap", 7, _141_two__in_tap_a, 0, _141_two__in_tap_ha },
-    { "wyt", 3, _141_two__in_wyt_a, 0, _141_two__in_wyt_ha },
     { "uni", 7, _141_two__in_uni_a, 0, _141_two__in_uni_ha },
+    { "wyt", 3, _141_two__in_wyt_a, 0, _141_two__in_wyt_ha },
     {}
   };
 static c3_c* _141_two__in_ha[] = {
   "abf20b11b7d7f9aa8cc7b4de01c15ec3aca3ea07ca09a461a3277fe24c640849",
   0
 };
-
+  static u3j_harm _141_two__by_all_a[] = {{".2", u3wdb_all, c3y}, {}};
+  static c3_c* _141_two__by_all_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__by_any_a[] = {{".2", u3wdb_any, c3y}, {}};
+  static c3_c* _141_two__by_any_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__by_apt_a[] = {{".2", u3wdb_apt, c3y}, {}};
+  static c3_c* _141_two__by_apt_ha[] = {
+    0
+  };
   static u3j_harm _141_two__by_bif_a[] = {{".2", u3wdb_bif, c3y}, {}};
   static c3_c* _141_two__by_bif_ha[] = {
     "09ce4cf00dd9b4f95d4d93a984ffab94cb99cb6017bb73531245ea4813855f4e",
@@ -1622,13 +1730,16 @@ static c3_c* _141_two__in_ha[] = {
     0
   };
 
-  // https://github.com/urbit/urbit/issues/328
-  // static u3j_harm _141_two__by_int_a[] = {{".2", u3wdb_int, c3y}, {}};
-  // static c3_c* _141_two__by_int_ha[] = {0};
+  static u3j_harm _141_two__by_int_a[] = {{".2", u3wdb_int, c3y}, {}};
+  static c3_c* _141_two__by_int_ha[] = {0};
 
   static u3j_harm _141_two__by_jab_a[] = {{".2", u3wdb_jab, c3y}, {}};
   static c3_c* _141_two__by_jab_ha[] = {
     "8bc992aefabd2e0f43c900f2c4f3b06cf330973774d8f43428049cc3b3cb5b94",
+    0
+  };
+  static u3j_harm _141_two__by_key_a[] = {{".2", u3wdb_key, c3y}, {}};
+  static c3_c* _141_two__by_key_ha[] = {
     0
   };
   static u3j_harm _141_two__by_put_a[] = {{".2", u3wdb_put, c3y}, {}};
@@ -1636,28 +1747,52 @@ static c3_c* _141_two__in_ha[] = {
     "2cc9f005fde5314e9ad545286493a8c81b5c3b775d645ad82954f405d9414a32",
     0
   };
+  static u3j_harm _141_two__by_rep_a[] = {{".2", u3wdb_rep, c3y}, {}};
+  static c3_c* _141_two__by_rep_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__by_run_a[] = {{".2", u3wdb_run, c3y}, {}};
+  static c3_c* _141_two__by_run_ha[] = {
+    0
+  };
   static u3j_harm _141_two__by_tap_a[] = {{".2", u3wdb_tap, c3y}, {}};
   static c3_c* _141_two__by_tap_ha[] = {
     "7dde59e2bd7684e785ce9787bc394571bd1216d7a62398c703447fc951c6b352",
     0
   };
-
-  // https://github.com/urbit/urbit/issues/328
-  // static u3j_harm _141_two__by_uni_a[] = {{".2", u3wdb_uni, c3y}, {}};
-  // static c3_c* _141_two__by_uni_ha[] = {0};
+  static u3j_harm _141_two__by_uni_a[] = {{".2", u3wdb_uni, c3y}, {}};
+  static c3_c* _141_two__by_uni_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__by_urn_a[] = {{".2", u3wdb_urn, c3y}, {}};
+  static c3_c* _141_two__by_urn_ha[] = {
+    0
+  };
+  static u3j_harm _141_two__by_wyt_a[] = {{".2", u3wdb_wyt, c3y}, {}};
+  static c3_c* _141_two__by_wyt_ha[] = {
+    0
+  };
 
 static u3j_core _141_two__by_d[] =
-  { { "bif", 7, _141_two__by_bif_a, 0, _141_two__by_bif_ha },
+  { { "all", 7, _141_two__by_all_a, 0, _141_two__by_all_ha },
+    { "any", 7, _141_two__by_any_a, 0, _141_two__by_any_ha },
+    { "apt", 7, _141_two__by_apt_a, 0, _141_two__by_apt_ha },
+    { "bif", 7, _141_two__by_bif_a, 0, _141_two__by_bif_ha },
     { "del", 7, _141_two__by_del_a, 0, _141_two__by_del_ha },
     { "dif", 7, _141_two__by_dif_a, 0, _141_two__by_dif_ha },
     { "gas", 7, _141_two__by_gas_a, 0, _141_two__by_gas_ha },
     { "get", 7, _141_two__by_get_a, 0, _141_two__by_get_ha },
     { "has", 7, _141_two__by_has_a, 0, _141_two__by_has_ha },
-    // { "int", 7, _141_two__by_int_a, 0, _141_two__by_int_ha },
+    { "int", 7, _141_two__by_int_a, 0, _141_two__by_int_ha },
     { "jab", 7, _141_two__by_jab_a, 0, _141_two__by_jab_ha },
+    { "key", 7, _141_two__by_key_a, 0, _141_two__by_key_ha },
     { "put", 7, _141_two__by_put_a, 0, _141_two__by_put_ha },
+    { "rep", 7, _141_two__by_rep_a, 0, _141_two__by_rep_ha },
+    { "run", 7, _141_two__by_run_a, 0, _141_two__by_run_ha },
     { "tap", 7, _141_two__by_tap_a, 0, _141_two__by_tap_ha },
-    // { "uni", 7, _141_two__by_uni_a, 0, _141_two__by_uni_ha },
+    { "uni", 7, _141_two__by_uni_a, 0, _141_two__by_uni_ha },
+    { "urn", 7, _141_two__by_urn_a, 0, _141_two__by_urn_ha },
+    { "wyt", 3, _141_two__by_wyt_a, 0, _141_two__by_wyt_ha },
     {}
   };
 static c3_c* _141_two__by_ha[] = {
@@ -1689,6 +1824,7 @@ static c3_c* _141_two_rub_ha[] = {
 static u3j_core _141_two_d[] =
 { { "tri",  3, 0, _141_tri_d, _141_tri_ha },
 
+  { "find", 7, _141_two_find_a, 0, _141_two_find_ha },
   { "flop", 7, _141_two_flop_a, 0, _141_two_flop_ha },
   { "lent", 7, _141_two_lent_a, 0, _141_two_lent_ha },
   { "levy", 7, _141_two_levy_a, 0, _141_two_levy_ha },
@@ -1707,6 +1843,8 @@ static u3j_core _141_two_d[] =
   { "sort", 7, _141_two_sort_a, 0, _141_two_sort_ha },
   { "turn", 7, _141_two_turn_a, 0, _141_two_turn_ha },
   { "weld", 7, _141_two_weld_a, 0, _141_two_weld_ha },
+  { "welp", 7, _141_two_welp_a, 0, _141_two_welp_ha },
+  { "zing", 7, _141_two_zing_a, 0, _141_two_zing_ha },
 
   { "bex", 7, _141_two_bex_a, 0, _141_two_bex_ha },
   { "cat", 7, _141_two_cat_a, 0, _141_two_cat_ha },
@@ -1733,6 +1871,7 @@ static u3j_core _141_two_d[] =
   { "rep", 7, _141_two_rep_a, 0, _141_two_rep_ha },
   { "rev", 7, _141_two_rev_a, 0, _141_two_rev_ha },
   { "rip", 7, _141_two_rip_a, 0, _141_two_rip_ha },
+  { "repn", 7, _141_two_repn_a, 0, _141_two_repn_ha },
   { "ripn", 7, _141_two_ripn_a, 0, _141_two_ripn_ha },
   { "rsh", 7, _141_two_rsh_a, 0, _141_two_rsh_ha },
   { "swp", 7, _141_two_swp_a, 0, _141_two_swp_ha },

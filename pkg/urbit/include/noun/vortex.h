@@ -10,11 +10,9 @@
         c3_d    ent_d;                    //  event number
         u3_noun yot;                      //  cached gates
         u3_noun now;                      //  current time, as noun
-        u3_noun wen;                      //  current time, as text
+        u3_noun wen;                      //  current time, as text, XX remove
         u3_noun sev_l;                    //  instance number
         u3_noun sen;                      //  instance string
-        u3_noun our;                      //  identity
-        u3_noun fak;                      //  c3y is fake
         u3_noun roc;                      //  kernel core
       } u3v_arvo;
 
@@ -36,6 +34,11 @@
 
   /**  Functions.
   **/
+    /* u3v_life(): execute initial lifecycle, producing Arvo core.
+    */
+      u3_noun
+      u3v_life(u3_noun eve);
+
     /* u3v_boot(): evaluate boot sequence, making a kernel
     */
       c3_o
@@ -100,3 +103,13 @@
     */
       c3_w
       u3v_mark(FILE* fil_u);
+
+    /* u3v_reclaim(): clear ad-hoc persistent caches to reclaim memory.
+    */
+      void
+      u3v_reclaim(void);
+
+    /* u3v_rewrite_compact(): rewrite arvo kernel for compaction.
+    */
+      void
+      u3v_rewrite_compact();

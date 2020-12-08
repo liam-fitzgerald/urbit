@@ -3,6 +3,7 @@
 ::  pad: include padding when encoding, require when decoding
 ::  url: use url-safe characters '-' for '+' and '_' for '/'
 ::
+::
 =+  [pad=& url=|]
 |%
 ::
@@ -59,8 +60,8 @@
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   ::
   |^  |=  bs=octs  ^-  cord
-      =+  ^-  [padding=@ blocks=(list word24)]
-          (octs-to-blocks bs)
+      =/  [padding=@ blocks=(list word24)]
+        (octs-to-blocks bs)
       (crip (flop (unpad padding (encode-blocks blocks))))
   ::
   ++  octs-to-blocks
@@ -127,10 +128,6 @@
     =/  len  (sub (mul 3 (div (add lat dif) 4)) dif)
     :+  ~  len
     %+  swp  3
-    ::  %+  base  64
-    %+  roll
-      (weld dat (reap dif 0))
-    |=([p=@ q=@] (add p (mul 64 q)))
+    (repn 6 (flop (weld dat (reap dif 0))))
   --
 --
-

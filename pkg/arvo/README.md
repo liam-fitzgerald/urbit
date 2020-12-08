@@ -4,7 +4,10 @@ A clean-slate operating system.
 
 ## Usage
 
-To run Arvo, you'll need [Urbit](https://github.com/urbit/urbit/). To install Urbit and run Arvo please follow the instructions in the [getting started docs](https://urbit.org/docs/getting-started/). You'll be on the live network in a few minutes.
+To run Arvo, you'll need [Urbit](https://github.com/urbit/urbit/). To install
+Urbit and run Arvo please follow the instructions in the [getting started
+docs](https://urbit.org/docs/getting-started/). You'll be on the live network
+in a few minutes.
 
 If you're doing development on Arvo, keep reading.
 
@@ -30,7 +33,7 @@ To boot a fake ship with a custom pill, use the `-B` flag:
 urbit -F zod -A /path/to/arvo -B /path/to.pill -c fakezod
 ```
 
-To run all tests in `/tests`, run `+test` in dojo. `+test /some/path` would only run all tests in `/tests/some/path`.
+To run all tests in `/tests`, run `-test %/tests` in dojo. To run only the tests in `/tests/some/path`, use `-test %/tests/some/path`.
 
 ## Maintainers
 
@@ -38,29 +41,34 @@ Most parts of Arvo have dedicated maintainers.
 
 * `/sys/hoon`: @pilfer-pandex (~pilfer-pandex)
 * `/sys/zuse`: @pilfer-pandex (~pilfer-pandex)
-* `/sys/arvo`: @jtobin (~nidsut-tomdun)
-* `/sys/vane/ames`: @belisarius222 (~rovnys-ricfer) & @joemfb (~master-morzod)
+* `/sys/arvo`: @joemfb (~master-morzod)
+* `/sys/vane/ames`: @belisarius222 (~rovnys-ricfer) & @philipcmonk (~wicdev-wisryt)
 * `/sys/vane/behn`: @belisarius222 (~rovnys-ricfer)
-* `/sys/vane/clay`: @philipcmonk (~wicdev-wisryt)
-* `/sys/vane/dill`: @bernardodelaplaz (~rigdyn-sondur)
+* `/sys/vane/clay`: @philipcmonk (~wicdev-wisryt) & @belisarius222 (~rovnys-ricfer)
+* `/sys/vane/dill`: @joemfb (~master-morzod)
 * `/sys/vane/eyre`: @eglaysher (~littel-ponnys)
-* `/sys/vane/ford`: @belisarius222 (~rovnys-ricfer) & @eglaysher (~littel-ponnys)
-* `/sys/vane/gall`: @jtobin (~nidsut-tomdun)
-* `/sys/vane/jael`: @fang- (~palfun-foslup) & @joemfb (~master-morzod)
+* `/sys/vane/gall`: @philipcmonk (~wicdev-wisryt)
+* `/sys/vane/jael`: @fang- (~palfun-foslup) & @philipcmonk (~wicdev-wisryt)
 * `/app/acme`: @joemfb (~master-morzod)
 * `/app/dns`: @joemfb (~master-morzod)
-* `/app/hall`: @fang- (~palfun-foslup)
-* `/app/talk`: @fang- (~palfun-foslup)
 * `/app/aqua`: @philipcmonk (~wicdev-wisryt)
+* `/app/hood`: @belisarius222 (~rovnys-ricfer)
+* `/lib/hood/drum`: @philipcmonk (~wicdev-wisryt)
+* `/lib/hood/kiln`: @philipcmonk (~wicdev-wisryt)
 * `/lib/test`: @eglaysher (~littel-ponnys)
 
 ## Contributing
 
-Contributions of any form are more than welcome! If something doesn't seem right, and there is no issue about it yet, feel free to open one.
+Contributions of any form are more than welcome!  Please take a look at our
+[contributing guidelines][cont] for details on our git practices, coding
+styles, how we manage issues, and so on.
 
-If you're looking to make code contributions, there are a few things you can do:
+You might also be interested in:
 
-- Join the [urbit-dev](https://groups.google.com/a/urbit.org/forum/#!forum/dev) mailing list.
-- [Ask us about Hoon School](mailto:support@urbit.org), a course we run to teach the Hoon programming language and Urbit application development.
-- Check out [good contributor issues](https://github.com/urbit/arvo/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+contributor+issue%22).
-- Reach out to [support@urbit.org](mailto:support@urbit.org) to say hi and ask any questions you might have.
+- joining the [urbit-dev][list] mailing list.
+- [applying to Hoon School][mail], a course we run to teach the Hoon
+  programming language and Urbit application development.
+
+[list]: https://groups.google.com/a/urbit.org/forum/#!forum/dev
+[mail]: mailto:support@urbit.org
+[cont]: https://github.com/urbit/urbit/blob/master/CONTRIBUTING.md

@@ -24,8 +24,10 @@
 #   include "noun/nock.h"      //  u3n: nock execution
 #   include "noun/options.h"   //  u3o: config options
 #   include "noun/retrieve.h"  //  u3r: noun access (error returns)
+#   include "noun/serial.h"    //  u3s: serialization
 #   include "noun/trace.h"     //  u3t: profiling / tracing
 #   include "noun/xtract.h"    //  u3x: noun access (error crashes)
+#   include "noun/urth.h"      //  u3u: off-loom integration
 #   include "noun/vortex.h"    //  u3v: arvo kernel
 #   include "noun/zave.h"      //  u3z: memoization
 

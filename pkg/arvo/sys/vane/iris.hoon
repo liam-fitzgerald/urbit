@@ -303,20 +303,28 @@
 ~%  %http-client  ..is  ~
 |%
 ++  call
-  |=  [=duct type=* wrapped-task=(hobo task:able)]
+  |=  [=duct dud=(unit goof) type=* wrapped-task=(hobo task:able)]
   ^-  [(list move) _light-gate]
   ::
-  =/  task=task:able
-    ?.  ?=(%soft -.wrapped-task)
-      wrapped-task
-    ~|  [%p-wrapped-task p.wrapped-task]
-    ;;(task:able p.wrapped-task)
+  =/  task=task:able  ((harden task:able) wrapped-task)
+  ::
+  ::  error notifications "downcast" to %crud
+  ::
+  =?  task  ?=(^ dud)
+    ~|  %crud-in-crud
+    ?<  ?=(%crud -.task)
+    [%crud -.task tang.u.dud]
+  ::
   ::  %crud: notifies us of an event failure
   ::
   ?:  ?=(%crud -.task)
     =/  moves=(list move)
       [[duct %slip %d %flog task] ~]
     [moves light-gate]
+  ::  %trim: in response to memory pressure
+  ::
+  ?:  ?=(%trim -.task)
+    [~ light-gate]
   ::  %vega: notifies us of a completed kernel upgrade
   ::
   ?:  ?=(%vega -.task)
@@ -358,26 +366,13 @@
       %receive
     =^  moves  state.ax  (receive:client +.task)
     [moves light-gate]
-  ::
-      %wegh
-    :_  light-gate
-    :~  :*  duct
-            %give
-            %mass
-            ^-  mass
-            :+  %iris  %|
-            :~  nex+&+next-id.state.ax
-                outbound+&+outbound-duct.state.ax
-                by-id+&+connection-by-id.state.ax
-                by-duct+&+connection-by-duct.state.ax
-                axle+&+ax
-    ==  ==  ==
   ==
 ::  http-client issues no requests to other vanes
 ::
 ++  take
-  |=  [=wire =duct wrapped-sign=*]
+  |=  [=wire =duct dud=(unit goof) wrapped-sign=*]
   ^-  [(list move) _light-gate]
+  ?<  ?=(^ dud)
   !!
 ::
 ++  light-gate  ..$
@@ -395,6 +390,18 @@
 ::  +scry: request a path in the urbit namespace
 ::
 ++  scry
-  |=  *
+  |=  {fur/(unit (set monk)) ren/@tas why/shop syd/desk lot/coin tyl/path}
+  ^-  (unit (unit cage))
+  ?.  ?=(%& -.why)  ~
+  =*  his  p.why
+  ?:  &(=(ren %$) =(tyl /whey))
+    =/  maz=(list mass)
+      :~  nex+&+next-id.state.ax
+          outbound+&+outbound-duct.state.ax
+          by-id+&+connection-by-id.state.ax
+          by-duct+&+connection-by-duct.state.ax
+          axle+&+ax
+      ==
+    ``mass+!>(maz)
   [~ ~]
 --

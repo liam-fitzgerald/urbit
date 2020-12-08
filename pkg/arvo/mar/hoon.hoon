@@ -1,4 +1,3 @@
-::
 ::::  /hoon/hoon/mar
   ::
 /?    310
@@ -42,7 +41,7 @@
   --
 ++  grab
   |%                                            ::  convert from
-  ++  mime  |=({p/mite q/octs} q.q)
+  ++  mime  |=([p=mite q=octs] q.q)
   ++  noun  @t                                  ::  clam from %noun
   ++  txt   of-wain:format
   --

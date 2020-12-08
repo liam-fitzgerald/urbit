@@ -107,10 +107,25 @@
       void
       u3n_reap(u3p(u3h_root) har_p);
 
+    /* u3n_take(): copy junior bytecode state.
+     */
+      u3p(u3h_root)
+      u3n_take(u3p(u3h_root) har_p);
+
     /* u3n_mark(): mark bytecode cache.
      */
       c3_w
       u3n_mark(FILE* fil_u);
+
+    /* u3n_reclaim(): clear ad-hoc persistent caches to reclaim memory.
+    */
+      void
+      u3n_reclaim(void);
+
+    /* u3n_rewrite_compact(): rewrite bytecode cache for compaction.
+     */
+      void
+      u3n_rewrite_compact();
 
     /* u3n_free(): free bytecode cache.
      */
