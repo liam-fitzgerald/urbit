@@ -23,7 +23,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - uses: cachix/install-nix-action@@v12
+      - uses: cachix/install-nix-action@v12
       - uses: cachix/cachix-action@v8
       - run: cd pkg/interface && npm install
       - run: npm run build:prod
