@@ -1454,6 +1454,7 @@
       ~|  [%plow-failed way]
       =/  =vane
         ~|  [%missing-vane way]
+        ~|  vanes/~(key by van.mod)
         (~(got by van.mod) way)
       (~(plow va [vil vane]) now peek)
     ::
@@ -1743,6 +1744,7 @@
     %j  %jael
     %k  %khan
     %l  %lick
+    %x  %xmas
   ==
 --  =>
 ::
