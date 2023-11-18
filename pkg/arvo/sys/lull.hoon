@@ -3261,6 +3261,15 @@
   --  ::lick
 ++  xmas  ^?
   |%
+  ++  mess
+    =<  mess 
+    |%
+    +$  auth  @uxauth
+    +$  mess
+      $%  [%page page]
+      ==
+    +$  page  [=path tot=@ud auth=@ux dat=@]
+    --
   +$  peek  path
   +$  poke  [=path =leaf]
   +$  oath  @uxoath
@@ -3273,6 +3282,7 @@
         $>(%vega vane-task)
         [%plea =ship =plea:ames]
         [%keen spar:ames]
+        [%mess =mess]
     ==
   +$  gift
     $%  [%peek =ship lanes=(list lane:ames) =path]     :: peek (IO)

@@ -45,6 +45,12 @@
     =/  main   ~(. main [hen ~])
     ?+    -.task  `xmas-gate
     ::
+        %mess
+      =^  cards  state
+        abet:(on-mess:main +.task)
+      [cards xmas-gate]
+
+    ::
         %keen
       =^  cards  state
         abet:(on-keen:main +.task)
@@ -145,5 +151,12 @@
   =/  =lane:ames  [%.y ship]
   =/  =gift  [%peek ship ~[lane] path]
   (emit-unix %give gift)
+::
+++  on-mess
+  |=  =mess
+  ^+  main
+  ~&  heard-mess/mess(dat 0)
+  ~&  dat/`@ux`dat.mess
+  main
 --
 
