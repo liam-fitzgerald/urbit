@@ -871,20 +871,21 @@
   ::  +dep:ford: $fief for a ford dependency
   ::  
   ::    Handy shortcut to specifiy a dependency in the build system
-  ++  dep  `fief`[& [pro/%vase (sy %ford-in ~)] ~]
+  ++  dep  `fief`[& [or/~[pro/%vase pro/%tang] ~] ~]
   ::  +get-output: pull build resuit of dependency
   ::
   ++  get-output
     |=  [=bowl =term]
-    ^-  (unit vase)
-    =/  [=pith =lore]  (~(got by deps.bowl) term)
+    ^-  pail
+    =/  [p=pith =lore]  (~(got by deps.bowl) term)
     ?~  fil.lore
-      ~
-    `q.pail.u.fil.lore
+      tang/!>(~[leaf/"{(en-tape:pith here.bowl)}: Missing dep {<term>}"])
+    ?>  ?=(?(%vase %tang) p.pail.u.fil.lore)
+    pail.u.fil.lore
   ::
   ++  run
     |=  txt=@t
-    (scan (trip txt) (rein *pith))
+    (scan (trip txt) apex:(rein *pith))
   +$  loc
     [=disk =pith]
   ::  $lib:ford: Specification of library import
@@ -920,7 +921,6 @@
   ++  rein
     |=  =pith
     !:
-    =<  apex
     |%
     ++  dis  
       ;~  pose
@@ -1022,6 +1022,15 @@
       :: ^-  $-(nail (like hoon))
       =+  vaz=(vang & (pout pith))
       (ifix [gay gay] tall:vaz)
+    ++  imports
+      ;~  plug
+        pros
+        libs
+        fils
+        fars
+        fals
+        (easy *hoon)
+      ==
     ++  apex
       :: ^-  rule
       ;~  plug 
@@ -1419,6 +1428,7 @@
     $(a l.a)
 
   ++  tap
+    ~+
     ^-  (list item)
     =|  b=(list item)
     |-  
@@ -2527,4 +2537,11 @@
   ?.  =(~ q.q.u.q.vex)
     [%| p=p.vex(q (dec q.p.vex))]
   [%& p=p.u.q.vex]
+++  rily
+  |*  [los=tape sab=rule]
+  =+  vex=(sab [[1 1] los])
+  ?~  q.vex
+    [%| p=p.vex(q (dec q.p.vex))]
+  [%& p=p.u.q.vex]
+
 --

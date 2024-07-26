@@ -64,6 +64,7 @@
 
   ++  reap
     |=  [=farm:f =seed:f]
+    ~+  
     ^-  muck:f 
     =/  =epic:n
       (need (~(look plow farm) [%z /]))
@@ -90,12 +91,46 @@
     ==
   --
 =|  state-0
-=|  =step:f
+=|  [=step:f muc=(unit muck:n)]
 |_  =mien:fern:t  
+++  reap
+  ^-  [muck:n _this]
+  ?^  muc  [u.muc this]
+  =>  .(muc `(unit muck:n)`muc)
+  =/  =epic:n
+    (fall (look:plow [%z /]) *epic:n)
+  =;  =muck:n
+    =.  muc  `muck
+    [muck this]
+  %-  ~(run of epic)
+  |=  =saga:n
+  q.saga
+::
+++  germ
+  |=  [=pith:neo cas=(unit (pair rift case:neo)) =pail:neo =poem:neo]
+  ^+  this
+  =.  seed.step  (~(put of seed.step) +<- %grow +<+)
+  =^  =muck:n  this
+    reap
+  ?^  cas
+    this
+  =.  muck  (~(put of muck) pith poem pail)
+  this(muc `muck)
+++  snip
+  |=  [=pith rif=(unit @ud)]
+  =.  seed.step  (~(put of seed.step) +<- %cull +<+)
+  ?^  rif
+    this
+  =^  =muck:n  this
+    reap
+  =.  muck  (~(del of muck) pith)
+  this(muc `muck)
+::
 ++  plow  ~(. ^plow farm.mien)
 ++  abet
   =/  s=step:f  step
   =.  step  *step:f
+  =.  muc  ~
   [s this]
 ::
 ++  this  .
@@ -104,11 +139,11 @@
 ++  boot
   ^-  [step:f _this]
   |^  ^-  [step:f _this]
-  =.  seed.step  (~(put of seed.step) (~(pith press:n imp/%riff) %out) %grow ~ vase/!>(riff) riff-poem)
-  =.  seed.step  (~(put of seed.step) ~ %grow ~ sig/!>(~) riff-poem)
-  =.  seed.step  (~(put of seed.step) #/cod/reef %grow ~ vase/prelude riff-poem)
+  =.  this  (germ (~(pith press:n imp/%riff) %out) ~ vase/!>(riff) riff-poem)
+  =.  this  (germ ~ ~ sig/!>(~) riff-poem)
+  =.  this  (germ #/cod/reef ~ vase/prelude riff-poem)
   =/  pit=pith:n  #/$/boot
-  =.  seed.step  (hatch seed.step)
+  =.  this  (hatch)
   =.  io.step  (snoc io.step `gift:f`[%drip ~])
   abet
   ::
@@ -127,16 +162,15 @@
     (make-riff post (slap prelude hon))
   ::
   ++  hatch
-    |=  sed=seed:f
-    ^+  sed
-    =<  +
-    %-  roll
-    :_  |=  [=card:b idx=@ out=_sed]
-        ^-  [@ seed:f]
-        =/  =note:t
-          [%grow ~ bush-card/!>(card) [%bush-card *(set stud:neo)]]
-        [+(idx) (~(put of out) #/$/boot/[ud/idx] note)]
-    ^-  (list card:b)
+    |.  
+    ^+  this
+    =;  ls=(list card:b)
+      =|  idx=@
+      |-
+      ?~  ls 
+        this
+      =.  this  (germ #/$/boot/[ud/idx] ~ bush-card/!>(i.ls) [%bush-card *(set stud:neo)])
+      $(ls t.ls, idx +(idx))
     %+  welp
       :~  [(slap-riff pro/%hoon !,(*hoon @t))]
           [(slap-riff pro/%txt !,(*hoon @t))]
@@ -181,17 +215,16 @@
 ++  drip
   ^-  [step:f _this]
   ?:  booting
-    =/  =epic:n
-      (need (~(look plow farm.mien) [%z /]))
+    =^  =muck:n  this
+      reap
     :: %-  print:(epic:etch epic)
     %-  (slog leaf/"Checking for more boot cards" ~)
-    ?~  nex=(~(pry of epic) #/$/boot)
+    ?~  nex=(~(pry of muck) #/$/boot)
       ~&  >  %finished-booting
       [step this(booting |)]
     ~&  drip-key=key.u.nex
-    =.  seed.step  (~(put of seed.step) #/$/boot/[key.u.nex] %cull ~)
-    =/  =saga:n  val.u.nex
-    =/  =tale:n   q.saga
+    =.  this  (snip #/$/boot/[key.u.nex] ~)
+    =/  =tale:n   val.u.nex
     =/  =pail:n   q.tale
     =/  vax=vase  q.pail
     =+  !<(=card:b vax)
@@ -302,7 +335,7 @@
   |=  [want=quay:n =pith:n]
   ^-  (unit lore:n)
   =/  =care:n  (get-care:quay:n want)
-  =/  muk  (grab-care care pith)
+  =^  muk  this  (grab-care care pith)
   ?:  &(=(care %x) =(muk *muck:n))
     ~
   =;  [fail=(set pith:n) res=(list (pair pith:n idea:n))]
@@ -334,11 +367,11 @@
   ++  pith
     ^-  pith:n
     (~(pith press:n imp/stud) %out)
-  ++  has  !=(~ (grab pith))
+  ++  has  !=(~ -:(grab pith))
   ++  vase
     ^-  ^vase
     ~|  husk/stud
-    q:(need (grab pith))
+    q:(need -:(grab pith))
   ++  is-bunted
     (~(nest ut -:!>(~)) | p:vase)
   ++  default-kook
@@ -386,45 +419,26 @@
 ++  sys-pith  #/$/sys
 ++  grab
   |=  =pith:n
-  ^-  (unit pail:n)
-  =/  new  (~(get of seed.step) pith)
-  ?:  &(?=(^ new) ?=(%grow -.u.new))
-    `pail.u.new
-  ?~  res=(look:plow %x pith)
-    ~
-  ?~  val=(~(get of u.res) /)
-    ~
-  `q.q.u.val
+  ^-  [(unit pail:n) _this]
+  =^  =muck:n  this
+    reap
+  :_  this
+  ?~  res=(~(get of muck) pith)  ~
+  `q.u.res
+
 ++  grab-care
   |=  =hunt:n
-  ^-  muck:n
-  =/  =muck:n
-    ?~  res=(look:plow hunt)
-      *muck:n
-    %-  ~(run of u.res)
-    |=  =saga:n
-    ^-  tale:n
-    q.saga
-  =/  new  (~(dip of seed.step) pith.hunt)
+  ^-  [muck:n _this]
+  =^  =muck:n  this
+    reap
+  =/  new  (~(dip of muck) pith.hunt)
   =.  new
     ?+  care.hunt  !!
       %x   new(kid ~)
       %y   ~(snip of new)
       %z   new
     ==
-  =/  new=(list [=pith:n =note:t])
-    ~(tap of new)
-  |-  
-  ?~  new
-    muck
-  %=    $
-      new  t.new
-      muck
-    ?-  -.note.i.new
-      %grow   (~(put of muck) pith.i.new [*poem:n pail.note.i.new])
-      %cull   (~(del of muck) pith.i.new)
-    ==
-  ==
+  [new this]
 ::
 ++  arvo
   =|  =block:n
@@ -491,7 +505,9 @@
     |=  [code=stud:n init=(unit pail:n) =crew:n]
     ^+  arvo
     =|  =dock:n  :: XX: wrong, fix
-    =/  wav=pail:n  (fall (grab %int here) wave/!>(`wave:n`[code dock crew &]))
+    =^  m-wav=(unit pail:neo)  this
+      (grab %int here)
+    =/  wav=pail:n  (fall m-wav wave/!>(`wave:n`[code dock crew &]))
     ?>  =(%wave p.wav)
     =/  =kook:n  ~(kook husk code)  
     =/  =band:n  deps:kook
@@ -507,7 +523,7 @@
     =.  crew.wave  crew :: XX: check
     =/  =poem:n
       [code poke:kook]
-    =.  arvo  (grow int/here wave-poem wave/!>(wave))
+    =.  this  (germ int/here ~ wave/!>(wave) wave-poem)
     =^  cards=(list card:n)  arvo 
       (soft-surf |.(su-abet:(su-make:surf init)))
     ::  %-  print:(cards:etch cards)
@@ -587,7 +603,9 @@
     =.  err.block  `[%goof p.res]
     `arvo
   ++  surf
-    =/  wav  (need (grab %int here))
+    =^  w  this
+      (grab %int here)
+    =/  wav  (need w)
     =+  !<(=wave:n q.wav)
     =|  cards=(list card:n)
     =/  =kook:n  ~(kook husk code.wave)
@@ -595,6 +613,8 @@
     ?.  live.wave
       ~|  dead-wave/here
       !!
+    =^  =muck:n  this
+      reap
     |%
     ++  su-core  .
     ++  su-emil  |=(caz=(list card:n) su-core(cards (welp cards caz)))
@@ -612,15 +632,14 @@
       ==
     ++  su-tale
       ^-  tale:n
-      (fall (~(get of su-muck) here) *tale:n)
+      (fall (~(get of muck) here) *tale:n)
     ++  su-pail  q:su-tale
-    ++  su-muck  (reap farm.mien seed.step)
     ++  su-kids
       =/  kids  kids:kook
       ?~  kids
         *muck:n
       %-  ~(gas of *muck:n)
-      =/  child   (~(dip of su-muck) here)
+      =/  child   (~(dip of muck) here)
       :: %-  print:(muck:etch child)
       %+  murn  ~(tap by ~(tar of:n child))
       |=  [=pith:n =tale:n]
@@ -644,7 +663,7 @@
       =/  =care:n  (get-care:quay:n quay)
       ?~  lor=(moor quay u.dep)
         :: ~|  seed=~(key by ~(tar of (~(dip of seed.step) (scag 4 u.dep)))
-        ~|  lost-moor/[here=here dep=term pith=u.dep code=code.wave]
+        ~&  lost-moor/[here=here dep=term pith=u.dep code=code.wave]
         ?<  req
         `[term u.dep *lore:n]
 ::      %-  (slog term (epic:dbug:n epic) ~)
@@ -667,7 +686,7 @@
       ^+  su-core
 ::    ?.  (blow state:kook p.pail)
 ::      (mean leaf/"Returned bad state stud, wanted {<state.kook>}, have {<p.pail>}" ~)
-      =.  arvo  (grow here su-poem pail)
+      =.  this   (germ here ~ pail su-poem)
       su-core
     ::
     ++  su-give
