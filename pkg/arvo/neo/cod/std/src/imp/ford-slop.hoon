@@ -3,18 +3,18 @@
 ++  card  card:neo
 ++  build
   |=  =bowl:neo
-  ^-  (unit vase)
-  ?~  a=(get-output:ford:neo bowl %a)
-    ~&  missing-a/were.bowl
-    ~
-  ?~  b=(get-output:ford:neo bowl %b)
-    ~&  missing-b/were.bowl
-    ~
-  `(slop u.a u.b)
+  ^-  pail:neo
+  =+  a=(get-output:ford:neo bowl %a)
+  ?:  =(p.a %tang)
+    a
+  =+  b=(get-output:ford:neo bowl %b)
+  ?:  =(p.b %tang)
+    b
+  vase/(slop q.a q.b)
 --
 ^-  kook:neo
 |%
-++  state  pro/%vase
+++  state  or/~[pro/%vase pro/%tang]
 ++  poke   (sy %rely %ford-in ~)
 ++  kids  ~
 ++  deps
@@ -28,10 +28,10 @@
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   ++  init
     |=  pal=(unit pail:neo)
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   --
 --

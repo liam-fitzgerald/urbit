@@ -3,28 +3,26 @@
 ++  card  card:neo
 ++  build
   |=  =bowl:neo
-  ^-  (unit vase)
-  ?~  sut=(get-output:ford:neo bowl %sut)
-    ~&  missing-sut/were.bowl
-    ~
-  ?~  hon=(get-hoon bowl)
-    ~&  missing-hoon/were.bowl
-    ~
-  `(slap u.sut u.hon)
+  ^-  pail:neo
+  =+  sut=(get-output:ford:neo bowl %sut)
+  ?:  =(p.sut %tang)
+    sut
+  =/  hon  (get-hoon bowl)
+  ?:  ?=(%| -.hon)
+    tang/!>(p.hon)
+  =/  res  (mule |.((slap q.sut p.hon)))
+  ?:  ?=(%| -.res)
+    tang/!>(p.res)
+  vase/p.res
 ++  get-hoon
   |=  =bowl:neo
-  ^-  (unit hoon)
-  =;  res=(each hoon tang)
-    ?:  ?=(%& -.res)
-      `p.res
-    %-  (slog leaf/"Parsing failed" p.res)
-    ~
+  ^-  (each hoon tang)
   %-  mule
   |.  ^-  hoon
   =/  [pax=pith:neo =lore:neo]  (~(got by deps.bowl) %hoon)
   =+  !<(src=@t q.pail:~(rot of:neo lore))
   =/  =file:ford:neo
-    (scan (trip src) (rein:ford:neo pax))
+    (scan (trip src) apex:(rein:ford:neo pax))
   hoon.file
 
 +$  state  [cache=(unit vase) ~]
@@ -45,10 +43,10 @@
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   ++  init
     |=  pal=(unit pail:neo)
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   --
 --

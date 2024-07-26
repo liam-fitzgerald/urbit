@@ -5,8 +5,8 @@
     ^-  file:ford:neo
     :: ~>  %memo./ford/desk
     :: %-  road  |.
-    =/  parser  (rein:ford:neo pith)
-    =/  res  (lily:n (trip txt) parser)
+    =/  parser  imports:(rein:ford:neo pith)
+    =/  res  (rily:n (trip txt) parser)
     ?:  ?=(%& -.res)
       p.res
     (mean leaf/"Failed parsing {(spud (pout pith))} [{(scow %ud p.p.res)} {(scow %ud q.p.res)}]" ~)
@@ -22,6 +22,12 @@
     %-  ~(gas in *(set prop:n))
     :~  lib/%messages
         imp/%verb
+        imp/%task
+        imp/%ford-same
+        imp/%ford-slap
+        imp/%ford-slop
+        imp/%ford-face
+
     ==
     
   --
@@ -76,6 +82,13 @@
   ++  init
     |=  pal=(unit pail:neo)
     ^-  (quip card:neo pail:neo)
+    ~|  deps=~(key by deps.bowl)
+    :: ~|  reef=(~(got by deps.bowl) %reef)
+    ?.  =(%vase p:pail:reef)
+      ~&  %weird-reef
+      %-  (slog (sell vase:reef) ~)
+      `(need pal)
+      
     =/  src  (~(dip of kids.bowl) /src)
     =.  pail  (need pal)
     =+  !<(=disk:neo q.pail)
@@ -133,6 +146,8 @@
     =*  fil  ~(. file prop)
     ?:  (~(has in broken) prop)
       (emit out/pith:fil %make %riff `vase/!>(~) ~)
+    ?:  =(p.prop %con)
+      run
     ?:  &(=(p.prop %pro) is-auto:fil)
       run
     =.  run  (build-prelude prop)

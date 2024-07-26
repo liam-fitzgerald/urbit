@@ -10,19 +10,19 @@
 ::
 ++  build
   |=  =bowl:neo
-  ^-  (unit vase)
-  ?~  sut=(get-output:ford:neo bowl %sut)
-    ~&  missing-sut/were.bowl
-    ~
+  ^-  pail:neo
+  =+  sut=(get-output:ford:neo bowl %sut)
+  ?:  =(%tang p.sut)
+    sut
   =/  face=@tas  (get-face bowl)
-  :-  ~
-  u.sut(p [%face (get-face bowl) p.u.sut])
+  [p.sut q.sut(p [%face (get-face bowl) p.q.sut])]
+
 +$  state  [cache=(unit vase) ~]
 --
 ^-  kook:neo
 |%
 ++  poke    (sy %rely %ford-in ~)
-++  state   pro/%vase
+++  state   or/~[pro/%vase pro/%tang]
 ++  kids  ~
 ++  deps
   %-  ~(gas by *deps:neo)
@@ -35,11 +35,11 @@
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   ::
   ++  init
     |=  pal=(unit pail:neo)
     ^-  (quip card:neo pail:neo)
-    `vase/(need (build bowl))
+    `(build bowl)
   --
 --
