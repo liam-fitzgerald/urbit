@@ -53,6 +53,7 @@
       [%pill ~]
       [%over =pith:neo]
       [%dbug ~]
+      [%reload =pith:ne]
       :: [%make =vial:neo]
   ==
 ::
@@ -200,6 +201,14 @@
         %dbug
       %-  print:(farm:etch farm)
       run
+    :: 
+        [%src path=*]
+      =+  ;;(=path path.q.vase)
+      =+  .^(src=@t %cx path)
+      =/  src=pith:neo  /$/xeno
+      =<  fe-abet
+      %^  fe-call:(fe /)  %bush  src
+      [(pave:neo (slag 4 path)) %make %hoon `hoon/!>(src) sig/!>(~)]
     ::
         [%pill path=*]
       (make-pill ;;(pax=path path.q.vase))
@@ -524,6 +533,7 @@
           (stag & (cold nuke/~ (jest 'n')))
           (stag & (cold pill/~ (jest 'd')))
           (stag & (cold dbug/~ (jest 'e')))
+          (stag & (cold reload/~ (jest 'r')))
           -
         ==
     %+  stag  |
@@ -582,6 +592,7 @@
         %tree   (tree depth.hull)
         %commit   commit
         %pill     (make-pill (en-beam byk.bowl /neo/cod/std/src))
+        %reload   (on-poke %noun !>([%src (en-beam byk.bowl (snoc :_(%hoon (pout neo/get:cwd:peel))))]))
         %nuke
       =.  run   (poke-hood kiln-nuke/!>([dap.bowl |]))
       =.  run   commit
