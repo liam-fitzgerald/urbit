@@ -13,13 +13,13 @@
   ==
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =saga:neo]
+  |_  [=bowl:neo =aeon:neo =pail:neo]
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
     ?>  ?=(%feed-diff stud)
     =+  !<(=diff vax)
-    :_  q.saga
+    :_  pail
     ?-    -.diff
         %add  
       [(snoc here.bowl da/now.bowl) %make p.diff]~

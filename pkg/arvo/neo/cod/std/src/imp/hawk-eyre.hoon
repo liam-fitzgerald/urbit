@@ -41,7 +41,7 @@
   ++  init
     |=  pal=(unit pail:neo)
     :_  sig/!>(~)
-    =/  =pith:neo  #/[p/our.bowl]/$/eyre
+    =/  =pith:neo  #/vane/eyre
     =/  =binding:eyre  [~ ~[%neo %hawk]]
     =/  =req:eyre:neo  [%connect binding here.bowl]
     :~  [pith %poke eyre-req/!>(req)]

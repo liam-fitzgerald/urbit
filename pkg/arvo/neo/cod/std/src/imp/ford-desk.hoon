@@ -67,11 +67,21 @@
     |-
     ?~  gis
       [cards pail]
-    =/  [=pith:neo =loot:neo]  i.gis
+    =/  [=pith:neo =mode:neo]  i.gis
     ?.  ?=([%src *] pith)
-      $(gis t.gis)
+      ?.  ?=([%out *] pith)
+        $(gis t.gis)
+      ?~  val=(~(get of kids.bowl) pith)
+        $(gis t.gis)
+      ?.  =(%tang p.q.u.val)
+        $(gis t.gis)
+      %.  $(gis t.gis)
+      %.  !<(tang q.q.u.val)
+      %*  .  slog
+        pri  3
+      ==
     =/  =prop:neo  (pith-to-prop t.pith)
-    ?-    mode.loot
+    ?-    mode
         %dif  $(gis t.gis)
         %del  $(cards (welp cards (handle-del:run pith)), gis t.gis)
         %add

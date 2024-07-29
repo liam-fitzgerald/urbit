@@ -10,6 +10,9 @@
 =>
   ::  |=  init=[build=(list [=post:neo txt=@t]) user=(list card:neo)]
   |%
+  ++  mk-poem
+    |=  =stud:n
+    [stud *(set stud:n)]
   ++  riff-poem
     ^-  poem:neo
     [%riff *(set stud:neo)]
@@ -199,7 +202,9 @@
         :: then, desk shrub
       ::
         [#/cod/std %make %ford-desk `disk/!>(`disk:n`~) crew/!>((one:crew:u %reef #/cod/reef))]
-
+        [#/sky %make %sky ~ sig/!>(~)]
+        [#/srv/hawk %make %hawk-eyre ~ sig/!>(~)]
+        [#/srv/sky %make %sky-eyre ~ sig/!>(~)]
     ==
   --
 ++  call
@@ -207,10 +212,12 @@
   |=  =note:fern:t
   ^-  [step:f _this]
   ?-  -.note
-    %bush  abet:abet:(arvo +.note)
+    %bush  abet:(arvo +.note)
     %hear  (hear +.note)
     %drip  drip
     %have  !!
+    %arvo  abet:(on-arvo:sys +.note)
+    %http  abet:abet:(handle-http-request:sttp +.note)
   ==
 ++  drip
   ^-  [step:f _this]
@@ -230,7 +237,7 @@
     =+  !<(=card:b vax)
     :: ~&  larval/[step=`@`+:key.u.nex dst=p.card]
     =.  this
-      abet:(arvo #/$/xeno/[da/now.mien] card)
+      (arvo #/$/xeno/[da/now.mien] card)
     =.  io.step  (snoc io.step %drip ~)
     :: %-  print:(seed:etch seed.step)
     abet
@@ -440,13 +447,50 @@
     ==
   [new this]
 ::
+++  seize
+  |=  [par=pith:neo child=pith:neo car=?(%y %z)]
+  ^-  ?
+  =^  =muck:n  this  reap
+  ?:  =(%y car)
+    =(`par (~(parent of:neo muck) child))
+  !=(~ (dif:pith:neo par child))
+::
+:: +abduct: check capture
+++  abduct
+  |=  [par=pith:neo child=pith:neo]
+  ^-  ?
+  =/  wav  -:(grab %int par)
+  ?~  wav  |
+  =+  !<(=wave:n q.u.wav)
+  ?~  kids.dock.wave
+    ::~&  bailing-no-kids/[par child]
+    |
+  (seize par child p.u.kids.dock.wave)
+::  +adopt: produce all capturing parents
+::
+++  adopt
+  =|  res=(set pith:neo)
+  =|  here=pith:neo
+  |=  =pith:neo
+  ::~&  adopting/pith
+  |-  ^+  res
+  =?  res  (abduct here pith)
+    (~(put in res) here)
+  =/  nex  (dif:pith:neo here pith)
+  ?~  nex
+    ::~&  adopted/res
+    res
+  $(here (snoc here i.nex))
+
+::
 ++  arvo
   =|  =block:n
   ::  callstack
   =|  $:  next=(list card:b)
           down=(list move:n)  :: pending moves for children
           up=(list move:n)    :: pending moves for uncles
-          =gift:n             :: changelist not gifted
+          prize=(axal:n mode:n)
+          gifts=(list [pith:neo gift:neo]) :: return values
       ==
   |=  =move:b
   :: =/  src=name:n  (de-pith:name:n p.move)
@@ -455,16 +499,21 @@
     [p p.q]:move
   =/  init-move  move
   =/  here  dst.init
+  ?:  ?=([%vane @ *] here)
+    (on-bush:sys move)
   :: ?>  =(our.mien ship.dst.init)
   ::  XX: blocking semantives
-  =<  (start move)
-  !.
+  =<  abet:(start move)
+  :: !.
   |%
   ++  grow
     |=  [=pith:n =tale:n]
     =.  seed.step  (~(put of seed.step) pith %grow ~ q.tale p.tale)
     arvo
   ++  abet  
+    ?^  err.block
+      %-  (slog (print-quit:neo u.err.block))
+      this
     this
   ++  arvo  .
   ++  start
@@ -523,7 +572,7 @@
     =.  crew.wave  crew :: XX: check
     =/  =poem:n
       [code poke:kook]
-    =.  this  (germ int/here ~ wave/!>(wave) wave-poem)
+    =.  arvo  (germ ?~(m-wav %add %dif) int/here ~ wave/!>(wave) wave-poem)
     =^  cards=(list card:n)  arvo 
       (soft-surf |.(su-abet:(su-make:surf init)))
     ::  %-  print:(cards:etch cards)
@@ -573,9 +622,38 @@
     =/  nex=move:n  i.down
     =/  new-arvo  (apply:arvo(down t.down) nex) :: XX: weird compiler?
     $(arvo new-arvo)
+  ++  raid
+    =/  by-parent=(jug pith:n [=pith =mode:n])
+      %+  roll  ~(aap of prize)
+      |=  [[=pith:neo =mode:n] out=(jug pith:n [=pith =mode:n])]
+      %-  ~(gas ju out)
+      (turn ~(tap in (adopt pith)) |=(par=pith:n [par [(dif:pith:n par pith) mode]]))
+    =.  gifts
+      %+  turn  (sort ~(tap in ~(key by by-parent)) sort:pith:n)
+      |=  =pith:n
+      ^-  [pith:n gift:n]
+      [pith (~(gas of *gift:n) ~(tap in (~(get ju by-parent) pith)))]
+    =.  prize  *(axal:n mode:n)
+    give
+  ++  give
+    ^+  arvo
+    ?~  gifts
+      plunder
+    =/  [=pith:neo =gift:neo]  i.gifts
+    =>  .(gifts `(list [pith:neo gift:neo])`gifts)
+    =.  gifts
+      ?>  ?=(^ gifts)
+      t.gifts
+    =.  src  here
+    =.  here  pith
+    =^  cards=(list card:neo)  arvo
+      (soft-surf |.(su-abet:(su-give:surf gift)))
+    (ingest cards)
   ::
   ++  plunder :: XX: TODO
     ^+  arvo
+    ?.  =(0 ~(wyt of prize))
+      raid
     ?~  next
       arvo
     (start:arvo(next t.next) p.move i.next)
@@ -602,6 +680,25 @@
     %-  (slog leaf/"wipeout {<here>}" p.res)
     =.  err.block  `[%goof p.res]
     `arvo
+  ++  germ
+    |=  [=mode:n =pith:neo cas=(unit (pair rift case:neo)) =pail:neo =poem:neo]
+    ^+  arvo
+    =.  this  (^germ +<+)
+    =.  prize  (~(put of prize) pith mode)
+    arvo
+  ++  is-vane  =(%vane (snag 0 here))
+::++  vane
+::  ?>  ?=([%vane @ *] here)
+::  =/  way=term  i.t.here
+::  =/  rest      t.t.here
+::  |^  ?+  dst  !!
+::    [%clay *]  (call:silt src t.dst note)
+::    [%iris *]  (call:cttp src t.dst note)
+::    [%behn *]  (call:bide src t.dst note)
+::    [%gall *]  (call:rile src t.dst note)
+::    [%eyre *]  (call:sttp src t.dst note)
+::  ==
+  ::
   ++  surf
     =^  w  this
       (grab %int here)
@@ -680,21 +777,21 @@
       =/  [cards=(list card:n) new=pail:n]
         (init:su-form init)
       =.  su-core  (su-emil cards)
-      (su-grow new)
+      =.  arvo   (germ %add here ~ new su-poem)
+      su-core
+    ++  su-give
+      |=  =gift:neo
+      ?.  (~(has in poke.dock.wave) %gift)
+        ::  ~&  skipping-give/here
+        su-core
+      (su-poke gift/!>(gift))
     ++  su-grow
       |=  =pail:n
       ^+  su-core
 ::    ?.  (blow state:kook p.pail)
 ::      (mean leaf/"Returned bad state stud, wanted {<state.kook>}, have {<p.pail>}" ~)
-      =.  this   (germ here ~ pail su-poem)
+      =.  arvo   (germ %dif here ~ pail su-poem)
       su-core
-    ::
-    ++  su-give
-      |=  =gift:n
-      ?.  (~(has in poke.dock.wave) %gift)
-        ::  ~&  skipping-give/here
-        su-core
-      (su-poke gift/!>(gift))
     ::
     ++  su-poke
       |=  =pail:n
@@ -723,5 +820,190 @@
         su-core
       (su-grow new)
     --
+  --
+++  sys
+  |%
+  ::
+  ++  on-bush
+    |=  [src=pith:neo dst=pith:neo =note:b]
+    ^+  this
+    ?+  dst  !!
+      [%clay *]  abet:(call:silt src t.dst note)
+      [%eyre *]  abet:(call:sttp src t.dst note)
+::    [%iris *]  (call:cttp src t.dst note)
+::    [%behn *]  (call:bide src t.dst note)
+::    [%gall *]  (call:rile src t.dst note)
+    ==
+  ++  on-arvo
+    |=  [hand=pith:n syn=sign-arvo]
+    ^+  this
+    ?+  hand  ~|(bad-vane/hand !!)
+      [%clay *]  abet:(take:silt t.hand syn)
+      :: [%eyre *]  abet:(take:sttp src t.dst note)
+::    [%iris *]  (take:cttp src t.dst note)
+::    [%behn *]  (take:bide src t.dst note)
+::    [%gall *]  (take:rile src t.dst note)
+    ==
+  --
+++  silt
+  =/  here=pith:n  /vane/clay
+  =^  pal=(unit pail:n)  this
+    (grab here)
+  ?>  ?=(^ pal)
+  =+  !<(sta=clay:unix:n q.u.pal)
+  ?>  =(%clay-state p.u.pal)
+  =|  gifts=(list gift:f)
+  |%
+  ++  silt  .
+  ++  abet
+    =.  io.step  (welp io.step (flop gifts))
+    (germ here ~ clay-state/!>(sta) (mk-poem %clay))
+  ++  emit  |=(g=gift:f silt(gifts [g gifts]))
+  ++  call
+    |=  [src=pith:n dst=pith:n =note:b]
+    ^+  silt
+    ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
+    ?>  ?=(%clay-req p.pail.note)
+    =+  !<(=req:clay:n q.pail.note)
+    ?-    -.req
+        %pull
+      =.  sta  (~(del by sta) [src pith.req])
+      silt
+    ::
+        %peer
+      =+  .^(=cass:clay %cw /(scot %p our.mien)/[desk.peer.req]/(scot %da now.mien)/sys/kelvin)
+      =/  [case=@ud =peer:clay:neo]  (~(gut by sta) [src pith.req] [0 peer.req])
+      =.  case  ud.cass
+      =.  sta  (~(put by sta) [src pith.req] [case peer])
+      (emit (do-peer src pith.req))
+    ==
+  ::
+  ++  take
+    |=  [wir=pith:n syn=sign-arvo]
+    ^+  silt
+    ?>  ?=(%writ +<.syn)
+    =/  paxs=(pole pith:neo)
+      (de:drive:neo wir)
+    ?>  ?=([src=* hand=* ~] paxs)
+    =/  src=pith  src.paxs
+    =/  hand=pith  hand.paxs
+    ?~  cas=(~(get by sta) [src hand])
+      silt
+    =/  [case=@ud =peer:clay:neo]  u.cas
+    =.  case  +(case)
+    ?~  p.syn
+      ~&  empty-clay-res/wir
+      silt
+    =+  !<(kids=(list path) q.r.u.p.syn)
+    =/  res=(axol:n cage)
+      %-  ~(gas axol-of:n *(axol:n cage))
+      %+  turn  kids
+      |=  kid=path
+      ^-  [path cage]
+      :: =?  kid   ?=(^ as.peer)
+        ::(snoc (snip kid) u.as.peer)
+      :-  kid
+      ~&  trying/kid
+      :-  (fall as.peer (rear kid))
+      %.  .^(vase %cr (welp /(scot %p our.mien)/[r.p.u.p.syn]/(scot %da now.mien) kid))
+      ^-  $-(vase vase)
+      ?~  as.peer  |=(=vase vase)
+      .^(tube:clay %cc (welp /(scot %p our.mien)/[r.p.u.p.syn]/(scot %da now.mien) /(rear kid)/[u.as.peer]))
+    =.  res  (~(dip axol-of:neo res) path.peer)
+    =/  =note:neo  [%poke %clay-res !>(`res:clay:neo`[hand case res])]
+    ~&  sending-to/src
+    =/  =move:neo  [[p/our.mien #/$/clay] src note]
+    :: =/  =wire      (welp /sys/clay/res wir)
+    =.  sta   (~(put by sta) [src hand] [case peer])
+    silt
+    :: =.  silt  (emit (do-move move))
+    :: (emit (do-peer src hand))
+  ::
+  ++  do-peer
+    |=  [src=pith:neo hand=pith:neo]
+    ^-  gift:f
+    =/  [case=@ud =peer:clay:neo]  (~(got by sta) [src hand])
+    =/  =wire  (welp /sys/clay/peer (pout (en:drive:neo ~[src hand])))
+    =/  =rave:clay  [%sing [%t ud/case path.peer]]
+    [%arvo wire %c %warp our.mien desk.peer `rave]
+  --
+++  sttp
+  =/  here=pith:n  /vane/eyre
+  =^  pal=(unit pail:n)  this
+    (grab here)
+  ?>  ?=(^ pal)
+  =+  !<(sta=eyre:unix:n q.u.pal)
+  ?>  =(%eyre-state p.u.pal)
+  =|  gifts=(list gift:f)
+  |%
+  ++  sttp  .
+  ++  emit  |=(g=gift:f sttp(gifts [g gifts]))
+  ++  emil  |=(gs=(list gift:f) sttp(gifts (welp (flop gs) gifts)))
+  ++  abet   
+    =.  io.step  (welp io.step (flop gifts))
+    (germ here ~ eyre-state/!>(sta) (mk-poem %eyre))
+  ++  call
+    |=  [src=pith:neo dst=pith:neo =note:b]
+    ^+  sttp
+    ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
+    ?+  p.pail.note  ~|(bad-eyre-call/p.pail.note !!)
+      %ack         sttp
+      %eyre-req    (on-eyre-req !<(req:eyre:neo q.pail.note))
+      %eyre-sign  (on-eyre-sign src !<(sign:eyre:neo q.pail.note))
+    ==
+  +$  request-line
+    $:  [ext=(unit @ta) site=(list @t)]
+        args=(list [key=@t value=@t])
+    ==
+  ::  +parse-request-line: take a cord and parse out a url
+  ::
+  ++  parse-request-line
+    |=  url=@t
+    ^-  request-line
+    (fall (rush url ;~(plug apat:de-purl:html yque:de-purl:html)) [[~ ~] ~])
+  ::
+  ++  on-eyre-req
+    |=  [%connect =binding:eyre =pith:neo]
+    ^+  sttp
+    ?>  =(~ site.binding)
+    =.  bind.sta  (~(put by bind.sta) binding pith)
+    =/  wir=pith:n  (pave:n (welp /sys/eyre/bind (pout pith)))
+    (emit %arvo wir %e %connect binding %one)
+  ::
+  ++  on-eyre-sign
+    |=  [src=pith:neo eyre-id=@ta =gift:eyre:neo]
+    ^+  sttp
+    ::  ?>  =(src (~(got by by-id.eyre.unix) eyre-id))
+    (emit %eyre eyre-id gift)
+  ::
+  ++  match-binding
+    =|  test=(list @t)
+    |=  site=(list @t)
+    ^-  (unit pith:neo)
+    ?^  res=(~(get by bind.sta) [~ test])
+      `u.res
+    =/  nex  (slag (lent test) site)
+    ?~  nex
+      ~
+    $(test (snoc test i.nex))
+  ++  give-simple-payload
+    |=  [eyre-id=@ta =simple-payload:http]
+    ^-  (list gift:f)
+    :~  [%eyre eyre-id %head response-header.simple-payload]
+        [%eyre eyre-id %data data.simple-payload]
+        [%eyre eyre-id %done ~]
+    ==
+  ::
+  ++  handle-http-request
+    |=  [eyre-id=@ta req=inbound-request:eyre]
+    ^+  sttp
+    =/  lin=request-line   (parse-request-line url.request.req)
+    ?~  bin=(match-binding site.lin)
+      (emil (give-simple-payload eyre-id not-found:gen:serv:n))
+    =.  by-id.sta     (~(put by by-id.sta) eyre-id u.bin)
+    =.  by-pith.sta  (~(put by by-pith.sta) u.bin eyre-id)
+    =/  =card:b  [u.bin %poke eyre-task/!>(`task:eyre:neo`[eyre-id req])]
+    =/  =move:b  [here card]
+    (emit %note / %bush move) 
   --
 --

@@ -97,6 +97,8 @@
           [%hear =hunt]
           [%have =ship =chit]
           [%drip ~]
+          [%arvo hand=pith syn=sign-arvo]
+          [%http eyre-id=@ta req=inbound-request:eyre]
       ==
     +$  gift
       $%  [%meet =ship pact=(set stud)]  :: perform service discovery on ship
@@ -110,6 +112,7 @@
           [%drip ~]
         ::
           [%arvo hand=pith note=note-arvo]
+          [%eyre eyre-id=@t =gift:eyre:n]
       ==
     ++  step  
       |^  ,[=seed io=(list gift)]
@@ -301,8 +304,6 @@
     untab:(print-vase:tab:e q.q.tale)
   ++  epic
     |=  p=epic:neo
-    ?:  =(1 1)
-      etch
     ~>  %slog.[2 leaf/"Epic"]
     =<  (print-ln-raw 2 "Done")
     %+  roll  ~(aap of p)
@@ -379,6 +380,32 @@
       %y  (read-y pith.hunt case)
       %z  (read-z pith.hunt case)
     ==
+  ++  apt
+    ^-  ?
+    &(apt-y apt-z)
+  ++  apt-z  &
+  ++  apt-y
+    ^-  ?
+    %+  roll  ~(tap of why.farm)
+    |=  [[=pith:n =body:t] out=_&]
+::  ?.  out
+::    out
+    =/  bod=?  (apt-body %y body)
+    ?.  bod
+      ~&  mismatch/pith
+      bod
+    &(bod out)
+  ::
+  ++  apt-body
+    |=  [kind=?(%y %z) =body:t]
+    %+  levy  (tap:on:body:t body)
+    |=  [case=@ud =soul:t]
+    =;  exp=@ud
+      ~?   !=(exp case)
+        mismatch/[exp=exp case=case]
+      =(exp case)
+    (roll ~(val by soul) add)
+  ::
   ++  lift
     ~/  %lift
     |=  =data:t
@@ -517,48 +544,32 @@
     $(farm (call i.ls), ls t.ls)
   ++  get-why
     ^-  [@ud soul:t]
+    :: =/  plot  
     =/  plot  ~(snip of soil.farm)
-    :-
-      %-  roll
-      :_  |:([a=0 b=0] (add a b))
-      ^-  (list @ud)
+    |-  
+    =/  have
+      ^-  (list [pith:neo @ud])
       %+  turn  ~(tap of plot)
       |=  [=pith:neo *]
-      (get-case %x pith)
-    =.  fil.plot  ~
-    %-  ~(run by ~(tar of plot))
-    |=  =loam:t
-    ?~  san=~(last or loam)
-      ~&  %weird
-      0
-    ?~  dir=(~(got or loam) k.u.san)
-      l.u.san
-    =/  [key=@ud *]  (need (ram:on:dirt:t u.dir))
-    key
+      ^-  [pith:n @ud]
+      [pith (get-case %x pith)]
+    :_  (~(gas by *soul:t) have)
+    %+  roll  have
+    |=  [[=pith:neo case=@ud] out=@ud]
+    (add out case)
   ++  get-zed
     ^-  [@ud soul:t]
     =/  plot  soil.farm
-    :-
-      %-  roll
-      :_  |:([a=0 b=0] (add a b))
-      ^-  (list @ud)
+    =/  have
+      ^-  (list [pith:neo @ud])
       %+  turn  ~(tap of plot)
       |=  [=pith:neo *]
-      (get-case %x pith)
-    =.  fil.plot  ~
-    %-  ~(gas by *soul:t) 
-    ^-  (list [pith:neo @ud])
-    %+  murn  ~(tap of plot)
-    |=  [=pith:neo =loam:t]
-    ^-  (unit [pith:neo @ud])
-    ?~  san=~(last or loam)
-      ~&  %weird
-      ~
-    ?~  dir=(~(got or loam) k.u.san)
-      `[pith l.u.san]
-    =/  [key=@ud *]  (need (ram:on:dirt:t u.dir))
-    `[pith key]
-
+      ^-  [pith:n @ud]
+      [pith (get-case %x pith)]
+    :_  (~(gas by *soul:t) have)
+    %+  roll  have
+    |=  [[=pith:neo case=@ud] out=@ud]
+    (add out case)
   ++  rep
     ~/  %rep
     |=  [=pith f=farm:t]
@@ -585,6 +596,7 @@
   ::    XX: potentially wrong if updates do not come in order 
   ++  till
     ~/  %till
+    =|  here=pith:n
     |=  kind=?(%y %z)
     =*  loop  $
     ^+  farm 
@@ -605,7 +617,7 @@
     |-
     ?~  kid
       farm
-    =.  farm  (rep ~[i.kid] loop(farm (dip ~[i.kid])))
+    =.  farm  (rep ~[i.kid] loop(here (snoc here i.kid), farm (dip ~[i.kid])))
     $(kid t.kid)
   ::
   ++  call
@@ -628,8 +640,24 @@
     ?^  cas
       (grow-at pith u.cas pail poem)
     ?~  lom=(~(get of soil) pith)
-      ::  never bound before
-      (grow-at pith [1 1] pail poem)
+      =/  [rest=pith:n bod=(unit body:t)]
+        (~(fit of zed) pith)
+      =/  pfix  (scag (sub (lent pith) (lent rest)) pith)
+
+      =;  wen=(pair @ud @ud)
+        ::  never bound before
+        (grow-at pith wen pail poem)
+      :-  1
+      ?~  bod  1
+      .+
+      =/  [@ud =soul:t]  (need (ram:on:body:t u.bod))
+      %+  roll  ~(tap by soul)
+      |=  [[kid=pith:n case=@ud] out=@ud]
+      ^-  @ud
+      :: ~&  checking/[pfix=pfix kid=kid par=par pith=pith]
+      ?.  (is-parent:u rest kid)
+        out
+      (add out case)
     ?~  las=~(last or u.lom)
       ~&  weird-empty-loam/pith
       (grow-at pith [1 1] pail poem)

@@ -56,7 +56,12 @@
     =.  our.bol  our.bowl
     =.  now.bol  now.bowl
     =.  eny.bol  eny.bowl
-    =.  kids.bol  q.u.src
+    =.  kids.bol
+      ^-  muck:n
+      %-  ~(run of q.u.src)
+      |=  =idea:neo
+      ^-  tale:neo
+      q.saga.idea
     (!<(htmx q.pail.root) bol)
   --
 --

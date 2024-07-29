@@ -193,11 +193,22 @@
   ^+  run
   ?:  =(%one-seed mark)
     (harvest !<(crop=seed:t vase))
+  ?:  =(%handle-http-request mark)
+    fe-abet:(fe-call:(fe /) %http !<([@ta inbound-request:eyre] vase))
   ?:  =(%noun mark)
     ?+    q.vase
       =+  ;;(=task:fern:t q.vase)
       fe-abet:(fe-call:(fe p.task) q.task)
     ::
+        [%dbug pax=*]
+      =+  ;;(pax=path pax.q.vase)
+      %-  print:(farm:etch (~(dip plow farm) (pave:neo pax)))
+      run
+    :: 
+        %apt
+      ~&  apt=~(apt plow farm)
+      run
+
         %dbug
       %-  print:(farm:etch farm)
       run
@@ -320,7 +331,7 @@
     |=  res=vase
     =+  !<([new=seed:t io=(list gift:fern:t)] (slot 2 res))
     =.  seed  (~(uni of seed) new)
-    =.  farm  (~(rep plow farm) pith (~(plant plow fe-farm) seed))
+    =.  farm  (~(rep plow farm) pith (~(plant plow fe-farm) new))
     =.  fe    (fe-deal io)
     =.  code.fern  (slot 3 res)
     fe
@@ -347,6 +358,20 @@
         %drip
       =.  run  (emit %pass /drip %agent [our dap]:bowl %poke fern-task/!>(`task:fern:t`[pith %drip ~]))
       $(io t.io)
+    ::
+        %arvo
+      =.  run  (emit %pass (pout hand.gift) %arvo note.gift)
+      $(io t.io)
+    ::
+        %eyre
+      =/  paxs=(list path)  ~[/http-response/[eyre-id.gift]]
+      =.  run  
+        ?-  -.gift.gift
+          %head  (emit %give %fact paxs http-response-header/!>(response-header.gift.gift))
+          %data  (emit %give %fact paxs http-response-data/!>(dat.gift.gift))
+          %done  (emit %give %kick paxs ~)
+        ==
+      $(io t.io)
     ==
   --
 ++  conn
@@ -370,6 +395,7 @@
     ^-  (list (list dime))
     ?~  pic=(~(look plow farm) %y pith)
       *(list (list dime))
+    :: ~&  desc/[depth=depth keys=~(key by ~(tar of u.pic))]
     =<  +
     %+  roll  ~(tap of u.pic)
     |=  [[kid=pith:neo =saga:neo] seen=(set pith:neo) res=(list (list dime))]
@@ -417,14 +443,16 @@
     ^-  (list tank)
     tang:(farm:etch fam)
   ++  show
-    ^-  (list tank)
+    ^-  tang
     =/  sag   get
-    %-  lure
-    ^-  tank
-    ?-  sag
-      ~         leaf/"Unbound"
-      [~ ~]     leaf/"Bound, empty"
-      [~ ~ *]   (sell q.q.q.u.u.sag)
+    ?-    sag
+        ~         ~[leaf/"Unbound"]
+        [~ ~]     ~[leaf/"Bound, empty"]
+        [~ ~ *]   
+      =/  =pail:n  q.q.u.u.sag
+      ?:  =(%tang p.pail)
+        !<(tang q.pail)
+      (sell q.pail)^~
     ==
   --
 ++  walk

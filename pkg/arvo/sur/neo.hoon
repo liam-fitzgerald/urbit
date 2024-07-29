@@ -1,5 +1,6 @@
 /+  dprint
 /+  easy-print=language-server-easy-print
+/+  serv=server
 ::  $neo: New Shrub
 ::
 ::    Urbit is a namespace, from a path -> data
@@ -698,7 +699,7 @@
 ::
 ::  $gift: notification that a children changed
 ::
-+$  gift  (axal loot)
++$  gift  (axal mode)
 ::
 ::  $hunt: perspective and shrub
 ::    
@@ -2543,5 +2544,5 @@
   ?~  q.vex
     [%| p=p.vex(q (dec q.p.vex))]
   [%& p=p.u.q.vex]
-
+++  serv   ^serv
 --
