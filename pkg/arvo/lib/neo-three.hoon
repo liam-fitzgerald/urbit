@@ -351,7 +351,7 @@
     ^+  etch
     =.  etch  
       (print-ln "%y {(scow %ud why.latest.l)}, %z {(scow %ud zed.latest.l)}")
-    etch :: (print-ln <kids.l>)
+    (print-ln <+:(need (ram:on:moss:t zed.l))>)
   ::
   ++  loam-verb  `?`&
   ::
@@ -409,9 +409,125 @@
   |_  =farm:t
   ++  scry
     ~/  %scry
-    |=  [=hunt:neo =case:neo]
-    ^-  (unit epic:neo)
-    !!
+    |=  [=case:neo =hunt:neo]
+    |^  ^-  (unit epic:neo)
+    ?-    care.hunt
+        ?(%x %a)
+      =/  res  (read-x-raw pith.hunt case)
+      ?-  res
+        ~   ~
+        [~ ~]  `*epic:neo
+        [~ ~ *]  `(~(put of *epic:neo) / u.u.res)
+      ==
+    ::
+        ?(%y %b)
+      =/  [rest=pith:n lan=(unit land:t)]
+        (~(fit of plot.farm) pith.hunt)
+      =/  pfix  (sub:pith:neo pith.hunt rest)
+      =/  =land:t  (need lan)
+      ?~  sol=(get:on:moss:t why.land case)
+        ~  :: XX: wrong for intermediate cases (FIXME!)
+      :-  ~
+      =-  (~(dip of -) pfix)
+      %-  ~(gas of *epic:neo)
+      %+  murn  ~(tap by u.sol)
+      |=  [kid=pith:neo cas=@ud]
+      =.  kid  (welp pfix kid)
+      ?~  res=(read-x-raw kid cas)
+        ~&  weird-x/[kid cas]
+        ~
+      ?~  u.res
+        ~
+      `[kid u.u.res]
+        ?(%z %c)
+      ~&  %reading-z
+      =/  [rest=pith:n lan=(unit land:t)]
+        (~(fit of plot.farm) pith.hunt)
+      =/  pfix  (sub:pith:neo pith.hunt rest)
+      =/  =land:t  (need lan)
+      ?~  sol=(get:on:moss:t zed.land case)
+        ~
+      =/  =soul:t  u.sol
+      =-  `(~(dip of -) pfix)
+      =|  res=epic:neo
+      |-  =*  loop-soul  $
+      =/  kids=(list [=pith:neo cas=@ud])
+        ~(tap by soul)
+      |-  =*  loop-kids  $
+      ?~  kids
+        res
+      =/  [kid=pith:neo c=@ud]  i.kids
+      =/  full  (welp pfix kid)
+      ?:  =(kid /)
+        =/  child  (need (read-x-raw full c))
+        ?~  child  $(kids t.kids)
+        $(kids t.kids, res (~(put of res) full u.child))
+      =/  serf=land:t  (~(got of plot.farm) full)
+      %_    $
+        kids  t.kids
+        res   loop-soul(soul (got:on:moss:t zed.serf c), pfix full)
+      ==
+    ==
+    ::
+    ++  read-x-raw
+      |=  [pit=pith:neo cas=@ud]
+      ^-  (unit (unit saga:neo))
+      ?:  =(cas 0)
+        [~ ~]
+      ?~  lom=(~(get of soil.farm) pit)
+        ::  doesn't exist yet
+        ~
+      ?~  dir=(~(wit or u.lom) cas)
+        ::: should never happen
+        ~&  weird/[pit cas]
+        [~ ~]
+      ?~  u.dir
+        ::  previously bound, currently empty
+        [~ ~]
+      ?^  ver=(get:on:dirt:t u.u.dir cas)
+        ``(lift u.ver)
+      ?~  lat=(ram:on:dirt:t u.u.dir)
+        :: should never happen
+        ~
+      :: is request for future case
+      ?:  (lte cas key.u.lat)
+        [~ ~]
+      ~
+    ++  lift
+      |=  =data:t
+      ^-  saga:neo
+      =/  =aeon:neo
+        [*ever:neo oath.data]
+      [aeon poem.data pail.data]
+    --
+  ::
+  ++  look
+    ~/  %look
+    |=  =hunt:neo
+    ~>  %bout.[1 %look]
+    (scry (pine hunt) hunt)
+  ++  pine
+    ~/  %pine
+    |=  [=care:neo =pith:neo]
+    ^-  @ud
+    =/  [rest=pith:neo lan=(unit land:t)]
+      (~(fit of plot.farm) pith)
+    ?>  ?=(^ lan)
+    =/  =land:t  u.lan
+    ?-    care
+        ?(%x %a)
+      ?.  =(rest ~)
+        ~&  pine-mismatch/[rest pith]
+        0
+      case.now.land
+    ::
+        ?(%y %b)
+      why.latest.land
+        ::
+        ?(%z %c)
+      zed.latest.land
+    ==
+  ::
   ++  plant
     ~/  %plant
     |=  =seed:t
@@ -480,6 +596,7 @@
     ^-  plot:t
     ~>  %bout.[1 %handle-zed]
     !.
+    =|  here=pith:neo
     |-  =*  loop  $
     =/  kids  ~(tap by kid.change)
     |-  
@@ -490,19 +607,21 @@
         ?~  nex=(~(get aon kid.plot) -.i.kids)
           kid.plot
         %+  ~(put aon kid.plot)  -.i.kids
-        loop(plot u.nex, change +.i.kids)
+        loop(plot u.nex, change +.i.kids, here (snoc here -.i.kids))
       ==
     =?  fil.plot  ?=(^ fil.plot)
       =/  =land:t  u.fil.plot
       =/  =soul:t  kids.land 
       =.  soul
-        %-  ~(urn by (~(put by soul) / case.now.land))
+        %-  ~(urn by (~(put by soul) / 0))
         |=  [p=pith:neo cas=@]
         ^-  @ud
+        ?:  =(p /)
+          case.now.land
         =/  lan=(unit land:t)   
           =>  .(plot `plot:t`plot)
           (~(get of plot) p)
-        why.latest:(fall lan *land:t)
+        zed.latest:(fall lan *land:t)
       =/  race=@ud  (roll ~(val by soul) add)
       `land(zed.latest race, zed (put:on:moss:t zed.land race soul))
     plot

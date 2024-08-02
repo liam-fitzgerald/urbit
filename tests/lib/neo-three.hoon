@@ -23,7 +23,7 @@
   =|  count=@ud
   !.
   |-
-  ?:  =(count 1)
+  ?:  =(count 1.000)
     loop(lst t.lst)
   :: =.  pith.i.lst  (welp [. .]:pith.i.lst)
   =.  seed   (~(put of seed) i.lst(pith [ud/count pith.i.lst]))
@@ -68,6 +68,15 @@
     :~  [#/~met/foo/bar %grow ~ (atom 10) pokes]
     ==
   =.  farm  (~(plant nu-plow farm) fur)
+  :: %-  print:(farm:etch farm)
+  =/  res   (need (~(look nu-plow farm) %x #/~met/foo))
+  =/  res-y   (need (~(look nu-plow farm) %y #/~met/foo))
+  =/  res-z   (need (~(look nu-plow farm) %z #/~met/foo))
+  =/  res-z   (need (~(look nu-plow farm) %z ~))
+::  %-  print:(epic:etch res)
+::  %-  print:(epic:etch res-y)
+::  %-  print:(epic:etch res-z)
+  ~&  ~(wyt of res-z)
   :: %-  print:(farm:etch farm)
   (expect-eq *vase *vase)
 --
