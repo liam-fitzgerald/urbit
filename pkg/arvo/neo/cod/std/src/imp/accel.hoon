@@ -106,7 +106,7 @@
         ~
       ?.  (~(has of:neo kids.bowl) road)
         ~
-      =+  !<(conf=accel-conf q.pail:(~(got of:neo kids.bowl) road))
+      =+  !<(conf=accel-conf q.q:(~(got of:neo kids.bowl) road))
       ?.  ready.conf
         ~
       (make-cell bowl row.road col.road conf %out)

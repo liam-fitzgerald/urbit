@@ -53,7 +53,7 @@
       [%pill ~]
       [%over =pith:neo]
       [%dbug ~]
-      [%reload =pith:ne]
+      [%reload =pith:neo]
       :: [%make =vial:neo]
   ==
 ::
@@ -165,6 +165,7 @@
 ++  boot
   ^+  run
   =.  our.farm  our.bowl
+  =.  now.farm  `*epic:neo
   =/  vaz  (vang & /root)
   =/  hon  
     (road |.((scan (trip txt-root-neo) (full (ifix [gay gay] tall:vaz)))))
@@ -219,7 +220,7 @@
       =/  src=pith:neo  /$/xeno
       =<  fe-abet
       %^  fe-call:(fe /)  %bush  src
-      [(pave:neo (slag 4 path)) %make %hoon `hoon/!>(src) sig/!>(~)]
+      [(pave:neo (snip (slag 4 path))) %make %hoon `hoon/!>(src) sig/!>(~)]
     ::
         [%pill path=*]
       (make-pill ;;(pax=path path.q.vase))
@@ -230,7 +231,9 @@
 ++  on-peer
   |=  [=path stop=?]
   ^+  run
-  !!
+  ?:  ?=([%http-response *] path)
+    run
+  ~|(bad-peer/path !!)
 ++  on-agent
   |=  [=wire =sign:agent:gall]
   ^+  run
@@ -238,7 +241,8 @@
 ++  on-arvo
   |=  [=wire syn=sign-arvo]
   ^+  run
-  !!
+  ~&  wire/wire
+  run
 ++  on-peek
   |=  =path
   ^-  (unit (unit cage))
@@ -316,12 +320,6 @@
     ^-  mien:fern:t
     [our.bowl pith now.bowl eny.bowl heed.fern fe-farm]
   ++  fe-code  code.fern(+6.q fe-mien)
-  ++  fe-reap
-    |=  new=seed:t
-    ^+  fe
-    =.  farm  (~(rep plow farm) pith (~(plant plow fe-farm) new))
-    =.  seed  (~(uni of new) seed)  :: XX: check validity
-    fe
   ++  fe-hear
     |=  =hunt:neo
     (fe-call %hear hunt)
@@ -329,10 +327,15 @@
     (fe-ingest (slap fe-code limb/%boot))
   ++  fe-ingest
     |=  res=vase
-    =+  !<([new=seed:t io=(list gift:fern:t)] (slot 2 res))
-    =.  seed  (~(uni of seed) new)
-    =.  farm  (~(rep plow farm) pith (~(plant plow fe-farm) new))
-    =.  fe    (fe-deal io)
+    =+
+      ~>  %bout.[1 %fe-devase]
+      !<([new=seed:t io=(list gift:fern:t)] (slot 2 res))
+    =.  farm  
+      ~>  %bout.[1 %fe-plant]
+      (~(plant plow fe-farm) (~(rep of *seed:t) pith new))
+    =.  fe    
+      ~>  %bout.[1 %fe-deal]
+      (fe-deal io)
     =.  code.fern  (slot 3 res)
     fe
   ::
@@ -363,8 +366,13 @@
       =.  run  (emit %pass (pout hand.gift) %arvo note.gift)
       $(io t.io)
     ::
+        %bush
+      =.  run  (emit %pass deal/(pout p.move.gift) %agent [our dap]:bowl %poke fern-task/!>(`task:fern:t`[/ %bush move.gift]))
+      $(io t.io)
+    ::
         %eyre
       =/  paxs=(list path)  ~[/http-response/[eyre-id.gift]]
+      ~&  eyre/gift
       =.  run  
         ?-  -.gift.gift
           %head  (emit %give %fact paxs http-response-header/!>(response-header.gift.gift))

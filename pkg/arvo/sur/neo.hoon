@@ -163,7 +163,7 @@
   +$  gift   dust
   --
 --
-~%  %neo-sur  ..part  ~
+~%  %neo  ..part  ~
 |%
 ++  land
   =<  land
@@ -1325,18 +1325,21 @@
   |$  [val]
   ((mop iota val) lte-iota)
 ++  aon
+  ~/  %aon
   =|  a=((mop iota *) lte-iota)
   |@
   ++  raw  ((on iota *) lte-iota)
-  +$  item  [key=iota =val]
+  +$  item  [key=iota val]
   +$  val  ,_?>(?=(^ a) +.n.a)
   +$  tre   (tree item)
   ++  run
+    ~/  %run
     |*  fun=gate
     |-
     ?~  a  a
     [n=[key.n.a (fun val.n.a)] l=$(a l.a) r=$(a r.a)]
   ++  gas
+    ~/  %gas
     |*  b=(list [p=* q=*])
     =>  .(b `(list _?>(?=(^ a) n.a))`b)
     |-  ^+  a
@@ -1345,6 +1348,7 @@
     $(b t.b, a (put i.b))
   ::
   ++  rut
+    ~/  %rut
     |*  fun=gate
     |-  ^+  a
     ?~  a  a
@@ -1382,9 +1386,6 @@
     ?:  (lte-iota key.n.a key.n.b)
       $(l.b $(b l.b, r.a ~), a r.a)
     $(r.b $(b r.b, l.a ~), a l.a)
-
-
-
   ::  +put: ordered item insert
   ::
   ++  put
@@ -1429,15 +1430,16 @@
     $(a l.a)
 
   ++  tap
-    ~+
-    ^-  (list item)
+    =<  $
+    ~/  %tap
     =|  b=(list item)
-    |-  
+    |.  ^+  b
     ?~  a  b
     $(a l.a, b [n.a $(a r.a)])
   ::  +get: get val at key or return ~
   ::
   ++  get
+    ~/  %get
     |=  b=iota
     ^-  (unit val)
     ?~  a  ~
@@ -1492,10 +1494,58 @@
 ++  axil
   |$  [item]
   [fil=(unit item) kid=(map pith item)]
+++  sax
+  $~  [~ 0 ~]
+  [fil=(unit @ud) sum=@ud kid=(uon sax)]
+++  sum
+  ~%  %sum  ..sum  ~
+  |_  =sax
+  ++  dip
+    ~/  %dip
+    |=  pax=pith
+    ^+  sax
+    ?~  pax  sax
+    =/  kid  (~(get aon kid.sax) i.pax)
+    ?~  kid  [~ 0 ~]
+    $(sax u.kid, pax t.pax)
+  ::
+  ++  get
+    ~/  %get
+    |=  pax=pith
+    fil:(dip pax)
+  ++  at
+    |=  pax=pith
+    sum:(dip pax)
+  ++  put
+    |=  [pax=pith num=@ud]
+    ^+  sax
+    |-  ^+  sax
+    ?~  pax  sax(fil `num, sum num)
+    =/  kid=^sax  
+      (~(gut aon kid.sax) i.pax ^+(sax [~ 0 ~]))
+    =/  new  $(sax kid, pax t.pax)
+    =.  sum.sax
+      ?:  (lte sum.kid sum.new)
+        (add sum.sax (sub sum.new sum.kid))
+      (sub sum.sax (sub sum.kid sum.new))
+    sax(kid (~(put aon kid.sax) i.pax new))
+  ++  bump
+    |=  pax=pith
+    ^+  sax
+    |-  ^+  sax
+    ?~  pax
+      =/  num  +((fall fil.sax 0))
+      sax(fil `num, sum num)
+    =/  kid  (~(gut aon kid.sax) i.pax ^+(sax [~ 0 ~]))
+    =/  new  $(sax kid, pax t.pax)
+    =.  sum.sax  +(sum.sax)
+    sax(kid (~(put aon kid.sax) i.pax new))
+  --
 ++  of
   ~%  %of  +>   ~
   =|  fat=(axal)
   |@ 
+  :: ++  on  ((^on iota ) lte-iota)
   ::  XX: strange moist
   ++  set
     ~/  %set
@@ -1586,6 +1636,17 @@
       %y  =.(fat snip (~(uni by res) tar))
       %z  (~(uni by res) tar)
     ==
+  ++  jab-til
+    |*  [pax=pith fun=$-(* *) gat=$-(* *)]
+    ^+  fat
+    ?~  pax
+      ?~  fil.fat
+        fat
+      fat(fil `(gat u.fil.fat))
+    =?  fil.fat  ?=(^ fil.fat)
+      `(fun u.fil.fat)
+    fat(kid (~(put aon kid.fat) i.pax $(fat (~(got aon kid.fat) i.pax), pax t.pax)))
+
   ::
   ++  anc-jab
     |*  [pax=pith fun=$-(* *)]
@@ -1781,6 +1842,7 @@
       kid  t.kid
       out  ^$(pax (weld pax /[p.i.kid]), fat q.i.kid)
     ==
+
   ++  sap
     %+  sort  tap
     |*  [[a=pith *] [b=pith *]]
@@ -2463,6 +2525,13 @@
     |-
     ?~  r.a  `p.n.a
     $(a r.a)
+  ++  last-raw
+    ^-  (unit _?>(?=(^ a) n.a))
+    ?~  a   ~
+    |-
+    ?~  r.a  `n.a
+    $(a r.a)
+
   ++  got
     |*  k=@
     (need (get k))

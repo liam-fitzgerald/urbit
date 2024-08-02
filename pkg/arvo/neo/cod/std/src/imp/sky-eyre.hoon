@@ -17,17 +17,18 @@
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
+    ~&  %poke-sky
     ?+    stud  ~|(bad-stud/stud !!)
          %eyre-task
       =+  !<(=task:eyre:neo vax)
       =/  [eyre-id=@ta req=inbound-request:eyre]  task
       ?.  authenticated.req
-        =/  eyre=pith:neo  #/[p/our.bowl]/$/eyre
+        =/  eyre=pith:neo  #/vane/eyre
         :_  pail
         %+  ~(respond neo:serv eyre)   eyre-id
         (login-redirect:gen:serv request.req)
 
-      =/  inner=pith:neo  #/[p/our.bowl]/sky
+      =/  inner=pith:neo  #/sky
       =/  =crew:neo  (~(gas by *crew:neo) src/inner ~)
       =/  =made:neo  [%sky-eyre-handler `[stud vax] crew]
       :_  sig/!>(~)
@@ -37,7 +38,7 @@
   ++  init
     |=  pal=(unit pail:neo)
     :_  sig/!>(~)
-    =/  =pith:neo  #/[p/our.bowl]/$/eyre
+    =/  =pith:neo  #/vane/eyre
     =/  =binding:eyre  [~ ~[%neo %sky]]
     =/  =req:eyre:neo  [%connect binding here.bowl]
     :~  [pith %poke eyre-req/!>(req)]

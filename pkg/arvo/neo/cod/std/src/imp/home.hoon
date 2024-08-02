@@ -6,6 +6,16 @@
 /*  messenger
 /*  introduction
 /*  developer-environment-setup
+=>
+  |%
+  ++  introduction  ''
+  ++  developer-environment-setup  ''
+  ++  messenger   ''
+  ++  tasks    ''
+  ++  diary    ''
+  ++  feather-intro    ''
+  ++  counter    ''
+  --
 ^-  kook:neo
 |%
 ++  state  pro/%home

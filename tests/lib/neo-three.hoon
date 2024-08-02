@@ -3,29 +3,38 @@
 /+  *test
 =|  =farm:t
 =.  our.farm  ~met
+=.  plot.farm  (~(put of:neo plot.farm) ~ *land:t)
 |%
 ++  of  of:neo
 ++  or  or:neo
-++  pokes  *(set stud:neo)
+++  pokes  `poem:neo`[%code *(set stud:neo)]
 ++  atom
   |=  a=@
   ^-  pail:neo
   atom/!>(a)
 ++  gas-seed
   =|  =seed:t
-  |=  lst=(list [pith note:t])
+  |=  lst=(list [=pith =note:t])
+  =*  loop  $
   ^+  seed
   ?~  lst
     seed
   =.  seed   (~(put of seed) i.lst)
-  $(lst t.lst)
+  =|  count=@ud
+  !.
+  |-
+  ?:  =(count 1)
+    loop(lst t.lst)
+  :: =.  pith.i.lst  (welp [. .]:pith.i.lst)
+  =.  seed   (~(put of seed) i.lst(pith [ud/count pith.i.lst]))
+  $(count +(count))
 ++  test-one
   =/  one=seed:t
     %-  gas-seed
     :~  [#/~met/foo %grow ~ (atom 3) pokes]
         [#/~met/foo/bar %grow ~ (atom 5) pokes]
     ==
-  =.  farm  (~(plant plow farm) one)
+  =.  farm  (~(plant nu-plow farm) one)
   =/  two=seed:t
     %-  gas-seed
     :~  [#/~met/foo %grow ~ (atom 4) pokes]
@@ -33,21 +42,32 @@
         [#/~met/foo/baz %grow ~ (atom 3) pokes]
     ==
   ::
-  =.  farm  (~(plant plow farm) two)
-  %-  print:(farm:etch farm)
+  =.  farm  (~(plant nu-plow farm) two)
+  :: %-  print:(farm:etch farm)
   =/  tri=seed:t
-    %-  gas-seed
+    %-  ~(gas of *seed:t)
+    ^-  (list [pith:neo note:t])
     :~  [#/~met/foo %grow ~ (atom 5) pokes]
         [#/~met/foo/bar %grow ~ (atom 7) pokes]
         [#/~met/foo/bar/qux %grow ~ (atom 10) pokes]
         [#/~met/foo/baz %grow ~ (atom 1) pokes]
     ==
-  =.  farm  (~(plant plow farm) tri)
-  =/  fur=seed:t
+  =.  farm  (~(plant nu-plow farm) tri)
+  =/  qua=seed:t
     %-  gas-seed
-    :~  [#/~met/foo/bar %cull ~]
+    ^-  (list [pith:neo note:t])
+    :~  [#/~met/foo %grow ~ (atom 3) pokes]
+        [#/~met/foo/bar %grow ~ (atom 1) pokes]
+        [#/~met/foo/bar/qux %grow ~ (atom 12) pokes]
+        [#/~met/foo/baz %grow ~ (atom 10) pokes]
     ==
-  =.  farm  (~(plant plow farm) fur)
-  %-  print:(farm:etch farm)
+  =.  farm  (~(plant nu-plow farm) qua)
+  =/  fur=seed:t
+    %-  ~(gas of *seed:t)
+    ^-  (list [pith:neo note:t])
+    :~  [#/~met/foo/bar %grow ~ (atom 10) pokes]
+    ==
+  =.  farm  (~(plant nu-plow farm) fur)
+  :: %-  print:(farm:etch farm)
   (expect-eq *vase *vase)
 --

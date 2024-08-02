@@ -5,6 +5,8 @@
     ^-  file:ford:neo
     :: ~>  %memo./ford/desk
     :: %-  road  |.
+    =>  [pith=pith txt=txt neo=neo n=n ..zuse]
+    ~>  %memo./ford/desk/parse
     =/  parser  imports:(rein:ford:neo pith)
     =/  res  (rily:n (trip txt) parser)
     ?:  ?=(%& -.res)

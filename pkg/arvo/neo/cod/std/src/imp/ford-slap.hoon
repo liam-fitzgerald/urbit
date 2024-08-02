@@ -10,6 +10,8 @@
   =/  hon  (get-hoon bowl)
   ?:  ?=(%| -.hon)
     tang/!>(p.hon)
+  =>  [sut=sut hon=hon ..zuse]
+  ~>  %memo./ford/slap
   =/  res  (mule |.((slap q.sut p.hon)))
   ?:  ?=(%| -.res)
     tang/!>(p.res)
@@ -21,6 +23,8 @@
   |.  ^-  hoon
   =/  [pax=pith:neo =lore:neo]  (~(got by deps.bowl) %hoon)
   =+  !<(src=@t q.pail:~(rot of:neo lore))
+  =>  [src=src neo=neo pax=pax ..zuse]
+  ~>  %memo./ford/slap/parse
   =/  =file:ford:neo
     (scan (trip src) apex:(rein:ford:neo pax))
   hoon.file

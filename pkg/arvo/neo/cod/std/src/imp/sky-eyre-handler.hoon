@@ -33,7 +33,7 @@
     =/  [=stud:neo =vase]  (need pal)
     =+  !<([eyre-id=@ta req=inbound-request:eyre] vase)
     :_  [stud vase]
-    =/  =pith:neo  #/[p/our.bowl]/$/eyre
+    =/  =pith:neo  #/vane/eyre
     =;  =manx
       =/  octs
         %-  as-octt:mimes:html
@@ -49,7 +49,9 @@
       ==
     ?~  src=(~(get by deps.bowl) %src)
       ;div: 404
-    =/  root=idea:neo  (~(got of:neo q.u.src) /)
+    ?~  rot=(~(get of:neo q.u.src) /)
+      ;div: 404
+    =/  root=idea:neo  u.rot
     ?>  =(%htmx p.pail.root)
     =/  bol  *bowl:neo
     =.  here.bol  p.u.src

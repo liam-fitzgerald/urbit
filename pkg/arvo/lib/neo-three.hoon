@@ -1,10 +1,12 @@
 /-  neo
 ~%  %neo-three  ..part  ~
 |%
+++  cache-flag  `?`|
 ++  neo  ^neo
 ++  n  neo
 +$  case  @ud
 ++  of  of:neo
+++  aon  aon:neo
 ++  or  or:neo
 ++  u
   ~%  %u  ..u  ~
@@ -64,10 +66,7 @@
   +$  ever  ever:neo
   ++  axal  axal:neo
   +$  zion  (axal fern)
-  +$  over
-    $:  =ever:neo
-        code=vase
-    ==
+  +$  over  [rift=@ case=@]
   +$  hunt  hunt:neo
   +$  saga  saga:neo
   +$  stud  stud:neo
@@ -107,7 +106,7 @@
         ::
           [%shun =hunt]  :: stop listening to changes
         ::
-          [%note =pith =note] :: deliver external note
+          [%bush =move:bush] :: deliver external note
         ::
           [%drip ~]
         ::
@@ -150,21 +149,37 @@
     ++  on    ((^on case data) lte)
     +$  dirt  ((mop case data) lte)
     --
+  +$  land
+    $+  land
+    $:  exe=mire
+        why=moss
+        zed=moss
+        parent=pith:n
+        kids=soul
+        now=over
+        latest=[why=@ud zed=@ud]
+        exists=_&
+    ==
+  ::  [rift [start=case end=case]] -> (unit dirt)
+  ::
+  ::  loam -> case 
+  ::  loam -> rift 
+  ::
+  ::
   ++  loam  (mip:neo (unit dirt))
   ::  $soil: pith to dirt
   +$  soil  (axal:neo loam)
   ::  $soul: shape of children
   ::
-  +$  soul  (map pith @ud)
+  +$  soul  (map pith:neo @ud)
   ::  +body: Mapping from a dare case to shape of children
-  ++  body 
-    =<  body
+  ++  moss 
+    =<  moss
     |%
     ++  on   ((^on case soul) lte)
-    +$  body  ((mop case soul) lte)    
+    +$  moss  ((mop case soul) lte)    
     --
   ::  $moss: mapping from path to children history
-  +$  moss  (axal:neo body)
   ::  $mire: mapping from x case to dare cases
   ++  mire
     =<  mire
@@ -172,13 +187,13 @@
     ++  on    ((^on case (set case)) lte)
     ++  mire  ((mop case (set case)) lte)
     --
-  +$  peat  (axal:neo mire)
+  +$  plot  (axal:neo land)
+  +$  issue  (axal:neo pith:neo)
   +$  farm
     $:  our=ship
         =soil
-        exe=peat
-        why=moss
-        zed=moss
+        =plot
+        bump=[why=(axal ~) zed=(axal ~)]
     ==
   +$  seed  (axal:neo note)
   +$  muck  (axal:neo tale:neo)
@@ -325,15 +340,19 @@
       %+  print-ln-raw:e  1
       %-  en-tape:pith:neo 
       pith 
-    =.  e  (body:e %y (~(gut of why.f) pith *body:t))
-    =.  e  (body:e %z (~(gut of zed.f) pith *body:t))
+    =.  e  
+      =/  l  (~(get of plot.f) pith)
+      ?~  l
+        (print-ln:e "Weird, no land") 
+      (land:e u.l)
     (loam:e l)
-  ::
-  ++  body
-    |=  [kind=?(%y %z) b=body:t]
+  ++  land
+    |=  l=land:t
     ^+  etch
-    =/  [key=@ *]  (need (ram:on:body:t b))
-    (print-ln "{<kind>} case {(scow %ud key)}")
+    =.  etch  
+      (print-ln "%y {(scow %ud why.latest.l)}, %z {(scow %ud zed.latest.l)}")
+    etch :: (print-ln <kids.l>)
+  ::
   ++  loam-verb  `?`&
   ::
   ++  loam
@@ -364,370 +383,580 @@
     =.  e  (print-ln:e "value for version: {(scow %ud case)}:")
     untab:(print-vase:tab:e q.pail.data)
   --
+++  sow
+  |=  [=loam:t =tale:n]
+  ^-  [=over:t loam:t]
+  =/  las=(unit [=span:n dir=(unit dirt:t)])  
+    ~(last-raw or loam)
+  =/  =data:t  [*oath:n *gang:t q.tale p.tale]
+  ?~  las
+    =/  =over:t  [1 1]
+    =/  =dirt:t  (put:on:dirt:t *dirt:t 1 data)
+    [over (~(put or loam) [1 1 1] `dirt)]
+  =/  new=@ud  +(r.span.u.las)
+  ?~  dir.u.las
+    =/  =dirt:t  (put:on:dirt:t *dirt:t new data)
+    =/  =over:t  [+(k.span.u.las) new]
+    [over (~(put or loam) [rift case case]:over `dirt)]
+  =.  u.dir.u.las  (put:on:dirt:t u.dir.u.las new data)
+  =.  r.span.u.las  new
+  =/  =over:t  [k.span.u.las r.span.u.las]
+  [over (~(put or loam) span.u.las `u.dir.u.las)]
 ::
-++  plow
-  ~%  %plow  +>   ~
-  |_  farm:t
-  +*  farm  +<
+++  nu-plow
+  =|  why-dirty=(map pith:n @ud)
+  ~%  %nu-plow  ..nu-plow   ~
+  |_  =farm:t
   ++  scry
     ~/  %scry
-    |=  [=hunt:neo =case]
+    |=  [=hunt:neo =case:neo]
     ^-  (unit epic:neo)
-    :: =/  =name:neo  (de-pith:name:neo pith.hunt)
-    =/  is-our=?  &
-    ?+  care.hunt  ~ :: XX: wrong deal with abc
-      %x  (read-x pith.hunt case)
-      %y  (read-y pith.hunt case)
-      %z  (read-z pith.hunt case)
-    ==
-  ++  apt
-    ^-  ?
-    &(apt-y apt-z)
-  ++  apt-z  &
-  ++  apt-y
-    ^-  ?
-    %+  roll  ~(tap of why.farm)
-    |=  [[=pith:n =body:t] out=_&]
-::  ?.  out
-::    out
-    =/  bod=?  (apt-body %y body)
-    ?.  bod
-      ~&  mismatch/pith
-      bod
-    &(bod out)
-  ::
-  ++  apt-body
-    |=  [kind=?(%y %z) =body:t]
-    %+  levy  (tap:on:body:t body)
-    |=  [case=@ud =soul:t]
-    =;  exp=@ud
-      ~?   !=(exp case)
-        mismatch/[exp=exp case=case]
-      =(exp case)
-    (roll ~(val by soul) add)
-  ::
-  ++  lift
-    ~/  %lift
-    |=  =data:t
-    ^-  saga:neo
-    =/  =aeon:neo
-      [*ever:neo oath.data]
-    [aeon poem.data pail.data]
-  ::
-  ++  wrap
-    ~/  %wrap
-    =|  =epic:neo
-    |=  ls=(list [=pith:neo =data:t])
-    ^+  epic
-    ?~  ls
-      epic
-    =/  =saga:neo  (lift data.i.ls)
-    $(epic (~(put of epic) pith.i.ls saga), ls t.ls)
-  ++  not-found
-    ^-  (unit (unit saga:neo))
-    [~ ~]
-  ++  mystery
-    ^-  (unit (unit saga:neo))
-    ~
-  ++  read-x
-    ~/  %read-x
-    |=  [p=pith:neo =case]
-    ^-  (unit epic:neo)
-    =/  res  (read-x-raw p case)
-    ?-  res
-      ~         ~
-      [~ ~]    `*epic:neo
-      [~ ~ *]  `(~(put of *epic:neo) / u.u.res)
-    ==
-  ++  read-x-raw
-    ~/  %read-x-raw
-    |=  [pit=pith:neo cas=@ud]
-    ^-  (unit (unit saga:neo))
-    ?~  lom=(~(get of soil) pit)
-      mystery
-    ?~  dir=(~(wit or u.lom) cas)
-      mystery
-    ?~  u.dir
-      not-found
-    ?^  ver=(get:on:dirt:t u.u.dir cas)
-      ``(lift u.ver)
-    ?~  lat=(ram:on:dirt:t u.u.dir)
-      ~
-    ?:  (lte cas key.u.lat)
-      not-found
-    ~
-  ::
-  ++  read-y
-    ~/  %read-y
-    |=  [p=pith:neo =case]
-    ^-  (unit epic:neo)
-    ::  /foo/bar <- pith.hunt
-    ::  /foo  <- pith
-    ::  /foo/bar/baz
-    =/  [=pith:n bod=(unit body:t)]
-      (~(fit of why) p)
-    ?~  bod
-      ~
-    =/  pfix  (dif:pith:n p pith)
-    ?~  sol=(get:on:body:t u.bod case)
-      ~
-    :-  ~
-    =-  (~(dip of -) pfix)
-    %-  ~(gas of *epic:neo)
-    %+  murn  ~(tap by u.sol)
-    |=  [kid=pith:neo cas=@ud]
-    =.  kid  (welp pfix kid)
-    ?~  res=(need (read-x-raw kid cas))
-      ~
-    `[kid u.res]
-  ::
-  ++  read-z
-    ~/  %read-z
-    |=  [p=pith:neo =case]
-    ^-  (unit epic:neo)
-    ?~  bod=(~(get of zed) p)
-      ~
-    ?~  sol=(get:on:body:t u.bod case)
-      ~
-    :-  ~
-    %-  ~(gas of *epic:neo)
-    %+  murn  ~(tap by u.sol)
-    |=  [=pith:neo cas=@ud]
-    ?~  res=(need (read-x-raw pith cas))
-      ~
-    `[pith u.res]
-  ++  look
-    ~/  %look
-    |=  =hunt:neo
-    =/  =case:neo
-      (get-case hunt)
-    (scry hunt (get-case hunt))
-  ::
-  ++  get-case
-    ~/  %get-case
-    |=  =hunt:neo
-    ^-  @ud
-    ?-    care.hunt
-        ?(%x %a)
-      ?~  lom=(~(get of soil) pith.hunt)
-        0
-      ?~  san=~(last or u.lom)
-        0
-      ?~  dir=(~(got or u.lom) k.u.san)
-        l.u.san
-      =/  [key=@ *]  (need (ram:on:dirt:t u.dir))
-      key
-    ::
-        ?(%y %b)
-      =/  [=pith:n bod=(unit body:t)]
-        (~(fit of why) pith.hunt)
-      ?~  bod
-        0
-      key:(need (ram:on:body:t u.bod))
-    ::
-        ?(%z %c)
-      =/  [=pith:n bod=(unit body:t)]
-        (~(fit of zed) pith.hunt)
-      ?~  bod
-        0
-      key:(need (ram:on:body:t u.bod))
-    ==
-  ::
+    !!
   ++  plant
     ~/  %plant
     |=  =seed:t
-    =/  ls   ~(sap of seed)
+    =/  ls   
+      ~(tap of seed)
+      :: ~(sap of seed)
+    ~&  lent/(lent ls)
+    ~>  %bout.[1 %plant]
     |-  ^+  farm
     ?~  ls 
-      =.  farm  (till %y)
-      (till %z)
-    $(farm (call i.ls), ls t.ls)
-  ++  get-why
-    ^-  [@ud soul:t]
-    :: =/  plot  
-    =/  plot  ~(snip of soil.farm)
-    |-  
-    =/  have
-      ^-  (list [pith:neo @ud])
-      %+  turn  ~(tap of plot)
-      |=  [=pith:neo *]
-      ^-  [pith:n @ud]
-      [pith (get-case %x pith)]
-    :_  (~(gas by *soul:t) have)
-    %+  roll  have
-    |=  [[=pith:neo case=@ud] out=@ud]
-    (add out case)
-  ++  get-zed
-    ^-  [@ud soul:t]
-    =/  plot  soil.farm
-    =/  have
-      ^-  (list [pith:neo @ud])
-      %+  turn  ~(tap of plot)
-      |=  [=pith:neo *]
-      ^-  [pith:n @ud]
-      [pith (get-case %x pith)]
-    :_  (~(gas by *soul:t) have)
-    %+  roll  have
-    |=  [[=pith:neo case=@ud] out=@ud]
-    (add out case)
-  ++  rep
-    ~/  %rep
-    |=  [=pith f=farm:t]
-    ^+  farm
-    %_  farm
-      soil  (~(rep of soil.farm) pith soil.f)
-      exe   (~(rep of exe.farm) pith exe.f)
-      why   (~(rep of why.farm) pith why.f)
-      zed   (~(rep of zed.farm) pith zed.f)
-    ==
-  ++  dip
-    ~/  %dip
-    |=  =pith
-    %_  farm
-      soil  (~(dip of soil.farm) pith)
-      exe   (~(dip of exe.farm) pith)
-      why   (~(dip of why.farm) pith)
-      zed   (~(dip of zed.farm) pith)
-    ==
-
-    
-  ::  +till: update dares
-  ::
-  ::    XX: potentially wrong if updates do not come in order 
-  ++  till
-    ~/  %till
-    =|  here=pith:n
-    |=  kind=?(%y %z)
-    =*  loop  $
-    ^+  farm 
-    =/  [dare=@ud =soul:t]
-      ?:  =(kind %y)
-        get-why
-      get-zed
-    =/  =body:t
-      ?:  =(kind %y)
-        (~(gut of why.farm) / *body:t)
-      (~(gut of zed.farm) / *body:t)
-    =.  body  (put:on:body:t body dare soul)
-    =.  farm
-      ?:  =(kind %y)
-        farm(why (~(put of why.farm) / body))
-      farm(zed (~(put of zed.farm) / body))
-    =/  kid   ~(tap in ~(key by kid.soil.farm))
-    |-
-    ?~  kid
+      ~!  farm
+      =.  plot.farm  (handle-why why.bump.farm plot.farm)
+      =.  plot.farm  (handle-zed zed.bump.farm plot.farm)
+      :: ~&  plot.farm
+      =.  bump.farm  [~^~ ~^~]
       farm
-    =.  farm  (rep ~[i.kid] loop(here (snoc here i.kid), farm (dip ~[i.kid])))
-    $(kid t.kid)
-  ::
+    $(farm (call i.ls), ls t.ls)
   ++  call
     ~/  %call
     |=  [=pith:neo not=note:t]
     ^+  farm
     ?-  -.not
-      %grow  (grow pith +.not)
-      %cull  (cull pith +.not)
+      %grow  (grow pith poem.not pail.not)
+      %cull  farm :: !! ::(cull pith +.not)
     ==
+  ::
+  ++  sully
+    ~/  %sully
+    |=  [parent=pith:neo =pith:neo]
+    ^+  bump.farm
+    =.  why.bump.farm   (~(put of why.bump.farm) pith ~)
+    =.  why.bump.farm   (~(put of why.bump.farm) parent ~)
+    =.  zed.bump.farm   (~(put of zed.bump.farm) pith ~)
+    bump.farm
+  ++  handle-why
+    ~/  %handle-why
+    |=  [change=(axal:n ~) =plot:t]
+    ~>  %bout.[1 %handle-why]
+    ^-  plot:t
+    !.
+    |-  =*  loop  $
+    =?  fil.plot  &(?=(^ fil.plot) ?=(^ fil.change))
+      =/  =land:t  u.fil.plot
+      =/  =soul:t  (~(put by kids.land) / case.now.land)
+      =/  race=@ud  (roll ~(val by soul) add)
+      `land(why (put:on:moss:t why.land race soul), why.latest race)
+    =/  kids=(list [=iota ax=(axal:neo ~)])
+      ~(tap aon kid.change)
+    |- 
+    ?~  kids
+      plot
+    =/  nex=(unit plot:t)
+      (~(get aon kid.plot) iota.i.kids)
+    %_    $
+        kids  t.kids
+        kid.plot
+      ?~  nex  kid.plot
+      =/  new   
+        loop(change ax.i.kids, plot u.nex)
+      (~(put aon kid.plot) iota.i.kids new)
+      
+    ==
+  ++  handle-zed
+    ~/  %handle-zed
+    |=  [change=(axal:n ~) =plot:t]
+    ^-  plot:t
+    ~>  %bout.[1 %handle-zed]
+    !.
+    |-  =*  loop  $
+    =/  kids  ~(tap by kid.change)
+    |-  
+    ?^  kids
+      %_    $
+          kids  t.kids
+          kid.plot 
+        ?~  nex=(~(get aon kid.plot) -.i.kids)
+          kid.plot
+        %+  ~(put aon kid.plot)  -.i.kids
+        loop(plot u.nex, change +.i.kids)
+      ==
+    =?  fil.plot  ?=(^ fil.plot)
+      =/  =land:t  u.fil.plot
+      =/  =soul:t  kids.land 
+      =.  soul
+        %-  ~(urn by (~(put by soul) / case.now.land))
+        |=  [p=pith:neo cas=@]
+        ^-  @ud
+        =/  lan=(unit land:t)   
+          =>  .(plot `plot:t`plot)
+          (~(get of plot) p)
+        why.latest:(fall lan *land:t)
+      =/  race=@ud  (roll ~(val by soul) add)
+      `land(zed.latest race, zed (put:on:moss:t zed.land race soul))
+    plot
+  ::
   ++  grow
     ~/  %grow
-    |=  $:  =pith
-            cas=(unit (pair rift case))
-            =pail:neo
-            =poem:neo
-        ==
-    ::  XX: check manual casing if foreign ship
-    ^+  farm
-    ?^  cas
-      (grow-at pith u.cas pail poem)
-    ?~  lom=(~(get of soil) pith)
-      =/  [rest=pith:n bod=(unit body:t)]
-        (~(fit of zed) pith)
-      =/  pfix  (scag (sub (lent pith) (lent rest)) pith)
+    |=  [=pith:neo =tale:neo]
+    :: ~>  %bout.[1 (crip "%grow: {(en-tape:pith:n pith)}")]
+    =/  lot      (~(dip of plot.farm) pith)
+    =/  =land:t  (fall fil.lot *land:t)
+    =/  =loam:t  (~(gut of soil.farm) pith *loam:t)
+    =^  =over:t  loam  
+      (sow loam tale)
+    =.  soil.farm  (~(put of soil.farm) pith loam)
+    =.  now.land  over  
+    =.  exists.land  &
+    ?.  =(1 rift.over)
+      =/  sfix  (slag (lent parent.land) pith)
+      =/  parent=land:t  (~(got of plot.farm) parent.land)
+      =.  kids.parent  (~(put by kids.parent) sfix case.over)
+      =.  plot.farm  (~(put of plot.farm) parent.land parent)
 
-      =;  wen=(pair @ud @ud)
-        ::  never bound before
-        (grow-at pith wen pail poem)
-      :-  1
-      ?~  bod  1
-      .+
-      =/  [@ud =soul:t]  (need (ram:on:body:t u.bod))
-      %+  roll  ~(tap by soul)
-      |=  [[kid=pith:n case=@ud] out=@ud]
-      ^-  @ud
-      :: ~&  checking/[pfix=pfix kid=kid par=par pith=pith]
-      ?.  (is-parent:u rest kid)
-        out
-      (add out case)
-    ?~  las=~(last or u.lom)
-      ~&  weird-empty-loam/pith
-      (grow-at pith [1 1] pail poem)
-    ?~  dir=(~(got or u.lom) k.u.las)
-      ::  binding over empty, inc breach
-      =/  [=rift =case]   [+(k.u.las) r.u.las]
-      (grow-at pith [rift case] pail poem)
-    ?~  cas=(ram:on:dirt:t u.dir)
-      ~|  weird-empty-dirt/pith
-      !!
-    ::  binding over normal, no breach
-    ::  XX: enforce that =((~(uni in new-poke) old-poke) new-poke)
-    (grow-at pith [k.u.las +(key.u.cas)] pail poem)
-  ::
-  ++  grow-at
-    ~/  %grow-at
-    |=  $:  =pith
-            at=(pair rift case)
-            =pail:neo
-            =poem:neo
-        ==
-    ^+  farm
-    =/  =data:t  [=oath:neo & pail poem]
-    =/  =loam:t  (fall (~(get of soil) pith) *loam:t)
-    =/  [=span:neo =dirt:t]
-      =/  res  (~(gat or loam) p.at)
-      ?~  res 
-        [[p.at q.at 0] *dirt:t]
-      ?~  q.u.res
-        ~|  %weird-case-overwriting-culled
-        !!
-      [p u.q]:u.res
-    =.  dirt  (put:on:dirt:t dirt q.at data)
-    =.  loam
-      (~(put or loam) [span `dirt])
-    =.  soil  (~(put of soil) pith loam)
-    farm
-  ::
-  ++  cull
-    ~/  %cull
-    |=  [=pith:neo rif=(unit rift)]
-    ^+  farm
-    %+  cull-at  pith
-    ?^  rif
-      u.rif
-    ::  XX: this path should only be hit in local ship case, XX:
-    ::  assert
-    ?~  lom=(~(get of soil) pith)
-      ~|  weird-cull-nothing/pith
-      mean:(farm:etch farm)
-    +(~(wyt or u.lom))
-  ::
-  ++  cull-at
-    ~/  %cull-at
-    |=  [=pith:neo =rift]
-    ^+  farm
-    ?~  lom=(~(get of soil) pith)
-      ~|  weird-cull-nothing/pith
-      !!
-    ?:  (lte rift 1)
-      ~|  weird-cull-rift/[pith rift]
-      !!
-    ?~  dir=(~(got or u.lom) (dec rift))
-      ~|  useless-cull/[pith rift]
-      !!
-    ?~  las=(ram:on:dirt:t u.dir)
-      ~|  cull-empty-dirt/[pith rift]
-      !!
-    =.  u.lom  (~(snoc or u.lom) rift +(key.u.las) ~)
-    =.  soil  (~(put of soil) pith u.lom)
-    farm
+      farm(bump (sully parent.land pith), plot (~(put of plot.farm) pith land))
+    :: XX: handle adoption case
+    =.  parent.land 
+      =/  lot  plot.farm
+      =/  left=pith:n  pith
+      =/  cur=pith:n  /
+      =/  res=pith:n  /
+      |-  
+      ?~  left  res
+      =.  res
+        ?~  fil.lot  res
+        ?.  exists.u.fil.lot  res
+        cur
+      =/  nex=(unit plot:t)  (~(get aon:n kid.lot) i.left)
+      ?~  nex
+         res
+      $(cur (snoc cur i.left), lot u.nex, left t.left)
+    =/  parent=land:t  (~(got of plot.farm) parent.land)
+::  =/  is-adopting
+::      %+  lien  ~(tap by kids.parent)
+::      =/  pfix  (slag (lent parent.land) pith)
+::      |=  [p=pith:n *]  (is-parent:u pfix p)
+::  ~?  is-adopting
+::    adopt/[parent.land pith]
+    =/  sfix  (slag (lent parent.land) pith)
+    =.  kids.parent  (~(put by kids.parent) sfix case.over)
+    =.  plot.farm  (~(put of plot.farm) parent.land parent)
+    farm(bump (sully parent.land pith), plot (~(put of plot.farm) pith land))
   --
+::
+::  plow
+::=|  dirty=(set pith:n)
+::~%  %plow  ..plow   ~
+::|_  farm:t
+::+*  farm  +<
+::++  scry
+::  ~/  %scry
+::  |=  [=hunt:neo =case]
+::  ^-  (unit epic:neo)
+::  :: =/  =name:neo  (de-pith:name:neo pith.hunt)
+::  =/  is-our=?  &
+::  ?+  care.hunt  ~ :: XX: wrong deal with abc
+::    %x  (read-x pith.hunt case)
+::    %y  (read-y pith.hunt case)
+::    %z  (read-z pith.hunt case)
+::  ==
+::++  apt
+::  ^-  ?
+::  &(apt-y apt-z)
+::++  apt-z  &
+::++  apt-y
+::  ^-  ?
+::  %+  roll  ~(tap of why.farm)
+::  |=  [[=pith:n =body:t] out=_&]
+::  ?.  out
+::    out
+::  =/  bod=?  (apt-body %y body)
+::  ?.  bod
+::    ~&  mismatch/pith
+::    bod
+::  &(bod out)
+::::
+::++  apt-body
+::  |=  [kind=?(%y %z) =body:t]
+::  %+  levy  (tap:on:body:t body)
+::  |=  [case=@ud =soul:t]
+::  =;  exp=@ud
+::    ~?   !=(exp case)
+::      mismatch/[exp=exp case=case]
+::    =(exp case)
+::  (roll ~(val by soul) add)
+::::
+::++  lift
+::  ~/  %lift
+::  |=  =data:t
+::  ^-  saga:neo
+::  =/  =aeon:neo
+::    [*ever:neo oath.data]
+::  [aeon poem.data pail.data]
+::::
+::++  wrap
+::  ~/  %wrap
+::  =|  =epic:neo
+::  |=  ls=(list [=pith:neo =data:t])
+::  ^+  epic
+::  ?~  ls
+::    epic
+::  =/  =saga:neo  (lift data.i.ls)
+::  $(epic (~(put of epic) pith.i.ls saga), ls t.ls)
+::++  not-found
+::  ^-  (unit (unit saga:neo))
+::  [~ ~]
+::++  mystery
+::  ^-  (unit (unit saga:neo))
+::  ~
+::++  read-x
+::  ~/  %read-x
+::  |=  [p=pith:neo =case]
+::  ^-  (unit epic:neo)
+::  =/  res  (read-x-raw p case)
+::  ?-  res
+::    ~         ~
+::    [~ ~]    `*epic:neo
+::    [~ ~ *]  `(~(put of *epic:neo) / u.u.res)
+::  ==
+::++  read-x-raw
+::  ~/  %read-x-raw
+::  |=  [pit=pith:neo cas=@ud]
+::  ^-  (unit (unit saga:neo))
+::  ?~  lom=(~(get of soil) pit)
+::    mystery
+::  ?~  dir=(~(wit or u.lom) cas)
+::    mystery
+::  ?~  u.dir
+::    not-found
+::  ?^  ver=(get:on:dirt:t u.u.dir cas)
+::    ``(lift u.ver)
+::  ?~  lat=(ram:on:dirt:t u.u.dir)
+::    ~
+::  ?:  (lte cas key.u.lat)
+::    not-found
+::  ~
+::::
+::++  read-y
+::  ~/  %read-y
+::  |=  [p=pith:neo =case]
+::  ^-  (unit epic:neo)
+::  ::  /foo/bar <- pith.hunt
+::  ::  /foo  <- pith
+::  ::  /foo/bar/baz
+::  =/  [=pith:n bod=(unit body:t)]
+::    (~(fit of why) p)
+::  ?~  bod
+::    ~
+::  =/  pfix  (dif:pith:n p pith)
+::  ?~  sol=(get:on:body:t u.bod case)
+::    ~
+::  :-  ~
+::  =-  (~(dip of -) pfix)
+::  %-  ~(gas of *epic:neo)
+::  %+  murn  ~(tap by u.sol)
+::  |=  [kid=pith:neo cas=@ud]
+::  =.  kid  (welp pfix kid)
+::  ?~  res=(read-x-raw kid cas)
+::    ~&  weird-x/[kid cas]
+::    ~
+::  ?~  u.res
+::    ~
+::  `[kid u.u.res]
+::::
+::++  read-z
+::  ~/  %read-z
+::  |=  [p=pith:neo =case]
+::  ^-  (unit epic:neo)
+::  ::  /foo/bar <- pith.hunt
+::  ::  /foo  <- pith
+::  ::  /foo/bar/baz
+::  =/  [=pith:n bod=(unit body:t)]
+::    (~(fit of zed) p)
+::  ?~  bod
+::    ~
+::  =/  pfix  (dif:pith:n p pith)
+::  ?~  sol=(get:on:body:t u.bod case)
+::    ~
+::  :-  ~
+::  =-  (~(dip of -) pfix)
+::  %-  ~(gas of *epic:neo)
+::  %+  murn  ~(tap by u.sol)
+::  |=  [kid=pith:neo cas=@ud]
+::  =.  kid  (welp pfix kid)
+::  ?~  res=(read-x-raw kid cas)
+::    ~&  weird-x/[kid cas]
+::    ~
+::  ?~  u.res
+::    ~
+::  `[kid u.u.res]
+::++  look
+::  ~/  %look
+::  |=  =hunt:neo
+::  ^-  (unit epic:neo)
+::  (scry hunt (get-case hunt))
+::  ?~  now
+::    og
+::  =;  cached=(unit epic:neo)
+::    ?.  |(=(og ~) =(cached ~) =(cached og))
+::      ^-  (unit epic:neo)
+::      %-  print:(epic:etch (need og))
+::      %-  print:(epic:etch (need cached))
+::      ^-  (unit epic:neo)
+::      !!
+::    cached
+::  =/  res  (~(dip of u.now) pith.hunt)
+::  ?+  care.hunt  !!
+::    %x  `res(kid ~)
+::    %y  `~(snip of res)
+::    %z  `res
+::  ==
+::::
+::++  get-case
+::  ~/  %get-case
+::  |=  =hunt:neo
+::  ^-  @ud
+::  ?-    care.hunt
+::      ?(%x %a)
+::    ?~  lom=(~(get of soil) pith.hunt)
+::      0
+::    ?~  san=~(last or u.lom)
+::      0
+::    ?~  dir=(~(got or u.lom) k.u.san)
+::      l.u.san
+::    =/  [key=@ *]  (need (ram:on:dirt:t u.dir))
+::    key
+::  ::
+::      ?(%y %b)
+::    =/  [=pith:n bod=(unit body:t)]
+::      (~(fit of why) pith.hunt)
+::    ?~  bod
+::      0
+::    key:(need (ram:on:body:t u.bod))
+::  ::
+::      ?(%z %c)
+::    =/  [=pith:n bod=(unit body:t)]
+::      (~(fit of zed) pith.hunt)
+::    ?~  bod
+::      0
+::    key:(need (ram:on:body:t u.bod))
+::  ==
+::::
+::++  plant
+::  ~/  %plant
+::  |=  =seed:t
+::  =/  ls   ~(sap of seed)
+::  |-  ^+  farm
+::  ?~  ls 
+::    =.  farm  (till %y)
+::    (till %z)
+::  $(farm (call i.ls), ls t.ls)
+::++  bump-case
+::  |=  [=pith:n cas=@ud]
+::  =/  res=@  (max cas (~(gut of plot.farm) pith 0))
+::  ?:  =(res max)
+::    farm
+::  farm(plot (~(put of plot.farm) pith res))
+::::
+::++  get-why
+:: ::  ~>  %bout.[1 %get-why]
+::  ^-  [@ud soul:t]
+::  :: =/  plot  
+::  =/  plot  ~(snip of plot.farm)
+::  |-  
+::  =/  have  ~(tap of plot)
+::  :_  (~(gas by *soul:t) have)
+::  %+  roll  have
+::  |=  [[=pith:neo case=@ud] out=@ud]
+::  (add out case)
+::++  get-zed
+::::  ~>  %bout.[1 %get-zed]
+::  ^-  [@ud soul:t]
+::  =/  have  ~(tap of plot.farm)
+::  :_  (~(gas by *soul:t) have)
+::  %+  roll  have
+::  |=  [[=pith:neo case=@ud] out=@ud]
+::  (add out case)
+::++  rep
+::  ~/  %rep
+::  |=  [=pith f=farm:t]
+::  ^+  farm
+::  %_  farm
+::    soil  (~(rep of soil.farm) pith soil.f)
+::    exe   (~(rep of exe.farm) pith exe.f)
+::    why   (~(rep of why.farm) pith why.f)
+::    zed   (~(rep of zed.farm) pith zed.f)
+::    plot  (~(rep of plot.farm) pith plot.f)
+::    now   ?~(now ~ ?~(now.f ~ `(~(rep of u.now) pith u.now.f)))
+::  ==
+::++  dip
+::  ~/  %dip
+::  |=  =pith
+::  %_  farm
+::    soil  (~(dip of soil.farm) pith)
+::    exe   (~(dip of exe.farm) pith)
+::    why   (~(dip of why.farm) pith)
+::    zed   (~(dip of zed.farm) pith)
+::    plot  (~(dip of plot.farm) pith)
+::    now   ?~(now ~ `(~(dip of u.now) pith))
+::  ==
+::::  +till: update dares
+::::
+::++  till
+::  ~/  %till
+::  |=  kind=?(%y %z)
+::  ~>  %bout.[1 %till]
+::  |-  =*  loop  $
+::  ^+  farm 
+::  =/  [dare=@ud =soul:t]
+::    ?:  =(kind %y)
+::      get-why
+::    get-zed
+::  =/  =body:t
+::    ?:  =(kind %y)
+::      (~(gut of why.farm) / *body:t)
+::    (~(gut of zed.farm) / *body:t)
+::  =.  body  (put:on:body:t body dare soul)
+::  =.  farm
+::    ?:  =(kind %y)
+::      farm(why (~(put of why.farm) / body))
+::    farm(zed (~(put of zed.farm) / body))
+::  =/  kid   ~(tap in ~(key by kid.soil.farm))
+::  !.
+::  |-
+::  ?~  kid
+::    farm
+::  =.  farm  (rep ~[i.kid] loop(farm (dip ~[i.kid])))
+::  $(kid t.kid)
+::::
+::++  call
+::  ~/  %call
+::  |=  [=pith:neo not=note:t]
+::  ^+  farm
+::  ?-  -.not
+::    %grow  (grow pith +.not)
+::    %cull  (cull pith +.not)
+::  ==
+::++  grow
+::  ~/  %grow
+::  |=  $:  =pith
+::          cas=(unit (pair rift case))
+::          =pail:neo
+::          =poem:neo
+::      ==
+::  ::  XX: check manual casing if foreign ship
+::  ^+  farm
+::  ?^  cas
+::    (grow-at pith u.cas pail poem)
+::  =.  dirty  (~(put in dirty) pith)
+::  ?~  lom=(~(get of soil) pith)
+::    =/  [rest=pith:n bod=(unit body:t)]
+::      (~(fit of zed) pith)
+::    =/  pfix  (scag (sub (lent pith) (lent rest)) pith)
+
+::    =;  wen=(pair @ud @ud)
+::      ::  never bound before
+::      (grow-at pith wen pail poem)
+::    :-  1
+::    ?~  bod  1
+::    .+
+::    =/  [@ud =soul:t]  (need (ram:on:body:t u.bod))
+::    %+  roll  ~(tap by soul)
+::    |=  [[kid=pith:n case=@ud] out=@ud]
+::    ^-  @ud
+::    :: ~&  checking/[pfix=pfix kid=kid par=par pith=pith]
+::    ?.  (is-parent:u rest kid)
+::      out
+::    (add out case)
+::  ?~  las=~(last or u.lom)
+::    ~&  weird-empty-loam/pith
+::    (grow-at pith [1 1] pail poem)
+::  ?~  dir=(~(got or u.lom) k.u.las)
+::    ::  binding over empty, inc breach
+::    =/  [=rift =case]   [+(k.u.las) r.u.las]
+::    (grow-at pith [rift case] pail poem)
+::  ?~  cas=(ram:on:dirt:t u.dir)
+::    ~|  weird-empty-dirt/pith
+::    !!
+::  ::  binding over normal, no breach
+::  ::  XX: enforce that =((~(uni in new-poke) old-poke) new-poke)
+::  (grow-at pith [k.u.las +(key.u.cas)] pail poem)
+::::
+::++  grow-at
+::  ~/  %grow-at
+::  |=  $:  =pith
+::          at=(pair rift case)
+::          =pail:neo
+::          =poem:neo
+::      ==
+::  ^+  farm
+::  =.  farm  (bump-case pith q.at)
+::  =/  =data:t  [=oath:neo & pail poem]
+::  =/  =loam:t  (fall (~(get of soil) pith) *loam:t)
+::  =/  [=span:neo =dirt:t]
+::    =/  res  (~(gat or loam) p.at)
+::    ?~  res 
+::      [[p.at q.at 0] *dirt:t]
+::    ?~  q.u.res
+::      ~|  %weird-case-overwriting-culled
+::      !!
+::    [p u.q]:u.res
+::  =.  dirt  (put:on:dirt:t dirt q.at data)
+::  =.  loam
+::    (~(put or loam) [span `dirt])
+::  =.  soil  (~(put of soil) pith loam)
+::  farm
+::::
+::++  cull
+::  ~/  %cull
+::  |=  [=pith:neo rif=(unit rift)]
+::  ^+  farm
+::  ?^  rif
+::    (cull-at pith u.rif)
+::  =.  dirty  (~(put in dirty) pith)
+::  =.  now  
+::    ?.  cache-flag  ~
+::    ?~  now  ~
+::    :-  ~
+::    (~(del of u.now) pith)
+::  %+  cull-at  pith
+::  ::  XX: this path should only be hit in local ship case, XX:
+::  ::  assert
+::  ?~  lom=(~(get of soil) pith)
+::    ~|  weird-cull-nothing/pith
+::    mean:(farm:etch farm)
+::  +(~(wyt or u.lom))
+::::
+::++  cull-at
+::  ~/  %cull-at
+::  |=  [=pith:neo =rift]
+::  ^+  farm
+::  ?~  lom=(~(get of soil) pith)
+::    ~|  weird-cull-nothing/pith
+::    !!
+::  ?:  (lte rift 1)
+::    ~|  weird-cull-rift/[pith rift]
+::    !!
+::  ?~  dir=(~(got or u.lom) (dec rift))
+::    ~|  useless-cull/[pith rift]
+::    !!
+::  ?~  las=(ram:on:dirt:t u.dir)
+::    ~|  cull-empty-dirt/[pith rift]
+::    !!
+::  =.  farm  (bump-case pith +(key.u.las))
+::  =.  u.lom  (~(snoc or u.lom) rift +(key.u.las) ~)
+::  =.  soil  (~(put of soil) pith u.lom)
+::  farm
+::--
 --
