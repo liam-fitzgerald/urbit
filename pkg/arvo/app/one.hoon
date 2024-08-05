@@ -263,6 +263,7 @@
   ^+  run
   ?+    pole  ~|(on-peer-weird/pole !!)
   ::
+      [%sole *]  run
       [%http-response *]  run
 
       [%yuga rest=*]  run

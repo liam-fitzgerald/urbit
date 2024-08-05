@@ -106,7 +106,7 @@
   =>  .(muc `(unit muck:n)`muc)
   ~|  ~(key by ~(tar of soil.farm.mien))
   =/  =epic:n
-    (fall (look:plow [%z /]) *epic:n)
+    (look:plow [%z /])
   =;  =muck:n
     =.  muc  `muck
     [muck this]

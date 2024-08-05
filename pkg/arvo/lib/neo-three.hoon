@@ -477,6 +477,18 @@
   =.  r.span.u.las  new
   =/  =over:t  [k.span.u.las r.span.u.las]
   [over (~(put or loam) span.u.las `u.dir.u.las)]
+++  die
+  |=  =loam:t
+  ^-  [=over:t loam:t]
+  =/  las=(unit [=span:n dir=(unit dirt:t)])  
+    ~(last-raw or loam)
+  ?~  las
+    !!
+  =/  new=@ud  +(r.span.u.las)
+  ?~  dir.u.las
+    !!
+  =/  =over:t  [+(k.span.u.las) new]
+  [over (~(put or loam) [rift case case]:over ~)]
 ::
 ++  plow
   ~%  %plow  ..plow   ~
@@ -595,14 +607,19 @@
     ~/  %look
     |=  =hunt:neo
     ~>  %bout.[1 %look]
-    (need (scry (pine hunt) hunt))
+    =/  cas=@ud  (pine hunt)
+    ?:  =(cas 0)
+      *epic:n
+    (need (scry cas hunt))
   ++  pine
     ~/  %pine
     |=  [=care:neo =pith:neo]
     ~>  %bout.[1 %pine]
+    :: =-  ~&(pine/- -)
     ^-  @ud
     =/  [rest=pith:neo lan=(unit land:t)]
       (~(fit of plot.farm) pith)
+    ~|  pith
     ?>  ?=(^ lan)
     =/  =land:t  u.lan
     ?-    care
@@ -642,8 +659,41 @@
     ^+  farm
     ?-  -.not
       %grow  (grow pith poem.not pail.not)
-      %cull  farm :: !! ::(cull pith +.not)
+      %cull  (cull pith)
     ==
+  ++  cull
+    ~/  %cull
+    |=  =pith:n
+    ^+  farm
+    :: ~>  %bout.[1 (crip "%grow: {(en-tape:pith:n pith)}")]
+    =/  lot      (~(dip of plot.farm) pith)
+    =/  =land:t  (need fil.lot)
+    =/  =loam:t  (~(gut of soil.farm) pith *loam:t)
+    =^  =over:t  loam  
+      (die loam)
+    =.  soil.farm  (~(put of soil.farm) pith loam)
+    =.  now.land  over  
+    =.  exists.land  |
+    =/  sfix  (slag (lent parent.land) pith)
+    =/  parent=land:t  (~(got of plot.farm) parent.land)
+    =/  orphaned=(list [=pith:n @ud])
+      ~(tap by kids.land)
+    =.  kids.parent
+      %-  ~(gas by kids.parent)
+      %+  turn  orphaned
+      |=  [p=pith:n cas=@ud]
+      [(welp sfix p) cas]
+    |-
+    ?~  orphaned
+      =.  fil.lot  `land
+      farm(bump (sully parent.land pith), plot (~(rep of plot.farm) pith lot))
+    =/  lt  (~(dip of lot) pith.i.orphaned)
+    =/  orphan  (need fil.lt)
+    =.  parent.orphan  parent.land
+    =.  bump.farm  (sully parent.land (welp pith pith.i.orphaned))
+    $(orphaned t.orphaned, lot (~(rep of lot) pith.i.orphaned lt))
+    ::  XX: recompute parents
+
   ::
   ++  sully
     ~/  %sully
