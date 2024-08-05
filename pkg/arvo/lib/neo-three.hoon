@@ -11,6 +11,10 @@
 ++  u
   ~%  %u  ..u  ~
   |%
+  ++  land-to-ever
+    |=  land:t
+    ^-  ever:n
+    [[case.now 0] [why.latest 0] [zed.latest 0] 0 0 rift.now *time]
   ++  crew
     |%
     ++  mk
@@ -201,6 +205,77 @@
     $%  [%grow cas=(unit (pair rift case)) =pail:neo =poem:neo]
         [%cull rif=(unit rift)]
     ==
+  ::  $burb: Cases of foreign data
+  ++  burb
+    =<  burb
+    |%
+    +$  burb  ((mop case (unit saga)) lte)
+    ++  on    ((^on case (unit saga)) lte)
+    --
+  ::  $town: Foreign namespace
+  +$  town
+    (axal burb)
+  ::  $mart: Information for publishing a path
+  ::
+  +$  mart
+    $:  zed=(set path)
+    ==
+  ::  $mall: Publishing information for paths
+  +$  mall
+    (axal mart)
+  +$  deli
+    $:  last=(unit ever:n)
+        pend=_|
+        =yuga:n
+        =epic:n
+    ==
+  ::  $ward: Subscriber metadata for a path
+  +$  ward
+    $:  mode=care:n
+        err=(unit tang)
+        =deli
+    ==
+  +$  hobo  ~
+  ::  $city: Subscription state
+  +$  city
+    (axal ward)
+  ::
+  ++  yurt
+    =<  yurt
+    |%
+    +$  yurt  ((mop @ epic:n) lte)
+    ++  on    ((^on @ epic:n) lte)
+    --
+  ++  tipi
+    =<  tipi
+    |%
+    +$  tipi  ((mop @ saga:n) lte)
+    ++  on    ((^on @ saga:n) lte)
+    --
+  +$  tent  (each yurt tipi)
+  ::
+  +$  wild  (axal tent)
+  --
+++  xeno
+  |_  =wild:t
+  ++  steppe
+    |=  [=pith:n =epic:n]
+    =/  =tent:t  (~(gut of wild) pith [%& *yurt:t])
+    ?>  ?=(%& -.tent)
+    =/  cas=@ud   p.zed.p.p:(~(got of epic) /)
+    =.  p.tent  (put:on:yurt:t p.tent cas epic)
+    (~(put of wild) pith tent)
+  ::
+  ++  prarie
+    |=  [=pith:n =saga:n]
+    =/  =tent:t  (~(gut of wild) pith [%| *tipi:t])
+    ?>  ?=(%| -.tent)
+    =/  cas=@ud   p.exe.p.p.saga
+    =.  p.tent  (put:on:tipi:t p.tent cas saga)
+    (~(put of wild) pith tent)
+  ++  fit
+    |=  pax=pith
+    !!
   --
 ++  etch
   =>
@@ -403,10 +478,25 @@
   =/  =over:t  [k.span.u.las r.span.u.las]
   [over (~(put or loam) span.u.las `u.dir.u.las)]
 ::
-++  nu-plow
-  =|  why-dirty=(map pith:n @ud)
-  ~%  %nu-plow  ..nu-plow   ~
+++  plow
+  ~%  %plow  ..plow   ~
   |_  =farm:t
+  ++  dip
+    ~/  %dip
+    |=  =pith:n
+    ^+  farm
+    ?>  =(~ pith)
+    farm
+  ::  XX: flesh out
+  ++  apt  `?`&
+  ::
+  ++  rep
+    ~/  %rep
+    |=  [=pith:n f=_farm]
+    ^+  farm
+    ?>  =(~ pith)
+    f
+  ::
   ++  scry
     ~/  %scry
     |=  [=case:neo =hunt:neo]
@@ -505,10 +595,11 @@
     ~/  %look
     |=  =hunt:neo
     ~>  %bout.[1 %look]
-    (scry (pine hunt) hunt)
+    (need (scry (pine hunt) hunt))
   ++  pine
     ~/  %pine
     |=  [=care:neo =pith:neo]
+    ~>  %bout.[1 %pine]
     ^-  @ud
     =/  [rest=pith:neo lan=(unit land:t)]
       (~(fit of plot.farm) pith)

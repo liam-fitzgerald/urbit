@@ -72,7 +72,7 @@
     ~+  
     ^-  muck:f 
     =/  =epic:n
-      (need (~(look plow farm) [%z /]))
+      (~(look plow farm) [%z /])
     =/  =muck:f  
       %-  ~(run of epic)
       |=  =saga:n

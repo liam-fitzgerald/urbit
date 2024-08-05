@@ -34,7 +34,7 @@
     :~  [#/~met/foo %grow ~ (atom 3) pokes]
         [#/~met/foo/bar %grow ~ (atom 5) pokes]
     ==
-  =.  farm  (~(plant nu-plow farm) one)
+  =.  farm  (~(plant plow farm) one)
   =/  two=seed:t
     %-  gas-seed
     :~  [#/~met/foo %grow ~ (atom 4) pokes]
@@ -42,7 +42,7 @@
         [#/~met/foo/baz %grow ~ (atom 3) pokes]
     ==
   ::
-  =.  farm  (~(plant nu-plow farm) two)
+  =.  farm  (~(plant plow farm) two)
   :: %-  print:(farm:etch farm)
   =/  tri=seed:t
     %-  ~(gas of *seed:t)
@@ -52,7 +52,7 @@
         [#/~met/foo/bar/qux %grow ~ (atom 10) pokes]
         [#/~met/foo/baz %grow ~ (atom 1) pokes]
     ==
-  =.  farm  (~(plant nu-plow farm) tri)
+  =.  farm  (~(plant plow farm) tri)
   =/  qua=seed:t
     %-  gas-seed
     ^-  (list [pith:neo note:t])
@@ -61,18 +61,18 @@
         [#/~met/foo/bar/qux %grow ~ (atom 12) pokes]
         [#/~met/foo/baz %grow ~ (atom 10) pokes]
     ==
-  =.  farm  (~(plant nu-plow farm) qua)
+  =.  farm  (~(plant plow farm) qua)
   =/  fur=seed:t
     %-  ~(gas of *seed:t)
     ^-  (list [pith:neo note:t])
     :~  [#/~met/foo/bar %grow ~ (atom 10) pokes]
     ==
-  =.  farm  (~(plant nu-plow farm) fur)
+  =.  farm  (~(plant plow farm) fur)
   :: %-  print:(farm:etch farm)
-  =/  res   (need (~(look nu-plow farm) %x #/~met/foo))
-  =/  res-y   (need (~(look nu-plow farm) %y #/~met/foo))
-  =/  res-z   (need (~(look nu-plow farm) %z #/~met/foo))
-  =/  res-z   (need (~(look nu-plow farm) %z ~))
+  =/  res   (need (~(look plow farm) %x #/~met/foo))
+  =/  res-y   (need (~(look plow farm) %y #/~met/foo))
+  =/  res-z   (need (~(look plow farm) %z #/~met/foo))
+  =/  res-z   (need (~(look plow farm) %z ~))
 ::  %-  print:(epic:etch res)
 ::  %-  print:(epic:etch res-y)
 ::  %-  print:(epic:etch res-z)

@@ -84,13 +84,10 @@
 +$  seal   @uvH
 ::  $myth: Binding, possibly tombstoned
 ::
-+$  myth
-  $:  pail=(unit pail)
-      =aeon
-  ==
++$  myth  (pair poem vial)
++$  book  (pair aeon myth)
 ::
 +$  vial  (pair stud *)
-+$  book  (pair tale pail)
 +$  poem  
   $:  code=stud 
       poke=(set stud)
@@ -1238,6 +1235,11 @@
     ?.  ?=([[%p @] *] pit)
       |
     =(+.i.pit our)
+  ++  ship
+    |=  pit=$
+    ?>  ?=([[%p @] *] pit)
+    `@p`+.i.pit
+
   ::
   ++  en-tape
     |=  pit=$
