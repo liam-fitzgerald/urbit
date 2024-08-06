@@ -11,6 +11,19 @@
 ++  u
   ~%  %u  ..u  ~
   |%
+  ++  scod
+    |=  i=iota
+    ?@(i (scot %tas i) (scot i))
+  ++  inc-mod
+    |=  [x=@ud len=@ud]
+    ?:  =(+(x) len)
+      0
+    +(x)
+  ++  dec-mod
+    |=  [x=@ud len=@ud]
+    ?.  =(0 x)
+      (dec x)
+    (dec len)
   ++  land-to-ever
     |=  land:t
     ^-  ever:n
@@ -553,7 +566,7 @@
       ?~  sol=(get:on:moss:t zed.land case)
         ~
       =/  =soul:t  u.sol
-      =-  `(~(dip of -) rest)
+      =-  `(~(dip of -) pith.hunt)
       =|  res=epic:neo
       |-  =*  loop-soul  $
       =/  kids=(list [=pith:neo cas=@ud])

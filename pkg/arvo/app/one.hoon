@@ -5,6 +5,7 @@
 /+  libverb=verb
 /+  serv=server
 /+  shoe
+/+  etui
 /*  txt-root-fern   %hoon   /one/root/hoon
 /*  txt-root-neo    %hoon   /one/neo/hoon
 /*  txt-ford-same   %hoon   /neo/cod/std/src/imp/ford-same/hoon
@@ -29,9 +30,15 @@
   --
 =,  util
 |%
-+$  card  $+(card card:shoe)
++$  card  $+(card card:agent:gall)
++$  size  _[w=80 h=40]
 +$  shell
   $:  cwd=pith:neo
+      scope=_[w=80 h=40]
+      select=@ud
+      here=pith:neo
+      =epic:neo
+      :: by-folder=`?`_&
       ~
   ==
 ++  sole
@@ -63,7 +70,7 @@
       =wild:t
       =farm:t
       ears=(jug hunt:neo pith:neo)
-      shells=(map id:sole shell)
+      shells=(map @ta shell)
   ==
 --
 =|  state-0
@@ -72,7 +79,6 @@
   %+  libverb  |
   %-  agent:dbug
   ^-  agent:gall
-  %-  (agent:shoe hull)
   |_  =bowl:gall
   +*  this  .
       run   ~(. +> [bowl ~ *seed:t])
@@ -122,31 +128,6 @@
     [cards this]
   ++  on-fail  on-fail:def
   ++  on-peek  on-peek:run
-  ++  command-parser
-    |=  =id:sole
-    ~(parser walk:run id)
-  ++  tab-list
-    |=  [=id:sole query=@t]
-    (~(tab walk:run id) query)
-  ++  on-command
-    |=  [=id:sole =hull] 
-    =^  cards  state
-      abet:(~(do walk:run id) hull)
-    [cards this]
-  ::
-  ++  can-connect
-    |=  =id:sole
-    =(our src):bowl
-  ++  on-connect
-    |=  =id:sole
-    =^  cards  state
-      abet:(conn:run id)
-    [cards this]
-  ++  on-disconnect
-    |=  =id:sole
-    =^  cards  state
-      abet:~(drop walk:run id)
-    [cards this]
   --
 |_  [=bowl:gall cards=(list card) =seed:t]
 ::  |aux: auxilliary helpers
@@ -260,6 +241,8 @@
         [%pill path=*]
       (make-pill ;;(pax=path path.q.vase))
     ==
+  ?:  =(%dill-poke mark)
+    (curse !<([@ta dill-belt:dill] vase))
   ?>  |(=(%fern-task mark) =(%one-task mark))
   =+  !<(=task:fern:t vase)
   fe-abet:(fe-call:(fe p.task) q.task)
@@ -274,6 +257,9 @@
       [%yuga rest=*]  run
       [%scry rest=*]  run
       [%pine rest=*]  run
+      [%dill ses=@ ~]
+    ?:  stop  run
+    (hex ses.pole)
   ==
 ::
 ++  on-agent
@@ -683,11 +669,186 @@
     ^-  saga:n
     [p.book (myth q.book)]
   --
-++  conn
-  |=  =id:sole
-  =/  =shell  [~ ~]
-  =.  shells  (~(put by shells) id shell)
-  ~(start walk id)
+++  curse
+  |=  [ses=@ta belt=dill-belt:dill]
+  ^+  run
+  ?:  (~(has by shells) ses)
+    abet:(on-belt:(spit ses) belt)
+  ~&  bad-curse/ses
+  run
+++  hex
+  |=  ses=@ta
+  =.  shells  (~(put by shells) ses *shell)
+  abet:(move:(spit ses) /)
+::
+++  spit
+  |=  ses=@ta
+  =/  sel=shell  (~(got by shells) ses)
+  |%
+  ++  move
+    |=  =pith:n
+    =.  here.sel  pith
+    =.  epic.sel  (~(look plow farm) %z here.sel)
+    =.  select.sel  0
+    draw
+  ++  code
+    |=  =stud:neo
+    ^-  @t
+    %-  spat
+    ^-  path
+    ?@  stud
+      /kelvin/(scot %ud zuse)/[stud]
+    =,  stud
+    /(scot %p ship)/[desk]/[mark]
+
+  ++  z
+    |%
+    ++  stat  `zone:e`[[0 (sub h.scope.sel 5)] [w.scope.sel 5]]
+    ++  tree  `zone:e`[[0 1] [41 (sub h.scope.sel 1)]]
+    ++  head  `zone:e`[[0 0] [w.scope.sel 1]]
+    ++  main  `zone:e`[[40 1] [(sub w.scope.sel 41) 20]]
+    ++  info  `zone:e`[[40 20] [40 (sub h.scope.sel 20)]]
+    ++  poke  `zone:e`[[79 20] [20 (sub h.scope.sel 20)]]
+    ++  help  `zone:e`[[99 20] [(sub h.scope.sel 99) (sub h.scope.sel 20)]]
+    ++  all  `zone:e`[[0 0] scope.sel]
+    --
+  ++  e  etui
+  ++  abet  run(shells (~(put by shells) ses sel))
+  ++  spit  .
+  ++  do-blit
+    |=  =blit:dill
+    =/  =cage  dill-blit+!>(blit)
+    =/  card   [%give %fact ~[/dill/[ses]] cage]
+    =.  run  (emit card)
+    spit
+  ++  do-bell  (do-blit %bel ~)
+  ::
+  ++  on-user-belt
+    |=  belt=dill-belt:dill
+    ^+  spit
+    ?+    belt  spit
+        [%aro *]   spit
+        %r          draw
+        %h          ?:(=(~ here.sel) do-bell (move (snip here.sel)))
+        %j          draw(select.sel (inc-mod:u select.sel ~(wyt by kid:get-epic)))
+        %k          draw(select.sel (dec-mod:u select.sel ~(wyt by kid:get-epic)))
+        %l
+      (move (snoc here.sel -:(snag select.sel ~(tap aon kid:get-epic))))
+    ==
+  ++  on-size
+    |=  siz=size
+    spit(sel sel(scope siz))
+  ++  draw-poke
+    ^-  blit:dill
+    =/  =stye
+      :-  (sy %un ~)
+      [%k %w]
+    =/  zo   (zo-stub:(zo-apex:zo:e poke:z) [1 1] ~[[stye (tuba "Pokes:")]])
+    =/  sag  fil:get-epic
+    =/  def  zo-abet:(zo-cord:zo [1 2] 'No pokes here')
+    ?~  sag  def
+    =/  =poem:n  p.q.u.sag
+    ?:  =(poke.poem ~)  def
+    =;  [idx=@ud zo=_zo]
+      zo-abet:zo
+    %+  roll  ~(tap in poke.poem)
+    |=  [=stud:neo idx=_2 zo=_zo]
+    :-  +(idx)
+    (zo-cord:zo [1 idx] (code stud))
+  ::
+  ++  draw-info
+    ^-  blit:dill
+    =/  sag  fil:get-epic
+    ?~  sag  (~(cord zi:e info:z) [1 1] 'Nothing here')
+    =/  =ever:n  p.p.u.sag
+    =/  =pail:n  q.q.u.sag
+    =/  =poem:n  p.q.u.sag
+    =/  zo  (zo-apex:zo:e info:z)
+    =.  zo  (zo-cord:zo [1 1] (crip "data: {(trip (code p.pail))}"))
+    =.  zo  (zo-cord:zo [1 2] (crip "code: {(trip (code code.poem))}"))
+    =.  zo  (zo-cord:zo [1 3] (crip "%x case: {(scow %ud p.exe.ever)}"))
+    =.  zo  (zo-cord:zo [1 4] (crip "%y case: {(scow %ud p.why.ever)}"))
+    zo-abet:(zo-cord:zo [1 5] (crip "%z case: {(scow %ud p.zed.ever)}"))
+
+  
+  ++  draw-head
+    ^-  blit:dill
+    =/  val=tape  (spud (pout p/our.bowl here.sel))
+    =/  =stye
+      :-  (sy %un ~)
+      [%k %w]
+    zo-abet:(zo-stub:(zo-apex:zo:e head:z) [0 0] ~[[stye (tuba val)]])
+  ++  draw-border
+    ^-  blit:dill
+    =/  =stye  [~ [%k %w]]
+    =/  tyl  [`@c`'-' `@c`'|' `@c`'+']
+    :-  %mor
+    :~  (~(line zi:e main:z) stye ~ tyl)
+        (~(line zi:e tree:z) stye ~ tyl)
+        (~(line zi:e info:z) stye ~ tyl)
+        (~(line zi:e poke:z) stye ~ tyl)
+        (~(line zi:e help:z) stye ~ tyl)
+    ==
+  ++  draw-help
+    ^-  blit:dill
+
+    %+  ~(wain zi:e help:z)  [1 1]
+    :~  'Help:'
+        'h,j,k,l moves as in vim'
+        'c will commit %base'
+    ==
+  ++  draw
+    %-  do-blit
+    :-  %mor
+    :~  ~(wipe zi:e all:z)
+        draw-border
+        draw-tree
+        draw-status
+        draw-main
+        draw-head
+        draw-info
+        draw-poke
+    ==
+  ++  get-epic  epic.sel :: (~(look plow farm) %z here.sel)
+  ++  draw-tree
+    ^-  blit:dill
+    =/  pic  get-epic
+    =;  [=spot:e idx=@ud zo=_zo:e]
+      zo-abet:zo
+    =/  =stye
+     :-  ~
+     [%w %k]
+    %+  roll  ~(tap aon kid.pic)
+    |=  [[=iota =epic:n] [spot=_[x=1 y=1] idx=@ud zo=_(zo-apex:zo:e tree:z)]]
+    :+  spot(y (add y.spot 1))  +(idx)
+    =/  val  (scod:u iota)
+    ?.  =(select.sel idx)
+      (zo-cord:zo spot val)
+   (zo-stub:zo spot ~[[stye (tuba (trip val))]])
+  ::
+  ++  draw-status
+    ^-  blit:dill
+    [%mor ~]
+  ++  draw-main
+    ^-  blit:dill
+    =/  pic  get-epic
+    ?~  fil.pic
+      (~(cord zi:e main:z) [1 1] 'Nothing here')
+    =/  =pail:n  q.q.u.fil.pic
+    %+  ~(wain zi:e main:z)  [1 1]
+    (scag (sub h:main:z 2) (turn (~(win re (sell q.pail)) [0 (sub w:main:z 2)]) crip))
+  ::
+  ++  on-belt
+    |=  belt=dill-belt:dill
+    ^+  spit
+    ?+  belt  (on-user-belt belt)
+      ::
+        [%hey *]  draw
+        [%yow *]  draw
+        [%cru *]  ~&(%error draw)
+        [%rez *]  draw:(on-size [p q]:belt)
+    ==
+  --
 ::
 ++  tell
   |_  =pith:neo
@@ -767,220 +928,5 @@
         !<(tang q.pail)
       (sell q.pail)^~
     ==
-  --
-++  walk
-  |_  =id:sole
-  ++  start 
-    abet:prompt:peel
-  ++  drop
-    ^+  run
-    run(shells (~(del by shells) id))
-  ++  peel
-    =/  =shell  (~(got by shells) id)
-    |%  
-    ++  peel  .
-    ++  abet  
-      run(shells (~(put by shells) id shell))
-    ++  tell  ~(. ^tell cwd.shell)
-    ++  prompt
-      |^
-      =;  ef=shoe-effect:shoe
-        =.  run  (shoe-ef ef)
-        peel
-      :-  %sole
-      :^  %pro  &  %foo
-      ^-  styx
-      =,  shell
-      %-  snoc
-      :_  '> '
-      ^-  (list @t)
-      %-  zing
-      ^-  (list (list @t))
-      %+  turn  cwd
-      |=  =iota:neo
-      ^-  (list @t)
-      =-  ~['/' -]
-      ?@  iota  iota
-      (scot iota)
-      ++  un
-        `styl`[`%un ~ ~]
-      --
-    ++  cwd
-      |%
-      ++  get  cwd.shell
-      ++  set  |=(p=pith:neo =.(cwd.shell p prompt))
-      --
-    --
-  ++  lily
-    |*  [naf=@ sab=rule]
-    =+  vex=(sab [1 1] (trip naf))
-    ?~  q.vex  ~  
-    [~ u=p.u.q.vex] 
-  ++  default-list
-    ^-  (list [@t tank]) 
-    :~  'ls'^leaf/"List child shrubs at current path"
-        'cd'^leaf/"Change directory"
-        '.'^leaf/"Print node at path"
-        't'^leaf/"List child shrubs at current path, recursively"
-        'd'^leaf/"make pill"
-        'b'^leaf/"Run |commit %{(trip q.byk.bowl)}"
-        'n'^leaf/"Nuke, commit, restart"
-        :: 'p'^leaf/"manual poke (takes [=stud val=*])"
-        :: 'r'^leaf/"start form (takes form-name)"
-    ==
-  ++  tab
-    |=  query=@t 
-    ?:  =(1 1)
-      default-list
-    =/  query  (trip query)
-    =+  vex=(parser [1 1] query)
-    ?~  q.vex
-      default-list
-    =/  [[? =hull] =nail]  u.q.vex
-    =/  parsed  (scag (sub (lent query) (lent q.nail)) query)
-    |^  ^-  (list [@t tank])
-    ?+  -.hull  ~
-      %cd  (cd pith.hull)
-    ==
-    ++  cd
-      |=  =pith:neo
-      ^-  (list [@t tank])
-      *(list [@t tank])
-::    =/  dip  (dip:of-top pith.name)
-::    =/  last
-::      ?:(=(~ pith.name) %$ (rear pith.name))
-::    =/  remove-len  (met 3 (show-iota last))
-::    =?  pith.name  =([~ ~] dip)
-::      (snip pith.name)
-::    =?  parsed     =([~ ~] dip)
-::      (scag (sub (lent parsed) remove-len) parsed)
-::    =.  dip
-::      (dip:of-top pith.name)
-::    ?:  =(~ kid.dip)
-::      ~
-::    %+  turn  ~(tap by kid.dip)
-::    |=  [seg=iota ax=(axal:neo room:neo)]
-::    ^-  [@t tank]
-::    :_  *tank
-::    %+  cat  3
-::    :-  (crip parsed)
-::    ?@  seg  seg
-::    (scot seg)
-    --
-  ++  parser
-    |^  ^+  |~(nail *(like [? hull]))
-    =-  ;~  pose
-          (stag & (cold commit/~ (jest 'b')))
-          (stag & (cold nuke/~ (jest 'n')))
-          (stag & (cold pill/~ (jest 'd')))
-          (stag & (cold dbug/~ (jest 'e')))
-          (stag & (cold reload/~ (jest 'r')))
-          -
-        ==
-    %+  stag  |
-    ;~  pose
-      :: (csym %ls (easy ~))
-
-      (cold ls/~ (jest 'ls'))
-      (cold show/~ dot)
-      :: (cold ford/~ (jest 'f'))
-      (stag %tree ;~(pfix (jest 't') dem:ag))
-
-      :: (stag %race ;~(pfix (jest 'r') ace sym))
-      :: (stag %poke ;~(pfix (jest 'p') ace van))
-    ::
-      cd
-      (stag %over ;~(pfix (jest 'o') ace stip:neo))
-      :: ;~(pfix wut (cold clay/~ (jest 'clay')))
-      :: ;~(pfix hax (cold comm/~ (star prn)))
-    ==
-    ++  van  tall:(vang & /test)
-
-    ++  cd
-      :: ^-  _|~(nail *(like hull))
-      :: %+  csym  %cd 
-      %+  stag  %cd
-      %+  ifix  [(jest 'cd ') (easy ~)]
-      ;~  pose
-        stip:neo
-        %+  sear
-          |=  [kets=(list *) =pith:neo]
-          ^-  (unit pith:neo)
-          =/  cwd  get:cwd:peel
-          =/  up  (lent kets)
-          ?:  (gth up (lent cwd))
-            ~
-          =.  cwd  (scag (sub (lent cwd) up) cwd)
-          `(welp cwd pith)
-        ;~(plug (star ket) (more fas spot:stip:neo))
-      ==
-    ++  csym
-      |*  [term=* rul=rule]
-      (stag term ;~(pfix (jest term) rul))
-    --
-  ++  shoe-ef
-    |=  ef=shoe-effect:shoe
-    ^+  run
-    (emit %shoe ~[id] ef)
-  ++  do 
-    |=  =hull
-    |^  ^+  run
-    ?-    -.hull 
-        %ls     (tree 1)
-        %over   abet:(set:cwd:peel (welp pith.hull get:cwd:peel))
-        %cd     abet:(set:cwd:peel pith.hull)
-        %poke   (do-poke p.hull)
-        %tree   (tree depth.hull)
-        %commit   commit
-        %pill     (make-pill (en-beam byk.bowl /neo/cod/std/src))
-        %reload   (on-poke %noun !>([%src (en-beam byk.bowl (snoc :_(%hoon (pout neo/get:cwd:peel))))]))
-        %nuke
-      =.  run   (poke-hood kiln-nuke/!>([dap.bowl |]))
-      =.  run   commit
-      %-  poke-hood
-      ::
-      =+  .^(=cone:clay %cx /(scot %p our.bowl)//(scot %da now.bowl)/domes)
-      =/  =dome:clay  (~(gut by cone) [our.bowl q.byk.bowl] *dome:clay)
-      =+  ((slog ?:(=(%live liv.dome) ~ ['kiln: desk not live' ~])) ~)
-      :-  %kiln-rein
-      !>([q.byk.bowl (~(put by ren.dome) dap.bowl &)])
-    ::
-        %show
-      =/  =effect:sole  [%tan show:tell:peel]
-      (shoe-ef %sole effect)
-    ::
-        %dbug
-      =/  =effect:sole  [%tan dbug:tell:peel]
-      (shoe-ef %sole effect)
-    ==
-    ++  commit
-      (emit %pass / %agent [our %hood] %poke %kiln-commit !>([q.byk.bowl |]))
-    ++  poke-hood
-      |=  =cage
-      ^+  run
-      (emit %pass / %agent [our %hood] %poke cage)
-    ::
-    ++  do-poke
-      |=  =hoon
-      =/  vax=vase
-        %-  slap
-        :_  hoon
-        %+  with-faces:ford:neo  !>(..zuse)
-        :~  neo/!>(neo)
-            eny/!>(eny.bowl)
-            now/!>(now.bowl)
-            our/!>(our.bowl)
-        ==
-      =+  !<(=stud:neo (slot 2 vax))
-      =.  vax  (slot 3 vax)
-      (on-bush-move /$/$/xeno get:cwd:peel %poke stud vax)
-   ++  tree
-     |=  depth=@ud
-      %-  shoe-ef  
-      :-  %table  
-      :+  (limo tas/%path tas/%code tas/%data tas/%x tas/%y tas/%z ~)
-        (limo 40 40 40 4 8 16 ~)
-      (desc:tell:peel depth)
-    --
   --
 --
