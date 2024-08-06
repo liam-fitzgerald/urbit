@@ -56,7 +56,9 @@
         =+  .^(=open:clay %cs (welp bek /open/foo))
         (fall (mole |.((open /app/[dap.bowl]/hoon))) !>(..zuse))
       %+  slap
-        :(slop state !>(bowl=bowl) prelude)
+        %+  slop  state
+        %+  slop  !>(bowl=bowl)
+        prelude
       (ream grab.dbug)
     ::
         %incoming

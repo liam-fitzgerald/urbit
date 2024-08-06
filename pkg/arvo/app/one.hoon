@@ -239,6 +239,11 @@
         %apt
       ~&  apt=~(apt plow farm)
       run
+    ::
+        [%zed pax=*]
+      ~&  print:(epic:etch (~(look plow farm) %z (pave:neo ;;(path pax.q.vase))))
+      run
+
 
         %dbug
       %-  print:(farm:etch farm)
@@ -696,6 +701,7 @@
     |-  =*  loop  $
     ^-  (list (list dime))
     =/  pic  (~(look plow farm) %y pith)
+    ~&  ~(key by ~(tar of pic))
     :: ~&  desc/[depth=depth keys=~(key by ~(tar of u.pic))]
     =<  +
     %+  roll  ~(tap of pic)
@@ -724,20 +730,26 @@
       ?~  sag
         :~  t/(spat (pout pith))
             t/'Directory'
+            t/''
+            ud/0
             ud/0
             ud/0
         ==
       ?~  u.sag
        :~  t/(spat (pout pith))
            t/'Empty'
-            ud/0
-            ud/0
+           t/''
+           ud/0
+           ud/0
+           ud/0
         ==
+      =/  =ever:n  p.p.u.u.sag
       :~  t/(spat (pout pith))
           t/(code code.p.q.u.u.sag)
           t/(code p.q.q.u.u.sag)
-          ud/0
-          ud/0
+          ud/p.exe.ever
+          ud/p.why.ever
+          ud/p.zed.ever
       ==
     --
   ++  dbug
@@ -966,8 +978,8 @@
      |=  depth=@ud
       %-  shoe-ef  
       :-  %table  
-      :+  (limo tas/%path tas/%code tas/%data tas/%node tas/%tree ~)
-        (limo 40 40 40 6 6 ~)
+      :+  (limo tas/%path tas/%code tas/%data tas/%x tas/%y tas/%z ~)
+        (limo 40 40 40 4 8 16 ~)
       (desc:tell:peel depth)
     --
   --

@@ -2616,4 +2616,10 @@
     [%| p=p.vex(q (dec q.p.vex))]
   [%& p=p.u.q.vex]
 ++  serv   ^serv
+++  del-many
+  |*  [a=(map) b=(list)]
+  |-  ^+  a
+  ?~  b
+    a
+  $(a (~(del by a) i.b), b t.b)
 --

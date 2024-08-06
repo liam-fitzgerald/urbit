@@ -525,12 +525,12 @@
         ?(%y %b)
       =/  [rest=pith:n lan=(unit land:t)]
         (~(fit of plot.farm) pith.hunt)
-      =/  pfix  (sub:pith:neo pith.hunt rest)
+      =/  pfix  (scag (sub (lent pith.hunt) (lent rest)) pith.hunt)
       =/  =land:t  (need lan)
       ?~  sol=(get:on:moss:t why.land case)
         ~  :: XX: wrong for intermediate cases (FIXME!)
       :-  ~
-      =-  (~(dip of -) pfix)
+      =-  (~(dip of -) pith.hunt)
       %-  ~(gas of *epic:neo)
       %+  murn  ~(tap by u.sol)
       |=  [kid=pith:neo cas=@ud]
@@ -545,12 +545,15 @@
       ~&  %reading-z
       =/  [rest=pith:n lan=(unit land:t)]
         (~(fit of plot.farm) pith.hunt)
-      =/  pfix  (sub:pith:neo pith.hunt rest)
+      =/  pfix  (scag (sub (lent pith.hunt) (lent rest)) pith.hunt)
+
+::    =/  pfix  (slag (lent parent.land) pith)
+::      =/  pfix  (sub:pith:neo pith.hunt rest)
       =/  =land:t  (need lan)
       ?~  sol=(get:on:moss:t zed.land case)
         ~
       =/  =soul:t  u.sol
-      =-  `(~(dip of -) pfix)
+      =-  `(~(dip of -) rest)
       =|  res=epic:neo
       |-  =*  loop-soul  $
       =/  kids=(list [=pith:neo cas=@ud])
@@ -587,7 +590,7 @@
         ::  previously bound, currently empty
         [~ ~]
       ?^  ver=(get:on:dirt:t u.u.dir cas)
-        ``(lift u.ver)
+        ``(lift pit u.ver)
       ?~  lat=(ram:on:dirt:t u.u.dir)
         :: should never happen
         ~
@@ -596,10 +599,10 @@
         [~ ~]
       ~
     ++  lift
-      |=  =data:t
+      |=  [pit=pith:n =data:t]
       ^-  saga:neo
       =/  =aeon:neo
-        [*ever:neo oath.data]
+        [(land-to-ever:u (~(got of plot.farm) pit)) oath.data]
       [aeon poem.data pail.data]
     --
   ::
@@ -642,7 +645,6 @@
     =/  ls   
       ~(tap of seed)
       :: ~(sap of seed)
-    ~&  lent/(lent ls)
     ~>  %bout.[1 %plant]
     |-  ^+  farm
     ?~  ls 
@@ -669,30 +671,42 @@
     =/  lot      (~(dip of plot.farm) pith)
     =/  =land:t  (need fil.lot)
     =/  =loam:t  (~(gut of soil.farm) pith *loam:t)
+    =/  parent  (~(got of plot.farm) parent.land)
+    =.  kids.parent  (~(del by kids.parent) (slag (lent parent.land) pith))
+    =.  plot.farm  (~(put of plot.farm) parent.land parent)
+    =/  kids  ~(tap in ~(key by kids.land))
+    |-
+    ?^  kids
+      $(kids t.kids, farm (cull (welp pith i.kids)))
     =^  =over:t  loam  
       (die loam)
-    =.  soil.farm  (~(put of soil.farm) pith loam)
-    =.  now.land  over  
-    =.  exists.land  |
-    =/  sfix  (slag (lent parent.land) pith)
-    =/  parent=land:t  (~(got of plot.farm) parent.land)
-    =/  orphaned=(list [=pith:n @ud])
-      ~(tap by kids.land)
-    =.  kids.parent
-      %-  ~(gas by kids.parent)
-      %+  turn  orphaned
-      |=  [p=pith:n cas=@ud]
-      [(welp sfix p) cas]
-    |-
-    ?~  orphaned
-      =.  fil.lot  `land
-      farm(bump (sully parent.land pith), plot (~(rep of plot.farm) pith lot))
-    =/  lt  (~(dip of lot) pith.i.orphaned)
-    =/  orphan  (need fil.lt)
-    =.  parent.orphan  parent.land
-    =.  bump.farm  (sully parent.land (welp pith pith.i.orphaned))
-    $(orphaned t.orphaned, lot (~(rep of lot) pith.i.orphaned lt))
-    ::  XX: recompute parents
+    %_  farm
+      soil  (~(put of soil.farm) pith loam)
+      plot  (~(put of plot.farm) pith land(now over, exists |))
+    ==
+
+
+::  XX: technically possible to make %cull non-recursive, punting for
+::  now
+::  =/  sfix  (slag (lent parent.land) pith)
+::  =/  parent=land:t  (~(got of plot.farm) parent.land)
+::  =/  orphaned=(list [=pith:n @ud])
+::    ~(tap by kids.land)
+::  =.  kids.parent
+::    %-  ~(gas by kids.parent)
+::    %+  turn  orphaned
+::    |=  [p=pith:n cas=@ud]
+::    [(welp sfix p) cas]
+::  |-
+::  ?~  orphaned
+::    =.  fil.lot  `land
+::    farm(bump (sully parent.land pith), plot (~(rep of plot.farm) pith lot))
+::  =/  lt  (~(dip of lot) pith.i.orphaned)
+::  =/  orphan  (need fil.lt)
+::  =.  parent.orphan  parent.land
+::  =.  bump.farm  (sully parent.land (welp pith pith.i.orphaned))
+::  $(orphaned t.orphaned, lot (~(rep of lot) pith.i.orphaned lt))
+::  ::  XX: recompute parents
 
   ::
   ++  sully
@@ -803,16 +817,24 @@
          res
       $(cur (snoc cur i.left), lot u.nex, left t.left)
     =/  parent=land:t  (~(got of plot.farm) parent.land)
-::  =/  is-adopting
-::      %+  lien  ~(tap by kids.parent)
-::      =/  pfix  (slag (lent parent.land) pith)
-::      |=  [p=pith:n *]  (is-parent:u pfix p)
-::  ~?  is-adopting
-::    adopt/[parent.land pith]
+    =/  adoptees
+        %+  skim  ~(tap in ~(key by kids.parent))
+        =/  pfix  (slag (lent parent.land) pith)
+        |=  p=pith:n  (is-parent:u pfix p)
+
     =/  sfix  (slag (lent parent.land) pith)
     =.  kids.parent  (~(put by kids.parent) sfix case.over)
-    =.  plot.farm  (~(put of plot.farm) parent.land parent)
-    farm(bump (sully parent.land pith), plot (~(put of plot.farm) pith land))
+    =/  pfix  (slag (lent parent.land) pith)
+    |-
+    ?~  adoptees
+      =.  plot.farm  (~(put of plot.farm) parent.land parent)
+      farm(bump (sully parent.land pith), plot (~(put of plot.farm) pith land))
+    =/  full  (welp parent.land i.adoptees)
+    =/  adoptive-name  (slag (lent pith) full)
+    =/  cas=@ud  (~(got by kids.parent) i.adoptees)
+    =.  kids.parent  (~(del by kids.parent) i.adoptees)
+    =.  kids.land  (~(put by kids.land) adoptive-name cas)
+    $(adoptees t.adoptees)
   --
 ::
 ::  plow
