@@ -734,7 +734,7 @@
   ++  handle-why
     ~/  %handle-why
     |=  [change=(axal:n ~) =plot:t]
-    ~>  %bout.[1 %handle-why]
+    :: ~>  %bout.[1 %handle-why]
     ^-  plot:t
     !.
     |-  =*  loop  $
@@ -763,7 +763,7 @@
     ~/  %handle-zed
     |=  [change=(axal:n ~) =plot:t]
     ^-  plot:t
-    ~>  %bout.[1 %handle-zed]
+    :: ~>  %bout.[1 %handle-zed]
     !.
     =|  here=pith:neo
     |-  =*  loop  $
@@ -834,7 +834,11 @@
     =/  adoptees
         %+  skim  ~(tap in ~(key by kids.parent))
         =/  pfix  (slag (lent parent.land) pith)
-        |=  p=pith:n  (is-parent:u pfix p)
+        |=  p=pith:n  
+::      ~?  =(p #/vane/eyre)
+::        :-  [pfix=pfix parent=parent.land pith=pith]
+::        parent=(is-parent:u pfix p)
+        &(!=(p pith) (is-parent:u pfix p))
 
     =/  sfix  (slag (lent parent.land) pith)
     =.  kids.parent  (~(put by kids.parent) sfix case.over)

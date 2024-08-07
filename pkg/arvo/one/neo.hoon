@@ -155,7 +155,8 @@
   =/  pit=pith:n  #/$/boot
   =.  this  (hatch)
   =.  io.step  (snoc io.step `gift:f`[%drip ~])
-  abet:init:sys
+  =.  this  init:sys
+  abet
   ::
   ++  make-riff
     |=  [=post:n riff=vase]
@@ -165,7 +166,7 @@
   ++  pess
     |=  =post:n
     ^-  pith:n
-    (~(pith press:n post) %out)
+    [p/our (~(pith press:n post) %out)]
   ::
   ++  slap-riff
     |=  [=post:n hon=hoon]
@@ -199,7 +200,7 @@
       =+  vaz=(vang & (pout wer))
       (scan (trip txt) (full (ifix [gay gay] tall:vaz)))
       :: fill with files
-    :~  :+  #/cod/std/src  %many
+    :~  :+  #/[p/our]/cod/std/src  %many
         %+  turn  ~(tap of src.neo-args)
         |=  [=pith:neo kind=?(%hoon %txt) src=@t]
         ^-  card:b
@@ -208,10 +209,10 @@
         [pith %make kind `kind^!>(src) sig/!>(sig)]
         :: then, desk shrub
       ::
-        [#/cod/std %make %ford-desk `disk/!>(`disk:n`~) crew/!>((one:crew:u %reef #/cod/reef))]
-        [#/sky %make %sky ~ sig/!>(~)]
-        [#/srv/hawk %make %hawk-eyre ~ sig/!>(~)]
-        [#/srv/sky %make %sky-eyre ~ sig/!>(~)]
+        [#/[p/our]/cod/std %make %ford-desk `disk/!>(`disk:n`~) crew/!>((one:crew:u %reef #/[p/our]/cod/reef))]
+        [#/[p/our]/sky %make %sky ~ sig/!>(~)]
+        [#/[p/our]/srv/hawk %make %hawk-eyre ~ sig/!>(~)]
+        [#/[p/our]/srv/sky %make %sky-eyre ~ sig/!>(~)]
     ==
   --
 ++  call
@@ -269,9 +270,9 @@
 ++  puff
   |=  [want=stud:n role=(unit stud:n) have=pail:n]
   ^-  (unit (unit pail:n))
-  ?:  =(want %pail)
+  ?:  =(want %vase)
     [~ ~]
-  ?:  =(want p.q.have)
+  ?:  =(want p.have)
     [~ ~]
   ?:  =(want %sig)
     ``sig/!>(~)
@@ -382,12 +383,13 @@
   [| (~(put of res) pith u.ion)]
 ::
 ++  berth
-  |=  [=epic:n mooring=(axal:n (unit pail:n))]
+  |=  [=muck:n mooring=(axal:n (unit pail:n))]
   %-  ~(gas of *lore:n)
-  %+  turn  ~(tap of epic)
-  |=  [=pith:n =saga:n]
+  %+  turn  ~(tap of muck)
+  |=  [=pith:n =tale:n]
   ^-  [pith:n idea:n]
   :-  pith
+  =/  =saga:n  [*aeon:n tale]
   =/  rope  (~(get of mooring) pith)
   ?:  ?=(?(~ [~ ~]) rope)
     [saga ~ q.q.saga]
@@ -408,7 +410,7 @@
     ~|  husk/stud
     q:(need -:(grab pith))
   ++  is-bunted
-    (~(nest ut -:!>(~)) | p:vase)
+    =(~ q:vase)
   ++  default-kook
     ^-  kook:n
     |%
@@ -427,6 +429,7 @@
       ++  init
         |=  pal=(unit pail:n)
         ^-  (quip card:n pail:n)
+        ~|  here=here.bowl
         `(need pal)
       --
     --
@@ -564,8 +567,6 @@
     ~/  %start
     |=  =move:b
     ^+  arvo
-    =?  p.q.move  ?=([[%p @] *] p.q.move)
-      t.p.q.move
     ?-    -.q.q.move
         %poke  (apply move)
         %cull  (apply move)
@@ -590,8 +591,10 @@
 ::     ~>  %bout.[1 (crip (en-tape:pith:n p.q.move))]
     ?.  =(~ err.block)
       arvo
+    ?>  ?=(^ p.q.move)
+::     ~&  here=p.q.move
     =:  src   p.move   
-        here  p.q.move
+        here  t.p.q.move
       ==
     ~|  [src=src here=here]
     :: ~&  [src=src here=here]
@@ -697,13 +700,13 @@
     :: $(arvo new-arvo)
   ++  raid
     =/  by-parent=(jug pith:n [=pith =mode:n])
-      ~>  %bout.[1 %by-parent]
+      :: ~>  %bout.[1 %by-parent]
       %+  roll  ~(aap of prize)
       |=  [[=pith:neo =mode:n] out=(jug pith:n [=pith =mode:n])]
       %-  ~(gas ju out)
       (turn ~(tap in (adopt pith)) |=(par=pith:n [par [(dif:pith:n par pith) mode]]))
     =.  gifts
-      ~>  %bout.[1 %new-gifts]
+      :: ~>  %bout.[1 %new-gifts]
       %+  turn  (sort ~(tap in ~(key by by-parent)) sort:pith:n)
       |=  =pith:n
       ^-  [pith:n gift:n]
@@ -757,7 +760,7 @@
       (mule tap)
     ?:  ?=(%& -.res)
       p.res
-    %-  (slog leaf/"wipeout {<here>}" p.res)
+    %-  (slog leaf/"wipeout {<src>} -> {<here>}" p.res)
     =.  err.block  `[%goof p.res]
     `arvo
   ++  germ
@@ -817,6 +820,7 @@
       ?~  kids
         *muck:n
       %-  ~(gas of *muck:n)
+      ~&  su-kids/[here=here ~]
       =/  child   (~(dip of muck) here)
       :: %-  print:(muck:etch child)
       %+  murn  ~(tap by ~(tar of:n child))
@@ -845,12 +849,17 @@
         ?<  req
         ~
       =/  =care:n  (get-care:quay:n quay)
-      ?~  ax=(moor quay u.dep)
+      ?.  =((ship:pith:n u.dep) our)
+        ~ :: XX: fixme
+      ?>  ?=(^ u.dep)
+      ?~  ax=(moor quay t.u.dep)
         :: ~|  seed=~(key by ~(tar of (~(dip of seed.step) (scag 4 u.dep)))
-        ~&  lost-moor/[here=here dep=term pith=u.dep code=code.wave]
+        ~&  lost-moor/[here=here dep=term pith=t.u.dep code=code.wave]
         ?<  req
         `[term u.dep *lore:n]
-      `[term u.dep (berth (look:plow care u.dep) u.ax)]
+      =^  mak  this
+        (grab-care care t.u.dep)
+      `[term u.dep (berth mak u.ax)]
 ::      %-  (slog term (epic:dbug:n epic) ~)
       :: `[term u.dep u.lor]
     ::
@@ -1071,6 +1080,8 @@
     |=  [src=pith:neo eyre-id=@ta =gift:eyre:neo]
     ^+  sttp
     ~&  eyre-sign/eyre-id
+    =?  by-id.sta  ?=(%done -.gift)
+      (~(del by by-id.sta) eyre-id)
     ::  ?>  =(src (~(got by by-id.eyre.unix) eyre-id))
     (emit %eyre eyre-id gift)
   ::

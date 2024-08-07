@@ -29,7 +29,7 @@
         imp/%ford-slap
         imp/%ford-slop
         imp/%ford-face
-
+        imp/%ford-text
     ==
     
   --
@@ -100,7 +100,7 @@
       ~&  %weird-reef
       %-  (slog (sell vase:reef) ~)
       `(need pal)
-      
+    ~&  ~(key by ~(tar of kids.bowl))
     =/  src  (~(dip of kids.bowl) /src)
     =.  pail  (need pal)
     =+  !<(=disk:neo q.pail)
@@ -157,7 +157,7 @@
     ^+  run
     =*  fil  ~(. file prop)
     ?:  (~(has in broken) prop)
-      (emit out/pith:fil %make %riff `vase/!>(~) ~)
+      run :: (emit (welp here.bowl out/pith:fil) %make %riff `vase/!>(~) ~)
     ?:  =(p.prop %con)
       run
     ?:  &(=(p.prop %pro) is-auto:fil)
@@ -247,8 +247,8 @@
     |=  =file:ford:neo
     ^-  (list [term pith])
     %+  welp
-      (turn pro.file |=(p=pro:ford:neo [face.p (~(pith press:neo pro/stud.p) %out)]))
-    (turn lib.file |=(l=lib:ford:neo [face.l (~(pith press:n lib/stud.l) %out)]))
+      (turn pro.file |=(p=pro:ford:neo [face.p [p/our.bowl (~(pith press:neo pro/stud.p) %out)]]))
+    (turn lib.file |=(l=lib:ford:neo [face.l [p/our.bowl (~(pith press:n lib/stud.l) %out)]]))
   ::
   ++  prop-pith
     |=  =prop:neo

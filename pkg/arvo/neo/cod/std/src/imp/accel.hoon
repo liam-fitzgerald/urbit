@@ -100,7 +100,7 @@
       =/  changes  ~(tap by ~(tar of:neo gift))
       %-  zing
       %+  turn  changes
-      |=  [=road:neo =loot:neo]
+      |=  [=road:neo =mode:neo]
       ^-  (list card:neo)
       ?.  ?=([[%ud col=@] [%ud row=@ud] %in ~] road)
         ~
@@ -114,13 +114,13 @@
       |=  s=send-poke
       ^-  (quip card:neo _state)
       =/  in  (~(got of:neo kids.bowl) #/[ud/x.s]/[ud/y.s]/in)
-      =+  !<(conf=accel-conf q.pail.in)
+      =+  !<(conf=accel-conf q.q.in)
       =/  out  (~(got of:neo kids.bowl) #/[ud/x.s]/[ud/y.s]/out)
-      ?>  =(%vase p.pail.out)
+      ?>  =(%vase p.q.out)
       ::
       =/  pit  pith.s
       =/  sud  (~(got by poke.conf) pit)
-      =/  =card:neo  [pit %poke sud q.pail.out]
+      =/  =card:neo  [pit %poke sud q.q.out]
       ~&  card
       [~[card] state]
     --

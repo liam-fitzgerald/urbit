@@ -358,7 +358,7 @@
   ++  fe-farm  (~(dip plow farm) pith)
   ++  fe-mien
     ^-  mien:fern:t
-    [our.bowl pith now.bowl eny.bowl heed.fern fe-farm]
+    [our.bowl [p/our.bowl pith] now.bowl eny.bowl heed.fern fe-farm]
   ++  fe-code  code.fern(+6.q fe-mien)
   ++  fe-hear
     |=  =hunt:neo
@@ -848,6 +848,16 @@
       (~(cord zi:e main:z) [1 1] 'Nothing here')
     =/  =pail:n  q.q.u.fil.pic
     %+  ~(wain zi:e main:z)  [1 1]
+    ^-  wain
+    ?:  =(%tang p.pail)
+      %+  scag  (sub h:main:z 2)
+      ^-  wain
+      %-  zing
+      ^-  (list wain)
+      %+  turn  !<(tang q.pail)
+      |=  =tank 
+      ^-  wain
+      (turn (~(win re tank) [0 (sub w:main:z 2)]) crip)
     (scag (sub h:main:z 2) (turn (~(win re (sell q.pail)) [0 (sub w:main:z 2)]) crip))
   ::
   ++  on-belt
