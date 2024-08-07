@@ -1237,6 +1237,7 @@
     =(+.i.pit our)
   ++  ship
     |=  pit=$
+    ~|  no-ship-for-pith/pit
     ?>  ?=([[%p @] *] pit)
     `@p`+.i.pit
 
@@ -1933,6 +1934,7 @@
 +$  leaf
   (axal mode)
 ::
+::
 +$  lore  (axal idea)
 +$  idea
   $:  =saga :: original binding
@@ -2196,6 +2198,14 @@
 ::  $band: Dependencies
 ::
 +$  band  $+(band (map term fief))
+:: 
+::  $sack: Failure to inject
+::
++$  sack  
+  $%  [%missing ~]  :: not provided in crew
+      [%unfit ~] :: API mismatch
+      [%dead ~] :: does not exist
+  ==
 +$  lads  $+(lads (map pish lash))
 +$  dare  ?(%y %z)
 +$  port  (pair dare lads)
@@ -2295,8 +2305,12 @@
   ::  in the name
   ++  deps   *(map term fief)
   --
+::  $foam: Listeners
+::
++$  foam  (set pith)
 +$  wave
   $:  code=stud
+      =foam
       =dock
       =crew
       live=?

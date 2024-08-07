@@ -8,6 +8,7 @@
 ++  of  of:neo
 ++  aon  aon:neo
 ++  or  or:neo
+++  axal  axal:neo
 ++  u
   ~%  %u  ..u  ~
   |%

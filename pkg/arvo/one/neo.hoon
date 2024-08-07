@@ -265,18 +265,16 @@
       %or             (lien p.need |=(curb:n (blow +< have)))
       ?(%pro %only)   =(p.need have)
   ==
+::  $puff: 
 ++  puff
-  |=  [want=stud:n role=(unit stud:n) have=tale:n]
-  ^-  (unit idea:n)
-  =;  pal=(unit pail:n)
-    ?~  pal  ~
-    `[[*aeon:n have] ~ u.pal]
+  |=  [want=stud:n role=(unit stud:n) have=pail:n]
+  ^-  (unit (unit pail:n))
   ?:  =(want %pail)
-    `q.have
+    [~ ~]
   ?:  =(want p.q.have)
-    `q.have
+    [~ ~]
   ?:  =(want %sig)
-    `sig/!>(~)
+    ``sig/!>(~)
   =/  rol=stud:n
     (fall role %$)
   ?:  =(1 1) :: can=(~(get by con.dive) [p.q.have rol want])
@@ -291,13 +289,16 @@
 ::  !>(q.q.q.have)
 ::q.q.q.have
 ::
+::  +plag: Transform .have according to .want
+::
+::    Follows same calling convention as +moor
+::
 ++  plag
   =|  rol=(unit stud:n)
-  |=  [want=curb:n have=tale:n]
-  ^-  (unit idea:n)
+  |=  [want=curb:n have=pail:n]
+  ^-  (unit (unit pail:n))
   =*  loop   $
-  =/  =stud:n  p.q.have
-  =/  hav=saga:n  [*aeon:n have]
+  =/  =stud:n  p.have
   ?-    -.want
       %pro
     (puff p.want rol have)
@@ -306,13 +307,13 @@
     $(rol `p.want, want q.want)
   ::
       %only
-    ?.  =(p.q.have p.want)
+    ?.  =(p.have p.want)
       ~
-    `[hav ~ q.have]
+    [~ ~]
   ::
       %any
     ?>  =(~ rol) :: XX: not neccessary, but wat means
-    `[hav ~ q.have]
+    [~ ~]
   ::
       %not
     =/  r  rol
@@ -341,38 +342,56 @@
 ::
 ++  scion
   |=  [want=lads:n =pith:n =tale:n]
-  ^-  (unit idea:n)
+  ^-  (unit (unit pail:neo))
   ?~  pis=(find:peon:n pith ~(key by want))
     ~
   =/  =lash:n  (~(got by want) u.pis)
-  (plag state.lash tale)
+  (plag state.lash q.tale)
+::  +moor: Transform pith according to quay
+::
+::    Returns ~ if pith cannot match quay
+::
+::    Entry in axal is ~ if pith does not require transformation to 
+::    match quay
+::    Entry in axal is [~ *] with transformed pith to match quay
 ::
 ++  moor
   |=  [want=quay:n =pith:n]
-  ^-  (unit lore:n)
+  ^-  (unit (axal (unit pail:n)))
   =/  =care:n  (get-care:quay:n want)
   =^  muk  this  (grab-care care pith)
   ?:  &(=(care %x) =(muk *muck:n))
     ~
-  =;  [fail=(set pith:n) res=(list (pair pith:n idea:n))]
-    :: ?.  =(~ fail)
-      :: ~&  fail-moor/fail
-      :: ~
-    ~?  !=(~ fail)
-      fail/fail
-    `(~(gas of *lore:n) res)
-  %+  roll  ~(tap by ~(tar of:n muk))
-  |=  [[=pith:n =tale:n] [fail=(set pith:n) res=(list (pair pith:n idea:n))]]
-  ^+  +<+
-  ?:  =(pith ~)
-    ?~  rot=(plag state.p.want tale)
-      [(~(put in fail) pith) res]
-    [fail :_(res [*pith:n u.rot])]
+  =|  res=(axal (unit pail:n))
+  ?~  rot=(plag state.p.want q:(~(got of muk) /))
+    ~&  failed-root/state.p.want
+    ~
+  =.  res  (~(put of res) / u.rot)
   ?~  q.want
-    [(~(put in fail) pith) res]
+    `res
+  =;  [fail=? r=(axal (unit pail:n))]
+    ?:  fail  ~
+    `r
+  %+  roll  ~(tap of muk)
+  |=  [[=pith:n =tale:n] fail=_| res=_res]
+  ^+  +<+
+  ?:  fail  [fail res]
+  ?:  =(pith ~)  [fail res]
   ?~  ion=(scion q.u.q.want pith tale)
-    [(~(put in fail) pith) res]
-  [fail :_(res [pith u.ion])]
+    [& res]
+  [| (~(put of res) pith u.ion)]
+::
+++  berth
+  |=  [=epic:n mooring=(axal:n (unit pail:n))]
+  %-  ~(gas of *lore:n)
+  %+  turn  ~(tap of epic)
+  |=  [=pith:n =saga:n]
+  ^-  [pith:n idea:n]
+  :-  pith
+  =/  rope  (~(get of mooring) pith)
+  ?:  ?=(?(~ [~ ~]) rope)
+    [saga ~ q.q.saga]
+  [saga `%$ u.u.rope]
 ::
 ++  husk
   |_  =stud:n
@@ -589,15 +608,15 @@
     =^  m-wav=(unit pail:neo)  this
       (grab %int here)
     =/  wav=pail:n
-      (fall m-wav wave/!>(`wave:n`[code dock crew &]))
+      (fall m-wav wave/!>(`wave:n`[code *foam:n dock crew &]))
     ?>  =(%wave p.wav)
     =/  =kook:n  ~(kook husk code)  
     =/  =band:n  deps:kook
     =+ 
        !<(=wave:n q.wav)
-    =.  code.wave  code  :: XX: api change req
+    =.  code.wave  code
     =.  live.wave  &  :: will turn off again if invalid
-    =^  bad=(set term)  arvo
+    =^  bad=(map term sack:n)  arvo
       (jazz crew band)
     ?.  =(~ bad)
       ~|  make-no-dep/~(tap in bad)
@@ -614,10 +633,28 @@
     (ingest cards)
   ::
   ++  jazz :: XX: fix
-    =|  bad=(set term)
-    |=  [=crew:n =deps:n]
+    =|  bad=(map term sack:n)
+    |=  [=crew:n =band:n]
     ^+  [bad arvo]
-    [bad arvo]
+    =/  deps  ~(tap by band)
+    |-
+    ?~  deps
+      [bad arvo]
+    =/  [=term =deed:n =quay:n]  i.deps
+    =/  req=?  ?@(deed deed req.deed)
+    =/  timeout=(unit @dr)  ?@(deed ~ time.deed)
+    =/  =care:n  (get-care:quay:n quay)
+    ?:  &(req !(~(has by crew) term))
+      $(deps t.deps, bad (~(put by bad) term missing/~))
+    ?:  &(!req (~(has by crew) term))
+      $(deps t.deps)
+    ?~  pit=(~(get by crew) term)
+      ~&  missing-dep/term
+      $(deps t.deps)
+    ?.  =((ship:pith:n u.pit) our)
+      $(deps t.deps)
+    $(deps t.deps)
+  ::
   ++  dance
     |=  [=crew:n =band:n]
     ^+  arvo
@@ -787,7 +824,13 @@
       ^-  (unit [pith:n tale:n])
       ?~  ion=(scion q.u.kids pith tale)
         ~
-      `[pith p.tale pail.u.ion]
+
+      :^  ~  pith
+        p.tale
+      ?~  u.ion
+        q.tale
+      u.u.ion
+    ::
     ++  su-deps
       :: =-  ((slog (deps:dbug:n -) ~) -)
       %-  ~(gas by *(map term [pith lore:n]))
@@ -802,13 +845,14 @@
         ?<  req
         ~
       =/  =care:n  (get-care:quay:n quay)
-      ?~  lor=(moor quay u.dep)
+      ?~  ax=(moor quay u.dep)
         :: ~|  seed=~(key by ~(tar of (~(dip of seed.step) (scag 4 u.dep)))
         ~&  lost-moor/[here=here dep=term pith=u.dep code=code.wave]
         ?<  req
         `[term u.dep *lore:n]
+      `[term u.dep (berth (look:plow care u.dep) u.ax)]
 ::      %-  (slog term (epic:dbug:n epic) ~)
-      `[term u.dep u.lor]
+      :: `[term u.dep u.lor]
     ::
     ++  su-form  ~(. form:kook [su-bowl *aeon:n su-pail])
     ++  su-poem

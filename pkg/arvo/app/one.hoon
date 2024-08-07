@@ -27,6 +27,7 @@
     ?:  dev  same
     |*  *
     !.  +<
+
   --
 =,  util
 |%
@@ -685,6 +686,12 @@
   |=  ses=@ta
   =/  sel=shell  (~(got by shells) ses)
   |%
+  ++  sub
+    |=  [a=@ b=@]
+    ?:  (lte a b)
+      0
+    (^sub a b)
+  ::
   ++  move
     |=  =pith:n
     =.  here.sel  pith
@@ -703,13 +710,13 @@
 
   ++  z
     |%
-    ++  stat  `zone:e`[[0 (sub h.scope.sel 5)] [w.scope.sel 5]]
-    ++  tree  `zone:e`[[0 1] [41 (sub h.scope.sel 1)]]
+    ++  stat  `zone:e`[[0 (sub h.scope.sel 3)] [w.scope.sel 3]]
+    ++  tree  `zone:e`[[0 1] [41 (sub h.scope.sel 3)]]
     ++  head  `zone:e`[[0 0] [w.scope.sel 1]]
     ++  main  `zone:e`[[40 1] [(sub w.scope.sel 41) 20]]
-    ++  info  `zone:e`[[40 20] [40 (sub h.scope.sel 20)]]
-    ++  poke  `zone:e`[[79 20] [20 (sub h.scope.sel 20)]]
-    ++  help  `zone:e`[[99 20] [(sub h.scope.sel 99) (sub h.scope.sel 20)]]
+    ++  info  `zone:e`[[40 20] [30 (sub h.scope.sel 22)]]
+    ++  poke  `zone:e`[[69 20] [30 (sub h.scope.sel 22)]]
+    ++  help  `zone:e`[[98 20] [30 (sub h.scope.sel 22)]]
     ++  all  `zone:e`[[0 0] scope.sel]
     --
   ++  e  etui
@@ -728,12 +735,15 @@
     ^+  spit
     ?+    belt  spit
         [%aro *]   spit
+        %p          spit(run (make-pill (en-beam byk.bowl /neo/cod/std/src)))
         %r          draw
         %h          ?:(=(~ here.sel) do-bell (move (snip here.sel)))
         %j          draw(select.sel (inc-mod:u select.sel ~(wyt by kid:get-epic)))
         %k          draw(select.sel (dec-mod:u select.sel ~(wyt by kid:get-epic)))
         %l
       (move (snoc here.sel -:(snag select.sel ~(tap aon kid:get-epic))))
+        %c
+      spit(run (emit (pass / %agent [our %hood] %poke kiln-commit/!>([q.byk.bowl |]))))
     ==
   ++  on-size
     |=  siz=size
@@ -796,6 +806,7 @@
     :~  'Help:'
         'h,j,k,l moves as in vim'
         'c will commit %base'
+        'p will make a new pill'
     ==
   ++  draw
     %-  do-blit
@@ -808,6 +819,7 @@
         draw-head
         draw-info
         draw-poke
+        draw-help
     ==
   ++  get-epic  epic.sel :: (~(look plow farm) %z here.sel)
   ++  draw-tree
@@ -845,7 +857,7 @@
       ::
         [%hey *]  draw
         [%yow *]  draw
-        [%cru *]  ~&(%error draw)
+        [%cru *]  ((slog leaf/"Belt error: {<p.belt>}" q.belt) spit)
         [%rez *]  draw:(on-size [p q]:belt)
     ==
   --
