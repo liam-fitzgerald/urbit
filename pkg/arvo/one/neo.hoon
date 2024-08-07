@@ -482,17 +482,22 @@
   |=  [par=pith:neo child=pith:neo car=?(%y %z)]
   ^-  ?
   =^  =muck:n  this  reap
-  ?:  =(%y car)
-    =(`par (~(parent of:neo muck) child))
-  !=(~ (dif:pith:neo par child))
+  ?:  =(%z car)
+    &
+  =(`par (~(parent of:neo muck) child))
 ::
 :: +abduct: check capture
 ++  abduct
   |=  [par=pith:neo child=pith:neo]
   ^-  ?
   ::~>  %bout.[1 %adopt]
+  =^  =muck:n  this
+    reap
   =/  wav  -:(grab %int par)
-  ?~  wav  |
+  ?~  wav
+    ~?  =(par /cod/std)
+      ~(key by ~(tar of (~(dip of muck) /int)))
+    |
   =+  !<(=wave:n q.u.wav)
   ?~  kids.dock.wave
     ::~&  bailing-no-kids/[par child]
@@ -504,15 +509,17 @@
   =|  res=(set pith:neo)
   =|  here=pith:neo
   |=  =pith:neo
+  ?:  ?=([%int *] pith)
+    res
+  =/  rest=pith:n  pith
   ::~&  adopting/pith
   |-  ^+  res
   =?  res  (abduct here pith)
     (~(put in res) here)
-  =/  nex  (dif:pith:neo here pith)
-  ?~  nex
+  ?~  rest
     ::~&  adopted/res
     res
-  $(here (snoc here i.nex))
+  $(here (snoc here i.rest), rest t.rest)
 
 ::
 ++  arvo
@@ -547,9 +554,9 @@
     =.  seed.step  (~(put of seed.step) pith %grow ~ q.tale p.tale)
     arvo
   ++  abet  
-    ?^  err.block
-      %-  (slog (print-quit:neo u.err.block))
-      this
+::  ?^  err.block
+::    %-  (slog (print-quit:neo u.err.block))
+::    this
     =.  io.step  
       %+  welp  io.step 
       %+  turn  up 
@@ -589,14 +596,15 @@
     ~/  %apply
     |=  =move:n
 ::     ~>  %bout.[1 (crip (en-tape:pith:n p.q.move))]
-    ?.  =(~ err.block)
-      arvo
+::  ?.  =(~ err.block)
+::    arvo
     ?>  ?=(^ p.q.move)
 ::     ~&  here=p.q.move
     =:  src   p.move   
         here  t.p.q.move
       ==
     ~|  [src=src here=here]
+      
     :: ~&  [src=src here=here]
     ?+  -.q.q.move  !!
       %make  (make +.q.q.move)
@@ -618,6 +626,7 @@
     =+ 
        !<(=wave:n q.wav)
     =.  code.wave  code
+    =.  dock.wave  ~(dock husk code)
     =.  live.wave  &  :: will turn off again if invalid
     =^  bad=(map term sack:n)  arvo
       (jazz crew band)
@@ -690,8 +699,8 @@
   ::
   ++  work
     ^+  arvo
-    ?^  err.block
-      arvo
+::  ?^  err.block
+::    arvo
     ?~  down
       plunder
     =/  nex=move:n  i.down

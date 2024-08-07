@@ -30,6 +30,7 @@
         imp/%ford-slop
         imp/%ford-face
         imp/%ford-text
+        imp/%ford-desk
     ==
     
   --
@@ -62,35 +63,7 @@
   ++  poke
     |=  [=stud:neo vax=vase]
     ^-  (quip card:neo pail:neo)
-    =+  !<(=gift:neo vax)
-    =+  !<(=disk:neo q.pail)
-    =|  cards=(list card:neo)
-    =/  gis  ~(tap of:neo gift)
-    |-
-    ?~  gis
-      [cards pail]
-    =/  [=pith:neo =mode:neo]  i.gis
-    ?.  ?=([%src *] pith)
-      ?.  ?=([%out *] pith)
-        $(gis t.gis)
-      ?~  val=(~(get of kids.bowl) pith)
-        $(gis t.gis)
-      ?.  =(%tang p.q.u.val)
-        $(gis t.gis)
-      %.  $(gis t.gis)
-      %.  !<(tang q.q.u.val)
-      %*  .  slog
-        pri  3
-      ==
-    =/  =prop:neo  (pith-to-prop t.pith)
-    ?-    mode
-        %dif  $(gis t.gis)
-        %del  $(cards (welp cards (handle-del:run pith)), gis t.gis)
-        %add
-      =^  caz=(list card:neo)  disk
-        (handle-add:run prop)
-      $(cards (welp cards caz), gis t.gis)
-    ==
+    abet:(take-gift:run !<(=gift:neo vax))
   ++  init
     |=  pal=(unit pail:neo)
     ^-  (quip card:neo pail:neo)
@@ -113,25 +86,55 @@
       =?  mark  =(mark %txt)
         %cord
       [%make %riff `vase/(slap vase:reef limb/mark) ~]
-    |-
-    ?~  ls 
-      :: %-  print:(cards:etch cards)
-      [cards disk/!>(sta)]
-    =/  [=pith:neo =tale:neo]  i.ls
-    =/  pop  (pith-to-prop-soft pith)
-    ?~  pop  $(ls t.ls)
-    =^  caz=(list card:neo)  sta
-      abet:(build-file:run u.pop)
-    $(cards (welp cards caz), ls t.ls)
+    =/  [caz=(list card:neo) new=pail:neo]
+      =<  abet
+      %-  build-files:run 
+      %+  murn  ls
+      |=  [=pith:n *]
+      (pith-to-prop-soft pith)
+    [(welp cards caz) new]
   --
   |_  [=bowl:neo cards=(list card:neo) sta=disk:neo]
   +*  reef  ~(. qua:deps:u [%reef bowl `%vase])
-  ++  abet  [(flop cards) sta]
+  ++  abet  [(flop cards) disk/!>(sta)]
   ++  emit  |=(=card:neo run(cards [card cards]))
+  ++  emil  |=(caz=(list card:neo) run(cards (welp (flop caz) cards)))
   ++  run  .
+  ++  report-err
+    |=  [=pith:neo num=@ud]
+    ^+  run
+    %+  emit  (welp here.bowl #/err/[ud/num])
+    [%make %pith `pith/!>((welp here.bowl pith)) *crew:n]
+  ::
+  ++  take-gift
+    |=  =gift:neo
+    =|  cards=(list card:neo)
+    =/  gis  ~(tap of:neo gift)
+    =|  err-count=@ud
+
+    |-  ^+  run
+    ?~  gis
+      run
+    =/  [=pith:neo =mode:neo]  i.gis
+    ?.  ?=([%src *] pith)
+      ?.  ?=([%out *] pith)
+        $(gis t.gis)
+      ?~  val=(~(get of kids.bowl) pith)
+        $(gis t.gis)
+      ?.  =(%tang p.q.u.val)
+        $(gis t.gis)
+      $(gis t.gis, run (report-err pith err-count), err-count +(err-count))
+    =/  =prop:neo  (pith-to-prop t.pith)
+    ?-    mode
+        %dif  $(gis t.gis)
+        %del  $(run (handle-del:run pith), gis t.gis)
+        %add  $(gis t.gis, run (build-file prop))
+    ==
+  ::
   ++  handle-del
     |=  =road:neo
-    ^-  (list card:neo)
+    ^+  run
+    %-  emil
     ?.  ?=([%src =tack:neo =mark ~] road)
       ?<  ?=([?(%out %pre) *] road)
       ~
@@ -139,10 +142,6 @@
     :~  [(welp here.bowl out/pith) %cull ~]
         [(welp here.bowl pre/pith) %cull ~]
     ==
-  ++  handle-add
-    |=  =prop:neo
-    ^-  (quip card:neo _sta)
-    abet:(build-file prop)
   ++  file
     |_  =prop:neo
     ++  here  (welp here.bowl src/pith)
@@ -152,22 +151,23 @@
     ++  src
       !<(@t q.q:(~(got of:neo kids.bowl) src/pith))
     --
+  ++  build-files
+    |=  pos=(list prop:neo)
+    ?~  pos
+      run
+    $(pos t.pos, run (build-file i.pos))
   ++  build-file
     |=  =prop:neo
     ^+  run
     =*  fil  ~(. file prop)
     ?:  (~(has in broken) prop)
       run :: (emit (welp here.bowl out/pith:fil) %make %riff `vase/!>(~) ~)
-    ?:  =(p.prop %con)
-      run
     ?:  &(=(p.prop %pro) is-auto:fil)
+      run
+    ?:  =(p.prop %con)
       run
     =.  run  (build-prelude prop)
     (do-slap prop)
-  ++  build-files
-    |=  pop=(list prop:n)
-    ?~  pop  run
-    $(run (build-file i.pop), pop t.pop)
   ++  import-to-props
     |=  [=tack:n imports=(list [face=term =stud:n])]
     %+  murn  imports

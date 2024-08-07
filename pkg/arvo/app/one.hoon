@@ -744,6 +744,13 @@
       (move (snoc here.sel -:(snag select.sel ~(tap aon kid:get-epic))))
         %c
       spit(run (emit (pass / %agent [our %hood] %poke kiln-commit/!>([q.byk.bowl |]))))
+        %'J'
+      =/  sag  fil:get-epic
+      ?~  sag
+        do-bell
+      ?.  =(p.q.q.u.sag %pith)
+        do-bell
+      (move (slag 1 !<(pith:n q.q.q.u.sag)))
     ==
   ++  on-size
     |=  siz=size
