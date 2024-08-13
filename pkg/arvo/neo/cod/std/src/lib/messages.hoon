@@ -77,21 +77,21 @@
       %+  slag  (sub (lent msgs) (min 20 (lent msgs)))
       %+  sort
         %+  murn  msgs
-        |=  [=pith =idea:neo]
+        |=  [=pith =tale:neo]
         ?~  pith  ~
-        ?.  =(%message p.q.saga.idea)  ~
-        `[pith idea]
+        ?.  =(%message p.q.tale)  ~
+        `[pith tale]
       |=  [a=[=pith *] b=[=pith *]]
       =/  adate  +:(snag 1 pith.a)
       =/  bdate  +:(snag 1 pith.b)
       (lth adate bdate)
-    |=  [pax=pith =idea:neo]
-    (render-message pax idea bowl)
+    |=  [pax=pith =tale:neo]
+    (render-message pax tale bowl)
   ==
 ::
 ++  render-message
-  |=  [pax=pith =idea:neo =bowl:neo]
-  =/  msg  !<(message q.q.saga.idea)
+  |=  [pax=pith =tale:neo =bowl:neo]
+  =/  msg  !<(message q.q.tale)
   ^-  manx
   ?:  =(our.bowl from.msg)
     (render-our-message msg bowl)

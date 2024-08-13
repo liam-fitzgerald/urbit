@@ -65,6 +65,7 @@
     ^-  (list card:neo)
     ?+    method.request.req  ~|(%unsupported-http-method !!)
         %'GET'
+      ~&  %get-got
       ?~  reet=(~(get of:neo q.u.src) /)
         =/  bol  *bowl:neo
         =.  here.bol  here
@@ -85,7 +86,11 @@
       =.  our.bol  our.bowl
       =.  now.bol  now.bowl
       =.  eny.bol  eny.bowl
-      =.  kids.bol  (~(del of:neo q.u.src) /)
+      =.  kids.bol  
+        ^-  muck:n
+        %-  ~(run of (~(del of:neo q.u.src) /))
+        |=  =idea:neo
+        q.saga.idea
       =/  has-conversion  =(%htmx p.pail.root)
       =/  main
         ?:  has-conversion
@@ -111,7 +116,7 @@
           bowl
           200
           ['content-type' 'text/html']~
-          ~(lift hawk here.bol main (raw-view bol(kids q.u.src)) has-conversion meta)
+          ~(lift hawk here.bol main (raw-view bol(kids (lore-to-muck q.u.src))) has-conversion meta)
       ==
     ::
         %'POST'
@@ -125,9 +130,10 @@
       =/  mul
         %-  mule
         |.
-        ?:  =(content-type 'application/x-www-form-urlencoded')
-          (http-request [poke-stud `request:http`request.req])
-        (node [poke-stud body])
+        !!
+::      ?:  =(content-type 'application/x-www-form-urlencoded')
+::        (http-request [poke-stud `request:http`request.req])
+::      (node [poke-stud body])
       ?-    -.mul
           %.n
         %:  eyre-cards
@@ -158,7 +164,7 @@
         =.  now.bol  now.bowl
         =.  eny.bol  eny.bowl
         =/  =manx
-          ?~  converter=(mole |.((htmx pail)))
+          ?~  converter=(mole |.(!!)) :: (htmx pail)))
             (default-refresher here)
           =/  mul
             %-  mule
@@ -187,10 +193,10 @@
         (~(got by pam.purl) 'stud')
       =/  mul
         %-  mule
-        |.
-        ?:  =(content-type 'application/x-www-form-urlencoded')
-          (http-request [poke-stud `request:http`request.req])
-        (node [poke-stud body])
+        |.  !!
+::      ?:  =(content-type 'application/x-www-form-urlencoded')
+::        (http-request [poke-stud `request:http`request.req])
+::      (node [poke-stud body])
       ?-    -.mul
           %.n
         %:  eyre-cards
@@ -251,7 +257,7 @@
 ++  eyre-cards
   |=  [eyre-id=@ta =bowl:neo status=@ud =header-list:http =manx]
   ^-  (list card:neo)
-  =/  =pith:neo  #/[p/our.bowl]/$/eyre
+  =/  =pith:neo  #/[p/our.bowl]/vane/eyre
   =/  head=sign:eyre:neo  [eyre-id %head [status header-list]]
   =/  data=sign:eyre:neo  [eyre-id %data `(manx-to-octs manx)]
   =/  done=sign:eyre:neo  [eyre-id %done ~]
@@ -259,7 +265,6 @@
       [pith %poke eyre-sign/!>(data)]
       [pith %poke eyre-sign/!>(done)]
       [here.bowl %cull ~]
-      [here.bowl %tomb ~]
   ==
 ++  print-tang
   |=  =tang
@@ -341,6 +346,10 @@
       ==
     ==
   ==
+++  lore-to-muck
+  |=  =lore:neo
+  :: ^-  muck;neo
+  (~(run of lore) |=(=idea:neo q.saga.idea))
 ++  hawk
   |_  [here=pith main=manx raw=manx has-app=? meta=[@da @ud]]
   ++  our-tape

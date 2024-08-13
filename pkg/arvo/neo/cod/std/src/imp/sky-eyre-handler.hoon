@@ -33,7 +33,7 @@
     =/  [=stud:neo =vase]  (need pal)
     =+  !<([eyre-id=@ta req=inbound-request:eyre] vase)
     :_  [stud vase]
-    =/  =pith:neo  #/vane/eyre
+    =/  =pith:neo  #/[p/our.bowl]/vane/eyre
     =;  =manx
       =/  octs
         %-  as-octt:mimes:html

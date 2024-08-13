@@ -76,7 +76,7 @@
     ?~  s  ~
     :-  ~
     !<  sky-settings
-    q.q.saga.u.s
+    q.q.u.s
   ;style
     ;+  ;/
     ?~  settings

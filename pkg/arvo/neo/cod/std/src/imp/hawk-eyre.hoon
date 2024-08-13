@@ -26,7 +26,7 @@
       =+  !<(=task:eyre:neo vax)
       =/  [eyre-id=@ta req=inbound-request:eyre]  task
       ?.  authenticated.req
-        =/  eyre=pith:neo  #/[p/our.bowl]/$/eyre
+        =/  eyre=pith:neo  #/[p/our.bowl]/vane/eyre
         :_  pail
         %+  ~(respond neo:srv eyre)   eyre-id
         (login-redirect:gen:srv request.req)

@@ -6,7 +6,7 @@
 ::     /int/ - interfaces
 
 =/  prelude  !>(.)
-|=  neo-args=[ford=(list [=stud:neo txt=@t]) src=(axal:neo [kind=?(%hoon %txt) src=@t]) user=(list [=pith:neo =vial:neo])]
+|=  neo-args=[ford=(list [=stud:neo txt=@t]) src=(axal:neo [kind=?(%hoon %txt %png %css %js) src=@t]) user=(list [=pith:neo =vial:neo])]
 =>
   ::  |=  init=[build=(list [=post:neo txt=@t]) user=(list card:neo)]
   ~%  %neo-prelude  ..part  ~
@@ -185,6 +185,9 @@
     %+  welp
       :~  [(slap-riff pro/%hoon !,(*hoon @t))]
           [(slap-riff pro/%txt !,(*hoon @t))]
+          [(slap-riff pro/%css !,(*hoon @t))]
+          [(slap-riff pro/%png !,(*hoon @t))]
+          [(slap-riff pro/%js !,(*hoon @t))]
           [(slap-riff pro/%disk !,(*hoon disk:neo))]
           ::[(~(pith press:n imp/%desk) (make-riff (slap prelude !,(*hoon desk))))]
       ==
@@ -202,7 +205,7 @@
       :: fill with files
     :~  :+  #/[p/our]/cod/std/src  %many
         %+  turn  ~(tap of src.neo-args)
-        |=  [=pith:neo kind=?(%hoon %txt) src=@t]
+        |=  [=pith:neo kind=?(%hoon %txt %png %css %js) src=@t]
         ^-  card:b
         :: ?.  ?=([%pro @ ~] pith)
           :: ~
@@ -266,22 +269,48 @@
       %or             (lien p.need |=(curb:n (blow +< have)))
       ?(%pro %only)   =(p.need have)
   ==
+++  dive
+  |%
+  ++  get-con
+    |=  [have=stud:neo want=stud:neo]
+    ^-  (unit vase)
+    =/  sud=(unit pail:neo)
+      =<  -
+      %-  grab
+      %+  welp  /cod/std/index/thru
+      %+  welp  (stud-to-pith:n have)
+      (stud-to-pith:n want)
+    ?~  sud
+      ~
+    =+  !<(=stud:neo q.u.sud)
+    =/  res=(unit pail:neo)
+      ?>  ?=(@ stud)
+      -:(grab /cod/std/out/con/[stud])
+    ?~  res  ~
+    `(slot 3 q.u.res)
+  --
 ::  $puff: 
 ++  puff
   |=  [want=stud:n role=(unit stud:n) have=pail:n]
   ^-  (unit (unit pail:n))
-  ?:  =(want %vase)
-    [~ ~]
   ?:  =(want p.have)
     [~ ~]
+  ?:  =(want %vase)
+    ?:  =(p.have %tang)
+      ~
+    ``vase/q.have
   ?:  =(want %sig)
     ``sig/!>(~)
-  =/  rol=stud:n
-    (fall role %$)
-  ?:  =(1 1) :: can=(~(get by con.dive) [p.q.have rol want])
-    :: ~&  missing-can/[p.q.have rol want]
+  ?~  con=(get-con:dive p.have want)
+    :: ~&  missing-con/[p.have want]
     ~
-  ~
+  ~|  [%failed-convert have=p.have want=want]
+  ``[want (slam u.con q.have)]
+
+::?:  =(1 1) :: can=(~(get by con.dive) [p.q.have rol want])
+::  :: ~&  missing-can/[p.q.have rol want]
+::  ~
+::~
 ::=/  conv  run:~(do con u.can)
 ::~|  dead-horse/[p.q.have rol want u.can]
 :::+  ~  want
@@ -347,6 +376,8 @@
   ?~  pis=(find:peon:n pith ~(key by want))
     ~
   =/  =lash:n  (~(got by want) u.pis)
+  ::~&  [lash=lash stud=p.q.tale]
+  :: =-  ~&(res=?~(- %.n %.y) -)
   (plag state.lash q.tale)
 ::  +moor: Transform pith according to quay
 ::
@@ -362,12 +393,22 @@
   =/  =care:n  (get-care:quay:n want)
   =^  muk  this  (grab-care care pith)
   ?:  &(=(care %x) =(muk *muck:n))
+    ~&  moor-lost-void/[pith muk=muk]
     ~
   =|  res=(axal (unit pail:n))
-  ?~  rot=(plag state.p.want q:(~(got of muk) /))
-    ~&  failed-root/state.p.want
+  =/  rot  (~(get of muk) /)
+  ?:  &(?=(~ rot) !=(any/~ state.p.want))
+    ~&  %missing-root
     ~
-  =.  res  (~(put of res) / u.rot)
+  =^  quit=?  res
+    ?~  rot  |/res
+    ?~  vale=(plag state.p.want q.u.rot)
+      &/res
+    |/(~(put of res) / u.vale)
+  ?:  quit
+    ~&  failed-plag/[state=state.p.want rot=?~(rot ~ p.q.u.rot)]
+    ~
+  ::
   ?~  q.want
     `res
   =;  [fail=? r=(axal (unit pail:n))]
@@ -379,7 +420,8 @@
   ?:  fail  [fail res]
   ?:  =(pith ~)  [fail res]
   ?~  ion=(scion q.u.q.want pith tale)
-    [& res]
+    :: ~&  wayward-kid/pith
+    [| res]
   [| (~(put of res) pith u.ion)]
 ::
 ++  berth
@@ -442,6 +484,7 @@
     =/  vax  vase
     ?:  is-bunted
       default-kook
+    ~>  %mean.|.((sell vax))
     !<(kook:n vax)
   ++  is-plot
     (~(nest ut -:!>(*plot:n)) | p:vase)
@@ -495,8 +538,6 @@
     reap
   =/  wav  -:(grab %int par)
   ?~  wav
-    ~?  =(par /cod/std)
-      ~(key by ~(tar of (~(dip of muck) /int)))
     |
   =+  !<(=wave:n q.u.wav)
   ?~  kids.dock.wave
@@ -540,7 +581,7 @@
     [p p.q]:move
   =/  init-move  move
   =/  here  dst.init
-  ?:  ?=([%vane @ *] here)
+  ?:  ?=([[%p @] %vane *] here)
     (on-bush:sys move)
   :: ?>  =(our.mien ship.dst.init)
   ::  XX: blocking semantives
@@ -603,7 +644,8 @@
     =:  src   p.move   
         here  t.p.q.move
       ==
-    ~|  [src=src here=here]
+    ~&  [src=src here=here type=-.q.q.move]
+    ?<  ?=([%vane *] here)
       
     :: ~&  [src=src here=here]
     ?+  -.q.q.move  !!
@@ -623,8 +665,7 @@
     ?>  =(%wave p.wav)
     =/  =kook:n  ~(kook husk code)  
     =/  =band:n  deps:kook
-    =+ 
-       !<(=wave:n q.wav)
+    =+  !<(=wave:n q.wav)
     =.  code.wave  code
     =.  dock.wave  ~(dock husk code)
     =.  live.wave  &  :: will turn off again if invalid
@@ -769,7 +810,8 @@
       (mule tap)
     ?:  ?=(%& -.res)
       p.res
-    %-  (slog leaf/"wipeout {<src>} -> {<here>}" p.res)
+    %-  (%*(. slog pri 3) leaf/"wipeout {<src>} -> {<here>}" ~)
+    %-  (slog p.res)
     =.  err.block  `[%goof p.res]
     `arvo
   ++  germ
@@ -829,7 +871,6 @@
       ?~  kids
         *muck:n
       %-  ~(gas of *muck:n)
-      ~&  su-kids/[here=here ~]
       =/  child   (~(dip of muck) here)
       :: %-  print:(muck:etch child)
       %+  murn  ~(tap by ~(tar of:n child))
@@ -905,7 +946,6 @@
       ~/  %su-poke
       |=  =pail:n
       ^+  su-core
-      ~&  su-poke/here
       =?  live.wave  =(p.pail %dead)
         =+  !<(dead=term q.pail)
         ?~  dep=(~(get by deps:kook) dead)
@@ -922,7 +962,7 @@
           (slog (print-quit:n u.ack))
         ?:  |(=(%dead p.pail) =(%rely p.pail))
           su-core
-        (mean leaf/"no support for {<p.pail>}" ~)
+        (mean leaf/"no support for {<p.pail>}" leaf/"api: {<dock.wave>}" ~)
       =/  [caz=(list card:n) new=pail:n]
         (poke:su-form pail)
       =.  su-core  (su-emil caz)
@@ -941,10 +981,10 @@
   ++  on-bush
     |=  [src=pith:neo dst=pith:neo =note:b]
     ^+  this
-    ?>  ?=([%vane *] dst)
-    ?+  t.dst  ~|(bad-bush/dst !!)
-      [%clay *]  abet:(call:silt src t.t.dst note)
-      [%eyre *]  abet:(call:sttp src t.t.dst note)
+    ?>  ?=([[%p @] %vane *] dst)
+    ?+  t.t.dst  ~|(bad-bush/dst !!)
+      [%clay *]  abet:(call:silt src t.t.t.dst note)
+      [%eyre *]  abet:(call:sttp src t.t.t.dst note)
 ::    [%iris *]  (call:cttp src t.dst note)
 ::    [%behn *]  (call:bide src t.dst note)
 ::    [%gall *]  (call:rile src t.dst note)
@@ -1088,7 +1128,7 @@
   ++  on-eyre-sign
     |=  [src=pith:neo eyre-id=@ta =gift:eyre:neo]
     ^+  sttp
-    ~&  eyre-sign/eyre-id
+    ~&  eyre-sign/[eyre-id -.gift]
     =?  by-id.sta  ?=(%done -.gift)
       (~(del by by-id.sta) eyre-id)
     ::  ?>  =(src (~(got by by-id.eyre.unix) eyre-id))

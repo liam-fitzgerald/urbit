@@ -17,10 +17,12 @@
 /*  txt-ford-desk   %hoon   /neo/cod/std/src/imp/ford-desk/hoon
 /*  txt-ford-desp   %hoon   /neo/cod/std/src/pro/ford-desk/hoon
 /*  txt-ford-text   %hoon   /neo/cod/std/src/imp/ford-text/hoon
-
+/*  txt-ford-all-grow   %hoon   /neo/cod/std/src/imp/ford-all-grow/hoon
+/*  txt-ford-all-grab   %hoon   /neo/cod/std/src/imp/ford-all-grab/hoon
 =>
   |%
   ++  prelude  !>(util)
+  +$  boot-pros  ?(%hoon %txt %png %css %js)
   ++  dev  |
 ::  =>  !@(dev ((slog leaf/"tape" ~) .) .)
   ++  mute
@@ -35,7 +37,7 @@
 +$  size  _[w=80 h=40]
 +$  shell
   $:  cwd=pith:neo
-      scope=_[w=80 h=40]
+      scope=_[w=120 h=80]
       select=@ud
       here=pith:neo
       =epic:neo
@@ -190,14 +192,16 @@
         [%ford-text txt-ford-text]
         [%ford-slap txt-ford-slap]
         [%ford-desk txt-ford-desk]
+        [%ford-all-grow txt-ford-all-grow]
+        [%ford-all-grab txt-ford-all-grab]
     ==
   ::  install source
     =/  pax=path  (en-beam byk.bowl(r da/now.bowl) default-pill-tub)
     ~&  reading-pil/pax
     ?~  jam=(file:space:userlib pax)
       ~&  %no-pill-skipping
-      *(axal:neo [kind=?(%txt %hoon) src=@t])
-    ;;((axal:neo [kind=?(%txt %hoon) src=@t]) (cue ;;(@ u.jam)))
+      *(axal:neo [kind=boot-pros src=@t])
+    ;;((axal:neo [kind=boot-pros src=@t]) (cue ;;(@ u.jam)))
   ::
     ~
   ==
@@ -302,14 +306,14 @@
   =+  .^(files=(list path) %ct pax)
   =.  files  (turn files (cury slag (sub (lent pax) 3)))
   ~&  files/files
-  =|  pill=(axal:neo [kind=?(%hoon %txt) src=@t])
+  =|  pill=(axal:neo [kind=boot-pros src=@t])
   |-  
   ?~  files
     ~&  writing-pill/~(key by ~(tar of pill))
     (write-jamfile (jam pill))
   =+  .^(src=@t %cx `path`(welp pax i.files))
   =/  ext=knot  (rear i.files)
-  ?.  ?=(?(%hoon %txt) ext)
+  ?.  ?=(boot-pros ext)
     ~&  unknown-ext-skipping/[ext i.files]
     $(files t.files)
   =.  pill  (~(put of pill) (snip i.files) [ext src])
@@ -552,7 +556,6 @@
     ::
         %eyre
       =/  paxs=(list path)  ~[/http-response/[eyre-id.gift]]
-      ~&  eyre/gift
       =.  run  
         ?-  -.gift.gift
           %head  (emit %give %fact paxs http-response-header/!>(response-header.gift.gift))
@@ -713,10 +716,10 @@
     ++  stat  `zone:e`[[0 (sub h.scope.sel 3)] [w.scope.sel 3]]
     ++  tree  `zone:e`[[0 1] [41 (sub h.scope.sel 3)]]
     ++  head  `zone:e`[[0 0] [w.scope.sel 1]]
-    ++  main  `zone:e`[[40 1] [(sub w.scope.sel 41) 20]]
-    ++  info  `zone:e`[[40 20] [30 (sub h.scope.sel 22)]]
-    ++  poke  `zone:e`[[69 20] [30 (sub h.scope.sel 22)]]
-    ++  help  `zone:e`[[98 20] [30 (sub h.scope.sel 22)]]
+    ++  main  `zone:e`[[40 1] [(sub w.scope.sel 41) 40]]
+    ++  info  `zone:e`[[40 40] [30 (sub h.scope.sel 42)]]
+    ++  poke  `zone:e`[[69 40] [30 (sub h.scope.sel 42)]]
+    ++  help  `zone:e`[[98 40] [30 (sub h.scope.sel 42)]]
     ++  all  `zone:e`[[0 0] scope.sel]
     --
   ++  e  etui

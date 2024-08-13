@@ -118,14 +118,14 @@
 ++  stud-to-pith
   |=  s=stud
   ^-  pith
-  ?@  s  ~[s]
+  ?@  s  #/kelvin/[ud/zuse]/[s]
   #/[p/ship.s]/[desk.s]/[mark.s]
 ::
 ++  pith-to-stud
   |=  p=road
   ^-  stud
-  ?:  ?=([s=@ ~] p)
-    s.p
+  ?:  ?=([%kelvin ^ mark=@ ~] p)
+    mark.p
   ?>  ?=([[%p ship=@] desk=@ mark=@ ~] p)
   [mark ship desk]:p
 ++  axal
@@ -878,6 +878,7 @@
     =/  [p=pith =lore]  (~(got by deps.bowl) term)
     ?~  fil.lore
       tang/!>(~[leaf/"{(en-tape:pith here.bowl)}: Missing dep {<term>}"])
+    ~|  p.pail.u.fil.lore
     ?>  ?=(?(%vase %tang) p.pail.u.fil.lore)
     pail.u.fil.lore
   ::
