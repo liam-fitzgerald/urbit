@@ -6,20 +6,20 @@
 ::     /int/ - interfaces
 
 =/  prelude  !>(.)
-|=  neo-args=[ford=(list [=stud:neo txt=@t]) src=(axal:neo [kind=?(%hoon %txt %png %css %js) src=@t]) user=(list [=pith:neo =vial:neo])]
+|=  neo-args=[ford=(list [=stud:t txt=@t]) src=(axal:neo [kind=?(%hoon %txt %png %css %js) src=@t]) user=(list [=pith:t =vial:neo])]
 =>
   ::  |=  init=[build=(list [=post:neo txt=@t]) user=(list card:neo)]
   ~%  %neo-prelude  ..part  ~
   |%
   ++  mk-poem
-    |=  =stud:n
-    [stud *(set stud:n)]
+    |=  =stud:t
+    [stud *(set stud:t)]
   ++  riff-poem
-    ^-  poem:neo
-    [%riff *(set stud:neo)]
+    ^-  poem:t
+    [%riff *(set stud:t)]
   ++  wave-poem
-    ^-  poem:neo
-    [%wave *(set stud:neo)]
+    ^-  poem:t
+    [%wave *(set stud:t)]
   ++  riff
     => 
     |%
@@ -28,21 +28,21 @@
     ^-  kook:neo
     |%
     ++  state  pro/%vase
-    ++  poke   *(set stud:neo)
+    ++  poke   *(set stud:t)
     ++  kids  ~
     ++  deps  ~
     ++  form
       ^-  form:neo
-      |_  [=bowl:neo =aeon:neo =pail:neo]
+      |_  [=bowl:neo =aeon:t =pail:t]
       +*  sta  !<([cache=(unit vase) ~] state-vase)
       ++  poke
-        |=  pail:neo  
-        ^-  (quip card:neo pail:neo)
+        |=  pail:t  
+        ^-  (quip card:neo pail:t)
         `pail
       ::
       ++  init
-        |=  old=(unit pail:neo)
-        ^-  (quip card:neo pail:neo)
+        |=  old=(unit pail:t)
+        ^-  (quip card:neo pail:t)
         `(need old)
       --
     --
@@ -51,13 +51,13 @@
   ++  b   bush:t
   ++  n   neo
   +$  state-0
-    $:  following=(jug pith:n pith:n)
+    $:  following=(jug pith:t pith:t)
         ripe=_|
         booting=_&
         ~
     ==
   ++  is-parent
-    |=  [parent=pith:n kid=pith:n]
+    |=  [parent=pith:t kid=pith:t]
     ^-  ?
     ?~  parent  &
     ?~  kid     |
@@ -71,11 +71,11 @@
     |=  [=farm:f =seed:f]
     ~+  
     ^-  muck:f 
-    =/  =epic:n
+    =/  =epic:t
       (~(look plow farm) [%z /])
     =/  =muck:f  
       %-  ~(run of epic)
-      |=  =saga:n
+      |=  =saga:t
       q.saga
     =/  sed=(list (pair pith note:t))  ~(aap of seed)
     |-
@@ -105,18 +105,18 @@
   ?^  muc  [u.muc this]
   =>  .(muc `(unit muck:n)`muc)
   ~|  ~(key by ~(tar of soil.farm.mien))
-  =/  =epic:n
+  =/  =epic:t
     (look:plow [%z /])
   =;  =muck:n
     =.  muc  `muck
     [muck this]
   %-  ~(run of epic)
-  |=  =saga:n
+  |=  =saga:t
   q.saga
 ::
 ++  germ
   ~/  %germ
-  |=  [=pith:neo cas=(unit (pair rift case:neo)) =pail:neo =poem:neo]
+  |=  [=pith:t cas=(unit (pair rift case:t)) =pail:t =poem:t]
   ^+  this
   =.  seed.step  (~(put of seed.step) +<- %grow +<+)
   =^  =muck:n  this
@@ -149,10 +149,10 @@
 ++  boot
   ^-  [step:f _this]
   |^  ^-  [step:f _this]
-  =.  this  (germ (~(pith press:n imp/%riff) %out) ~ vase/!>(riff) riff-poem)
+  =.  this  (germ (~(pith press:u imp/%riff) %out) ~ vase/!>(riff) riff-poem)
   =.  this  (germ ~ ~ sig/!>(~) riff-poem)
   =.  this  (germ #/cod/reef ~ vase/prelude riff-poem)
-  =/  pit=pith:n  #/$/boot
+  =/  pit=pith:t  #/$/boot
   =.  this  (hatch)
   =.  io.step  (snoc io.step `gift:f`[%drip ~])
   =.  this  init:sys
@@ -165,8 +165,8 @@
   ::
   ++  pess
     |=  =post:n
-    ^-  pith:n
-    [p/our (~(pith press:n post) %out)]
+    ^-  pith:t
+    [p/our (~(pith press:u post) %out)]
   ::
   ++  slap-riff
     |=  [=post:n hon=hoon]
@@ -180,7 +180,7 @@
       |-
       ?~  ls 
         this
-      =.  this  (germ #/$/boot/[ud/idx] ~ bush-card/!>(i.ls) [%bush-card *(set stud:neo)])
+      =.  this  (germ #/$/boot/[ud/idx] ~ bush-card/!>(i.ls) [%bush-card *(set stud:t)])
       $(ls t.ls, idx +(idx))
     %+  welp
       :~  [(slap-riff pro/%hoon !,(*hoon @t))]
@@ -189,30 +189,31 @@
           [(slap-riff pro/%png !,(*hoon @t))]
           [(slap-riff pro/%js !,(*hoon @t))]
           [(slap-riff pro/%disk !,(*hoon disk:neo))]
-          ::[(~(pith press:n imp/%desk) (make-riff (slap prelude !,(*hoon desk))))]
+          ::[(~(pith press:u imp/%desk) (make-riff (slap prelude !,(*hoon desk))))]
       ==
     %+  welp
       ::  ford combinators
       %+  turn   ford.neo-args
-      |=  [=stud:n txt=@t]
+      |=  [=stud:t txt=@t]
       =;  hon=hoon
         (slap-riff imp/stud hon)
       ~|  stud=stud
       %-  road  |.
-      =/  wer=path  (~(path press:n imp/stud) %src)
+      =/  wer=path  (~(path press:u imp/stud) %src)
       =+  vaz=(vang & (pout wer))
       (scan (trip txt) (full (ifix [gay gay] tall:vaz)))
       :: fill with files
     :~  :+  #/[p/our]/cod/std/src  %many
         %+  turn  ~(tap of src.neo-args)
-        |=  [=pith:neo kind=?(%hoon %txt %png %css %js) src=@t]
+        |=  [=pith:t kind=?(%hoon %txt %png %css %js) src=@t]
         ^-  card:b
         :: ?.  ?=([%pro @ ~] pith)
           :: ~
         [pith %make kind `kind^!>(src) sig/!>(sig)]
         :: then, desk shrub
       ::
-        [#/[p/our]/cod/std %make %ford-desk `disk/!>(`disk:n`~) crew/!>((one:crew:u %reef #/[p/our]/cod/reef))]
+        [#/[p/our]/cod/std %make %ford-desk `disk/!>(`disk:n`~) crew/!>((one:crew:u:n %reef #/[p/our]/cod/reef))]
+        [#/[p/our]/cod/std/src %make %ford-clay-src `desk/!>(%base) crew/!>((one:crew:u:n %clay #/[p/our]/vane/clay))]
         [#/[p/our]/sky %make %sky ~ sig/!>(~)]
         [#/[p/our]/srv/hawk %make %hawk-eyre ~ sig/!>(~)]
         [#/[p/our]/srv/sky %make %sky-eyre ~ sig/!>(~)]
@@ -244,8 +245,8 @@
       abet
     ~&  drip-key=key.u.nex
     =.  this  (snip #/$/boot/[key.u.nex] ~)
-    =/  =tale:n   val.u.nex
-    =/  =pail:n   q.tale
+    =/  =tale:t   val.u.nex
+    =/  =pail:t   q.tale
     =/  vax=vase  q.pail
     =+  !<(=card:b vax)
     :: ~&  larval/[step=`@`+:key.u.nex dst=p.card]
@@ -258,11 +259,11 @@
   abet
   
 ++  hear
-  |=  =hunt:n 
+  |=  =hunt:t
   ^-  [step:f _this]
   abet
 ++  blow
-  |=  [need=curb:n have=stud:n]
+  |=  [need=curb:n have=stud:t]
   ^-  ?
   ?+  -.need   ~|(curb-not-supported/-.need !!)
       %any            &
@@ -272,18 +273,18 @@
 ++  dive
   |%
   ++  get-con
-    |=  [have=stud:neo want=stud:neo]
+    |=  [have=stud:t want=stud:t]
     ^-  (unit vase)
-    =/  sud=(unit pail:neo)
+    =/  sud=(unit pail:t)
       =<  -
       %-  grab
       %+  welp  /cod/std/index/thru
-      %+  welp  (stud-to-pith:n have)
-      (stud-to-pith:n want)
+      %+  welp  (stud-to-pith:t have)
+      (stud-to-pith:t want)
     ?~  sud
       ~
-    =+  !<(=stud:neo q.u.sud)
-    =/  res=(unit pail:neo)
+    =+  !<(=stud:t q.u.sud)
+    =/  res=(unit pail:t)
       ?>  ?=(@ stud)
       -:(grab /cod/std/out/con/[stud])
     ?~  res  ~
@@ -291,8 +292,8 @@
   --
 ::  $puff: 
 ++  puff
-  |=  [want=stud:n role=(unit stud:n) have=pail:n]
-  ^-  (unit (unit pail:n))
+  |=  [want=stud:t role=(unit stud:t) have=pail:t]
+  ^-  (unit (unit pail:t))
   ?:  =(want p.have)
     [~ ~]
   ?:  =(want %vase)
@@ -324,11 +325,11 @@
 ::    Follows same calling convention as +moor
 ::
 ++  plag
-  =|  rol=(unit stud:n)
-  |=  [want=curb:n have=pail:n]
-  ^-  (unit (unit pail:n))
+  =|  rol=(unit stud:t)
+  |=  [want=curb:n have=pail:t]
+  ^-  (unit (unit pail:t))
   =*  loop   $
-  =/  =stud:n  p.have
+  =/  =stud:t  p.have
   ?-    -.want
       %pro
     (puff p.want rol have)
@@ -371,8 +372,8 @@
 ::`[want (slam conv q.have)]
 ::
 ++  scion
-  |=  [want=lads:n =pith:n =tale:n]
-  ^-  (unit (unit pail:neo))
+  |=  [want=lads:n =pith:t =tale:t]
+  ^-  (unit (unit pail:t))
   ?~  pis=(find:peon:n pith ~(key by want))
     ~
   =/  =lash:n  (~(got by want) u.pis)
@@ -388,14 +389,14 @@
 ::    Entry in axal is [~ *] with transformed pith to match quay
 ::
 ++  moor
-  |=  [want=quay:n =pith:n]
-  ^-  (unit (axal (unit pail:n)))
-  =/  =care:n  (get-care:quay:n want)
+  |=  [want=quay:n =pith:t]
+  ^-  (unit (axal (unit pail:t)))
+  =/  =care:t  (get-care:quay:n want)
   =^  muk  this  (grab-care care pith)
   ?:  &(=(care %x) =(muk *muck:n))
-    ~&  moor-lost-void/[pith muk=muk]
+    :: ~&  moor-lost-void/[pith muk=muk]
     ~
-  =|  res=(axal (unit pail:n))
+  =|  res=(axal (unit pail:t))
   =/  rot  (~(get of muk) /)
   ?:  &(?=(~ rot) !=(any/~ state.p.want))
     ~&  %missing-root
@@ -411,11 +412,11 @@
   ::
   ?~  q.want
     `res
-  =;  [fail=? r=(axal (unit pail:n))]
+  =;  [fail=? r=(axal (unit pail:t))]
     ?:  fail  ~
     `r
   %+  roll  ~(tap of muk)
-  |=  [[=pith:n =tale:n] fail=_| res=_res]
+  |=  [[=pith:t =tale:t] fail=_| res=_res]
   ^+  +<+
   ?:  fail  [fail res]
   ?:  =(pith ~)  [fail res]
@@ -425,28 +426,33 @@
   [| (~(put of res) pith u.ion)]
 ::
 ++  berth
-  |=  [=muck:n mooring=(axal:n (unit pail:n))]
+  |=  [=muck:n mooring=(axal:n (unit pail:t))]
   %-  ~(gas of *lore:n)
   %+  turn  ~(tap of muck)
-  |=  [=pith:n =tale:n]
-  ^-  [pith:n idea:n]
+  |=  [=pith:t =tale:t]
+  ^-  [pith:t idea:n]
   :-  pith
-  =/  =saga:n  [*aeon:n tale]
+  =/  =saga:t  [*aeon:t tale]
   =/  rope  (~(get of mooring) pith)
   ?:  ?=(?(~ [~ ~]) rope)
     [saga ~ q.q.saga]
   [saga `%$ u.u.rope]
 ::
 ++  husk
-  |_  =stud:n
+  |_  =stud:t
   ++  dock
     ^-  dock:n
     [state poke kids]:kook
   ::
   ++  pith
-    ^-  pith:n
-    (~(pith press:n imp/stud) %out)
-  ++  has  !=(~ -:(grab pith))
+    ^-  pith:t
+    (~(pith press:u imp/stud) %out)
+  ++  has  
+    =/  pal  -:(grab pith)
+    ?~  pal
+      |
+    !=(%tang p.u.pal)
+  ::
   ++  vase
     ^-  ^vase
     ~|  husk/stud
@@ -462,15 +468,15 @@
     ++  deps   *deps:n
     ++  form
       ^-  form:n
-      |_  [=bowl:n =aeon:n pal=pail:n]
+      |_  [=bowl:n =aeon:t pal=pail:t]
       ++  poke
-        |=  =pail:n
-        ^-  (quip card:n pail:n)
+        |=  =pail:t
+        ^-  (quip card:n pail:t)
         ?>  =(p.pail stud)
         `pail
       ++  init
-        |=  pal=(unit pail:n)
-        ^-  (quip card:n pail:n)
+        |=  pal=(unit pail:t)
+        ^-  (quip card:n pail:t)
         ~|  here=here.bowl
         `(need pal)
       --
@@ -486,21 +492,14 @@
       default-kook
     ~>  %mean.|.((sell vax))
     !<(kook:n vax)
-  ++  is-plot
-    (~(nest ut -:!>(*plot:n)) | p:vase)
-  ++  plot
-    ^-  (unit plot:n)
-    ?.  is-plot
-      ~
-    `!<(plot:n vase)
   ++  wire
     %+  welp  /husk/stud
     (pout pith)
   --
 ++  sys-pith  #/$/sys
 ++  grab
-  |=  =pith:n
-  ^-  [(unit pail:n) _this]
+  |=  =pith:t
+  ^-  [(unit pail:t) _this]
   =^  =muck:n  this
     reap
   :_  this
@@ -508,7 +507,7 @@
   `q.u.res
 
 ++  grab-care
-  |=  =hunt:n
+  |=  =hunt:t
   ^-  [muck:n _this]
   =^  =muck:n  this
     reap
@@ -522,7 +521,7 @@
   [new this]
 ::
 ++  seize
-  |=  [par=pith:neo child=pith:neo car=?(%y %z)]
+  |=  [par=pith:t child=pith:t car=?(%y %z)]
   ^-  ?
   =^  =muck:n  this  reap
   ?:  =(%z car)
@@ -531,7 +530,7 @@
 ::
 :: +abduct: check capture
 ++  abduct
-  |=  [par=pith:neo child=pith:neo]
+  |=  [par=pith:t child=pith:t]
   ^-  ?
   ::~>  %bout.[1 %adopt]
   =^  =muck:n  this
@@ -547,12 +546,12 @@
 ::  +adopt: produce all capturing parents
 ::
 ++  adopt
-  =|  res=(set pith:neo)
-  =|  here=pith:neo
-  |=  =pith:neo
+  =|  res=(set pith:t)
+  =|  here=pith:t
+  |=  =pith:t
   ?:  ?=([%int *] pith)
     res
-  =/  rest=pith:n  pith
+  =/  rest=pith:t  pith
   ::~&  adopting/pith
   |-  ^+  res
   =?  res  (abduct here pith)
@@ -569,15 +568,15 @@
   =|  $:  next=(list card:b)
           down=(list move:n)  :: pending moves for children
           up=(list move:n)    :: pending moves for uncles
-          prize=(axal:n mode:n)
-          gifts=(list [pith:neo gift:neo]) :: return values
+          prize=(axal:n mode:t)
+          gifts=(list [pith:t gift:neo]) :: return values
       ==
   ~%  %neo-arvo  ..arvo  ~
   |=  =move:b
   ~>  %bout.[1 %arvo-outer]
-  :: =/  src=name:n  (de-pith:name:n p.move)
-  =/  [src=pith:n dst=pith:n]  [p p.q]:move
-  =/  init=[src=pith:n dst=pith:n]
+  :: =/  src=name:n  (de-pith:tame:n p.move)
+  =/  [src=pith:t dst=pith:t]  [p p.q]:move
+  =/  init=[src=pith:t dst=pith:t]
     [p p.q]:move
   =/  init-move  move
   =/  here  dst.init
@@ -591,7 +590,7 @@
   |%
   ++  grow
     ~/  %arvo-grow
-    |=  [=pith:n =tale:n]
+    |=  [=pith:t =tale:t]
     =.  seed.step  (~(put of seed.step) pith %grow ~ q.tale p.tale)
     arvo
   ++  abet  
@@ -628,7 +627,7 @@
       (apply p p.q %make code.q.q init.q.q crew)
   ::
         %many
-      =.  cards.q.q.move  (turn cards.q.q.move |=(c=card:b `card:b`c(p `pith:neo`(welp p.q.move p.c))))
+      =.  cards.q.q.move  (turn cards.q.q.move |=(c=card:b `card:b`c(p `pith:t`(welp p.q.move p.c))))
       ?>  ?=(^ cards.q.q.move)
       =.  next  t.cards.q.q.move
       (start p.move i.cards.q.q.move)
@@ -636,7 +635,7 @@
   ++  apply
     ~/  %apply
     |=  =move:n
-::     ~>  %bout.[1 (crip (en-tape:pith:n p.q.move))]
+::     ~>  %bout.[1 (crip (en-tape:pith:t p.q.move))]
 ::  ?.  =(~ err.block)
 ::    arvo
     ?>  ?=(^ p.q.move)
@@ -644,7 +643,7 @@
     =:  src   p.move   
         here  t.p.q.move
       ==
-    ~&  [src=src here=here type=-.q.q.move]
+::  ~&  [src=src here=here type=-.q.q.move]
     ?<  ?=([%vane *] here)
       
     :: ~&  [src=src here=here]
@@ -655,12 +654,12 @@
     ==
   ++  make
     ~/  %make
-    |=  [code=stud:n init=(unit pail:n) =crew:n]
+    |=  [code=stud:t init=(unit pail:t) =crew:n]
     ^+  arvo
     =|  =dock:n  :: XX: wrong, fix
-    =^  m-wav=(unit pail:neo)  this
+    =^  m-wav=(unit pail:t)  this
       (grab %int here)
-    =/  wav=pail:n
+    =/  wav=pail:t
       (fall m-wav wave/!>(`wave:n`[code *foam:n dock crew &]))
     ?>  =(%wave p.wav)
     =/  =kook:n  ~(kook husk code)  
@@ -676,7 +675,7 @@
       !!
     =.  arvo  (dance crew band)
     =.  crew.wave  crew :: XX: check
-    =/  =poem:n
+    =/  =poem:t
       [code poke:kook]
     =.  arvo  (germ ?~(m-wav %add %dif) int/here ~ wave/!>(wave) wave-poem)
     =^  cards=(list card:n)  arvo 
@@ -696,7 +695,7 @@
     =/  [=term =deed:n =quay:n]  i.deps
     =/  req=?  ?@(deed deed req.deed)
     =/  timeout=(unit @dr)  ?@(deed ~ time.deed)
-    =/  =care:n  (get-care:quay:n quay)
+    =/  =care:t  (get-care:quay:n quay)
     ?:  &(req !(~(has by crew) term))
       $(deps t.deps, bad (~(put by bad) term missing/~))
     ?:  &(!req (~(has by crew) term))
@@ -704,7 +703,7 @@
     ?~  pit=(~(get by crew) term)
       ~&  missing-dep/term
       $(deps t.deps)
-    ?.  =((ship:pith:n u.pit) our)
+    ?.  =((ship:pith:t u.pit) our)
       $(deps t.deps)
     $(deps t.deps)
   ::
@@ -715,7 +714,7 @@
   ::
   ++  ingest
     |=  caz=(list card:n)
-    =/  =pith:n  (welp pfix.mien here)
+    =/  =pith:t  (welp pfix.mien here)
     :: ~&  pith/pith
     =.  up
       %+  welp  up
@@ -749,26 +748,26 @@
     (apply nex) :: XX: weird compiler?
     :: $(arvo new-arvo)
   ++  raid
-    =/  by-parent=(jug pith:n [=pith =mode:n])
+    =/  by-parent=(jug pith:t [=pith =mode:t])
       :: ~>  %bout.[1 %by-parent]
       %+  roll  ~(aap of prize)
-      |=  [[=pith:neo =mode:n] out=(jug pith:n [=pith =mode:n])]
+      |=  [[=pith:t =mode:t] out=(jug pith:t [=pith =mode:t])]
       %-  ~(gas ju out)
-      (turn ~(tap in (adopt pith)) |=(par=pith:n [par [(dif:pith:n par pith) mode]]))
+      (turn ~(tap in (adopt pith)) |=(par=pith:t [par [(dif:pith:t par pith) mode]]))
     =.  gifts
       :: ~>  %bout.[1 %new-gifts]
-      %+  turn  (sort ~(tap in ~(key by by-parent)) sort:pith:n)
-      |=  =pith:n
-      ^-  [pith:n gift:n]
+      %+  turn  (sort ~(tap in ~(key by by-parent)) sort:pith:t)
+      |=  =pith:t
+      ^-  [pith:t gift:n]
       [pith (~(gas of *gift:n) ~(tap in (~(get ju by-parent) pith)))]
-    =.  prize  *(axal:n mode:n)
+    =.  prize  *(axal:n mode:t)
     give
   ++  give
     ^+  arvo
     ?~  gifts
       plunder
-    =/  [=pith:neo =gift:neo]  i.gifts
-    =>  .(gifts `(list [pith:neo gift:neo])`gifts)
+    =/  [=pith:t =gift:neo]  i.gifts
+    =>  .(gifts `(list [pith:t gift:neo])`gifts)
     =.  gifts
       ?>  ?=(^ gifts)
       t.gifts
@@ -789,7 +788,7 @@
     (start p.move nex)
   ::
   ++  poke
-    |=  pok=pail:n
+    |=  pok=pail:t
     ^+  arvo
     =^  cards=(list card:n)  arvo 
       (soft-surf |.(su-abet:(su-poke:surf pok)))
@@ -815,7 +814,7 @@
     =.  err.block  `[%goof p.res]
     `arvo
   ++  germ
-    |=  [=mode:n =pith:neo cas=(unit (pair rift case:neo)) =pail:neo =poem:neo]
+    |=  [=mode:t =pith:t cas=(unit (pair rift case:t)) =pail:t =poem:t]
     ^+  arvo
     =.  this  (^germ +<+)
     =.  prize  (~(put of prize) pith mode)
@@ -863,8 +862,8 @@
           su-kids
       ==
     ++  su-tale
-      ^-  tale:n
-      (fall (~(get of muck) here) *tale:n)
+      ^-  tale:t
+      (fall (~(get of muck) here) *tale:t)
     ++  su-pail  q:su-tale
     ++  su-kids
       =/  kids  kids:kook
@@ -874,11 +873,11 @@
       =/  child   (~(dip of muck) here)
       :: %-  print:(muck:etch child)
       %+  murn  ~(tap by ~(tar of:n child))
-      |=  [=pith:n =tale:n]
-      ^-  (unit [pith:n tale:n])
+      |=  [=pith:t =tale:t]
+      ^-  (unit [pith:t tale:t])
       ?~  ion=(scion q.u.kids pith tale)
+        :: ~&  lost-kids-scion/pith=pith 
         ~
-
       :^  ~  pith
         p.tale
       ?~  u.ion
@@ -891,15 +890,15 @@
       ^-  (list [term pith lore:n])
       %+  murn  ~(tap by deps:kook)
       |=  [=term =deed:n =quay:n]
-      ^-  (unit [^term pith:n lore:n])
+      ^-  (unit [^term pith:t lore:n])
       =/  dep=(unit pith)  (~(get by crew.wave) term)
       =/  req  ?@(deed deed req.deed)
       ?~  dep
         ~|  invariant-missing-required-conf/term
         ?<  req
         ~
-      =/  =care:n  (get-care:quay:n quay)
-      ?.  =((ship:pith:n u.dep) our)
+      =/  =care:t  (get-care:quay:n quay)
+      ?.  =((ship:pith:t u.dep) our)
         ~ :: XX: fixme
       ?>  ?=(^ u.dep)
       ?~  ax=(moor quay t.u.dep)
@@ -913,7 +912,7 @@
 ::      %-  (slog term (epic:dbug:n epic) ~)
       :: `[term u.dep u.lor]
     ::
-    ++  su-form  ~(. form:kook [su-bowl *aeon:n su-pail])
+    ++  su-form  ~(. form:kook [su-bowl *aeon:t su-pail])
     ++  su-poem
       [code.wave poke:kook]
     ++  su-abet ::  TODO: bump
@@ -921,8 +920,8 @@
       [cards arvo]
     ++  su-make
       ~/  %su-make
-      |=  init=(unit pail:n)
-      =/  [cards=(list card:n) new=pail:n]
+      |=  init=(unit pail:t)
+      =/  [cards=(list card:n) new=pail:t]
         (init:su-form init)
       =.  su-core  (su-emil cards)
       =.  arvo   (germ %add here ~ new su-poem)
@@ -935,7 +934,7 @@
       (su-poke gift/!>(gift))
     ++  su-grow
       ~/  %su-grow
-      |=  =pail:n
+      |=  =pail:t
       ^+  su-core
 ::    ?.  (blow state:kook p.pail)
 ::      (mean leaf/"Returned bad state stud, wanted {<state.kook>}, have {<p.pail>}" ~)
@@ -944,7 +943,7 @@
     ::
     ++  su-poke
       ~/  %su-poke
-      |=  =pail:n
+      |=  =pail:t
       ^+  su-core
       =?  live.wave  =(p.pail %dead)
         =+  !<(dead=term q.pail)
@@ -963,7 +962,7 @@
         ?:  |(=(%dead p.pail) =(%rely p.pail))
           su-core
         (mean leaf/"no support for {<p.pail>}" leaf/"api: {<dock.wave>}" ~)
-      =/  [caz=(list card:n) new=pail:n]
+      =/  [caz=(list card:n) new=pail:t]
         (poke:su-form pail)
       =.  su-core  (su-emil caz)
       ?:  =(new su-pail)
@@ -979,7 +978,7 @@
     (germ /vane/eyre ~ eyre-state/!>(*eyre:unix:n) (mk-poem %eyre))
   ::
   ++  on-bush
-    |=  [src=pith:neo dst=pith:neo =note:b]
+    |=  [src=pith:t dst=pith:t =note:b]
     ^+  this
     ?>  ?=([[%p @] %vane *] dst)
     ?+  t.t.dst  ~|(bad-bush/dst !!)
@@ -990,7 +989,7 @@
 ::    [%gall *]  (call:rile src t.dst note)
     ==
   ++  on-arvo
-    |=  [hand=pith:n syn=sign-arvo]
+    |=  [hand=pith:t syn=sign-arvo]
     ^+  this
     ?+  hand  ~|(bad-vane/hand !!)
       [%clay *]  abet:(take:silt t.hand syn)
@@ -1001,8 +1000,8 @@
     ==
   --
 ++  silt
-  =/  here=pith:n  /vane/clay
-  =^  pal=(unit pail:n)  this
+  =/  here=pith:t  /vane/clay
+  =^  pal=(unit pail:t)  this
     (grab here)
   ?>  ?=(^ pal)
   =+  !<(sta=clay:unix:n q.u.pal)
@@ -1015,7 +1014,7 @@
     (germ here ~ clay-state/!>(sta) (mk-poem %clay))
   ++  emit  |=(g=gift:f silt(gifts [g gifts]))
   ++  call
-    |=  [src=pith:n dst=pith:n =note:b]
+    |=  [src=pith:t dst=pith:t =note:b]
     ^+  silt
     ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
     ?>  ?=(%clay-req p.pail.note)
@@ -1034,10 +1033,11 @@
     ==
   ::
   ++  take
-    |=  [wir=pith:n syn=sign-arvo]
+    |=  [wir=pith:t syn=sign-arvo]
     ^+  silt
+    ~&  taking-clay/wir
     ?>  ?=(%writ +<.syn)
-    =/  paxs=(pole pith:neo)
+    =/  paxs=(pole pith:t)
       (de:drive:neo wir)
     ?>  ?=([src=* hand=* ~] paxs)
     =/  src=pith  src.paxs
@@ -1070,21 +1070,21 @@
     =/  =move:neo  [[p/our.mien #/$/clay] src note]
     :: =/  =wire      (welp /sys/clay/res wir)
     =.  sta   (~(put by sta) [src hand] [case peer])
-    silt
+    (emit (do-peer [src hand]))
     :: =.  silt  (emit (do-move move))
     :: (emit (do-peer src hand))
   ::
   ++  do-peer
-    |=  [src=pith:neo hand=pith:neo]
+    |=  [src=pith:t hand=pith:t]
     ^-  gift:f
     =/  [case=@ud =peer:clay:neo]  (~(got by sta) [src hand])
-    =/  =wire  (welp /sys/clay/peer (pout (en:drive:neo ~[src hand])))
+    =/  =wire  (welp /clay (pout (en:drive:neo ~[src hand])))
     =/  =rave:clay  [%sing [%t ud/case path.peer]]
     [%arvo wire %c %warp our.mien desk.peer `rave]
   --
 ++  sttp
-  =/  here=pith:n  /vane/eyre
-  =^  pal=(unit pail:n)  this
+  =/  here=pith:t  /vane/eyre
+  =^  pal=(unit pail:t)  this
     (grab here)
   ?>  ?=(^ pal)
   =+  !<(sta=eyre:unix:n q.u.pal)
@@ -1098,7 +1098,7 @@
     =.  io.step  (welp io.step (flop gifts))
     (germ here ~ eyre-state/!>(sta) (mk-poem %eyre))
   ++  call
-    |=  [src=pith:neo dst=pith:neo =note:b]
+    |=  [src=pith:t dst=pith:t =note:b]
     ^+  sttp
     ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
     ?+  p.pail.note  ~|(bad-eyre-call/p.pail.note !!)
@@ -1118,15 +1118,15 @@
     (fall (rush url ;~(plug apat:de-purl:html yque:de-purl:html)) [[~ ~] ~])
   ::
   ++  on-eyre-req
-    |=  [%connect =binding:eyre =pith:neo]
+    |=  [%connect =binding:eyre =pith:t]
     ^+  sttp
     ?>  =(~ site.binding)
     =.  bind.sta  (~(put by bind.sta) binding pith)
-    =/  wir=pith:n  (pave:n (welp /sys/eyre/bind (pout pith)))
+    =/  wir=pith:t  (pave:n (welp /sys/eyre/bind (pout pith)))
     (emit %arvo wir %e %connect binding %one)
   ::
   ++  on-eyre-sign
-    |=  [src=pith:neo eyre-id=@ta =gift:eyre:neo]
+    |=  [src=pith:t eyre-id=@ta =gift:eyre:neo]
     ^+  sttp
     ~&  eyre-sign/[eyre-id -.gift]
     =?  by-id.sta  ?=(%done -.gift)
@@ -1137,7 +1137,7 @@
   ++  match-binding
     =|  test=(list @t)
     |=  site=(list @t)
-    ^-  (unit pith:neo)
+    ^-  (unit pith:t)
     ?^  res=(~(get by bind.sta) [~ test])
       `u.res
     =/  nex  (slag (lent test) site)

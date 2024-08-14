@@ -2,7 +2,7 @@
 ^-  kook:neo
 |%
 ++  state  pro/%eyre-task
-++  poke   *(set stud:neo)
+++  poke   *(set stud:t)
 ++  kids
   :+  ~  %y
   %-  ~(gas by *lads:neo)
@@ -23,17 +23,18 @@
   ==
 ::
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     `pail
   ++  init
-    |=  pal=(unit pail:neo)
-    =/  [=stud:neo =vase]  (need pal)
+    |=  pal=(unit pail:t)
+    =/  [=stud:t =vase]  (need pal)
+    ::
     =+  !<([eyre-id=@ta req=inbound-request:eyre] vase)
     :_  [stud vase]
-    =/  =pith:neo  #/[p/our.bowl]/vane/eyre
+    =/  =pith:neo  #/[p/our.bowl]/vane/eyre 
     =;  =manx
       =/  octs
         %-  as-octt:mimes:html

@@ -33,30 +33,30 @@
     |%
     ++  mk
       |=  ls=(list [=term =pith:n])
-      (~(gas by *crew:n) ls)
+      (~(gas by *^crew) ls)
     ++  one
-      |=  [=term =pith:n]
+      |=  [=term =pith:t]
       ^-  crew:n
-      %-  ~(gas by *crew:n)
+      %-  ~(gas by *^crew)
       ~[term^pith]
     --
   ++  make
     |%
     ++  static
-      |=  [=stud:n =pail:n]
+      |=  [=stud:t =pail:t]
       ^-  note:n
       [%make stud `pail ~]
     --
   ++  deps
     |%
     ++  qua
-      |_  [=term =bowl:n sud=(unit stud:n)]
+      |_  [=term =bowl sud=(unit stud:t)]
       ++  get  `(pair pith:n lore:n)`(~(got by deps.bowl) term)
       ++  lore  q:get
       ++  root  ~(rot of lore)
       ++  pail
         :: =-  ?>(|(?=(~ sud) =(p.- u.sud)) -)
-        ^-  pail:n
+        ^-  pail:t
         pail:root
       ++  vase  `^vase`q:pail
       ++  pith  p:get
@@ -83,7 +83,6 @@
   +$  pail  pail:neo
   +$  ever  ever:neo
   ++  axal  axal:neo
-  +$  zion  (axal fern)
   +$  over  [rift=@ case=@]
   +$  hunt  hunt:neo
   +$  saga  saga:neo

@@ -7,7 +7,7 @@
 ++  pith-tape
   |=  =pith
   ^-  tape
-  (en-tape:pith:neo pith)
+  (en-tape:pith:t pith)
 ::
 ++  style
   ;style
@@ -46,7 +46,7 @@
   ;div.absolute.hidden
     =style  "top: 1em; left: 1em;"
     ;div.loader.refresher
-      =hx-get  "{(en-tape:pith:neo :(weld /neo/hawk here.bowl))}?no-save"
+      =hx-get  "{(en-tape:pith:t :(weld /neo/hawk here.bowl))}?no-save"
       =hx-on-htmx-after-request  "let msgs = $(this).closest('.messages')[0]; maybeScrollToBottom(msgs);"
       =hx-trigger  "every 7s, refresh"
       =hx-target  "closest .top"
@@ -77,7 +77,7 @@
       %+  slag  (sub (lent msgs) (min 20 (lent msgs)))
       %+  sort
         %+  murn  msgs
-        |=  [=pith =tale:neo]
+        |=  [=pith =tale:t]
         ?~  pith  ~
         ?.  =(%message p.q.tale)  ~
         `[pith tale]
@@ -85,12 +85,12 @@
       =/  adate  +:(snag 1 pith.a)
       =/  bdate  +:(snag 1 pith.b)
       (lth adate bdate)
-    |=  [pax=pith =tale:neo]
+    |=  [pax=pith =tale:t]
     (render-message pax tale bowl)
   ==
 ::
 ++  render-message
-  |=  [pax=pith =tale:neo =bowl:neo]
+  |=  [pax=pith =tale:t =bowl:neo]
   =/  msg  !<(message q.q.tale)
   ^-  manx
   ?:  =(our.bowl from.msg)

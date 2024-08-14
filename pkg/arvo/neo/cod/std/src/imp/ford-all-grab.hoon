@@ -3,20 +3,20 @@
   =*  reef  .
   |%
   ++  build
-    |=  [=bowl:neo =stud:neo]
+    |=  [=bowl:neo =stud:t]
     ^-  (list card:neo)
     =/  in=vase  q.pail:(need fil.q:(~(got by deps.bowl) %pro))
-    =/  lookup=(map stud:neo vase)
+    =/  lookup=(map stud:t vase)
       %+  roll  ~(tap of q:(~(got by deps.bowl) %con))
-      |=  [[=pith:neo =idea:neo] out=(map stud:neo vase)]
+      |=  [[=pith:neo =idea:neo] out=(map stud:t vase)]
       ?.  =(p.pail.idea %vase)
         out
       ?.  ?=([@ ~] pith)
         out
-      =/  =stud:neo  i.pith
+      =/  =stud:t  i.pith
       =/  vax  q.pail.idea
-      =+  !<(grab=stud:neo (slot 4 vax))
-      =+  !<(grow=stud:neo (slot 11 vax))
+      =+  !<(grab=stud:t (slot 4 vax))
+      =+  !<(grow=stud:t (slot 11 vax))
       ?.  =(grab stud)
         out
       (~(put by out) grow (slot 3 vax))
@@ -27,12 +27,12 @@
     ~>  %mean.|.((sell in))
     ~|  p:(~(got by deps.bowl) %pro)
     %+  slap
-      %+  with-faces:ford:neo  !>([neo=neo ..zuse])
+      %+  with-faces:ford:neo  !>([neo=neo t=t ..zuse])
       :~  in/in
           lookup/!>(lookup)
       ==
     !,  *hoon
-    |=  [to=stud:neo input=in]
+    |=  [to=stud:t input=in]
     ^-  vase
     (slym (~(got by lookup) to) input)
   --
@@ -83,19 +83,19 @@
   ==
 ::
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ::  +reduce: apply %poke, producing state and IO
   ::
   ++  poke
-    |=  [=stud:neo val=vase]
-    =+  !<(sta=stud:neo q.pail)
+    |=  [=stud:t val=vase]
+    =+  !<(sta=stud:t q.pail)
     :_  pail
     (build bowl sta)
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
-    =/  =pail:neo  (need old)
-    =+  !<(sta=stud:neo q.pail)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
+    =/  =pail:t  (need old)
+    =+  !<(sta=stud:t q.pail)
     :_  pail
     (build bowl sta)
   --

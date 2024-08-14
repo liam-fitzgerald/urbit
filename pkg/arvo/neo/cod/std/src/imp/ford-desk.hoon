@@ -1,14 +1,14 @@
 =>
   |%
   ++  parse-file
-    |=  [=pith:n txt=@t]
+    |=  [=pith:t txt=@t]
     ^-  file:ford:neo
     :: ~>  %memo./ford/desk
     :: %-  road  |.
-    =>  [pith=pith txt=txt neo=neo n=n ..zuse]
+    =>  [pith=pith txt=txt neo=neo ..zuse]
     ~>  %memo./ford/desk/parse
     =/  parser  imports:(rein:ford:neo pith)
-    =/  res  (rily:n (trip txt) parser)
+    =/  res  (rily:u:neo (trip txt) parser)
     ?:  ?=(%& -.res)
       p.res
     (mean leaf/"Failed parsing {(spud (pout pith))} [{(scow %ud p.p.res)} {(scow %ud q.p.res)}]" ~)
@@ -21,7 +21,7 @@
         %cord
     ==
   ++  broken
-    %-  ~(gas in *(set prop:n))
+    %-  ~(gas in *(set prop:neo))
     :~  imp/%verb
         imp/%task
         imp/%ford-same
@@ -42,7 +42,7 @@
   %-  ~(gas by *lads:neo)
   =/  mk  |=(=term `pish:neo`[&/term &])
   :~  [(mk %src) pro/%hoon ~]
-      [(mk %out) pro/%vase ~]
+      [(mk %out) or/~[pro/%vase pro/%tang] ~]
       [(mk %pre) pro/%vase ~]
       [(mk %index) or/~[pro/%studs pro/%stud] ~]
       [[&/%all-grow |/%tas |] pro/%stud ~]
@@ -61,16 +61,16 @@
 ++  form
   ^-  form:neo
   =<
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   +*  run  ~(. +> [bowl ~ !<(disk:neo q.pail)])
-      reef  ~(. qua:deps:u [%reef bowl `%vase])
+      reef  ~(. qua:deps:u:neo [%reef bowl `%vase])
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     abet:(take-gift:run !<(=gift:neo vax))
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     ~|  deps=~(key by deps.bowl)
     :: ~|  reef=(~(got by deps.bowl) %reef)
     ?.  =(%vase p:pail:reef)
@@ -89,25 +89,26 @@
       =?  mark  =(mark %txt)
         %cord
       [%make %riff `vase/(slap vase:reef limb/mark) ~]
-    =/  [caz=(list card:neo) new=pail:neo]
+    =/  [caz=(list card:neo) new=pail:t]
       =<  abet
       %-  build-files:run 
       %+  murn  ls
-      |=  [=pith:n *]
+      |=  [=pith:t *]
       (pith-to-prop-soft pith)
     [(welp cards caz) new]
   --
   |_  [=bowl:neo cards=(list card:neo) sta=disk:neo]
-  +*  reef  ~(. qua:deps:u [%reef bowl `%vase])
+  +*  reef  ~(. qua:deps:u:neo [%reef bowl `%vase])
   ++  abet  [(flop cards) disk/!>(sta)]
   ++  emit  |=(=card:neo run(cards [card cards]))
   ++  emil  |=(caz=(list card:neo) run(cards (welp (flop caz) cards)))
   ++  run  .
   ++  report-err
-    |=  [=pith:neo num=@ud]
+    |=  [=pith:t num=@ud]
+    ~&  reporting-err/pith
     ^+  run
     %+  emit  (welp here.bowl #/err/[ud/num])
-    [%make %pith `pith/!>((welp here.bowl pith)) *crew:n]
+    [%make %pith `pith/!>((welp here.bowl pith)) *crew:neo]
   ++  index-cons
     ^+  run
     ~>  %slog.[3 leaf/"indexing cons"]
@@ -118,14 +119,14 @@
     ++  this  .
     ++  abet  run
     ++  work
-      =/  cons=(list [=pith:neo =tale:neo])
+      =/  cons=(list [=pith:t =tale:t])
         ~(tap of (~(dip of kids.bowl) /out/con))
       ^+  this
       |-  ^+  this
       =*  loop  $
       ?~  cons
         this
-      =/  [=pith:neo =tale:neo]  i.cons
+      =/  [=pith:t =tale:t]  i.cons
       ~&  trying-index/pith
       ~|  pith/pith
       ?.  =(%vase p.q.tale)
@@ -133,48 +134,48 @@
         loop(cons t.cons)
       ?.  ?=([@ ~] pith) 
         loop(cons t.cons)
-      =/  =stud:neo  i.pith
+      =/  =stud:t  i.pith
       ?.  =(%vase p.q.tale)
         loop(cons t.cons)
       ~|  p.q.tale
       =/  vax=vase   q.q.tale
       ~>  %mean.|.((sell vax))
-      =+  !<(grab=stud:neo (slot 4 vax))
-      =+  !<(grow=stud:neo (slot 11 vax))
-      =/  grab-pith=pith:neo  [%grab (stud-to-pith:n grab)]
-      =/  grow-pith=pith:neo  [%grow (stud-to-pith:n grow)]
-      =/  thru-pith=pith:neo  (welp [%thru (stud-to-pith:n grab)] (stud-to-pith:n grow))
+      =+  !<(grab=stud:t (slot 4 vax))
+      =+  !<(grow=stud:t (slot 11 vax))
+      =/  grab-pith=pith:t  [%grab (stud-to-pith:t grab)]
+      =/  grow-pith=pith:t  [%grow (stud-to-pith:t grow)]
+      =/  thru-pith=pith:t  (welp [%thru (stud-to-pith:t grab)] (stud-to-pith:t grow))
       =.  this  (add-index grab-pith grow)
       =.  this  (add-index grow-pith grab)
       =.  run  (emit (welp here.bowl %index thru-pith) %make %stud `stud/!>(stud) *crew:neo)
       loop(cons t.cons)
     ::
     ++  add-index
-      |=  [pat=pith:n =stud:neo]
+      |=  [pat=pith:t =stud:t]
       =/  pit  (welp here.bowl %index pat)
       ?:  (~(has of made) pat)
         ~&  adding-to/[pit stud=stud]
         =.  run  (emit pit %poke stud/!>(stud))
         this
       =.  made  (~(put of made) pat ~)
-      ~&  make-fresh/pit
       =.  run  
         (emit pit %make %studs `studs/!>((sy stud ~)) *crew:neo)
       this
     --
   ++  build-aggregate
     |=  dirty=gift:neo
+    ?:  =(1 1)  run
     %-  emil
     %-  zing
     %+  turn  ~(tap of dirty)
-    |=  [=pith:neo =mode:neo]
+    |=  [=pith:t =mode:t]
     ^-  (list card:neo)
     ?:  ?=(%dif mode)
       ~&  diff-skipping/pith
       ~
     ?.  ?=([@ ~] pith)
       ~
-    =/  =stud:neo  i.pith
+    =/  =stud:t  i.pith
     =/  =crew:neo
       %-  ~(gas by *crew:neo)
       :~  pro/(welp here.bowl /out/pro/[i.pith])
@@ -196,7 +197,7 @@
     |-  ^+  run
     ?~  gis
       run
-    =/  [=pith:neo =mode:neo]  i.gis
+    =/  [=pith:t =mode:t]  i.gis
     ?.  ?=([%src *] pith)
       ?.  ?=([%out *] pith)
         $(gis t.gis)
@@ -205,7 +206,9 @@
       ?.  =(%tang p.q.u.val)
         $(gis t.gis)
       $(gis t.gis, run (report-err pith err-count), err-count +(err-count))
-    =/  =prop:neo  (pith-to-prop t.pith)
+    ?~  pop=(pith-to-prop-soft t.pith)
+      $(gis t.gis)
+    =/  =prop:neo  u.pop
     ?-    mode
         %dif  $(gis t.gis)
         %del  $(run (handle-del:run pith), gis t.gis)
@@ -219,7 +222,7 @@
     ?.  ?=([%src =tack:neo =mark ~] road)
       ?<  ?=([?(%out %pre) *] road)
       ~
-    =/  =pith:n  (prop-pith tack.road mark.road)
+    =/  =pith:t  (prop-pith tack.road mark.road)
     :~  [(welp here.bowl out/pith) %cull ~]
         [(welp here.bowl pre/pith) %cull ~]
     ==
@@ -228,7 +231,7 @@
     ++  here  (welp here.bowl src/pith)
     ++  pith  (prop-pith prop)
     ++  is-auto  &(=(p.prop %pro) (~(has in auto) q.prop))
-    ++  parsed  `file:ford:n`(parse-file here src)
+    ++  parsed  `file:ford:neo`(parse-file here src)
     ++  src
       !<(@t q.q:(~(got of:neo kids.bowl) src/pith))
     --
@@ -250,17 +253,17 @@
     =.  run  (build-prelude prop)
     (do-slap prop)
   ++  import-to-props
-    |=  [=tack:n imports=(list [face=term =stud:n])]
+    |=  [=tack:neo imports=(list [face=term =stud:t])]
     %+  murn  imports
-    |=  [fac=term =stud:neo]
-    ?.  (~(has-stud floppy:n sta) stud)
+    |=  [fac=term =stud:t]
+    ?.  (~(has-stud floppy:u sta) stud)
       ~
     `[tack ?@(stud stud mark.stud)]
   ::
   ++  build-prelude
     |=  =prop:neo
     ^+  run
-    =/  fil=file:ford:n  ~(parsed file prop)
+    =/  fil=file:ford:neo  ~(parsed file prop)
     =.  run  (build-files (import-to-props %pro pro.fil))
     =.  run  (build-files (import-to-props %lib lib.fil))
     :: =.  run  (build-files (import-to-props %fil fil.fil))
@@ -272,38 +275,38 @@
     `(~(gas by *conf:neo) sut/(welp here.bowl pre/pith:fil) hoon/(ours (welp here.bowl src/pith:fil)) ~)
   ++  make-deps
     =|  idx=@ud
-    |=  [=prop:n deps=(list [face=term =pith:n])]
-    =/  pat=pith:n  (welp here.bowl pre/(prop-pith prop))
+    |=  [=prop:neo deps=(list [face=term =pith:t])]
+    =/  pat=pith:t  (welp here.bowl pre/(prop-pith prop))
     ^+  run
     ?~  deps
       %+  same  pat
       ?:  =(0 idx)  pith:reef
-      `pith:n`(snoc pat ud/(dec idx))
-    =/  wer=pith:n  (snoc pat ud/idx)
-    =/  fac=pith:n  (snoc wer %face)
-    =/  fav=pith:n  (snoc fac %term)
+      `pith:t`(snoc pat ud/(dec idx))
+    =/  wer=pith:t  (snoc pat ud/idx)
+    =/  fac=pith:t  (snoc wer %face)
+    =/  fav=pith:t  (snoc fac %term)
     =.  run  (do-make fav %term `term/!>(face.i.deps) ~)
     =.  run  (face fac fav pith.i.deps)
-    =/  prev=pith:n
+    =/  prev=pith:t
       ?:  =(idx 0)  pith:reef
       (snoc pat ud/(dec idx))
     =.  run  (slop wer fac prev)
     $(deps t.deps, idx +(idx))
   ++  make-prelude
-    |=  [=prop:n =file:ford:neo]
+    |=  [=prop:neo =file:ford:neo]
     (make-deps prop (file-to-deps file))
   ::
   ++  build-pros
-    |=  pos=(list stud:neo)
+    |=  pos=(list stud:t)
     ^+  run
     ?~  pos  run
-    ?.  (~(has-stud floppy:n sta) i.pos)
+    ?.  (~(has-stud floppy:u sta) i.pos)
       $(pos t.pos)
     =.  run  (build-file %pro ?@(i.pos i.pos mark.i.pos))
     $(pos t.pos)
   ::
   ++  do-make
-    |=  [=pith:neo lib=term sta=(unit pail:neo) =conf:neo]
+    |=  [=pith:t lib=term sta=(unit pail:t) =conf:neo]
     (emit pith %make lib sta conf)
   ::
   ++  ford-slap
@@ -324,22 +327,22 @@
     %^  do-make  wer  %ford-same
     `(~(gas by *conf:neo) src/from ~)
   ++  ours
-    |=  p=pith:neo  p  :: `pith:neo`[p/our.bowl p]
+    |=  p=pith:t  p  :: `pith:t`[p/our.bowl p]
   ++  file-to-deps
     |=  =file:ford:neo
     ^-  (list [term pith])
     %-  zing
     :~  
-      (turn pro.file |=(p=pro:ford:neo [face.p [p/our.bowl (~(pith press:neo pro/stud.p) %out)]]))
-      (turn lib.file |=(l=lib:ford:neo [face.l [p/our.bowl (~(pith press:n lib/stud.l) %out)]]))
-      (turn fil.file |=(l=lib:ford:neo [face.l [p/our.bowl (~(pith press:n fil/stud.l) %src)]]))
+      (turn pro.file |=(p=pro:ford:neo [face.p [p/our.bowl (~(pith press:u pro/stud.p) %out)]]))
+      (turn lib.file |=(l=lib:ford:neo [face.l [p/our.bowl (~(pith press:u lib/stud.l) %out)]]))
+      (turn fil.file |=(l=lib:ford:neo [face.l [p/our.bowl (~(pith press:u fil/stud.l) %src)]]))
       (turn far.file |=(f=far:ford:neo ?>(?=(@ stud.f) [face.f [p/our.bowl /cod/std/all-grow/[stud.f]/out]])))
       (turn fal.file |=(f=far:ford:neo ?>(?=(@ stud.f) [face.f [p/our.bowl /cod/std/all-grab/[stud.f]/out]])))
     ==
   ::
   ++  prop-pith
     |=  =prop:neo
-    ^-  pith:neo
+    ^-  pith:t
     /[p.prop]/[q.prop]
   ::
   ++  pith-to-prop
