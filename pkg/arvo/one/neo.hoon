@@ -221,16 +221,17 @@
   --
 ++  call
   ~/  %call
-  |=  =note:fern:t
+  |=  =card:fern:t
   ~>  %bout.[1 %neo-call]
   ^-  [step:f _this]
-  ?-  -.note
-    %bush  abet:(arvo +.note)
-    %hear  (hear +.note)
+  ~&  call/-.q.card
+  ?-  -.q.card
+    %bush  abet:(arvo p.card +.q.card)
+    %hear  (hear +.q.card)
     %drip  drip
     %have  !!
-    %arvo  abet:(on-arvo:sys +.note)
-    %http  abet:abet:(handle-http-request:sttp +.note)
+    %arvo  abet:(on-arvo:sys +.q.card)
+    %http  abet:abet:(handle-http-request:sttp +.q.card)
   ==
 ++  drip
   ^-  [step:f _this]
@@ -250,8 +251,7 @@
     =/  vax=vase  q.pail
     =+  !<(=card:b vax)
     :: ~&  larval/[step=`@`+:key.u.nex dst=p.card]
-    =.  this
-      (arvo #/$/xeno/[da/now.mien] card)
+    =.  this  (arvo card)
     =.  io.step  (snoc io.step %drip ~)
     :: %-  print:(seed:etch seed.step)
     abet
@@ -572,19 +572,19 @@
           gifts=(list [pith:t gift:neo]) :: return values
       ==
   ~%  %neo-arvo  ..arvo  ~
-  |=  =move:b
+  |=  =card:b
   ~>  %bout.[1 %arvo-outer]
   :: =/  src=name:n  (de-pith:tame:n p.move)
-  =/  [src=pith:t dst=pith:t]  [p p.q]:move
+  =/  [src=pith:t dst=pith:t]  [src.mien p.card]
   =/  init=[src=pith:t dst=pith:t]
-    [p p.q]:move
-  =/  init-move  move
+    [src dst]
+  =/  init-card  card
   =/  here  dst.init
   ?:  ?=([[%p @] %vane *] here)
-    (on-bush:sys move)
+    (on-bush:sys card)
   :: ?>  =(our.mien ship.dst.init)
   ::  XX: blocking semantives
-  =<  abet:(start move)
+  =<  abet:(start card)
   ~%  %neo-arvo-inner    ..$  ~
   !:
   |%
@@ -612,25 +612,25 @@
   ++  arvo  .
   ++  start
     ~/  %start
-    |=  =move:b
+    |=  =card:b
     ^+  arvo
-    ?-    -.q.q.move
-        %poke  (apply move)
-        %cull  (apply move)
+    ?-    -.q.card
+        %poke  (apply src.mien card)
+        %cull  (apply src.mien card)
   ::
         %make
       =/  =crew:n
-        ?:  =(p.xtra.q.q.move %crew)
-          !<(=crew:n q.xtra.q.q.move)
+        ?:  =(p.xtra.q.card %crew)
+          !<(=crew:n q.xtra.q.card)
         *crew:n
-      =,  move
-      (apply p p.q %make code.q.q init.q.q crew)
+      =,  card
+      (apply src.mien p %make code.q init.q crew)
   ::
         %many
-      =.  cards.q.q.move  (turn cards.q.q.move |=(c=card:b `card:b`c(p `pith:t`(welp p.q.move p.c))))
-      ?>  ?=(^ cards.q.q.move)
-      =.  next  t.cards.q.q.move
-      (start p.move i.cards.q.q.move)
+      =.  cards.q.card  (turn cards.q.card |=(c=card:b `card:b`c(p `pith:t`(welp p.card p.c))))
+      ?>  ?=(^ cards.q.card)
+      =.  next  t.cards.q.card
+      (start i.cards.q.card)
   ==
   ++  apply
     ~/  %apply
@@ -785,7 +785,7 @@
       arvo
     =/  nex  i.next
     =>  .(next t.next)
-    (start p.move nex)
+    (start nex)
   ::
   ++  poke
     |=  pok=pail:t
@@ -978,12 +978,12 @@
     (germ /vane/eyre ~ eyre-state/!>(*eyre:unix:n) (mk-poem %eyre))
   ::
   ++  on-bush
-    |=  [src=pith:t dst=pith:t =note:b]
+    |=  [dst=pith:t =note:b]
     ^+  this
     ?>  ?=([[%p @] %vane *] dst)
     ?+  t.t.dst  ~|(bad-bush/dst !!)
-      [%clay *]  abet:(call:silt src t.t.t.dst note)
-      [%eyre *]  abet:(call:sttp src t.t.t.dst note)
+      [%clay *]  abet:(call:silt t.t.t.dst note)
+      [%eyre *]  abet:(call:sttp t.t.t.dst note)
 ::    [%iris *]  (call:cttp src t.dst note)
 ::    [%behn *]  (call:bide src t.dst note)
 ::    [%gall *]  (call:rile src t.dst note)
@@ -1014,8 +1014,9 @@
     (germ here ~ clay-state/!>(sta) (mk-poem %clay))
   ++  emit  |=(g=gift:f silt(gifts [g gifts]))
   ++  call
-    |=  [src=pith:t dst=pith:t =note:b]
+    |=  [dst=pith:t =note:b]
     ^+  silt
+    =/  src  src.mien
     ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
     ?>  ?=(%clay-req p.pail.note)
     =+  !<(=req:clay:n q.pail.note)
@@ -1098,8 +1099,9 @@
     =.  io.step  (welp io.step (flop gifts))
     (germ here ~ eyre-state/!>(sta) (mk-poem %eyre))
   ++  call
-    |=  [src=pith:t dst=pith:t =note:b]
+    |=  [dst=pith:t =note:b]
     ^+  sttp
+    =/  src  src.mien
     ?>  ?=(%poke -.note) :: XX: all shanes should be virtualised and hand deliver acks
     ?+  p.pail.note  ~|(bad-eyre-call/p.pail.note !!)
       %ack         sttp

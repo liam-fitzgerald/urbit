@@ -852,8 +852,10 @@
   =<  fern
   |%
   +$  task   (pair pith note)
+  +$  card   task
+  +$  move   (pair pith card)
   +$  note
-    $%  [%bush =move:bush]
+    $%  [%bush =note:bush]
         [%hear =hunt]
         [%have =ship =chit]
         [%drip ~]
@@ -898,6 +900,7 @@
     ==
   +$  mien
     $:  our=@p
+        src=pith
         pfix=pith
         now=@da 
         eny=@uvJ

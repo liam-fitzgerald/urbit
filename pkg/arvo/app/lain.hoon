@@ -223,11 +223,11 @@
   ?:  =(%one-seed mark)
     (harvest !<(crop=seed:t vase))
   ?:  =(%handle-http-request mark)
-    fe-abet:(fe-call:(fe /) %http !<([@ta inbound-request:eyre] vase))
+    fe-abet:(fe-call:(fe /$/xeno /) / %http !<([@ta inbound-request:eyre] vase))
   ?:  =(%noun mark)
-    ?+    q.vase
-      =+  ;;(=task:fern:t q.vase)
-      fe-abet:(fe-call:(fe p.task) q.task)
+    ?+    q.vase  !!
+::    =+  ;;(=task:fern:t q.vase)
+::    fe-abet:(fe-call:(fe p.task) q.task)
     ::
         [%dbug pax=*]
       =+  ;;(pax=path pax.q.vase)
@@ -247,22 +247,22 @@
       %-  print:(farm:etch farm)
       run
     :: 
-        [%src path=*]
-      =+  ;;(=path path.q.vase)
-      =+  .^(src=@t %cx path)
-      =/  src=pith:t  /$/xeno
-      =<  fe-abet
-      %^  fe-call:(fe /)  %bush  src
-      [(pave:t (snip (slag 4 path))) %make %hoon `hoon/!>(src) sig/!>(~)]
+        [%src path=*]  !!
+:::   =+  ;;(=path path.q.vase)
+:::   =+  .^(src=@t %cx path)
+:::   =/  src=pith:t  /$/xeno
+:::   =<  fe-abet
+:::   %^  fe-call:(fe /$/xeno src)  %bush
+:::   [(pave:t (snip (slag 4 path))) %make %hoon `hoon/!>(src) sig/!>(~)]
     ::
         [%pill path=*]
       (make-pill ;;(pax=path path.q.vase))
     ==
   ?:  =(%dill-poke mark)
     (curse !<([@ta dill-belt:dill] vase))
-  ?>  |(=(%fern-task mark) =(%one-task mark))
-  =+  !<(=task:fern:t vase)
-  fe-abet:(fe-call:(fe p.task) q.task)
+  ?>  |(=(%fern-move mark))
+  =+  !<(=move:fern:t vase)
+  fe-abet:(fe-call:(fe p.move /) q.move)
 ++  on-peer
   |=  [=(pole knot) stop=?]
   ^+  run
@@ -283,13 +283,13 @@
   |=  [=wire =sign:agent:gall]
   ^+  run
   ?+  wire  +:(on-agent:def wire sign)
-    [%fern *]  fe-abet:(fe-take:(fe /) t.wire sign)
+    [%fern *]  fe-abet:(fe-take:(fe /$/xeno /) t.wire sign)
   ==
 ::
 ++  on-arvo
   |=  [=wire syn=sign-arvo]
   ^+  run
-  fe-abet:(fe-arvo:(fe /) wire syn)
+  fe-abet:(fe-arvo:(fe /$/xeno /) wire syn)
 ++  on-peek
   |=  =path
   ^-  (unit (unit cage))
@@ -339,33 +339,15 @@
     ==
   ~!  zion
   =.  zion  (~(put of zion) pith fern)
-  fe-abet:fe-boot:(fe pith)
+  fe-abet:fe-boot:(fe /$/xeno pith)
 ::
 ++  harvest
   |=  crop=seed:t
   ^+  run
-  =/  germ=(list [=pith:t =note:t])
-    ~(aap of crop)
-  |-  ^+  run
-  =*  loop-germ  $
-  ?~  germ
-    run
-  =/  =hunt:t  [%x pith.i.germ]
-  =/  listeners  ~(tap in (~(get ju ears) hunt))
-  |-
-  ?~  listeners
-    loop-germ(germ t.germ)
-  =.  run
-    fe-abet:(fe-hear:(fe i.listeners) hunt)
-  $(listeners t.listeners)
-++  on-bush-move
-  |=  =move:bush:t
-  ^+  run
-  =/  pit=pith:t  -:(~(fit of zion) p.q.move)
-  fe-abet:(fe-call:(fe pit) %bush move)
+  !!
 ::
 ++  fe
-  |=  =pith:t
+  |=  [src=pith:t =pith:t]
   =/  =fern:t  (~(got of zion) pith)
   |%
   ++  fe-abet  
@@ -374,11 +356,12 @@
   ++  fe-farm  (~(dip plow farm) pith)
   ++  fe-mien
     ^-  mien:fern:t
-    [our.bowl [p/our.bowl pith] now.bowl eny.bowl heed.fern fe-farm]
+    [our.bowl src [p/our.bowl pith] now.bowl eny.bowl heed.fern fe-farm]
   ++  fe-code  code.fern(+6.q fe-mien)
   ++  fe-hear
     |=  =hunt:t
-    (fe-call %hear hunt)
+    ^+  fe
+    !!
   ++  fe-boot
     (fe-ingest (slap fe-code limb/%boot))
   ++  fe-ingest
@@ -397,14 +380,14 @@
     fe
   ::
   ++  fe-call
-    |=  =note:fern:t
+    |=  =card:fern:t
     ~>  %bout.[1 %fe-call]
-    (fe-ingest (slym (slap fe-code limb/%call) note))
+    (fe-ingest (slym (slap fe-code limb/%call) card))
   ::
   ++  fe-arvo
     |=  [wir=(pole knot) syn=sign-arvo]
     ^+  fe
-    (fe-call %arvo (pave:t wir) syn)
+    (fe-call / %arvo (pave:t wir) syn)
   ::
   ++  fe-take
     |=  [wir=(pole knot) =sign:agent:gall]
@@ -561,7 +544,7 @@
       $(io t.io, fe (fe-hark hunt.gift))
     ::
         %drip
-      =.  run  (emit %pass /drip %agent [our dap]:bowl %poke fern-task/!>(`task:fern:t`[pith %drip ~]))
+      =.  run  (emit %pass /drip %agent [our dap]:bowl %poke fern-move/!>(`move:fern:t`[/ pith %drip ~]))
       $(io t.io)
     ::
         %arvo
@@ -570,7 +553,7 @@
       $(io t.io)
     ::
         %bush
-      =.  run  (emit %pass deal/(pout p.move.gift) %agent [our dap]:bowl %poke fern-task/!>(`task:fern:t`[/ %bush move.gift]))
+      =.  run  (emit %pass deal/(pout p.move.gift) %agent [our dap]:bowl %poke fern-move/!>(`move:fern:t`[p.move.gift p.q.move.gift %bush q.q.move.gift]))
       $(io t.io)
     ::
         %eyre
