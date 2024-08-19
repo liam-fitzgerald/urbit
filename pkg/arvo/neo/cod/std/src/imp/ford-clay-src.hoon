@@ -65,7 +65,9 @@
     %+  turn  ~(tap axol-of:neo files.res)
     |=  [=path =cage]
     ^-  card:neo
-    [(welp here.bowl (pave:t path)) %make p.cage `cage ~]
+    =/  pax=pith:t  (pave:t path)
+    ~&  pax/pax
+    [(welp here.bowl pax) %make p.cage `cage ~]
   ::
   ++  init
     |=  old=(unit pail:t)

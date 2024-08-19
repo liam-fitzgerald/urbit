@@ -10,10 +10,10 @@
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?:  =(stud %slideshow)
       `slideshow/vax
     ?>  =(stud %slideshow-diff)
@@ -26,7 +26,7 @@
       %slide  state(slide slide.poke)
     ==
   ++  init
-    |=  pal=(unit pail:neo)
+    |=  pal=(unit pail:t)
     :-  ~
     ?^  pal  u.pal
     :-  %slideshow

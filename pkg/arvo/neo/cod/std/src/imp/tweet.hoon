@@ -3,18 +3,18 @@
 |%
 ++  state  pro/%tweet
 ++  poke
-  %-  ~(gas in *(set stud:neo))
+  %-  ~(gas in *(set stud:t))
   :~  %tweet-diff
   ==
 ++  kids   *kids:neo
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t stud:t state-vase=vase]
   +*  sta  !<(tweet state-vase)  
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =/  sta  sta
     ?>  ?=(%tweet-diff stud)
     =+  !<(diff=tweet-diff vax)
@@ -27,8 +27,8 @@
     ==
   ::
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `(need pal)
   --
 --

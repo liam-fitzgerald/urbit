@@ -188,6 +188,7 @@
   ::
   ++  take-gift
     |=  =gift:neo
+    ~&  %desk-change
     =|  cards=(list card:neo)
     =/  gis  ~(tap of:neo gift)
     =?  run  !=(0 ~(wyt of (~(dip of gift) /out/con)))
