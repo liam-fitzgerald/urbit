@@ -1,5 +1,5 @@
 $:  hoon=_'~'
     =crew:neo
     ready=_|
-    poke=(map pith:neo stud:neo)
+    poke=(map pith:t stud:t)
 ==

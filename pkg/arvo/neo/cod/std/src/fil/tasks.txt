@@ -56,14 +56,14 @@ Tasks only needs one `/imp` file: `task.hoon`. The Tasks frontend shows you some
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t stud:t state-vase=vase]
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `(need pal)
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =/  this  !<(task state-vase)
     ?+    stud  !!
         %gift
@@ -161,7 +161,7 @@ Let’s look at the Tasks frontend in detail.
   ::  pith to tape conversion
   |=  =pith
   ^-  tape
-  (en-tape:pith:neo pith)
+  (en-tape:pith:t pith)
 ::
 ++  shell
   ::
@@ -293,7 +293,7 @@ Let’s look at the Tasks frontend in detail.
   ::  sends %edit poke on input change
   |=  [=pith =idea:neo]
   ::  extracts information from idea:neo to task
-  =/  =pail:neo  q.saga.idea
+  =/  =pail:t  q.saga.idea
   =/  t=task  !<(task q.pail)
   ::  converts pith to tape
   =/  pt  (pith-tape (welp here.bowl pith))
@@ -518,7 +518,7 @@ Let’s look at the Tasks frontend in detail.
 |=  =bowl:neo
 ^-  manx
 ;div.loading
-  =hx-get        "/neo/hawk{(en-tape:pith:neo here.bowl)}"
+  =hx-get        "/neo/hawk{(en-tape:pith:t here.bowl)}"
   =hx-target     "closest .hawk"
   =hx-indicator  "closest .loader"
   =hx-swap       "innerHTML"

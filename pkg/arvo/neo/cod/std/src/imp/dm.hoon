@@ -14,10 +14,10 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo state=pail:neo]
+  |_  [=bowl:neo =aeon:t state=pail:t]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     ?~  old  !!
     ?>  =(%dm-diff p.u.old)
     =/  poke  !<(dm-diff q.u.old)
@@ -48,8 +48,8 @@
       ==
     ==
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%dm-diff stud)
     =/  poke  !<(dm-diff vax)
     ?+    -.poke  !!

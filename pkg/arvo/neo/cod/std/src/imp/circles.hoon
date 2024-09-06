@@ -10,10 +10,10 @@
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  ?=(%circles-diff -.stud)
     =+  !<(=diff vax)
     :_  pail
@@ -29,8 +29,8 @@
       [(snoc here.bowl term) %tomb ~]
     ==
   ++  init
-    |=  vas=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  vas=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `sig/!>(~)
   --
 --

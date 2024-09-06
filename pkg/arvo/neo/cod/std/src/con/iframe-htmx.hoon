@@ -10,9 +10,9 @@
   =/  url  (trip iframe)
   ;div.wf.hf.fc
     =label  "iframe"
-    =here  (en-tape:pith:neo here.bowl)
+    =here  (en-tape:pith:t here.bowl)
     ;form.fr
-      =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=iframe"
+      =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=iframe"
       =hx-swap  "none"
       =style  "border-bottom: 1px solid #777;"
       ;input.p2.grow

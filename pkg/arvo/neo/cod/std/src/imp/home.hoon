@@ -32,10 +32,10 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     :_  home/!>(*home)
     :~  [#/[p/our.bowl]/home/diary %make %diary ~ ~]
         [#/[p/our.bowl]/home/tasks %make %task `task/!>(['' | & ~]) ~]
@@ -61,8 +61,8 @@
         [#/[p/our.bowl]/home/docs/guides/feather %make %sail `sail/!>([feather-intro 'prose p-page mw-page ma' ~]) ~]
     ==
   ++  poke
-    |=  =pail:neo
-    ^-  (quip card:neo pail:neo)
+    |=  =pail:t
+    ^-  (quip card:neo pail:t)
     ?+    p.pail  !!
         %home
       [~ pail]

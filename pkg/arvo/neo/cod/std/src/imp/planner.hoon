@@ -15,18 +15,18 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  init
-    |=  new=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  new=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     :-  ~
     ?~  new
       planner/!>([now.bowl (add now.bowl ~d30)])
     u.new
   ::
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?+    stud  !!
         %planner-diff
       =/  poke  !<(planner-diff vax)

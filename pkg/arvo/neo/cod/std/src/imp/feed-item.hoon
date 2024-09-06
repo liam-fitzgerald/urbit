@@ -28,11 +28,11 @@
   ==
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t stud:t state-vase=vase]
   +*  sta  !<(^state state-vase)
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =/  sta  sta
     ?>  (check-perms bowl)
     ?>  ?=(%feed-item-diff stud)
@@ -49,8 +49,8 @@
       [(welp here.bowl %comments da/now.bowl ~) %make made.diff]~
     ==
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `(need pal)
   --
 --

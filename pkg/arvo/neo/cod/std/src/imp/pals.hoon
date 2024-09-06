@@ -10,7 +10,7 @@
   |=  [=bowl:neo =ship]
   ^-  (unit kind) 
   =/  =pith  #/pals/[p/ship]
-  ?~  kid=(~(get of:neo kids.bowl) pith)
+  ?~  kid=(~(get of kids.bowl) pith)
     ~
   =+  !<(child=pal-type q.q.saga.u.kid)
   `type.child
@@ -54,10 +54,10 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =saga:neo]
+  |_  [=bowl:neo =saga:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?+    stud  !!
         %pals-diff
       =+  !<(poke=pals-diff vax)
@@ -78,7 +78,7 @@
       ==
     ==
   ++  init
-    |=  old=(unit pail:neo)
+    |=  old=(unit pail:t)
     `sig/!>(~)
   --
 --

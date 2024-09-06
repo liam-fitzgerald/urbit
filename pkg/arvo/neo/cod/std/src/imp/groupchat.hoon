@@ -15,10 +15,10 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo state=pail:neo]
+  |_  [=bowl:neo =aeon:t state=pail:t]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     ::  default case: make new groupchat with self as only member,
     ::  and subscribe to that publisher
     ?~  old
@@ -45,8 +45,8 @@
       ==
     ==
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%groupchat-diff stud)
     =/  sta  !<(groupchat q.state)
     =/  poke  !<(groupchat-diff vax)

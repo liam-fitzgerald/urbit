@@ -87,7 +87,7 @@
   ::  XX  cool kids would use a role conversion...
   ::  YY  or maybe cool kids prefer locality of behaviour
   ::  ZZ  SOMEONE EXPLAIN ME POLYMORPHISM NOW!
-  |=  =pail:neo
+  |=  =pail:t
   ^-  manx
   ?+    p.pail
         ;div: bruh, how did that a {<p.pail>} stud even get in here?
@@ -101,7 +101,7 @@
   ==
 ++  cell
   |=  [x=@ y=@]
-  =/  pix=pith:neo  #/[ud/x]/[ud/y]/out
+  =/  pix=pith:t  #/[ud/x]/[ud/y]/out
   ;button.p-1.bd1.b0.hover.tl.mono.cell-btn
     =morph-retain  "class"
     =onclick  "accelRevealDashboard(this, '{<x>}', '{<y>}')"
@@ -154,7 +154,7 @@
   ==
 ++  in
   |=  [x=@ y=@]
-  =/  pax=pith:neo  #/[ud/x]/[ud/y]
+  =/  pax=pith:t  #/[ud/x]/[ud/y]
   =/  kid=bowl:neo  bowl
   =.  kids.kid  [~ ~]
   =.  here.kid  :(welp here.bowl pax /in)
@@ -168,7 +168,7 @@
   ==
 ++  out
   |=  [x=@ y=@]
-  =/  pax=pith:neo  #/[ud/x]/[ud/y]/out
+  =/  pax=pith:t  #/[ud/x]/[ud/y]/out
   =/  kid=bowl:neo  bowl
   =.  kids.kid  [~ ~]
   =.  here.kid  (welp here.bowl pax)
@@ -176,9 +176,9 @@
   ;div.basis-half.shrink-0.bd1.fc.g2.grow
     =style  "min-width: 350px; min-height: 150px;"
     ;div.b0.fr.g2.ac.je.p-1.bd1
-      ;div.s-1: {(en-tape:pith:neo (snip pax))}
+      ;div.s-1: {(en-tape:pith:t (snip pax))}
       ;button.p-1.b1.hover.br1.bd1.s-2
-        =onclick  "navigator.clipboard.writeText('{(en-tape:pith:neo here.kid)}');"
+        =onclick  "navigator.clipboard.writeText('{(en-tape:pith:t here.kid)}');"
         ; copy full path
       ==
     ==
@@ -193,7 +193,7 @@
   ;div.absolute
     =style  "top: 1em; left: 1em;"
     ;div.loader.refresher
-      =hx-get  "{(en-tape:pith:neo :(weld /neo/hawk here.bowl))}?no-save"
+      =hx-get  "{(en-tape:pith:t :(weld /neo/hawk here.bowl))}?no-save"
       =hx-trigger  "every 7s, accel-refresh"
       =hx-target  "closest .top"
       =hx-select  ".top"

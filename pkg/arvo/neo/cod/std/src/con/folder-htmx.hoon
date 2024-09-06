@@ -13,7 +13,7 @@
 ::
 ++  form
   ;form.fr.g1.af
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=folder-diff"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=folder-diff"
     =hx-swap  "outerHTML"
     =hx-target  "find .loading"
     =head  "make"
@@ -76,8 +76,8 @@
     =/  pith  ~[name]
     ?~  suga=(~(get of:neo kids.bowl) pith)
       ;div.p3.br1.bd1: no file called {<name>}
-    =/  =pail:neo  q.saga.u.suga
-    =/  =stud:neo  p.pail
+    =/  =pail:t  q.saga.u.suga
+    =/  =stud:t  p.pail
     =/  =path  (pout (welp here.bowl pith))
     =/  label
       ?@  stud
@@ -94,7 +94,7 @@
         ;span.s-1.f2.loaded: {label}
       ==
       ;button.b1.br1.hover.p3.s1.bd1.fr.ac.jb.loader
-        =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=folder-diff"
+        =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=folder-diff"
         =hx-swap  "outerHTML"
         =hx-target  "find .loading"
         =head  "tomb"

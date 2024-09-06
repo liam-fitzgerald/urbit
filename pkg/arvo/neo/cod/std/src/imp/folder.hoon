@@ -5,7 +5,7 @@
   |%
   ++  default-pails
     %-  malt
-    ^-  (list [stud:neo pail:neo])
+    ^-  (list [stud:t pail:t])
     :~
       [%iframe iframe/!>('')]
       [%hoon hoon/!>('~')]
@@ -29,17 +29,17 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  init
-    |=  new=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  new=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     :-  ~
     ?^  new  u.new
     folder/!>(*folder)
   ::
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?+    stud  !!
         %folder-diff
       =/  poke  !<(folder-diff vax)

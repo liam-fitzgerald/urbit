@@ -14,7 +14,7 @@
 ::
 ::  diary takes pokes with stud %diary-diff
 ++  poke
-  ^-  (set stud:neo)
+  ^-  (set stud:t)
   (sy %diary-diff ~)
 ::
 ::  constrain shrubs below diary in the namespace
@@ -40,9 +40,9 @@
           ::  fields afterwards
           [[%.n %da] %.n]
       ::
-      ::  lash:neo is (pair curb:neo (set stud:neo))
+      ::  lash:neo is (pair curb:neo (set stud:t))
       ::  curb:neo defines the kids' state
-      ::  (set stud:neo) defines the kids' pokes
+      ::  (set stud:t) defines the kids' pokes
       [[%only %txt] ~]
   ==
 ::
@@ -54,22 +54,22 @@
 ::  inner core, business logic
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ::
   ::  if diary has no existing state, return
   ::  the bunt of the state type, otherwise
   ::  return the existing state
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     :-  ~
     ?~  old
       [%diary !>(*diary)]
     u.old
   ::
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%diary p.pail)
     ?>  =(%diary-diff stud)
     =/  state  !<(diary q.pail)
@@ -84,7 +84,7 @@
       :_  [%diary !>(state)]
       ::
       ::  create list of one card:neo
-      ::  card:neo is (pair pith:neo note:neo)
+      ::  card:neo is (pair pith:t note:neo)
       :~  :-  %+  welp
                 ::
                 ::  here.bowl is the path of this shrub
@@ -98,7 +98,7 @@
           ::  this note will %make a new shrub
           ::  at the pith we defined above
           ^-  note:neo
-          ::  [%make stud:neo (unit pail:neo) conf:neo]
+          ::  [%make stud:t (unit pail:t) conf:neo]
           :*  %make
               ::
               ::  new shrub has the implementation %txt
@@ -110,7 +110,7 @@
               ::  is the text from the poke
               `[%txt !>(txt.act)]
               ::
-              ::  conf:neo is (map term pith:neo)
+              ::  conf:neo is (map term pith:t)
               ::  declare this new shrub's dependencies
               ::  which are also shrubs; diary has none
               ~

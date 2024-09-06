@@ -42,22 +42,22 @@ We'll skip covering the Messenger frontend. While there are new ideas here, it's
   ==
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo state=pail:neo]
+  |_  [=bowl:neo =aeon:t state=pail:t]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     [~ sig/!>(~)]
   ::
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%rely stud)
     :_  state
     =+  !<([=term =leaf:neo] vax)
     ::  only get new kids
     %+  murn
       ~(tap by ~(tar of:neo q:(~(got by deps.bowl) %pub)))
-    |=  [=pith:neo =idea:neo]
+    |=  [=pith:t =idea:neo]
     ^-  (unit card:neo)
     ~&  pith/pith
     ?.  ?=([[%da @] ~] pith)
@@ -110,13 +110,13 @@ With regards to the lifecycle of the shrub, the `+deps` arm types the shrubs who
 [%make %message-sub ~ (malt ~[[%pub (snoc host.poke %pub)]])]
 ```
 
-In this card, `+malt` creates a `(map term pith:neo)` where the `term` is `%pub` and the path represented by the `pith` is `/foo/bar/pub`. At `/foo/bar/pub`, there’s a shrub which is the canonical “publisher” or “host” of a chat, whether that’s a group chat or a DM. Whenever there’s a state change in the publisher shrub, the `/imp/message-sub` created in this card will be notified about it, but we’ll cover that in more detail in the next section.
+In this card, `+malt` creates a `(map term pith:t)` where the `term` is `%pub` and the path represented by the `pith` is `/foo/bar/pub`. At `/foo/bar/pub`, there’s a shrub which is the canonical “publisher” or “host” of a chat, whether that’s a group chat or a DM. Whenever there’s a state change in the publisher shrub, the `/imp/message-sub` created in this card will be notified about it, but we’ll cover that in more detail in the next section.
 
 The `%pub` term will act as the key in the map of dependencies, corresponding to the`%pub` key that `/imp/message-sub` used as a tag in its `+deps` arm. This term allows us to differentiate between shrubs being given to us in the `%make` card’s `conf:neo`.
 
 The `required` flag specifies that when this shrub is made, it must be passed in a `conf:neo` that contains paths to existing shrubs. If we don't pass in a conf, or if no publisher exists at `/foo/bar/pub`, the `/imp/message-sub` we’re trying to `%make` here will fail to build. It can only exist with reference to the publisher shrub.
 
-The last “new” idea here is `%sig`. This is a special case of `stud:neo` which tells `/app/neo` that the shrub has no state. We can do the same thing for pokes, as above with `(sy %sig ~)`.
+The last “new” idea here is `%sig`. This is a special case of `stud:t` which tells `/app/neo` that the shrub has no state. We can do the same thing for pokes, as above with `(sy %sig ~)`.
 
 If you look at `/imp/sig.hoon`, it’s just a `~` stub like the `%txt` implementation. `%sig` imps are not special and are not treated differently to any other stub, they’re just a stylistic convention to say that we don’t care about the state of the shrub in question; it could be anything, we won’t constrain it at all. There’s also a `/pro/sig.hoon` which lets us do the same thing for pokes.
 
@@ -159,8 +159,8 @@ Let’s see how `/imp/message-sub` handles the `%rely` pokes it recevives from d
   ::
   ::  we receive a stud and vase from the publisher shrub when
   ::  there's a state change we've declared we care about
-  |=  [=stud:neo vax=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vax=vase]
+  ^-  (quip card:neo pail:t)
   ::  we only handle one poke, %rely
   ?>  =(%rely stud)
   ::  we don't change our own state
@@ -170,7 +170,7 @@ Let’s see how `/imp/message-sub` handles the `%rely` pokes it recevives from d
   ::  only get new kids
    %+  murn
      ~(tap by ~(tar of:neo q:(~(got by deps.bowl) %pub)))
-   |=  [=pith:neo =idea:neo]
+   |=  [=pith:t =idea:neo]
    ^-  (unit card:neo)
    ~&  pith/pith
    ?.  ?=([[%da @] ~] pith)
@@ -199,7 +199,7 @@ The `stem` is head-tagged with a `care:neo`. Even if we're listening to a shrub 
 
 Stems tagged with a `%y` or `%z` care come with an `ever`, which contains version numbers for the dependency and its descendants.
 
-Stems tagged with `%x` come with a `pail` with the new state of the dependency. Stems tagged with `%y` and `%z` come with a `pail:neo` for the dependency, and a map containing all state changes for the descendants of that dependency. The `pith` keys in that map give us the location of each descendant that has changed, and the `[=ever =mode =pail]` values give us those descendants' version numbers, their `mode`, and their current state.
+Stems tagged with `%x` come with a `pail` with the new state of the dependency. Stems tagged with `%y` and `%z` come with a `pail:t` for the dependency, and a map containing all state changes for the descendants of that dependency. The `pith` keys in that map give us the location of each descendant that has changed, and the `[=ever =mode =pail]` values give us those descendants' version numbers, their `mode`, and their current state.
 
 The `mode` of these kids is either `%add`, `%dif`, or `%del`. If it’s `%add`, the dependency is telling us it’s a new kid. If `%dif`, the kid isn’t new but its state has changed. If `%del`, it’s telling us the kid was deleted and giving us its final state.
 
@@ -236,8 +236,8 @@ Like `/imp/messenger`, `/imp/message-pub` takes no state.
 
 ```
 ++  init
-  |=  old=(unit pail:neo)
-  ^-  (quip card:neo pail:neo)
+  |=  old=(unit pail:t)
+  ^-  (quip card:neo pail:t)
   [~ [%sig !>(~)]]
 ```
 
@@ -247,8 +247,8 @@ All that happens in the `+poke` arm is this shrub creating `%message`s below it 
 
 ```
 ++  poke
-  |=  [=stud:neo vax=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vax=vase]
+  ^-  (quip card:neo pail:t)
   ?>  =(our ship.src):bowl
   :_  state
   ?+    stud  !!
@@ -330,8 +330,8 @@ When `/imp/dm` is first created with a `%make` card, it needs to be created with
 
 ```
 ++  init
-  |=  old=(unit pail:neo)
-  ^-  (quip card:neo pail:neo)
+  |=  old=(unit pail:t)
+  ^-  (quip card:neo pail:t)
   ?~  old  !!
   ?>  =(%dm-diff p.u.old)
   =/  poke  !<(dm-diff q.u.old)
@@ -369,8 +369,8 @@ DM state is symmetrical: both ships are publishing to each other and subscribed 
 
 ```
 ++  poke
-  |=  [=stud:neo vax=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vax=vase]
+  ^-  (quip card:neo pail:t)
   ?>  =(%dm-diff stud)
   =/  poke  !<(dm-diff vax)
   ?+    -.poke  !!
@@ -453,8 +453,8 @@ If it has no state, it creates the new chat with `%message-pub` and `%message-su
 
 ```
 ++  init
-  |=  old=(unit pail:neo)
-  ^-  (quip card:neo pail:neo)
+  |=  old=(unit pail:t)
+  ^-  (quip card:neo pail:t)
   ::  default case: make new groupchat with self as only member,
   ::  and subscribe to that publisher
   ?~  old
@@ -492,8 +492,8 @@ Now is a good time to address when developers should store data inside a shrub's
 
 ```
 ++  poke
-  |=  [=stud:neo vax=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vax=vase]
+  ^-  (quip card:neo pail:t)
   ?>  =(%groupchat-diff stud)
   =/  sta  !<(groupchat q.state)
   =/  poke  !<(groupchat-diff vax)
@@ -585,12 +585,12 @@ $%  [%new-dm partner=ship]
 
 #### +init
 
-Messenger does nothing much on `+init`. Here's `%sig` again, this time head-tagging an empty `pail:neo`. This shrub stores no state, so we can't inject some when we initialize it.
+Messenger does nothing much on `+init`. Here's `%sig` again, this time head-tagging an empty `pail:t`. This shrub stores no state, so we can't inject some when we initialize it.
 
 ```
 ++  init
-  |=  old=(unit pail:neo)
-  ^-  (quip card:neo pail:neo)
+  |=  old=(unit pail:t)
+  ^-  (quip card:neo pail:t)
   [~ [%sig !>(~)]]
 ```
 
@@ -600,8 +600,8 @@ Messenger does nothing much on `+init`. Here's `%sig` again, this time head-tagg
 
 ```
 ++  poke
-  |=  [=stud:neo vax=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vax=vase]
+  ^-  (quip card:neo pail:t)
   ~&  >>  stud
   ?+    stud  !!
       %dm-diff

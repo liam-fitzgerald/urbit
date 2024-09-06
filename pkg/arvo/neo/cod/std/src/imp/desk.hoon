@@ -9,22 +9,22 @@
 ++  deps   *deps:neo
 ++  kids  kids:desk:ford:neo
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%clay-res stud)
     =+  !<(=res:clay:neo vax)
     :_  pail
-    %+  murn  ~(tap of files.res)
+    %+  murn  ~(tap axol-of files.res)
     |=  [=path =mark =vase]
     ^-  (unit card:neo)
     ?.  =(mark %hoon)
       ~
     `[(welp here.bowl (pave:neo (snip path))) %make %hoon `hoon/vase ~]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     =+  !<(=desk q:(need old))
     :_  desk/!>(desk)
     [#/[p/our.bowl]/$/clay %poke %clay-req !>(`req:clay:neo`[%peer ~ desk /neo ~])]^~

@@ -34,7 +34,7 @@
     ::
     =+  !<([eyre-id=@ta req=inbound-request:eyre] vase)
     :_  [stud vase]
-    =/  =pith:neo  #/[p/our.bowl]/vane/eyre 
+    =/  =pith:t  #/[p/our.bowl]/vane/eyre 
     =;  =manx
       =/  octs
         %-  as-octt:mimes:html
@@ -60,10 +60,10 @@
     =.  now.bol  now.bowl
     =.  eny.bol  eny.bowl
     =.  kids.bol
-      ^-  muck:n
+      ^-  muck:neo
       %-  ~(run of q.u.src)
       |=  =idea:neo
-      ^-  tale:neo
+      ^-  tale:t
       q.saga.idea
     (!<(htmx q.pail.root) bol)
   --

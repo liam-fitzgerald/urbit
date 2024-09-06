@@ -4,11 +4,11 @@
 ++  card  card:neo
 ++  build
   |=  [=bowl:neo conf=accel-conf]
-  ^-  (quip card pail:neo)
+  ^-  (quip card pail:t)
   :_  accel-conf/!>(conf)
   =/  =term
     `@tas`(cat 3 'accel-' (scot %t (spat (pout (snip here.bowl)))))
-  =/  =pith:neo
+  =/  =pith:t
     #/[p/our.bowl]/cod/std/out/imp/[term]
   =;  =vase
     [pith %make %ford-riff `vase/vase ~]^~
@@ -27,7 +27,7 @@
       %+  with-faces:ford:neo  (slop !>(neo) !>(..zuse))
       :-  bowl/!>(bowl)
       %+  turn  ~(tap by deps.bowl)
-      |=  [=term =pith:neo =lore:neo]
+      |=  [=term =pith:t =lore:neo]
       ^-  [^term vase]
       [term (lift-lore lore)]
     ++  check-prelude
@@ -38,14 +38,14 @@
       |-  ^+  res
       ?~  deps
         res
-      =/  [=term =pith:neo =lore:neo]  i.deps
+      =/  [=term =pith:t =lore:neo]  i.deps
       ?.  =(lore *lore:neo)
         $(deps t.deps)
       $(deps t.deps, res (~(put in res) term))
     ::
     ++  produce
       |=  =bowl:neo
-      ^-  pail:neo
+      ^-  pail:t
       =/  missing  (check-prelude bowl)
       ?.  =(missing ~)
         :-  %tang  !>  ^-  tang
@@ -70,20 +70,20 @@
     [term req=| [any/~ ~] ~]
   ++  form
     ^-  form:neo
-    |_  [=bowl:neo =aeon:neo =pail:neo]
+    |_  [=bowl:neo =aeon:t =pail:t]
     ++  poke
-      |=  [=stud:neo vax=vase]
-      ^-  (quip card:neo pail:neo)
-      =/  new=pail:neo  (produce bowl)
+      |=  [=stud:t vax=vase]
+      ^-  (quip card:neo pail:t)
+      =/  new=pail:t  (produce bowl)
       ?:  =(new pail)  `new
       :_  new
       %+  turn  ~(tap by poke.conf)
-      |=  [=pith:neo =stud:neo]
+      |=  [=pith:t =stud:t]
       [pith %poke [stud q.new]]
     ::
     ++  init
-      |=  pal=(unit pail:neo)
-      =/  new=pail:neo  (produce bowl)
+      |=  pal=(unit pail:t)
+      =/  new=pail:t  (produce bowl)
       `new
     --
   --
@@ -96,11 +96,11 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   +*  sta  !<(conf=accel-conf q.pail)
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =+  !<(conf=accel-conf q.pail)
     %-  (slog leaf/"have {<stud>}," (sell vax) ~)
     =.  conf
@@ -108,8 +108,8 @@
         %hoon        conf(ready |, hoon !<(@t vax))
         %add-dep     conf(ready |, crew (~(put by crew.conf) !<([term pith] vax)))
         %del-dep     conf(ready |, crew (~(del by crew.conf) !<(term vax)))
-        %del-poke    conf(ready |, poke (~(del by poke.conf) !<(pith:neo vax)))
-        %add-poke    conf(ready |, poke (~(put by poke.conf) !<([pith:neo stud:neo] vax)))
+        %del-poke    conf(ready |, poke (~(del by poke.conf) !<(pith:t vax)))
+        %add-poke    conf(ready |, poke (~(put by poke.conf) !<([pith:t stud:t] vax)))
         %accel-conf  !<(accel-conf vax)
         %ack         conf(ready &)
       ==
@@ -117,8 +117,8 @@
       `accel-conf/!>(conf)
     (build bowl conf)
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     =+  !<(conf=accel-conf q:(need old))
     (build bowl conf)
   --

@@ -21,7 +21,7 @@
 |%
 ++  behn
   |=  our=@p
-  ^-  pith:neo
+  ^-  pith:t
   [p/our #/$/behn]
 ++  wait
   |=  [=bowl:neo sta=pulse]
@@ -41,13 +41,13 @@
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo sted=stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t sted=stud:t state-vase=vase]
   +*  sta  !<(pulse state-vase)
   ++  poke
-    |=  [=stud:neo =vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t =vase]
+    ^-  (quip card:neo pail:t)
     =/  s  sta
-    |^  ^-  (quip card:neo pail:neo)
+    |^  ^-  (quip card:neo pail:t)
     ?+    stud  !!
         %behn-res
       =.  count.s  +(count.s)
@@ -69,7 +69,7 @@
   --
   ::
   ++  init
-    |=  old=(unit pail:neo)
+    |=  old=(unit pail:t)
     ?>  ?=(^ old)
     =+  !<(sta=pulse q.u.old)
     =.  last.sta  now.bowl

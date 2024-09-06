@@ -90,7 +90,7 @@ Here's the same thing in Shrubery.
   ^-  curb:neo
   [%pro %number]
 ++  poke
-  ^-  (set stud:neo)
+  ^-  (set stud:t)
   (sy %counter-diff ~)
 ++  kids
   ^-  kids:neo
@@ -100,15 +100,15 @@ Here's the same thing in Shrubery.
   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t =stud:t state-vase=vase]
     +*  state  !<(number state-vase)
     ++  init
-      |=  old=(unit pail:neo)
-      ^-  (quip card:neo pail:neo)
+      |=  old=(unit pail:t)
+      ^-  (quip card:neo pail:t)
       [~ (need old)]
     ++  poke
-      |=  [=stud:neo vaz=vase]
-      ^-  (quip card:neo pail:neo)
+      |=  [=stud:t vaz=vase]
+      ^-  (quip card:neo pail:t)
       ?>  =(%counter-diff stud)
       =/  act
         !<(counter-diff vaz)
@@ -168,19 +168,19 @@ The `form` is where the Gall agent-like application logic lives. We only need tw
 
 ```
 ::  $form:neo
-|_  [=bowl:neo =aeon:neo =stud:neo state-vase=vase]
+|_  [=bowl:neo =aeon:t =stud:t state-vase=vase]
 ::
 ::  like +on-init, run some logic when this shrub is created
 ::  unlike +on-init, potentially accept some injected initial state
 ++  init
-  |=  old=(unit pail:neo)
-  ^-  (quip card:neo pail:neo)
+  |=  old=(unit pail:t)
+  ^-  (quip card:neo pail:t)
   !!
 ::
 ::  like +on-poke, run some logic when this shrub is poked
 ++  poke
-  |=  [=stud:neo vaz=vase]
-  ^-  (quip card:neo pail:neo)
+  |=  [=stud:t vaz=vase]
+  ^-  (quip card:neo pail:t)
   !!
 --
 ```
@@ -219,9 +219,9 @@ There are lots of new types here which are flagged with the `:neo` suffix in cod
   [%pro %number]
 ::
 ::  the set of pokes counter takes only contains %counter-diff
-::  a stud:neo is like a mark
+::  a stud:t is like a mark
 ++  poke
-  ^-  (set stud:neo)
+  ^-  (set stud:t)
   (sy %counter-diff ~)
 ::
 ::  counter does not constrain the state/pokes of shrubs
@@ -241,7 +241,7 @@ There are lots of new types here which are flagged with the `:neo` suffix in cod
   ::
   ::  the sample is populated with context like bowl,
   ::  version number, and counter's current state
-  |_  [=bowl:neo =aeon:neo =stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t =stud:t state-vase=vase]
     ::
     ::  de-vase counter's state
     +*  state  !<(number state-vase)
@@ -250,16 +250,16 @@ There are lots of new types here which are flagged with the `:neo` suffix in cod
     ++  init
       ::
       ::  return no cards and the initial given state
-      ::  pail:neo is a (pair stud:neo vase),
+      ::  pail:t is a (pair stud:t vase),
       ::  like a cell of a mark and data
-      |=  old=(unit pail:neo)
-      ^-  (quip card:neo pail:neo)
+      |=  old=(unit pail:t)
+      ^-  (quip card:neo pail:t)
       [~ (need old)]
     ::
     ::  +poke, like +on-poke
     ++  poke
-      |=  [=stud:neo vaz=vase]
-      ^-  (quip card:neo pail:neo)
+      |=  [=stud:t vaz=vase]
+      ^-  (quip card:neo pail:t)
       ::
       ::  assert that the poke's stud is %counter-diff
       ?>  =(%counter-diff stud)
@@ -271,7 +271,7 @@ There are lots of new types here which are flagged with the `:neo` suffix in cod
       ::  crash if we're not incrementing
       ?>  =(-.act %inc)
       ::
-      ::  return no cards, return a (pair stud:neo vase)
+      ::  return no cards, return a (pair stud:t vase)
       ::  where the vase contains the incremented state
       [~ [%number !>(+(state))]]
   --
@@ -362,7 +362,7 @@ This converts data stored as the `number` protocol (which is just a `@ud`) to th
     ::
     ::  hx-post will issue a POST request to the provided
     ::  url and swap the response into the DOM
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=counter-diff"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=counter-diff"
     ::
     ::  hx-target specifies the target for hx-post's DOM
     ::  swap: the element with class "loading"

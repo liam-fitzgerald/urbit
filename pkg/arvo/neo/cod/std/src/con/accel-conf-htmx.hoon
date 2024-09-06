@@ -48,7 +48,7 @@
   ==
 ++  in
   ;form.fc.grow
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=hoon"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=hoon"
     =hx-trigger  "input changed delay:0.4s from:find textarea"
     =hx-on-htmx-after-request  "$(this).closest('.top').find('.refresher').emit('accel-refresh');"
     =hx-swap  "none"
@@ -82,12 +82,12 @@
   ;div.fc.g2.p2.scroll-y
     ;*
     %+  turn  ~(tap by crew.conf)
-    |=  [=term =pith:neo]
+    |=  [=term =pith:t]
     =/  tap  (trip term)
     ;div.fr.g3.ac
       =id  "conf-dep-{tap}"
       ;button.bd1.br1.p-1.b1.hover.loader
-        =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=del-dep"
+        =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=del-dep"
         =hx-swap  "outerHTML"
         =hx-target  "find .loading"
         =tap  tap
@@ -99,12 +99,12 @@
       ;div.f3
         ; {tap}
       ==
-      ;div.mono: {(en-tape:pith:neo pith)}
+      ;div.mono: {(en-tape:pith:t pith)}
     ==
   ==
 ++  add-dep
   ;form.frw.js.g2
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=add-dep"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=add-dep"
     =hx-swap  "outerHTML"
     =hx-target  "find .loading"
     =hx-on-htmx-after-request  "$(this).find('input').attr('value', '');this.reset();"
@@ -147,9 +147,9 @@
   ;div.fc.g2.p2.scroll-y
     ;*
     %+  turn  ~(tap by poke.conf)
-    |=  [=pith:neo =stud:neo]
-    =/  pit  (en-tape:pith:neo pith)
-    =/  tap  (en-tape:pith:neo (snip (snip (snip here.bowl))))
+    |=  [=pith:t =stud:t]
+    =/  pit  (en-tape:pith:t pith)
+    =/  tap  (en-tape:pith:t (snip (snip (snip here.bowl))))
     ;div.frw.g2.ac
       ;button.bd1.br1.p-1.b1.hover.loader
         =hx-post  "/neo/hawk{tap}?stud=send-poke"
@@ -163,7 +163,7 @@
         ==
       ==
       ;button.bd1.br1.p-1.b1.hover.loader
-        =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=del-poke"
+        =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=del-poke"
         =hx-swap  "outerHTML"
         =hx-target  "find .loading"
         =pith  pit
@@ -180,7 +180,7 @@
   ==
 ++  add-poke
   ;form.fr.js.hf.g2
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=add-poke"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=add-poke"
     =hx-swap  "outerHTML"
     =hx-target  "find .loading"
     =hx-on-htmx-after-request  "$(this).find('input').attr('value', '');this.reset();"

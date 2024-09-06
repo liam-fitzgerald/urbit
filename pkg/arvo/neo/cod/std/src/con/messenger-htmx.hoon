@@ -19,7 +19,7 @@
 ++  pith-tape
   |=  =pith
   ^-  tape
-  (en-tape:pith:neo pith)
+  (en-tape:pith:t pith)
 ::
 ++  style
 

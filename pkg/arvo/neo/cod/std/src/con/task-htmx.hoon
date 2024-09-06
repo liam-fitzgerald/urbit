@@ -5,7 +5,7 @@
 :-  [%task %$ %htmx]
 ::  outer gate takes a task, inner gate takes a bowl:neo,
 ::  so we can access here.bowl and kids.bowl in the ui
-|=  t=task
+|=  ta=task
 |=  =bowl:neo
 ::
 ::  in this case, all sail rendering
@@ -17,7 +17,7 @@
   ::  pith to tape conversion
   |=  =pith
   ^-  tape
-  (en-tape:pith:neo pith)
+  (en-tape:pith:t pith)
 ::
 ++  shell
   ::
@@ -104,7 +104,7 @@
   ;div.fc.g2.br1
     :: <h2 class="bold.s2.tc">
     ;h2.bold.s2.tc
-      ; {(trip (@t text.t))}
+      ; {(trip (@t text.ta))}
     ==  :: </h2>
   ==  :: </div>
 ::
@@ -114,11 +114,11 @@
   |=  =pith
   ~&  >  pith
   ^-  ?
-  =/  t
+  =/  tas
     !<  task
     q.q.saga:(~(got of:neo kids.bowl) pith)
-  ~&  >>  t
-  kids-done.t
+  ~&  >>  tas
+  kids-done.tas
 ::
 ::
 ++  form-ordered-kids
@@ -134,7 +134,7 @@
     ::
     ::  iterates over the list of piths in order.task
     %+  turn
-      order.t
+      order.ta
     |=  =pith
     ::  extract kid information at pith from kids.bowl
     ::  and runs +part-kid on pith and kid data
@@ -149,7 +149,7 @@
   ::  sends %edit poke on input change
   |=  [=pith =idea:neo]
   ::  extracts information from idea:neo to task
-  =/  =pail:neo  q.saga.idea
+  =/  =pail:t  q.saga.idea
   =/  t=task  !<(task q.pail)
   ::  converts pith to tape
   =/  pt  (pith-tape (welp here.bowl pith))
@@ -194,9 +194,9 @@
           ::  combining attribute logic with manx below
           =;  m
             ::  checks if the task toggled as done
-            ?.  done.t
+            ?.  done.ta
               ::  if it's not done, does it have kids?
-              ?~  order.t
+              ?~  order.ta
                 ::
                 ::  a.g.m is a part of the manx that
                 ::  contains input checkbox attributes;
@@ -243,7 +243,7 @@
           =/  classes
             %+  weld
               "grow p2 br2 text bold"
-            ?:(done.t " strike f3" "")
+            ?:(done.ta " strike f3" "")
           ::  assigning classes attribute to the manx below
           that(a.g [[%class classes] a.g.that])
         ^-  manx
@@ -254,7 +254,7 @@
         ;input
           =type         "text"
           =name         "text"
-          =value        (trip text.t)
+          =value        (trip text.ta)
           =onclick      "$(this).addClass('border br2');$(this).removeClass('bold')"
           =onblur       "$(this).addClass('bold');$(this).removeClass('border')"
           =oninput      "this.setAttribute('value', this.value);"

@@ -17,13 +17,13 @@
   ^-  form:neo
   |_  [=bowl:neo *]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =+  !<(=rely:neo vax)
     `atom/!>((get-dep bowl))
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `atom/!>((get-dep bowl))
   --
 --

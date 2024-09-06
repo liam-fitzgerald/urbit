@@ -8,15 +8,15 @@
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo sta=pail:neo]
+  |_  [=bowl:neo =aeon:t sta=pail:t]
   ++  poke
-    |=  =pail:neo
-    ^-  (quip card:neo pail:neo)
+    |=  =pail:t
+    ^-  (quip card:neo pail:t)
     ?>  =(p.pail %sail)
     `pail
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     :-  ~
     ?~  pal  sail/!>(*sail)
     ::  non-empty init unit always re-renders the code

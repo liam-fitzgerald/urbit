@@ -9,6 +9,6 @@ $%  [%inc-width ~]
         text=@t
         refa=(unit pith)
         refb=(unit pith)
-        target=(unit [pith stud:neo])
+        target=(unit [pith stud:t])
     ==
 ==

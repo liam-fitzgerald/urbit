@@ -18,7 +18,7 @@
 ++  post-url
   ;:  welp
     "/neo/hawk"
-    (en-tape:pith:neo here.bowl)
+    (en-tape:pith:t here.bowl)
     "?stud=planner-diff"
   ==
 ++  controls

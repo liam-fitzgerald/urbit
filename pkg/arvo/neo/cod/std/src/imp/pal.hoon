@@ -1,6 +1,5 @@
 /@  pal-type=pal
 /@  pal-diff
-/>  htmx
 /<  node
 => 
 |%
@@ -14,15 +13,12 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t stud:t state-vase=vase]
   +*  sta  !<(pal-type state-vase)
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =/  sta  sta
-    ?:  =(%test stud)
-      ~&  ((htmx txt/!>('test')) bowl)
-      `pal/!>(sta)
     ?>  =(%pal-diff stud)
     =+  !<(poke=pal-diff vax)
     :-  ~
@@ -33,8 +29,8 @@
       %del-tag  sta(tags (~(del in tags.sta) term.poke))
     ==
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     =+  !<(pal=pal-type q:(need old))
     `pal/!>(pal)
   --

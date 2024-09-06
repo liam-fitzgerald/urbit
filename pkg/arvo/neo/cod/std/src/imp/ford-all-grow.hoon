@@ -8,7 +8,7 @@
     =/  res=vase  q.pail:(need fil.q:(~(got by deps.bowl) %pro))
     =/  lookup=(map stud:t vase)
       %+  roll  ~(tap of q:(~(got by deps.bowl) %con))
-      |=  [[=pith:neo =idea:neo] out=(map stud:t vase)]
+      |=  [[=pith:t =idea:neo] out=(map stud:t vase)]
       ?.  =(p.pail.idea %vase)
         out
       ?.  ?=([@ ~] pith)

@@ -17,21 +17,21 @@
   ~
 ::
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?+    stud  ~|(bad-stud/stud !!)
         %eyre-task
       =+  !<(=task:eyre:neo vax)
       =/  [eyre-id=@ta req=inbound-request:eyre]  task
       ?.  authenticated.req
-        =/  eyre=pith:neo  #/[p/our.bowl]/vane/eyre
+        =/  eyre=pith:t  #/[p/our.bowl]/vane/eyre
         :_  pail
         %+  ~(respond neo:srv eyre)   eyre-id
         (login-redirect:gen:srv request.req)
       =/  purl  (parse-url:serv request.req)
-      =/  inner=pith:neo  (pave:neo pax.purl)
+      =/  inner=pith:t  (pave:neo pax.purl)
       =/  =crew:neo  (~(gas by *crew:neo) src/inner ~)
       =/  =made:neo  [%hawk-eyre-handler `[stud vax] crew]
       :_  sig/!>(~)
@@ -39,9 +39,9 @@
       ==
     ==
   ++  init
-    |=  pal=(unit pail:neo)
+    |=  pal=(unit pail:t)
     :_  sig/!>(~)
-    =/  =pith:neo  #/[p/our.bowl]/vane/eyre
+    =/  =pith:t  #/[p/our.bowl]/vane/eyre
     =/  =binding:eyre  [~ ~[%neo %hawk]]
     =/  =req:eyre:neo  [%connect binding here.bowl]
     :~  [pith %poke eyre-req/!>(req)]

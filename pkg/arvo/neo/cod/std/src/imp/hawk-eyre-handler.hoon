@@ -8,7 +8,7 @@
 ^-  kook:neo
 |%
 ++  state  pro/%eyre-task
-++  poke   *(set stud:neo)
+++  poke   *(set stud:t)
 ++  kids  *kids:neo
 ++  deps
   %-  ~(gas by *band:neo)
@@ -26,15 +26,15 @@
   ==
 ::
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     !!
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
-    =/  [=stud:neo =vase]  (need pal)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
+    =/  [=stud:t =vase]  (need pal)
     =+  !<([eyre-id=@ta req=inbound-request:eyre] vase)
     :_  [stud vase]
     =/  purl  (parse-url:serv request.req)
@@ -53,7 +53,7 @@
             ==
           ==
         ==
-      =/  pit=pith:neo  (pave:neo pax:(parse-url:serv request.req))
+      =/  pit=pith:t  (pave:neo pax:(parse-url:serv request.req))
       %:  eyre-cards
           eyre-id
           bowl
@@ -124,7 +124,7 @@
       =/  content-type  (~(gut by pam.purl) 'content-type' 'text/html')
       =/  body  (parse-body:serv request.req)
       =/  poke-stud
-        ^-  stud:neo
+        ^-  stud:t
         ~|  %no-stud-specified
         (~(got by pam.purl) 'stud')
       =/  mul
@@ -157,7 +157,7 @@
         ==
       ::
           %.y
-        =/  =pail:neo  [poke-stud p.mul]
+        =/  =pail:t  [poke-stud p.mul]
         =/  bol  *bowl:neo
         =.  here.bol  here
         =.  our.bol  our.bowl
@@ -188,7 +188,7 @@
       =/  content-type  (~(gut by pam.purl) 'content-type' 'text/html')
       =/  body  (parse-body:serv request.req)
       =/  poke-stud
-        ^-  stud:neo
+        ^-  stud:t
         ~|  %no-stud-specified
         (~(got by pam.purl) 'stud')
       =/  mul
@@ -220,7 +220,7 @@
         ==
       ::
           %.y
-        =/  =pail:neo  [poke-stud p.mul]
+        =/  =pail:t  [poke-stud p.mul]
         =/  bol  *bowl:neo
         =.  here.bol  here
         =.  our.bol  our.bowl
@@ -257,7 +257,7 @@
 ++  eyre-cards
   |=  [eyre-id=@ta =bowl:neo status=@ud =header-list:http =manx]
   ^-  (list card:neo)
-  =/  =pith:neo  #/[p/our.bowl]/vane/eyre
+  =/  =pith:t  #/[p/our.bowl]/vane/eyre
   =/  head=sign:eyre:neo  [eyre-id %head [status header-list]]
   =/  data=sign:eyre:neo  [eyre-id %data `(manx-to-octs manx)]
   =/  done=sign:eyre:neo  [eyre-id %done ~]
@@ -285,7 +285,7 @@
   [#/[p/our.bowl]/sky %poke %sky-diff !>([%move-tab slot here.bowl])]
 ++  default-refresher
   |=  =pith
-  =/  tath  (en-tape:pith:neo pith)
+  =/  tath  (en-tape:pith:t pith)
   ;div.loading
     =hx-get  "/neo/hawk{tath}"
     =hx-target  "closest .rendered"
@@ -303,7 +303,7 @@
       ;+
       ?~  node=(~(get of:neo kids.bowl) /)
         ;div.p2: none
-      =/  =pail:neo  q.u.node
+      =/  =pail:t  q.u.node
       ;div.fc.g2.as.p2
         ;a.p1.mono.f2.b1.br1.bd1.hover.loader
           =href  "/neo/hawk/{(scow %p our.bowl)}/cod/std/src/pro/{(trip ?@(p.pail p.pail mark.p.pail))}"
@@ -323,7 +323,7 @@
     ;h2.bold.mt1: children
     ;*
     %+  murn  (flop (sort ~(tap by (~(kid of:neo kids.bowl) /)) aor))
-    |=  [=pith:neo *]
+    |=  [=pith:t *]
     =/  heer  (welp here.bowl pith)
     ?:  ?|
           ::  ignored shrubs
@@ -337,9 +337,9 @@
         ==
       ~
     :-  ~
-    =/  tape  (en-tape:pith:neo pith)
+    =/  tape  (en-tape:pith:t pith)
     ;a.p2.b1.br1.bd1.hover.loader
-      =href  "/neo/hawk{(en-tape:pith:neo here.bowl)}{tape}"
+      =href  "/neo/hawk{(en-tape:pith:t here.bowl)}{tape}"
       ;span.loaded: {tape}
       ;span.loading
         ;+  loading.feather-icons
@@ -424,7 +424,7 @@
             ;a
               =class  "hover b2 {pad} s0 loader fc ac jc"
               =style  "height: 2rem;"
-              =href  "/neo/hawk{(en-tape:pith:neo (scag +(a) here))}"
+              =href  "/neo/hawk{(en-tape:pith:t (scag +(a) here))}"
               ;span.loaded
                 ;+  ;/
                 ?:  =(a 0)  "/"
@@ -454,7 +454,7 @@
         ;input.br1.b1.wf.s0.loaded.grow.bd0
           =style  "margin-left: 5px; padding: 2px 4px;"
           =type  "text"
-          =value  (en-tape:pith:neo here)
+          =value  (en-tape:pith:t here)
           =oninput
             """
             $(this).attr('value', this.value);

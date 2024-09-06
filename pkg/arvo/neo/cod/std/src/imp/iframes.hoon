@@ -44,13 +44,13 @@
   ==
 ::
 ++  form
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?+    stud  ~|(bad-stud/stud !!)
          %rely
-      =/  [pith:neo =lore:neo]  (~(got by deps.bowl) %charges)
+      =/  [pith:t =lore:neo]  (~(got by deps.bowl) %charges)
       =/  =idea:neo  (~(got of:neo lore) ~)
       ?>  =(p.pail.idea %noun)
       =+  ;;(charges=(map desk [=docket *]) q.q.pail.idea)
@@ -63,7 +63,7 @@
       `[(welp here.bowl #/[desk]) %make %iframe ~^cord/!>((get-iframe docket)) ~]
     ==
   ++  init
-    |=  pal=(unit pail:neo)
+    |=  pal=(unit pail:t)
     `sig/!>(~)
   --
 --

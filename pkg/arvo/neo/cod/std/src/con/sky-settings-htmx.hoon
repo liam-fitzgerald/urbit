@@ -7,7 +7,7 @@
 |^
   ;div.wf.hf.relative
     ;form.fc.g5.mw-page.ma.p-page
-      =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=sky-settings"
+      =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=sky-settings"
       =hx-swap  "outerHTML"
       =hx-target  "this"
       =hx-select  "form"
@@ -58,7 +58,7 @@
       ;button.p2.bd1.br1.b1.hover
         =type  "button"
         =onclick  "document.documentElement.removeAttribute('style')"
-        =hx-get  "/neo/hawk{(en-tape:pith:neo here.bowl)}"
+        =hx-get  "/neo/hawk{(en-tape:pith:t here.bowl)}"
         =hx-target  "closest .hawk"
         =hx-select  ".hawk"
         ;span: reset

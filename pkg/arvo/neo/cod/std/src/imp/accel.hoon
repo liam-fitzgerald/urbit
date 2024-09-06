@@ -22,8 +22,8 @@
 ++  make-cell
   |=  [=bowl:neo row=@ud col=@ud conf=accel-conf =kind]
   ^-  (list card:neo)
-  =/  =pith:neo  (welp here.bowl #/[ud/col]/[ud/row])
-  =/  =stud:neo
+  =/  =pith:t  (welp here.bowl #/[ud/col]/[ud/row])
+  =/  =stud:t
     `@tas`(cat 3 'accel-' (scot %t (spat (pout pith))))
   =;  caz=(list card:neo)
     ?-  kind
@@ -31,8 +31,8 @@
       %out  (snag 1 caz)^~
       %both  caz
     ==
-  :~  [`pith:neo`(snoc pith `@tas`%in) %make %accel-conf `accel-conf/!>(conf) ~]
-      [`pith:neo`(snoc pith `@tas`%out) %make stud ~ crew.conf]
+  :~  [`pith:t`(snoc pith `@tas`%in) %make %accel-conf `accel-conf/!>(conf) ~]
+      [`pith:t`(snoc pith `@tas`%out) %make stud ~ crew.conf]
   ==
 
 --
@@ -54,20 +54,20 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  init
-    |=  old=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  old=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     =/  width  5
     =/  height  5
     :_  accel/!>([width height])
     (make-cells bowl 1 width 1 height %in)
   ::
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     =/  state  !<(accel q.pail)
-    |^  ^-  (quip card:neo pail:neo)
+    |^  ^-  (quip card:neo pail:t)
     =^  cards=(list card:neo)  state
       ?+  stud   !!
         %accel-diff  (on-diff !<(accel-diff vax))

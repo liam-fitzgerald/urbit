@@ -15,10 +15,10 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo sted=stud:neo sta=vase]
+  |_  [=bowl:neo =aeon:t sted=stud:t sta=vase]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(%gift stud)
     =+  !<(=gift:neo vax)
     %-  (slog leaf/"gift" (sell vax) ~)
@@ -27,6 +27,6 @@
     +(!<(@ud sta))
   ::
   ++  init
-    |=  old=(unit pail:neo)  `counter/!>(0)
+    |=  old=(unit pail:t)  `counter/!>(0)
   --
 --

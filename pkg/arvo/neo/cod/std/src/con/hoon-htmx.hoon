@@ -27,7 +27,7 @@
 ++  apex
   ^-  manx
   ;form.wf.hf.hoon.fc
-    =hx-put  "{(en-tape:pith:neo (welp /neo/hawk here.bowl))}?stud=hoon"
+    =hx-put  "{(en-tape:pith:t (welp /neo/hawk here.bowl))}?stud=hoon"
     =hx-trigger  "click from:find button, keydown[metaKey&&key=='Enter']"
     =hx-target  "closest .hoon"
     =hx-swap  "morph"

@@ -13,16 +13,16 @@
   ++  deps  deps:inner
   ++  form
     ^-  form:neo
-    |_  [=bowl:neo =aeon:neo =pail:n]
+    |_  [=bowl:neo =aeon:t =pail:n]
     +*  og   ~(. form:inner [bowl aeon pail])
     ++  poke
-      |=  [=stud:neo vax=vase]
-      ^-  (quip card:neo pail:neo)
+      |=  [=stud:t vax=vase]
+      ^-  (quip card:neo pail:t)
       %-  (slog leaf/"poke {(en-tape:name:neo src.bowl)} -> {<stud>}" ~)
       (poke:og stud vax)
     ++  init
-      |=  pal=(unit pail:neo)
-      ^-  (quip card:neo pail:neo)
+      |=  pal=(unit pail:t)
+      ^-  (quip card:neo pail:t)
       %-  (slog leaf/"init {(en-tape:name:neo src.bowl)} " ~)
       (init:og pal)
     --
@@ -39,15 +39,15 @@
   ==
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo sted=stud:neo state-vase=vase]
+  |_  [=bowl:neo =aeon:t sted=stud:t state-vase=vase]
   ++  poke
-    |=  [=stud:neo vax=vase]
-    ^-  (quip card:neo pail:neo)
+    |=  [=stud:t vax=vase]
+    ^-  (quip card:neo pail:t)
     ?>  =(?(%ford-in %rely) stud)
     `vase/(need (bind (get-output:ford:neo bowl %src) wrap-firm))
   ++  init
-    |=  pal=(unit pail:neo)
-    ^-  (quip card:neo pail:neo)
+    |=  pal=(unit pail:t)
+    ^-  (quip card:neo pail:t)
     `vase/(need (bind (get-output:ford:neo bowl %src) wrap-firm))
   --
 --

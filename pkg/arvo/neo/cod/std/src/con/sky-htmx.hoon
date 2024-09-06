@@ -133,7 +133,7 @@
   :_  +(a)
   =/  ext
     ?:  =(pith /)  ""
-    (en-tape:pith:neo pith)
+    (en-tape:pith:t pith)
   =/  idt  `tape`(zing (scan +:(scow %da id) (most dot (star ;~(less dot prn)))))
   ;div.wf.hf.fc.jc.ac.f2.s3.spinner
     =slot  "s{<a>}"
@@ -209,7 +209,7 @@
         =hawk  idt
         =hx-target  "find .loading"
         =hx-swap  "outerHTML"
-        ;span.loaded: {(en-tape:pith:neo pith)}
+        ;span.loaded: {(en-tape:pith:t pith)}
         ;span.loading
           ;+  loading.feather-icons
         ==

@@ -1,3 +1,3 @@
-$%  [%make name=@tas =stud:neo]
+$%  [%make name=@tas =stud:t]
     [%tomb name=@tas]
 ==

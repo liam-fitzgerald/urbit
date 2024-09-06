@@ -1,1 +1,1 @@
-[hand=pith:neo =request:http =outbound-config:iris]
+[hand=pith:t =request:http =outbound-config:iris]

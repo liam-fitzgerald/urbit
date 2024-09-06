@@ -1,1 +1,1 @@
-,[=term =pith:neo]
+,[=term =pith:t]

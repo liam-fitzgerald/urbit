@@ -4,7 +4,7 @@
 |=  =bowl:neo
 |^
   ;form.fr.af.js.hf
-    =hx-post  "/neo/hawk{(en-tape:pith:neo (snip (snip here.bowl)))}?stud=accel-diff"
+    =hx-post  "/neo/hawk{(en-tape:pith:t (snip (snip here.bowl)))}?stud=accel-diff"
     =hx-trigger  "input changed delay:0.4s from:find textarea, input changed delay:0.4s from:[name='a']"
     =hx-swap  "outerHTML"
     =hx-target  "#spinner .loading"
@@ -44,7 +44,7 @@
     ;button.br1.border.b1.hover
       =style  "padding: 4px 8px;"
       =type  "button"
-      =pith  "{(en-tape:pith:neo here.bowl)}"
+      =pith  "{(en-tape:pith:t here.bowl)}"
       =onclick  "navigator.clipboard.writeText(this.getAttribute('pith'));"
       ; copy path
     ==
@@ -63,7 +63,7 @@
     ;span.f3.s-2.p1: a
     ;input.border.wf
       =placeholder  "/{(scow %p our.bowl)}/path/to/dep"
-      =value  ?~(refa.accel-cell "" (en-tape:pith:neo u.refa.accel-cell))
+      =value  ?~(refa.accel-cell "" (en-tape:pith:t u.refa.accel-cell))
       =autocomplete  "off"
       =oninput  "this.setAttribute('value', this.value);"
       =name  "a"
@@ -75,7 +75,7 @@
     ;span.f3.s-2.p1: b
     ;input.border.wf
       =placeholder  "/{(scow %p our.bowl)}/path/to/dep"
-      =value  ?~(refb.accel-cell "" (en-tape:pith:neo u.refb.accel-cell))
+      =value  ?~(refb.accel-cell "" (en-tape:pith:t u.refb.accel-cell))
       =autocomplete  "off"
       =oninput  "this.setAttribute('value', this.value);"
       =name  "b"

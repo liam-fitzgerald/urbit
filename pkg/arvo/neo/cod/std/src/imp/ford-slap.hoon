@@ -21,7 +21,7 @@
   ^-  (each hoon tang)
   %-  mule
   |.  ^-  hoon
-  =/  [pax=pith:neo =lore:neo]  (~(got by deps.bowl) %hoon)
+  =/  [pax=pith:t =lore:neo]  (~(got by deps.bowl) %hoon)
   =+  !<(src=@t q.pail:~(rot of:neo lore))
   =>  [src=src neo=neo pax=pax ..zuse]
   ~>  %memo./ford/slap/parse

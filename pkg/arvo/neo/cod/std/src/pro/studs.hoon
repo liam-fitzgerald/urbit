@@ -1,1 +1,1 @@
-,(set stud:neo)
+,(set stud:t)

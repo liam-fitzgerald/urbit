@@ -12,9 +12,9 @@
 ++  deps   *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =aeon:neo =pail:neo]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
-    |=  [=stud:neo vax=vase]
+    |=  [=stud:t vax=vase]
     ?>  ?=(%circle-diff stud)
     =+  !<(=diff vax)
     :_  pail
@@ -30,7 +30,7 @@
       [(snoc here.bowl p/ship) %tomb ~]
     ==
   ++  init
-    |=  pal=(unit pail:neo)
+    |=  pal=(unit pail:t)
     `circle/!>(~)
   --
 --

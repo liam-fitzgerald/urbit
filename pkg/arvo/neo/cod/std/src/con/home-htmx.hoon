@@ -50,7 +50,7 @@
   ==
 ++  apps
   ;form.frw.g3.ac.jc.wfc.ma
-    =hx-post  "/neo/hawk{(en-tape:pith:neo here.bowl)}?stud=home"
+    =hx-post  "/neo/hawk{(en-tape:pith:t here.bowl)}?stud=home"
     =hx-swap  "none"
     =hx-indicator  "#indicator-{id}"
     ;*
@@ -73,7 +73,7 @@
     =/  =path  (pout (welp here.bowl pith))
     :-  ~
     ;div.relative.br2
-      =pith  (en-tape:pith:neo pith)
+      =pith  (en-tape:pith:t pith)
       ;a.b1.br2.block.fc.as.js.hover.p3.s1.border-2.loader
         =style  "width: 160px; height: 160px;"
         =hx-target  "closest .hawk"
