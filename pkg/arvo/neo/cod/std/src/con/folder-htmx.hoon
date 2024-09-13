@@ -76,7 +76,7 @@
     =/  pith  ~[name]
     ?~  suga=(~(get of:neo kids.bowl) pith)
       ;div.p3.br1.bd1: no file called {<name>}
-    =/  =pail:t  q.saga.u.suga
+    =/  =pail:t  q.u.suga
     =/  =stud:t  p.pail
     =/  =path  (pout (welp here.bowl pith))
     =/  label

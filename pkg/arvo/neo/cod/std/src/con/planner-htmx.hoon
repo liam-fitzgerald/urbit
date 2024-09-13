@@ -117,10 +117,10 @@
   :_  |=  [a=pent b=pent]
       (lth when.q.a when.q.b)
   %+  murn  ~(tap of:neo kids.bowl)
-  |=  [=pith =idea:neo]
+  |=  [=pith =tale:t]
   ^-  (unit pent)
   ?~  pith  ~
-  =/  entry  !<(planner-entry q.q.saga.idea)
+  =/  entry  !<(planner-entry q.q.tale)
   ?.  ?&
         (gte when.entry d)
         (lth when.entry (add d ~d1))
@@ -139,9 +139,9 @@
   :_  |=  [a=pent b=pent]
       (gth when.q.a when.q.b)
   %+  murn  ~(tap of:neo kids.bowl)
-  |=  [=pith =idea:neo]
+  |=  [=pith =tale:t]
   ^-  (unit pent)
-  =/  entry  !<(planner-entry q.q.saga.idea)
+  =/  entry  !<(planner-entry q.q.tale)
   ?.  ?&
         (gte d when.entry)
         (lte d (add when.entry length.entry))

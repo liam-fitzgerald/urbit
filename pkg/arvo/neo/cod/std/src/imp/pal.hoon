@@ -1,6 +1,5 @@
 /@  pal-type=pal
 /@  pal-diff
-/<  node
 => 
 |%
 ++  card  card:neo

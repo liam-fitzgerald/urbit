@@ -24,9 +24,9 @@
         %+  sort
           %+  murn
             ~(tap of:neo kids.bowl)
-          |=  [=pith =idea:neo]
+          |=  [=pith =tale:t]
           ?~  pith  ~
-          `[pith idea]
+          `[pith tale]
         |=  [a=[=pith *] b=[=pith *]]
         (gth ->.pith.a ->.pith.b)
       link-entry
@@ -84,12 +84,12 @@
 ::
 ::  entry box
 ++  link-entry
-  |=  [pax=pith =idea:neo]
+  |=  [pax=pith =tale:t]
   ::  make sure the pail does in fact contain %txt
-  ?.  =(%txt p.q.saga.idea)
+  ?.  =(%txt p.q.tale)
     ;div: error
   ::  extract information from the given pith and pail:t
-  =/  tape  (trip !<(@t q.q.saga.idea))
+  =/  tape  (trip !<(@t q.q.tale))
   =/  subject-end  (fall (find [10]~ tape) 56)
   =/  subject  (scag subject-end tape)
   =/  id  (trip (snag 0 (pout pax)))

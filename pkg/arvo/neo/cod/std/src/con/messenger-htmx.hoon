@@ -88,13 +88,13 @@
 ++  all-chats
   =/  kids
     %+  skid  ~(tap of:neo kids.bowl)
-        |=  [=pith =idea:neo]
-        =(p.q.saga.idea %groupchat)
+        |=  [=pith =tale:t]
+        =(p.q.tale %groupchat)
   ^-  manx
   ;div.fc.as.g1.w70
     ;div.fc.ac.g1.wf
     ;*  %+  turn  q.kids
-        |=  [=pith =idea:neo]
+        |=  [=pith =tale:t]
         ?~  pith
           ;span.hidden:  no dms
         ?:  (lte 3 (lent pith))
@@ -111,16 +111,16 @@
     ==
     ;div.fc.ac.g1.wf
       ;*  %+  turn  p.kids
-          |=  [=pith =idea:neo]
+          |=  [=pith =tale:t]
           ?~  pith  ;span.hidden:  no groupchats
-          (chat pith idea)
+          (chat pith tale)
     ==
   ==
 ::
 ++  chat
-  |=  [=pith =idea:neo]
+  |=  [=pith =tale:t]
   =/  org=@p  +:;;([%p @p] (snag 1 `(list iota)`pith))
-  =/  members=(list ship)  ~(tap in members:!<(groupchat q.q.saga.idea))
+  =/  members=(list ship)  ~(tap in members:!<(groupchat q.q.tale))
   =/  chat  +:;;([%t @t] (rear pith))
   ^-  manx
   ;div.wf.br1.fc.g1

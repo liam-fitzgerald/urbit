@@ -116,7 +116,7 @@
   ^-  ?
   =/  tas
     !<  task
-    q.q.saga:(~(got of:neo kids.bowl) pith)
+    q.q:(~(got of:neo kids.bowl) pith)
   ~&  >>  tas
   kids-done.tas
 ::
@@ -141,15 +141,15 @@
     =/  kid  (~(get of:neo kids.bowl) pith)
     ?~  kid
       ;div: does not exist {(pith-tape pith)}
-    (part-kid [pith (need kid)])
+    (part-kid [pith u.kid])
   ==
 ::
 ++  part-kid
   ::
   ::  sends %edit poke on input change
-  |=  [=pith =idea:neo]
+  |=  [=pith =tale:t]
   ::  extracts information from idea:neo to task
-  =/  =pail:t  q.saga.idea
+  =/  =pail:t  q.tale
   =/  t=task  !<(task q.pail)
   ::  converts pith to tape
   =/  pt  (pith-tape (welp here.bowl pith))

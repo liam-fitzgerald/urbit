@@ -12,7 +12,7 @@
   =/  =pith  #/pals/[p/ship]
   ?~  kid=(~(get of kids.bowl) pith)
     ~
-  =+  !<(child=pal-type q.q.saga.u.kid)
+  =+  !<(child=pal-type q.q.u.kid) 
   `type.child
 ++  her-hey
   |=  kin=(unit kind)
@@ -54,7 +54,7 @@
 ++  deps  *deps:neo
 ++  form
   ^-  form:neo
-  |_  [=bowl:neo =saga:t]
+  |_  [=bowl:neo =aeon:t =pail:t]
   ++  poke
     |=  [=stud:t vax=vase]
     ^-  (quip card:neo pail:t)
@@ -63,7 +63,7 @@
       =+  !<(poke=pals-diff vax)
       :: ?.  ;;(? +:(~(gut by deps.bowl) %open [*pith &]))
        :: ~&(dropping-poke/poke !>(sta))
-      :_  q.saga
+      :_  pail
       (add-pal %leeche bowl ship.src.bowl)^~
     ::
         %pals-action
@@ -72,7 +72,7 @@
         ?:  ?=(%meet -.poke)
           hey/~
         bye/~
-      :_  q.saga
+      :_  pail
       :~  (tell-pal ship.poke diff)
           (add-pal %target bowl ship.poke)
       ==

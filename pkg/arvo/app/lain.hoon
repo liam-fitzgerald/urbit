@@ -783,7 +783,7 @@
     ?+    belt  ~&(weird-belt/belt spit)
         [%aro *]   spit
         %~-~2f.     draw(search.sel `['' 0])
-        %p          spit(run (make-pill (en-beam byk.bowl /neo/cod/std/src)))
+        %p          spit(run (make-pill (en-beam byk.bowl(r da/now.bowl) /neo/cod/std/src)))
         %b          pop
         %r          draw
         %h          ?:(=(~ here.sel) do-bell (move (snip here.sel)))

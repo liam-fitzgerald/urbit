@@ -18,12 +18,12 @@
     ++  poke
       |=  [=stud:t vax=vase]
       ^-  (quip card:neo pail:t)
-      %-  (slog leaf/"poke {(en-tape:name:neo src.bowl)} -> {<stud>}" ~)
+      %-  (slog leaf/"poke {(en-tape:name:t src.bowl)} -> {<stud>}" ~)
       (poke:og stud vax)
     ++  init
       |=  pal=(unit pail:t)
       ^-  (quip card:neo pail:t)
-      %-  (slog leaf/"init {(en-tape:name:neo src.bowl)} " ~)
+      %-  (slog leaf/"init {(en-tape:name:t src.bowl)} " ~)
       (init:og pal)
     --
   --

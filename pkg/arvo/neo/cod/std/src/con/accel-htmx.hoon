@@ -119,7 +119,7 @@
     ;+
     ?~  res=(~(get of:neo kids.bowl) pix)
       ;div.f-2: EMPTY
-    (out-preview q.saga.u.res)
+    (out-preview q.u.res)
   ==
 ++  index
   |=  n=@
@@ -164,7 +164,7 @@
     ;+
     ?~  res=(~(get of:neo kids.bowl) (snoc pax %in))
       ;div: none - in {<[x y]>}
-    (!<(htmx q.pail.u.res) kid)
+    (!<(htmx q.q.u.res) kid)
   ==
 ++  out
   |=  [x=@ y=@]
@@ -186,7 +186,7 @@
       ;+
       ?~  res=(~(get of:neo kids.bowl) pax)
         ;div: none out - {<[x y]>}
-      (!<(htmx q.pail.u.res) kid)
+      (!<(htmx q.q.u.res) kid)
     ==
   ==
 ++  refresher

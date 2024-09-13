@@ -183,7 +183,7 @@ Let’s see how `/imp/message-sub` handles the `%rely` pokes it recevives from d
    `[(welp here.bowl pith) %make %message `pail.idea ~]
 ```
 
-The above is mostly self-explanatory, but it’s worth expanding on `stem:neo` and `mode:neo`.
+The above is mostly self-explanatory, but it’s worth expanding on `stem:neo` and `mode:t`.
 
 ```
 +$  stem

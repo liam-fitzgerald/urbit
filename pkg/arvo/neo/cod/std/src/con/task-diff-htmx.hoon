@@ -1,7 +1,7 @@
 /@  task-diff
 /-  feather-icons
 :-  [%task-diff %$ %htmx]
-|=  t=task-diff
+|=  ta=task-diff
 |=  =bowl:neo
 ^-  manx
 ;div.loading

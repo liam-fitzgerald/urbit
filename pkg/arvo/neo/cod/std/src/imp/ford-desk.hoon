@@ -244,6 +244,7 @@
   ++  build-file
     |=  =prop:neo
     ^+  run
+    ~|  building/prop
     =*  fil  ~(. file prop)
     ?:  (~(has in broken) prop)
       run :: (emit (welp here.bowl out/pith:fil) %make %riff `vase/!>(~) ~)

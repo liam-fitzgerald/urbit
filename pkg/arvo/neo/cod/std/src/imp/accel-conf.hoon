@@ -13,7 +13,7 @@
   =;  =vase
     [pith %make %ford-riff `vase/vase ~]^~
   =-  !>(-)
-  =>  [..zuse neo=neo og=bowl conf=conf]
+  =>  [..zuse t=t neo=neo og=bowl conf=conf]
   =>
     |%
     ++  lift-lore
@@ -24,7 +24,7 @@
     ++  get-prelude
       |=  =bowl:neo
       ^-  vase
-      %+  with-faces:ford:neo  (slop !>(neo) !>(..zuse))
+      %+  with-faces:ford:neo  (slop (slop !>(t) !>(neo)) !>(..zuse))
       :-  bowl/!>(bowl)
       %+  turn  ~(tap by deps.bowl)
       |=  [=term =pith:t =lore:neo]

@@ -100,7 +100,7 @@
       =/  changes  ~(tap by ~(tar of:neo gift))
       %-  zing
       %+  turn  changes
-      |=  [=road:neo =mode:neo]
+      |=  [=road:neo =mode:t]
       ^-  (list card:neo)
       ?.  ?=([[%ud col=@] [%ud row=@ud] %in ~] road)
         ~

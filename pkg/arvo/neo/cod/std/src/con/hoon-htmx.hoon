@@ -3,12 +3,12 @@
 :-  [%hoon %$ %htmx]
 |=  hon=@t
 |=  =bowl:neo
-=/  =name:neo
+=/  =name:t
   [our here]:bowl
 =/  fool=(each file:ford:neo tang)
   %-  mule
   |.
-  (scan (trip hon) (rein:ford:neo name))
+  (scan (trip hon) apex:(rein:ford:neo here.bowl))
 =/  src=wain
   (to-wain:format hon)
 ^-  manx
@@ -16,7 +16,7 @@
 |%
 ::  XX: non-std
 ++  post-href
-  |=  =post:neo
+  |=  =post:t
   ^-  path
   ?>  ?=(@ q.post)
   =/  dsk

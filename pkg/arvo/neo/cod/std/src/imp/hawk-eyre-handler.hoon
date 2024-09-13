@@ -1,9 +1,6 @@
 /@  htmx-type=htmx
 /-  feather-icons
 /-  serv=sky-server
-/>  htmx
-/<  node
-/<  http-request
 =<
 ^-  kook:neo
 |%
@@ -87,7 +84,7 @@
       =.  now.bol  now.bowl
       =.  eny.bol  eny.bowl
       =.  kids.bol  
-        ^-  muck:n
+        ^-  muck:t
         %-  ~(run of (~(del of:neo q.u.src) /))
         |=  =idea:neo
         q.saga.idea
@@ -164,7 +161,7 @@
         =.  now.bol  now.bowl
         =.  eny.bol  eny.bowl
         =/  =manx
-          ?~  converter=(mole |.(!!)) :: (htmx pail)))
+          ?~  converter=(mole |.((htmx pail)))
             (default-refresher here)
           =/  mul
             %-  mule
@@ -250,6 +247,9 @@
 --
 ::
 |%
+++  htmx  |=(=pail:t |=(=bowl:neo *manx))
+++  node  |=([=stud:t =manx] *vase)
+++  http-request  |=([=stud:t *] *vase)
 ++  manx-to-octs
   |=  man=manx
   (as-octt:mimes:html (en-xml:html man))

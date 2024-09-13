@@ -1,9 +1,9 @@
-/@  hoon
+/@  h=hoon
 /@  node
 /-  manx-utils
 :-  [%node %$ %hoon]
 |=  nod=node
-^-  hoon
+^-  @t
 =*  mu  ~(. manx-utils nod)
 =/  raw=tape  (need (val:mu "text"))
 %-  crip
