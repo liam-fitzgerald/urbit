@@ -246,6 +246,10 @@
         %dbug
       %-  print:(farm:etch farm)
       run
+    ::
+        [%hark pax=*]
+      =+  ;;(pax=path pax.q.vase)
+      (fe-deal:(fe /) hark/(pave:t pax) ~)
     :: 
         [%src path=*]  !!
 :::   =+  ;;(=path path.q.vase)
@@ -427,8 +431,7 @@
     |=  =hunt:t
     ^+  fe
     abet:start:(gain hunt)
-
-
+  ::
   ++  gain
     |=  =hunt:t
     =/  =ward:t
